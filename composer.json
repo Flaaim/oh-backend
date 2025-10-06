@@ -1,0 +1,19 @@
+{
+  "name": "flaaim/payment-service",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Flaai",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "PaymentService\\": "src/"
+    }
+  }
+}
