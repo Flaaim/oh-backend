@@ -1,15 +1,6 @@
 {
-  "name": "flaaim/payment-service",
-  "description": "description",
-  "minimum-stability": "stable",
-  "license": "proprietary",
-  "authors": [
-    {
-      "name": "Flaai",
-      "email": "email@example.com"
-    }
-  ],
   "require": {
+    "symfony/console": "^6.4"
   },
   "autoload": {
     "psr-4": {
