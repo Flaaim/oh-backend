@@ -21,3 +21,6 @@ docker-build:
 
 composer-install:
 	ocker-compose run --rm php-cli composer install
+
+unit-test:
+	docker-compose run --rm php-cli composer test
