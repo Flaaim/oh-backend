@@ -1,6 +1,8 @@
 {
   "require": {
-    "symfony/console": "^6.4"
+    "symfony/console": "^6.4",
+    "php-di/php-di": "^7.1",
+    "laminas/laminas-config-aggregator": "^1.18"
   },
   "autoload": {
     "psr-4": {
