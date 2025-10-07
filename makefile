@@ -1,8 +1,10 @@
-init: docker-down-clear docker-pull docker-build docker-up
+init: docker-down-clear docker-pull docker-build docker-up app-init
 up: docker-up
 down: docker-down
 restart: down up
 test: unit-test
+
+app-init:app-permission composer-install
 
 docker-up:
 	docker-compose up -d
@@ -21,6 +23,9 @@ docker-build:
 
 composer-install:
 	docker-compose run --rm php-cli composer install
+
+app-permission:
+	docker run --rm -v ${PWD}:/app -w /app alpine chmod 777 bin var/cache
 
 unit-test:
 	docker-compose run --rm php-cli composer test
