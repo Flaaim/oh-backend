@@ -8,4 +8,6 @@ $builder = new ContainerBuilder();
 
 $builder->useAutowiring(true);
 
+$builder->addDefinitions(__DIR__ . '/dependencies.php');
+
 return $builder->build();
