@@ -3,7 +3,8 @@
     "symfony/console": "^6.4",
     "php-di/php-di": "^7.1",
     "laminas/laminas-config-aggregator": "^1.18",
-    "webmozart/assert": "^1.11"
+    "webmozart/assert": "^1.11",
+    "yoomoney/yookassa-sdk-php": "^3.10"
   },
   "autoload": {
     "psr-4": {
