@@ -17,7 +17,7 @@ class Payment
     public function __construct(Id $id, Email $email, string $productId, Price $price, \DateTimeImmutable $createdAt)
     {
         $this->id = $id;
-        $this->status = Status::succeeded();
+        $this->status = Status::pending();
         $this->email = $email;
         $this->productId = $productId;
         $this->price = $price;
