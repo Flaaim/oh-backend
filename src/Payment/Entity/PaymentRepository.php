@@ -2,7 +2,11 @@
 
 namespace App\Payment\Entity;
 
-interface PaymentRepository
+class PaymentRepository
 {
+    public function create(Payment $payment)
+    {
+
+    }
 
 }
