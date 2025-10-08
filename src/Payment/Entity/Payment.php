@@ -3,6 +3,7 @@
 namespace App\Payment\Entity;
 
 use App\Product\Entity\Price;
+use App\Shared\Domain\Service\Payment\PaymentException;
 use App\Shared\ValueObject\Id;
 
 class Payment
@@ -54,5 +55,12 @@ class Payment
     public function getExternalId(): string
     {
         return $this->externalId;
+    }
+    public function setStatus(Status $newStatus): void
+    {
+        if($this->status->getValue() === $newStatus->getValue()) {
+            throw new \DomainException('Status already set');
+        }
+        $this->status = $newStatus;
     }
 }
