@@ -8,6 +8,8 @@ use App\Shared\ValueObject\Id;
 class Payment
 {
     private Id $id;
+    private ?string $externalId = null;
+    private Status $status;
     private Email $email;
     private string $productId;
     private Price $price;
@@ -15,6 +17,7 @@ class Payment
     public function __construct(Id $id, Email $email, string $productId, Price $price, \DateTimeImmutable $createdAt)
     {
         $this->id = $id;
+        $this->status = Status::succeeded();
         $this->email = $email;
         $this->productId = $productId;
         $this->price = $price;
@@ -23,6 +26,10 @@ class Payment
     public function getId(): Id
     {
         return $this->id;
+    }
+    public function getStatus(): Status
+    {
+        return $this->status;
     }
     public function getEmail(): Email
     {
@@ -39,5 +46,13 @@ class Payment
     public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
+    }
+    public function setExternalId(string $externalId): void
+    {
+        $this->externalId = $externalId;
+    }
+    public function getExternalId(): string
+    {
+        return $this->externalId;
     }
 }
