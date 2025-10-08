@@ -5,7 +5,8 @@
     "laminas/laminas-config-aggregator": "^1.18",
     "webmozart/assert": "^1.11",
     "yoomoney/yookassa-sdk-php": "^3.10",
-    "ramsey/uuid": "^4.9"
+    "ramsey/uuid": "^4.9",
+    "doctrine/orm": "^3.5"
   },
   "autoload": {
     "psr-4": {
