@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Payment\Command\CreatePayment\Handler;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -17,6 +18,8 @@ class PaymentCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln("Payment command...");
+
+
         return self::SUCCESS;
     }
 }
