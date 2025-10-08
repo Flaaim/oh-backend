@@ -2,12 +2,11 @@
 
 namespace App\Payment\Command\CreatePayment;
 
-class Response
+readonly class Response
 {
     public function __construct(
-        private float $amount,
-        private string $currency,
-        private string $description,
-
+        public float  $amount,
+        public string $currency,
+        public string $status,
     ){}
 }
