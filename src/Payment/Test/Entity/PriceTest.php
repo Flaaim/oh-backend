@@ -2,8 +2,8 @@
 
 namespace App\Payment\Test\Entity;
 
-use App\Payment\Entity\Currency;
-use App\Payment\Entity\Price;
+use App\Product\Entity\Currency;
+use App\Product\Entity\Price;
 use PHPUnit\Framework\TestCase;
 
 class PriceTest extends TestCase
