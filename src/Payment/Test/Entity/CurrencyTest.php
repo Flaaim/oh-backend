@@ -2,7 +2,7 @@
 
 namespace App\Payment\Test\Entity;
 
-use App\Payment\Entity\Currency;
+use App\Product\Entity\Currency;
 use PHPUnit\Framework\TestCase;
 
 class CurrencyTest extends TestCase
