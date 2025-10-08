@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Payment\Entity;
+namespace App\Product\Entity;
 
 use Webmozart\Assert\Assert;
 
