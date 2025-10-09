@@ -57,6 +57,7 @@ return [
             ],
             'types' => [
                 App\Shared\ValueObject\IdType::NAME => App\Shared\ValueObject\IdType::class,
+                App\Product\Entity\PriceType::NAME => App\Product\Entity\PriceType::class,
             ]
         ]
     ],

@@ -3,15 +3,24 @@
 namespace App\Product\Entity;
 
 use App\Shared\ValueObject\Id;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Entity]
+#[ORM\Table(name: 'products')]
 class Product
 {
+    #[ORM\Id]
+    #[ORM\Column(type: 'id', unique: true)]
     private Id $id;
+    #[ORM\Column(type: 'string', length: 255)]
     private string $name;
-    private float $price;
+    #[ORM\Column(type: 'price')]
+    private Price $price;
+    #[ORM\Column(type: 'string', length: 255)]
     private string $path;
+    #[ORM\Column(type: 'string', length: 10)]
     private string $version;
-    public function __construct(Id $id, string $name, string $price, string $path, string $version)
+    public function __construct(Id $id, string $name, Price $price, string $path, string $version)
     {
         $this->id = $id;
         $this->name = $name;
@@ -27,7 +36,7 @@ class Product
     {
         return $this->name;
     }
-    public function getPrice(): float
+    public function getPrice(): Price
     {
         return $this->price;
     }
