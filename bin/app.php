@@ -6,9 +6,16 @@ use App\Command\PaymentCommand;
 use Symfony\Component\Console\Application;
 
 require __DIR__ . '/../vendor/autoload.php';
+$container = require __DIR__ . '/../config/container.php';
+
+$commands = $container->get('config')['console']['commands'];
 
 $app = new Application();
 
-$app->add(new PaymentCommand());
+foreach ($commands as $command) {
+    $app->add($container->get($command));
+}
+
+
 
 $app->run();
