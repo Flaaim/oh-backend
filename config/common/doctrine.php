@@ -20,6 +20,7 @@ return [
             $settings['metadata_dirs'],
             $settings['dev_mode'],
             $settings['proxy_dir'],
+            null
         );
 
         $config->setNamingStrategy(new UnderscoreNamingStrategy());

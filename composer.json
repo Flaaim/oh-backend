@@ -6,7 +6,8 @@
     "webmozart/assert": "^1.11",
     "yoomoney/yookassa-sdk-php": "^3.10",
     "ramsey/uuid": "^4.9",
-    "doctrine/orm": "^3.5"
+    "doctrine/orm": "^3.5",
+    "symfony/cache": "^6.4"
   },
   "autoload": {
     "psr-4": {
