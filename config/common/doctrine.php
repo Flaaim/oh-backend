@@ -56,7 +56,7 @@ return [
 
             ],
             'types' => [
-
+                App\Shared\ValueObject\IdType::NAME => App\Shared\ValueObject\IdType::class,
             ]
         ]
     ],
