@@ -44,7 +44,7 @@ return [
             'cache_dir' => __DIR__ . '/../../var/cache/doctrine/cache',
             'proxy_dir' => __DIR__ . '/../../var/cache/doctrine/proxy',
             'connection' => [
-                'driver' => 'pdo_mysql',
+                'driver' => 'pdo_pgsql',
                 'host' => getenv('DB_HOST'),
                 'user' => getenv('DB_USER'),
                 'port' => getenv('DB_PORT'),
