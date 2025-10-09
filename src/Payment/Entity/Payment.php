@@ -13,12 +13,12 @@ class Payment
     #[ORM\Id]
     #[ORM\Column(type:'id', length: 255)]
     private Id $id;
-    #[ORM\Column(type:'external_id', length: 255, nullable: true)]
+    #[ORM\Column(type:'string', length: 255, nullable: true)]
     private ?string $externalId = null;
     private Status $status;
     #[ORM\Column(type: 'email')]
     private Email $email;
-    #[ORM\Column(type:'product_id', length: 255)]
+    #[ORM\Column(type:'string', length: 255)]
     private string $productId;
     #[ORM\Column(type:'price')]
     private Price $price;

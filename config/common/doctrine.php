@@ -53,7 +53,8 @@ return [
                 'charset' => 'utf-8'
             ],
             'metadata_dirs' => [
-
+                __DIR__ . '/../../src/Payment/Entity',
+                __DIR__ . '/../../src/Product/Entity',
             ],
             'types' => [
                 App\Shared\ValueObject\IdType::NAME => App\Shared\ValueObject\IdType::class,
