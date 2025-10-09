@@ -3,17 +3,26 @@
 namespace App\Payment\Entity;
 
 use App\Product\Entity\Price;
-use App\Shared\Domain\Service\Payment\PaymentException;
 use App\Shared\ValueObject\Id;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Entity]
+#[ORM\Table(name: 'payments')]
 class Payment
 {
+    #[ORM\Id]
+    #[ORM\Column(type:'id', length: 255)]
     private Id $id;
+    #[ORM\Column(type:'external_id', length: 255, nullable: true)]
     private ?string $externalId = null;
     private Status $status;
+    #[ORM\Column(type: 'email')]
     private Email $email;
+    #[ORM\Column(type:'product_id', length: 255)]
     private string $productId;
+    #[ORM\Column(type:'price')]
     private Price $price;
+    #[ORM\Column(type:'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
     public function __construct(Id $id, Email $email, string $productId, Price $price, \DateTimeImmutable $createdAt)
     {
