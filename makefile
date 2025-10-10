@@ -4,7 +4,10 @@ down: docker-down
 restart: down up
 test: unit-test
 
-app-init:app-permission composer-install app-migrations
+app-init:app-permission composer-install pause app-migrations
+
+pause:
+	sleep 10
 
 docker-up:
 	docker-compose up -d
