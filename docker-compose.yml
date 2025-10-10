@@ -16,7 +16,7 @@ services:
         environment:
             APP_DEBUG: 1
             APP_ENV: dev
-            DB_HOST: postgres
+            DB_HOST: mysql
             DB_USER: app
             DB_PASSWORD: secret
             DB_NAME: app
