@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Payment\Entity;
+namespace App\Product\Entity;
 
-use App\Product\Entity\Product;
 use App\Shared\ValueObject\Id;
 
 class ProductRepository
