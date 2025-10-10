@@ -29,22 +29,23 @@ services:
         environment:
             APP_DEBUG: 1
             APP_ENV: dev
-            DB_HOST: postgres
+            DB_HOST: mysql
             DB_USER: app
             DB_PASSWORD: secret
             DB_NAME: app
-
-    postgres:
-      image: postgres:12.2-alpine
+    mysql:
+      image:  mysql:8.0
       restart: always
       environment:
-        POSTGRES_USER: app
-        POSTGRES_PASSWORD: secret
-        POSTGRES_DB: app
+        MYSQL_ROOT_PASSWORD: rootpassword
+        MYSQL_USER: app
+        MYSQL_PASSWORD: secret
+        MYSQL_DATABASE: app
       volumes:
-        - postgres:/var/lib/postgresql/data
+        - mysql:/var/lib/mysql
       ports:
-        - "54321:5432"
+        - "33061:3306"
+      command: --default-authentication-plugin=mysql_native_password
 
 volumes:
-  postgres:
+  mysql:
