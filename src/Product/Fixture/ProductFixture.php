@@ -18,7 +18,7 @@ class ProductFixture extends AbstractFixture
             Id::generate(),
             'СИЗ образцы документов',
             new Price(450.00, new Currency()),
-            sys_get_temp_dir(),
+            sys_get_temp_dir().'/ppe/templates.rar',
             '1'
         );
 
