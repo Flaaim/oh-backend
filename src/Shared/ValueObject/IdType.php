@@ -3,9 +3,9 @@
 namespace App\Shared\ValueObject;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\GuidType;
+use Doctrine\DBAL\Types\StringType;
 
-class IdType extends GuidType
+class IdType extends StringType
 {
     public const NAME = 'id';
 
@@ -21,5 +21,12 @@ class IdType extends GuidType
     public function getName(): string
     {
         return self::NAME;
+    }
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
+    {
+        $column['length'] = 36;
+        $column['fixed'] = true; // CHAR вместо VARCHAR
+
+        return $platform->getStringTypeDeclarationSQL($column);
     }
 }

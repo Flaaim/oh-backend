@@ -21,4 +21,11 @@ class EmailType extends StringType
     {
         return self::NAME;
     }
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
+    {
+        $column['length'] = 36;
+        $column['fixed'] = true; // CHAR вместо VARCHAR
+
+        return $platform->getStringTypeDeclarationSQL($column);
+    }
 }
