@@ -1,38 +1,51 @@
 services:
     nginx:
-        build:
-            context: docker/nginx
-        ports:
-            - "80:80"
-        volumes:
-            - ./:/app
-        depends_on:
-            - php-fpm
+      build:
+          context: docker/nginx
+      ports:
+          - "80:80"
+      volumes:
+          - ./:/app
+      depends_on:
+          - php-fpm
     php-fpm:
-        build:
-            context: docker/php-fpm
-        volumes:
-            - ./:/app
-        environment:
-            APP_DEBUG: 1
-            APP_ENV: dev
-            DB_HOST: mysql
-            DB_USER: app
-            DB_PASSWORD: secret
-            DB_NAME: app
-
+      build:
+          context: docker/php-fpm
+      volumes:
+          - ./:/app
+      environment:
+          APP_DEBUG: 1
+          APP_ENV: dev
+          DB_HOST: mysql
+          DB_USER: app
+          DB_PASSWORD: secret
+          DB_NAME: app
+          MAILER_HOST: mailer
+          MAILER_PORT: 1025
+          MAILER_USER: app
+          MAILER_PASSWORD: secret
+          MAILER_ENCRYPTION: tcp
+          MAILER_FROM_EMAIL: admin@site.ru
+          MAILER_FROM_NAME: admin
     php-cli:
-        build:
-            context: docker/php-cli
-        volumes:
-            - ./:/app
-        environment:
-            APP_DEBUG: 1
-            APP_ENV: dev
-            DB_HOST: mysql
-            DB_USER: app
-            DB_PASSWORD: secret
-            DB_NAME: app
+      build:
+          context: docker/php-cli
+      volumes:
+          - ./:/app
+      environment:
+          APP_DEBUG: 1
+          APP_ENV: dev
+          DB_HOST: mysql
+          DB_USER: app
+          DB_PASSWORD: secret
+          DB_NAME: app
+          MAILER_HOST: mailer
+          MAILER_PORT: 1025
+          MAILER_USER: app
+          MAILER_PASSWORD: secret
+          MAILER_ENCRYPTION: tcp
+          MAILER_FROM_EMAIL: admin@site.ru
+          MAILER_FROM_NAME: admin
     mysql:
       image:  mysql:8.0
       restart: always
