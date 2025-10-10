@@ -47,5 +47,10 @@ services:
         - "33061:3306"
       command: --default-authentication-plugin=mysql_native_password
 
+    mailer:
+      image: mailhog/mailhog
+      ports:
+        - "8082:8025"
+
 volumes:
   mysql:
