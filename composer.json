@@ -9,7 +9,8 @@
     "doctrine/orm": "^3.5",
     "symfony/cache": "^6.4",
     "doctrine/migrations": "^3.9",
-    "doctrine/data-fixtures": "^2.1"
+    "doctrine/data-fixtures": "^2.1",
+    "symfony/mailer": "^6.4"
   },
   "autoload": {
     "psr-4": {
