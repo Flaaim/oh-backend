@@ -44,12 +44,15 @@ return [
             'cache_dir' => __DIR__ . '/../../var/cache/doctrine/cache',
             'proxy_dir' => __DIR__ . '/../../var/cache/doctrine/proxy',
             'connection' => [
-                'driver' => 'pdo_pgsql',
+                'driver' => 'pdo_mysql',
                 'host' => getenv('DB_HOST'),
                 'user' => getenv('DB_USER'),
                 'password' => getenv('DB_PASSWORD'),
                 'dbname' => getenv('DB_NAME'),
-                'charset' => 'utf-8'
+                'charset' => 'utf8mb4',
+                'driverOptions' => [
+                    1002 => "SET NAMES 'utf8mb4'",
+                ]
             ],
             'metadata_dirs' => [
                 __DIR__ . '/../../src/Payment/Entity',
