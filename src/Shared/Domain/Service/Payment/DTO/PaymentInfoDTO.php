@@ -2,7 +2,7 @@
 
 namespace App\Shared\Domain\Service\Payment\DTO;
 
-readonly class PaymentInfoDTO
+class PaymentInfoDTO
 {
     public function __construct(
         public string  $paymentId,

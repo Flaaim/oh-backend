@@ -2,7 +2,7 @@
 
 namespace App\Shared\Domain\Service\Payment\DTO;
 
-readonly class MakePaymentDTO
+class MakePaymentDTO
 {
     public function __construct(
         public float   $amount,
