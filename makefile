@@ -4,7 +4,7 @@ down: docker-down
 restart: down up
 test: unit-test
 
-app-init:app-permission composer-install
+app-init:app-permission composer-install app-migrations
 
 docker-up:
 	docker-compose up -d
@@ -29,3 +29,6 @@ app-permission:
 
 unit-test:
 	docker-compose run --rm php-cli composer test
+
+app-migrations:
+	docker-compose run --rm php-cli composer app migrations:migrate -- --no-interaction
