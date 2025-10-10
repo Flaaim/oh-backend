@@ -47,7 +47,6 @@ return [
                 'driver' => 'pdo_pgsql',
                 'host' => getenv('DB_HOST'),
                 'user' => getenv('DB_USER'),
-                'port' => getenv('DB_PORT'),
                 'password' => getenv('DB_PASSWORD'),
                 'dbname' => getenv('DB_NAME'),
                 'charset' => 'utf-8'
