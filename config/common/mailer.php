@@ -14,6 +14,7 @@ use Symfony\Component\Mime\Address;
 return [
     MailerInterface::class => static function (ContainerInterface $container) {
         $config = $container->get('config')['mailer'];
+
         $dispatcher = new EventDispatcher();
         $event = new EnvelopeListener(
             new Address(
@@ -21,11 +22,13 @@ return [
                 $config['from']['name']
             )
         );
+        $dispatcher->addSubscriber($event);
 
         $transport = (new EsmtpTransport(
             $config['host'],
             $config['port'],
             $config['encryption'],
+            $dispatcher,
         ))
             ->setUsername($config['username'])
             ->setPassword($config['password']);
