@@ -27,10 +27,10 @@ return [
         $transport = (new EsmtpTransport(
             $config['host'],
             $config['port'],
-            $config['encryption'],
+            $config['encryption'] === 'tls',
             $dispatcher,
         ))
-            ->setUsername($config['username'])
+            ->setUsername($config['user'])
             ->setPassword($config['password']);
 
         return new Mailer($transport);
@@ -38,7 +38,7 @@ return [
     'config' => [
         'mailer' => [
             'host' => getenv('MAILER_HOST'),
-            'port' => getenv('MAILER_PORT'),
+            'port' => (int)getenv('MAILER_PORT'),
             'user' => getenv('MAILER_USER'),
             'password' => getenv('MAILER_PASSWORD'),
             'encryption' => getenv('MAILER_ENCRYPTION'),
