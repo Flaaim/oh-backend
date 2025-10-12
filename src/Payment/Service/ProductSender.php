@@ -4,6 +4,8 @@ namespace App\Payment\Service;
 
 use App\Payment\Entity\Email;
 use App\Product\Entity\Product;
+use App\Shared\Domain\Service\Template\TemplateManager;
+use App\Shared\Domain\TemplatePath;
 use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
@@ -14,9 +16,11 @@ use Symfony\Component\Mime\Part\File;
 class ProductSender
 {
     private MailerInterface $mailer;
-    public function __construct(MailerInterface $mailer)
+    private TemplatePath $templatePath;
+    public function __construct(MailerInterface $mailer, TemplatePath $templatePath)
     {
         $this->mailer = $mailer;
+        $this->templatePath = $templatePath;
     }
     public function send(Email $email, Product $product): void
     {
@@ -29,7 +33,11 @@ class ProductSender
         $message->addPart(
             new DataPart(
                 new File(
-                    $product->getFile()->getPathToFile(),
+                    (new TemplateManager(
+                        $this->templatePath,
+                        $product->getFile()
+                    ))
+                        ->getTemplate()
                 )
             )
         );
