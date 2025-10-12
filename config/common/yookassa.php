@@ -24,7 +24,7 @@ return [
     },
     'config' => [
       'provider' => [
-          'name' => 'YooKassa',
+          'name' => 'Yookassa',
           'shopId' => '221345',
           'secretKey' => 'test_0B3flJqsbdKNA2sS2dT0ahs74LtF7fwJq2oVR-8wTCM',
           'returnUrl' => 'http://localhost/payment-service/success',
