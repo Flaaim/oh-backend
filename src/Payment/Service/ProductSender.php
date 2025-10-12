@@ -29,7 +29,7 @@ class ProductSender
         $message->addPart(
             new DataPart(
                 new File(
-                    $product->getPath(),
+                    $product->getFile()->getPathToFile(),
                 )
             )
         );
