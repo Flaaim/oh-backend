@@ -20,5 +20,17 @@ class PaymentRepository
     {
         $this->em->persist($payment);
     }
+    public function getByExternalId(string $paymentId): Payment
+    {
+        if(!$payment = $this->repo->findOneBy(['externalId' => $paymentId])){
+            throw new \DomainException('Payment not found.');
+        }
+        return $payment;
+    }
+
+    public function update(Payment $payment): void
+    {
+        $this->em->persist($payment);
+    }
 
 }

@@ -8,6 +8,8 @@ use App\Shared\Domain\Service\Payment\DTO\PaymentInfoDTO;
 use App\Shared\Domain\Service\Payment\PaymentException;
 use App\Shared\Domain\Service\Payment\PaymentProviderInterface;
 use YooKassa\Client;
+use YooKassa\Model\Notification\NotificationEventType;
+use YooKassa\Model\Notification\NotificationFactory;
 
 class YookassaProvider implements PaymentProviderInterface
 {
@@ -50,9 +52,14 @@ class YookassaProvider implements PaymentProviderInterface
         }
     }
 
-    public function handleCallback(PaymentCallbackDTO $callbackData): bool
+    public function handleCallback(PaymentCallbackDTO $callbackData): ?string
     {
+        $factory = new NotificationFactory();
+        $notificationObject = $factory->factory($callbackData->rawData);
+        $responseObject = $notificationObject->getObject();
+        $paymentId = $responseObject->getPaymentId();
 
+        return $this->verifyPaymentStatus($paymentId);
     }
 
     public function checkPaymentStatus(string $paymentId): string
@@ -68,5 +75,19 @@ class YookassaProvider implements PaymentProviderInterface
     public function getName(): string
     {
         return $this->config->getName();
+    }
+    private function verifyPaymentStatus(string $paymentId): ?string
+    {
+        try{
+            $payment = $this->client->getPaymentInfo($paymentId);
+
+            return match ($payment->getStatus()) {
+                'succeeded', 'waiting_for_capture' => $paymentId,
+                'pending', 'canceled' => null,
+                default => throw new PaymentException("Unknown payment status: " . $payment->getStatus()),
+            };
+        }catch (PaymentException $e){
+            throw new PaymentException('Failed to verify payment status: ' . $e->getMessage());
+        }
     }
 }

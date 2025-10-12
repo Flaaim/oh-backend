@@ -12,7 +12,7 @@ interface PaymentProviderInterface
 {
     public function initiatePayment(MakePaymentDTO $paymentData): PaymentInfoDTO;
 
-    public function handleCallback(PaymentCallbackDTO $callbackData): bool;
+    public function handleCallback(PaymentCallbackDTO $callbackData): ?string;
 
     public function checkPaymentStatus(string $paymentId): string;
 
