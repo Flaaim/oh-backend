@@ -3,6 +3,7 @@
 namespace App\Product\Fixture;
 
 use App\Product\Entity\Currency;
+use App\Product\Entity\File;
 use App\Product\Entity\Price;
 use App\Product\Entity\Product;
 use App\Shared\ValueObject\Id;
@@ -18,7 +19,7 @@ class ProductFixture extends AbstractFixture
             Id::generate(),
             'СИЗ образцы документов',
             new Price(450.00, new Currency()),
-            sys_get_temp_dir().'/ppe/templates.rar',
+            new File('/ppe/template.rar'),
             '1'
         );
 

@@ -16,16 +16,16 @@ class Product
     private string $name;
     #[ORM\Column(type: 'price')]
     private Price $price;
-    #[ORM\Column(type: 'string', length: 255)]
-    private string $path;
+    #[ORM\Column(type: 'file')]
+    private File $file;
     #[ORM\Column(type: 'string', length: 10)]
     private string $version;
-    public function __construct(Id $id, string $name, Price $price, string $path, string $version)
+    public function __construct(Id $id, string $name, Price $price, File $file, string $version)
     {
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
-        $this->path = $path;
+        $this->file = $file;
         $this->version = $version;
     }
     public function getId(): Id
@@ -40,9 +40,9 @@ class Product
     {
         return $this->price;
     }
-    public function getPath(): string
+    public function getFile(): File
     {
-        return $this->path;
+        return $this->file;
     }
     public function getVersion(): string
     {

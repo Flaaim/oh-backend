@@ -10,22 +10,12 @@ class FileTest extends TestCase
 {
     public function testSuccess(): void
     {
-        $file = new File(
-            $this->getTemplatePath(),
-            '/ppe/template.rar'
-        );
-        $this->assertEquals('/tmp/ppe/template.rar', $file->getPathToFile());
+        $file = new File('/ppe/template.rar');
+        $this->assertEquals('ppe/template.rar', $file->getPathToFile());
     }
     public function testEmpty(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        new File(
-            $this->getTemplatePath(),
-            ''
-        );
-    }
-    private function getTemplatePath(): TemplatePath
-    {
-        return new TemplatePath(sys_get_temp_dir());
+        new File('');
     }
 }
