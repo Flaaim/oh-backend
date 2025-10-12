@@ -10,7 +10,7 @@ class TemplatePathTest extends TestCase
     public function testSuccess(): void
     {
         $file = new TemplatePath(sys_get_temp_dir());
-        $this->assertEquals(sys_get_temp_dir(), $file->getBasePath());
+        $this->assertEquals(sys_get_temp_dir(), $file->getValue());
     }
     public function testEmpty(): void
     {

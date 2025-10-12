@@ -12,7 +12,7 @@ class TemplatePath
         Assert::notEmpty($basePath);
         $this->basePath = $basePath;
     }
-    public function getBasePath(): string
+    public function getValue(): string
     {
         return $this->basePath;
     }
