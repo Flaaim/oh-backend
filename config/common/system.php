@@ -4,7 +4,7 @@
 declare(strict_types=1);
 
 
-use App\Product\Entity\TemplatePath;
+use App\Shared\Domain\TemplatePath;
 use Psr\Container\ContainerInterface;
 
 return [

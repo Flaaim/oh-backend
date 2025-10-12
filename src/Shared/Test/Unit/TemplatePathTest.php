@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Product\Test\Entity;
+namespace App\Shared\Test\Unit;
 
-use App\Product\Entity\TemplatePath;
+use App\Shared\Domain\TemplatePath;
 use PHPUnit\Framework\TestCase;
 
 class TemplatePathTest extends TestCase
