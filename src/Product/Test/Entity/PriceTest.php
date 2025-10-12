@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Payment\Test\Entity;
+namespace App\Product\Test\Entity;
 
 use App\Product\Entity\Currency;
 use App\Product\Entity\Price;
