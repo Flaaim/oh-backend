@@ -11,16 +11,19 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mime\Part\File;
+use Twig\Environment;
 
 
 class ProductSender
 {
     private MailerInterface $mailer;
     private TemplatePath $templatePath;
-    public function __construct(MailerInterface $mailer, TemplatePath $templatePath)
+    private Environment $twig;
+    public function __construct(MailerInterface $mailer, TemplatePath $templatePath, Environment $twig)
     {
         $this->mailer = $mailer;
         $this->templatePath = $templatePath;
+        $this->twig = $twig;
     }
     public function send(Email $email, Product $product): void
     {
@@ -28,7 +31,7 @@ class ProductSender
         $message->subject($product->getName());
         $message->to($email->getValue());
         $message->html(
-            'Спасибо за покупку! Образцы документов мы приложили к этому письму'
+            $this->twig->render('mail/template.html.twig')
         );
         $message->addPart(
             new DataPart(

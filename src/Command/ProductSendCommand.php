@@ -17,6 +17,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
+use Twig\Environment;
 
 
 class ProductSendCommand extends Command
@@ -35,7 +36,8 @@ class ProductSendCommand extends Command
 
         $productSender = new ProductSender(
             $container->get(MailerInterface::class),
-            new TemplatePath(sys_get_temp_dir())
+            new TemplatePath(sys_get_temp_dir()),
+            $container->get(Environment::class),
         );
         $tempFile = tempnam(sys_get_temp_dir(), 'template');
         $productSender->send(
