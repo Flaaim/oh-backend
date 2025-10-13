@@ -18,6 +18,7 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mime\Part\File;
+use Twig\Environment;
 
 class ProductSenderTest extends TestCase
 {
@@ -25,11 +26,13 @@ class ProductSenderTest extends TestCase
     {
         $product = $this->getProduct();
         $email = new UserEmail('test@app.ru');
-        $text = 'Спасибо за покупку! Образцы документов мы приложили к этому письму';
         $subject = $product->getName();
 
+        $twig = $this->createMock(Environment::class);
 
-        $message = (new Email())->subject($subject)->to($email->getValue())->html($text)->addPart(
+        $message = (new Email())->subject($subject)->to($email->getValue())->html(
+            $twig->render('mail/template.html.twig')
+        )->addPart(
             new DataPart(new File(
                 $templateManager = (new TemplateManager($this->getTemplatePath(), $product->getFile()))->getTemplate(),
             ))
@@ -38,15 +41,15 @@ class ProductSenderTest extends TestCase
         $mailer = $this->createMock(MailerInterface::class);
         $mailer->expects($this->once())->method('send')->with(
             $this->equalTo($message),
-        )->willReturnCallback(static function ($message) use ($text, $email, $subject, $product, $templateManager) {
+        )->willReturnCallback(static function ($message) use ($twig, $email, $subject, $product, $templateManager) {
             /** @var Email $message */
             self::assertEquals([new Address($email->getValue())], $message->getTo());
             self::assertEquals($subject, $message->getSubject());
-            self::assertEquals($text, $message->getHtmlBody());
+            self::assertEquals($twig->render('mail/template.html.twig'), $message->getHtmlBody());
             self::assertEquals([new DataPart(new File($templateManager))], $message->getAttachments());
         });
 
-        $productSender = new ProductSender($mailer, $this->getTemplatePath());
+        $productSender = new ProductSender($mailer, $this->getTemplatePath(), $twig);
         $productSender->send($email, $product);
     }
 
@@ -55,9 +58,10 @@ class ProductSenderTest extends TestCase
         $product = $this->getProduct();
         $email = new UserEmail('test@app.ru');
         $mailer = $this->createMock(MailerInterface::class);
+        $twig = $this->createMock(Environment::class);
         $mailer->expects($this->once())->method('send')->willThrowException(new TransportException());
 
-        $productSender = new ProductSender($mailer, $this->getTemplatePath());
+        $productSender = new ProductSender($mailer, $this->getTemplatePath(), $twig);
 
         $this->expectException(TransportException::class);
         $productSender->send($email, $product);
