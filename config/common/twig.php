@@ -27,11 +27,16 @@ return [
     if($config['debug']) {
         $environment->addExtension(new DebugExtension());
     }
-      foreach ($config['extensions'] as $class) {
-          /** @var ExtensionInterface $extension */
-          $extension = $container->get($class);
-          $environment->addExtension($extension);
-      }
+
+    foreach($config['globals'] as $name => $value) {
+        $environment->addGlobal($name, $value);
+    }
+
+    foreach ($config['extensions'] as $class) {
+        /** @var ExtensionInterface $extension */
+        $extension = $container->get($class);
+        $environment->addExtension($extension);
+    }
     return $environment;
   },
     'config' => [
@@ -41,7 +46,11 @@ return [
                 FilesystemLoader::MAIN_NAMESPACE => __DIR__. '/../../templates',
             ],
             'cache_dir' => __DIR__ . '/../../var/cache/twig',
-            'extensions' => []
+            'extensions' => [],
+            'globals' => [
+                'site_url' => getenv('SITE_URL'),
+                'site_name' => getenv('SITE_NAME'),
+            ],
         ]
     ]
 ];
