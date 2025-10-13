@@ -10,6 +10,7 @@ use App\Shared\Domain\Service\Payment\PaymentProviderInterface;
 use YooKassa\Client;
 use YooKassa\Model\Notification\NotificationEventType;
 use YooKassa\Model\Notification\NotificationFactory;
+use YooKassa\Request\Payments\PaymentResponse;
 
 class YookassaProvider implements PaymentProviderInterface
 {
@@ -57,7 +58,8 @@ class YookassaProvider implements PaymentProviderInterface
         $factory = new NotificationFactory();
         $notificationObject = $factory->factory($callbackData->rawData);
         $responseObject = $notificationObject->getObject();
-        $paymentId = $responseObject->getPaymentId();
+        /** @var PaymentResponse $responseObject */
+        $paymentId = $responseObject->getId();
 
         return $this->verifyPaymentStatus($paymentId);
     }
