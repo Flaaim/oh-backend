@@ -3,7 +3,6 @@
 namespace App\Shared\Domain\Service\Template;
 
 use App\Product\Entity\File;
-use App\Shared\Domain\TemplatePath;
 
 
 class TemplateManager

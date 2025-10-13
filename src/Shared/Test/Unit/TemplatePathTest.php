@@ -2,7 +2,7 @@
 
 namespace App\Shared\Test\Unit;
 
-use App\Shared\Domain\TemplatePath;
+use App\Shared\Domain\Service\Template\TemplatePath;
 use PHPUnit\Framework\TestCase;
 
 class TemplatePathTest extends TestCase

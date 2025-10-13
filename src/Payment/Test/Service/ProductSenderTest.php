@@ -2,22 +2,23 @@
 
 namespace App\Payment\Test\Service;
 
+use App\Payment\Entity\Email as UserEmail;
 use App\Payment\Service\ProductSender;
 use App\Product\Entity\Currency;
+use App\Product\Entity\File as EntityFile;
 use App\Product\Entity\Price;
 use App\Product\Entity\Product;
 use App\Shared\Domain\Service\Template\TemplateManager;
-use App\Shared\Domain\TemplatePath;
+use App\Shared\Domain\Service\Template\TemplatePath;
 use App\Shared\ValueObject\Id;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
-use App\Payment\Entity\Email as UserEmail;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mime\Part\File;
-use App\Product\Entity\File as EntityFile;
+
 class ProductSenderTest extends TestCase
 {
     public function testSuccess()

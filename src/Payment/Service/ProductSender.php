@@ -5,7 +5,7 @@ namespace App\Payment\Service;
 use App\Payment\Entity\Email;
 use App\Product\Entity\Product;
 use App\Shared\Domain\Service\Template\TemplateManager;
-use App\Shared\Domain\TemplatePath;
+use App\Shared\Domain\Service\Template\TemplatePath;
 use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
