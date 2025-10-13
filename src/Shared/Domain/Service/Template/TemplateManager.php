@@ -13,9 +13,9 @@ class TemplateManager
         private readonly File $file)
     {
         $this->templateFile =
-            $this->templatePath->getValue() .
+            rtrim($this->templatePath->getValue(), '/') .
             DIRECTORY_SEPARATOR .
-            $this->file->getPathToFile();
+            ltrim($this->file->getPathToFile(), '/');
     }
 
     private function templateExists(): bool
