@@ -4,7 +4,7 @@ down: docker-down
 restart: down up
 test: unit-test
 
-app-init:app-permission composer-install pause app-migrations
+app-init:app-permission composer-install pause app-migrations app-fixtures
 
 pause:
 	sleep 10
@@ -35,3 +35,6 @@ unit-test:
 
 app-migrations:
 	docker-compose run --rm php-cli composer app migrations:migrate -- --no-interaction
+
+app-fixtures:
+	docker-compose run --rm php-cli composer app fixtures:load
