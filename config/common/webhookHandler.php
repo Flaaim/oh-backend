@@ -12,17 +12,31 @@ use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\MailerInterface;
+use Twig\Environment;
 
 return [
     HookPaymentHandler::class => function(ContainerInterface $c){
+        $yookassaWebhookParser = new YookassaWebhookParser();
+
+        $yookassaProvider = $c->get(YookassaProvider::class);
+
+        $productSender = new ProductSender(
+            $c->get(MailerInterface::class),
+            $c->get(TemplatePath::class),
+            $c->get(Environment::class),
+            $logger = $c->get(LoggerInterface::class),
+        );
+
+        $em = $c->get(EntityManagerInterface::class);
+
         return new HookPaymentHandler(
-            new YookassaWebhookParser(),
-            $c->get(YookassaProvider::class),
-            new ProductSender($c->get(MailerInterface::class), $c->get(TemplatePath::class)),
-            new ProductRepository($c->get(EntityManagerInterface::class)),
-            new PaymentRepository($c->get(EntityManagerInterface::class)),
-            new Flusher($c->get(EntityManagerInterface::class)),
-            $c->get(LoggerInterface::class)
+            $yookassaWebhookParser,
+            $yookassaProvider,
+            $productSender,
+            new ProductRepository($em),
+            new PaymentRepository($em),
+            new Flusher($em),
+            $logger
         );
     },
 ];
