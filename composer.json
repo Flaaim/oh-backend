@@ -30,6 +30,7 @@
     "test": "phpunit --display-warnings"
   },
   "require-dev": {
-    "phpunit/phpunit": "^10.5"
+    "phpunit/phpunit": "^10.5",
+    "deployer/deployer": "^7.5"
   }
 }
