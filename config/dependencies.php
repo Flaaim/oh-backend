@@ -9,9 +9,10 @@ use Laminas\ConfigAggregator\PhpFileProvider;
 $envValue = getenv('APP_ENV');
 
 if(empty($envValue)){
-    $file = __DIR__ . '/env/.env';
+    $envDir = __DIR__ . '/env';
+    $file = $envDir . '/.env';
     if (file_exists($file)) {
-        $dotenv = Dotenv::createImmutable($file);
+        $dotenv = Dotenv::createUnsafeImmutable($envDir);
         $dotenv->load();
     } else {
         throw new RuntimeException('.env file not found at: ' . $file);
