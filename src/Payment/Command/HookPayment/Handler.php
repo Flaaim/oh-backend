@@ -14,6 +14,7 @@ use App\Shared\Domain\Service\Payment\PaymentStatus;
 use App\Shared\Domain\Service\Payment\PaymentWebhookDataInterface;
 use App\Shared\Domain\Service\Payment\PaymentWebhookParserInterface;
 use App\Shared\ValueObject\Id;
+use Psr\Log\LoggerInterface;
 
 class Handler
 {
@@ -23,7 +24,8 @@ class Handler
         private readonly ProductSender $sender,
         private readonly ProductRepository $productRepository,
         private readonly PaymentRepository $paymentRepository,
-        private readonly Flusher $flusher
+        private readonly Flusher $flusher,
+        private readonly LoggerInterface $logger
     )
     {}
     public function handle(Command $command): void
@@ -64,6 +66,7 @@ class Handler
                 $this->flusher->flush();
 
             }catch (\Exception $e){
+                $this->logger->error('Failed to handle webhook', ['error' => $e->getMessage()]);
                 throw new \RuntimeException('Failed to send product: ' . $e->getMessage());
             }
 

@@ -7,9 +7,10 @@ use App\Payment\Service\ProductSender;
 use App\Product\Entity\ProductRepository;
 use App\Shared\Domain\Service\Payment\Provider\YookassaProvider;
 use App\Shared\Domain\Service\Payment\WebhookParser\YookassaWebhookParser;
-use App\Shared\Domain\TemplatePath;
+use App\Shared\Domain\Service\Template\TemplatePath;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\MailerInterface;
 
 return [
@@ -20,7 +21,8 @@ return [
             new ProductSender($c->get(MailerInterface::class), $c->get(TemplatePath::class)),
             new ProductRepository($c->get(EntityManagerInterface::class)),
             new PaymentRepository($c->get(EntityManagerInterface::class)),
-            new Flusher($c->get(EntityManagerInterface::class))
+            new Flusher($c->get(EntityManagerInterface::class)),
+            $c->get(LoggerInterface::class)
         );
     },
 ];

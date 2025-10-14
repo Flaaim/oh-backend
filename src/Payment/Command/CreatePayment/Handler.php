@@ -15,6 +15,7 @@ use App\Shared\Domain\Service\Payment\PaymentException;
 use App\Shared\Domain\Service\Payment\Provider\YookassaProvider;
 use App\Shared\ValueObject\Id;
 use DateTimeImmutable;
+use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 
 class Handler
@@ -25,6 +26,7 @@ class Handler
         private readonly ProductRepository $products,
         private readonly YookassaProvider $yookassaProvider,
         private readonly PaymentRepository $payments,
+        private readonly LoggerInterface $logger
     )
     {}
     public function handle(Command $command): Response
@@ -50,6 +52,7 @@ class Handler
             );
             $payment->setExternalId($paymentInfo->paymentId);
         }catch (PaymentException $e){
+            $this->logger->error('Failed to create payment: ', ['error' => $e->getMessage()]);
             $payment->setStatus(Status::cancelled());
 
             $this->payments->create($payment);

@@ -12,6 +12,7 @@ use App\Shared\Domain\Service\Template\TemplateManager;
 use App\Shared\Domain\Service\Template\TemplatePath;
 use App\Shared\ValueObject\Id;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
@@ -29,7 +30,7 @@ class ProductSenderTest extends TestCase
         $subject = $product->getName();
 
         $twig = $this->createMock(Environment::class);
-
+        $logger = $this->createMock(LoggerInterface::class);
         $message = (new Email())->subject($subject)->to($email->getValue())->html(
             $twig->render('mail/template.html.twig')
         )->addPart(
@@ -49,7 +50,7 @@ class ProductSenderTest extends TestCase
             self::assertEquals([new DataPart(new File($templateManager))], $message->getAttachments());
         });
 
-        $productSender = new ProductSender($mailer, $this->getTemplatePath(), $twig);
+        $productSender = new ProductSender($mailer, $this->getTemplatePath(), $twig, $logger);
         $productSender->send($email, $product);
     }
 
@@ -59,9 +60,11 @@ class ProductSenderTest extends TestCase
         $email = new UserEmail('test@app.ru');
         $mailer = $this->createMock(MailerInterface::class);
         $twig = $this->createMock(Environment::class);
+        $logger = $this->createMock(LoggerInterface::class);
+
         $mailer->expects($this->once())->method('send')->willThrowException(new TransportException());
 
-        $productSender = new ProductSender($mailer, $this->getTemplatePath(), $twig);
+        $productSender = new ProductSender($mailer, $this->getTemplatePath(), $twig, $logger);
 
         $this->expectException(TransportException::class);
         $productSender->send($email, $product);

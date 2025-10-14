@@ -6,6 +6,7 @@ use App\Payment\Entity\Email;
 use App\Product\Entity\Product;
 use App\Shared\Domain\Service\Template\TemplateManager;
 use App\Shared\Domain\Service\Template\TemplatePath;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
@@ -19,11 +20,13 @@ class ProductSender
     private MailerInterface $mailer;
     private TemplatePath $templatePath;
     private Environment $twig;
-    public function __construct(MailerInterface $mailer, TemplatePath $templatePath, Environment $twig)
+    private LoggerInterface $logger;
+    public function __construct(MailerInterface $mailer, TemplatePath $templatePath, Environment $twig, LoggerInterface $logger)
     {
         $this->mailer = $mailer;
         $this->templatePath = $templatePath;
         $this->twig = $twig;
+        $this->logger = $logger;
     }
     public function send(Email $email, Product $product): void
     {
@@ -47,6 +50,7 @@ class ProductSender
         try{
             $this->mailer->send($message);
         } catch (TransportExceptionInterface $e) {
+            $this->logger->error('Failed to send mail: ', ['error' => $e->getMessage()]);
             throw new TransportException($e->getMessage());
         }
 

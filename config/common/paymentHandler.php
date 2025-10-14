@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Payment\Command\CreatePayment\Handler;
+use App\Payment\Command\CreatePayment\Handler as CreatePaymentHandler;
 
 return [
-
-    Handler::class => DI\autowire(Handler::class),
+    CreatePaymentHandler::class => DI\autowire(CreatePaymentHandler::class),
 ];
