@@ -4,10 +4,14 @@ namespace App\Payment\Entity;
 
 use DateTimeImmutable;
 use Webmozart\Assert\Assert;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Embeddable]
 class Token
 {
+    #[ORM\Column(type:'string', length: 255, nullable: true)]
     private string $value;
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private DateTimeImmutable $expired;
     public function __construct(string $value, DateTimeImmutable $expired)
     {
