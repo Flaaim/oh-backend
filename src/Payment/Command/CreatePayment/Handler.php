@@ -49,8 +49,8 @@ class Handler
                     $payment->getPrice()->getValue(),
                     $payment->getPrice()->getCurrency()->getValue(),
                     $product->getName(),
-                    ['email' => $email->getValue(), 'productId' => $product->getId()->getValue()],
                     $payment->getReturnToken()->getValue(),
+                    ['email' => $email->getValue(), 'productId' => $product->getId()->getValue()],
                     $email->getValue(),
                 )
             );
