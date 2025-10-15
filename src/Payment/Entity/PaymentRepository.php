@@ -32,5 +32,18 @@ class PaymentRepository
     {
         $this->em->persist($payment);
     }
+    public function getByToken(string $returnToken): Payment
+    {
+        $queryBuilder = $this->repo->createQueryBuilder('p');
+        $payment = $queryBuilder->where('p.returnToken.value = :token')
+            ->setParameter('token', $returnToken)
+            ->getQuery()
+            ->getOneOrNullResult();
 
+        if(!$payment){
+            throw new \DomainException('Payment not found.');
+        }
+
+        return $payment;
+    }
 }
