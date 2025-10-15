@@ -7,6 +7,7 @@ use App\Payment\Entity\Email;
 use App\Payment\Entity\Payment;
 use App\Payment\Entity\PaymentRepository;
 use App\Payment\Entity\Status;
+use App\Payment\Entity\Token;
 use App\Product\Entity\Currency;
 use App\Product\Entity\Price;
 use App\Product\Entity\ProductRepository;
@@ -33,21 +34,24 @@ class Handler
     {
         $email = new Email($command->email);
         $product = $this->products->get(new Id($command->productId));
-
+        $returnToken = new Token(Id::generate(), new DateTimeImmutable('+ 1 hour'));
         $payment = new Payment(
             new Id(Uuid::uuid4()->toString()),
             $email,
             $command->productId,
             new Price($product->getPrice()->getValue(), new Currency('RUB')),
             new DateTimeImmutable(),
+            $returnToken
         );
         try {
             $paymentInfo = $this->yookassaProvider->initiatePayment(
                 new MakePaymentDTO(
                     $payment->getPrice()->getValue(),
                     $payment->getPrice()->getCurrency()->getValue(),
-                    'Описание продукта',
+                    $product->getName(),
                     ['email' => $email->getValue(), 'productId' => $product->getId()->getValue()],
+                    $payment->getReturnToken()->getValue(),
+                    $email->getValue(),
                 )
             );
             $payment->setExternalId($paymentInfo->paymentId);

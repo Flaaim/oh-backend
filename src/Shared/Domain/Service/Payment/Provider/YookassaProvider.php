@@ -22,6 +22,7 @@ class YookassaProvider implements PaymentProviderInterface
     public function initiatePayment(MakePaymentDTO $paymentData): PaymentInfoDTO
     {
         $idempotenceKey = uniqid('', true);
+        $returnUrl = $this->config->getReturnUrl() . '?token=' . $paymentData->returnToken;
         try{
             $response = $this->client->createPayment([
                 'amount' => [
@@ -31,7 +32,7 @@ class YookassaProvider implements PaymentProviderInterface
                 'confirmation' => [
                     'type' => 'redirect',
                     'locale' => 'ru_RU',
-                    'return_url' => $this->config->getReturnUrl(),
+                    'return_url' => $returnUrl,
                 ],
                 'capture' => true,
                 'description' => $paymentData->description,

@@ -23,9 +23,11 @@ class Payment
     private string $productId;
     #[ORM\Column(type:'price')]
     private Price $price;
+    #[ORM\Embedded(class: Token::class)]
+    private Token $returnToken;
     #[ORM\Column(type:'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
-    public function __construct(Id $id, Email $email, string $productId, Price $price, \DateTimeImmutable $createdAt)
+    public function __construct(Id $id, Email $email, string $productId, Price $price, \DateTimeImmutable $createdAt, Token $returnToken)
     {
         $this->id = $id;
         $this->status = Status::pending();
@@ -33,6 +35,7 @@ class Payment
         $this->productId = $productId;
         $this->price = $price;
         $this->createdAt = $createdAt;
+        $this->returnToken = $returnToken;
     }
     public function getId(): Id
     {
@@ -65,6 +68,10 @@ class Payment
     public function getExternalId(): string
     {
         return $this->externalId;
+    }
+    public function getReturnToken(): Token
+    {
+        return $this->returnToken;
     }
     public function setStatus(Status $newStatus): void
     {
