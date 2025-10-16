@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Http\Action\CreatePaymentAction;
+use App\Http\Action\CreatePayment\RequestAction;
 use App\Http\JsonResponse;
 use Psr\Container\ContainerInterface;
 use Slim\Psr7\Factory\ServerRequestFactory;
@@ -20,8 +20,8 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 switch($request->getUri()->getPath()){
     case '/process-payment':
-        $action = $container->get(CreatePaymentAction::class);
-        /** @var CreatePaymentAction $action */
+        $action = $container->get(RequestAction::class);
+        /** @var RequestAction $action */
         $response = $action->handle($request);
         break;
     default:

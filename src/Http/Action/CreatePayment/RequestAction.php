@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Action;
+namespace App\Http\Action\CreatePayment;
 
 use App\Http\JsonResponse;
 use App\Payment\Command\CreatePayment\Command;
@@ -12,7 +12,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 
-class CreatePaymentAction implements RequestHandlerInterface
+class RequestAction implements RequestHandlerInterface
 {
     public function __construct(private readonly ContainerInterface $container)
     {}
