@@ -19,7 +19,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-Type');
 
 switch($request->getUri()->getPath()){
-    case '/process-payment':
+    case '/payment-service/process-payment':
         $action = $container->get(RequestAction::class);
         /** @var RequestAction $action */
         $response = $action->handle($request);
