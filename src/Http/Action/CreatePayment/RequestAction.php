@@ -47,7 +47,7 @@ class RequestAction implements RequestHandlerInterface
             $handler = $this->container->get(Handler::class);
             $response = $handler->handle($command);
 
-            return new JsonResponse($response, 200);
+            return new JsonResponse($response, 201);
         }catch (InvalidArgumentException $e){
             return new JsonResponse(['error' => $e->getMessage()], 400);
         } catch (\Exception $e){
