@@ -5,7 +5,7 @@ namespace App\Payment\Command\HookPayment;
 class Command
 {
     public function __construct(
-        public readonly string $requestBody
+        public readonly array $data
     )
     {}
 

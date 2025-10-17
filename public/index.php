@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Http\Action\CreatePayment\RequestAction;
+use App\Http\Action\CreatePayment;
 use App\Http\JsonResponse;
 use Psr\Container\ContainerInterface;
 use Slim\Psr7\Factory\ServerRequestFactory;
+use App\Http\Action\HookPayment;
+
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -20,8 +22,12 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 switch($request->getUri()->getPath()){
     case '/payment-service/process-payment':
-        $action = $container->get(RequestAction::class);
-        /** @var RequestAction $action */
+        $action = $container->get(CreatePayment\RequestAction::class);
+        $response = $action->handle($request);
+        break;
+    case '/payment-service/payment-webhook':
+        $action = $container->get(HookPayment\RequestAction::class);
+        /** @var HookPayment\RequestAction $action */
         $response = $action->handle($request);
         break;
     default:

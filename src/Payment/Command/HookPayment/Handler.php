@@ -30,13 +30,9 @@ class Handler
     {}
     public function handle(Command $command): void
     {
-        $data = json_decode($command->requestBody, true);
-        if(json_last_error() !== JSON_ERROR_NONE){
-            throw new \InvalidArgumentException('Invalid json request body');
-        }
 
         $callbackDTO = new PaymentCallbackDTO(
-            $data,
+            $command->data,
             $_SERVER['HTTP_CONTENT_SIGNATURE'] ?? '',
             $this->provider->getName()
         );
@@ -57,6 +53,7 @@ class Handler
 
         if($this->shouldSendProduct($paymentWebHookData)){
             try{
+
                 $this->sendProduct($paymentWebHookData);
 
                 $payment->setStatus(Status::succeeded());
