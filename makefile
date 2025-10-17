@@ -2,7 +2,9 @@ init: docker-down-clear app-clear docker-pull docker-build docker-up app-init
 up: docker-up
 down: docker-down
 restart: down up
-test: unit-test functional-test
+test: unit-test functional-test app-fixtures
+test-unit: unit-test
+test-functional: functional-test app-fixtures
 
 app-init:app-permission composer-install pause app-migrations app-fixtures
 
