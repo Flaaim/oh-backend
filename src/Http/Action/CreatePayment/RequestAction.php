@@ -20,7 +20,7 @@ class RequestAction implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         if ($request->getMethod() !== 'POST') {
-            return new JsonResponse(['error' => 'Method not allowed'], 405);
+            return new JsonResponse(['message' => 'Method not allowed'], 405);
         }
         try{
             $data = $request->getParsedBody();
@@ -49,9 +49,11 @@ class RequestAction implements RequestHandlerInterface
 
             return new JsonResponse($response, 201);
         }catch (InvalidArgumentException $e){
-            return new JsonResponse(['error' => $e->getMessage()], 400);
+            return new JsonResponse(['message' => $e->getMessage()], 400);
+        }catch (\DomainException $e){
+            return new JsonResponse(['message' => $e->getMessage()], 404);
         } catch (\Exception $e){
-            return new JsonResponse(['error' => $e->getMessage()], 500);
+            return new JsonResponse(['message' => $e->getMessage()], 500);
         }
 
 

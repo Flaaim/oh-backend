@@ -45,7 +45,7 @@ class WebTestCase extends TestCase
                 $response = $action->handle($request);
                 break;
             default:
-                $response = new JsonResponse(['error' => 'Not found'], 404);
+                $response = new JsonResponse(['message' => 'Not found'], 404);
         }
         return $response;
     }

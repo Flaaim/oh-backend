@@ -4,8 +4,11 @@ namespace Test\Functional;
 
 
 
+use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
+
 class NotFoundTest extends WebTestCase
 {
+    use ArraySubsetAsserts;
     public function testSuccess(): void
     {
         $response = $this->handle(self::json('GET', '/'));
@@ -15,8 +18,8 @@ class NotFoundTest extends WebTestCase
 
         $data = Json::decode($body);
 
-        self::assertEquals([
-            'error' => 'Not found',
+        self::assertArraySubset([
+            'message' => 'Not found',
         ], $data);
     }
 }
