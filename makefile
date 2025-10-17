@@ -2,7 +2,7 @@ init: docker-down-clear app-clear docker-pull docker-build docker-up app-init
 up: docker-up
 down: docker-down
 restart: down up
-test: unit-test
+test: unit-test functional-test
 
 app-init:app-permission composer-install pause app-migrations app-fixtures
 
@@ -34,7 +34,10 @@ app-permission:
 	docker run --rm -v ${PWD}:/app -w /app alpine chmod 777 bin var/cache var/log
 
 unit-test:
-	docker-compose run --rm php-cli composer test
+	docker-compose run --rm php-cli composer test -- --testsuite=Unit
+
+functional-test:
+	docker-compose run --rm php-cli composer test -- --testsuite=Functional
 
 app-migrations:
 	docker-compose run --rm php-cli composer app migrations:migrate -- --no-interaction
