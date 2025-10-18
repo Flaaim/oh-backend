@@ -2,6 +2,7 @@
 
 namespace App\Http\Action\HookPayment;
 
+use App\Http\EmptyResponse;
 use App\Http\JsonResponse;
 use App\Payment\Command\HookPayment\Command;
 use App\Payment\Command\HookPayment\Handler;
@@ -37,7 +38,7 @@ class RequestAction
             $handler = $this->container->get(Handler::class);
             /** @var Handler $handler */
             $handler->handle($command);
-            return new JsonResponse(['message' => 'OK'], 200);
+            return new EmptyResponse();
         }catch (\RuntimeException|\Exception $e){
             return new JsonResponse(['message' => $e->getMessage()], 500);
         }
