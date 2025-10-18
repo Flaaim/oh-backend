@@ -42,7 +42,8 @@ return [
                 ProductSendCommand::class,
             ],
             'fixture_paths' => [
-                __DIR__ . '/../../src/Product/Fixture'
+                __DIR__ . '/../../src/Product/Fixture',
+                __DIR__ . '/../../src/Payment/Fixture',
             ]
         ],
     ]
