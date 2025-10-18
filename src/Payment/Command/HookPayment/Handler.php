@@ -4,6 +4,7 @@ namespace App\Payment\Command\HookPayment;
 
 use App\Flusher;
 use App\Payment\Entity\Email;
+use App\Payment\Entity\Payment;
 use App\Payment\Entity\PaymentRepository;
 use App\Payment\Entity\Status;
 use App\Payment\Service\ProductSender;
@@ -51,13 +52,11 @@ class Handler
 
         $paymentWebHookData = $this->webhookParser->parse($callbackDTO->rawData);
 
-        if($this->shouldSendProduct($paymentWebHookData)){
+        if($this->shouldSendProduct($payment, $paymentWebHookData)){
             try{
-
                 $this->sendProduct($paymentWebHookData);
-
                 $payment->setStatus(Status::succeeded());
-
+                $payment->setSend();
                 $this->paymentRepository->update($payment);
 
                 $this->flusher->flush();
@@ -72,9 +71,9 @@ class Handler
 
     }
 
-    private function shouldSendProduct(PaymentWebhookDataInterface $webhookData): bool
+    private function shouldSendProduct(Payment $payment, PaymentWebhookDataInterface $webhookData): bool
     {
-        return $webhookData->isPaid() && $webhookData->getStatus() === PaymentStatus::SUCCEEDED;
+        return !$payment->isSend() && $webhookData->isPaid() && $webhookData->getStatus() === PaymentStatus::SUCCEEDED;
     }
 
     private function sendProduct(PaymentWebhookDataInterface $paymentWebHookData): void

@@ -86,7 +86,7 @@ class Payment
     {
         return $this->isSend;
     }
-    public function setIsSend(): void
+    public function setSend(): void
     {
         $this->isSend = true;
     }
