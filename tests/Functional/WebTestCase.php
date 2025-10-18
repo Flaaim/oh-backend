@@ -2,13 +2,13 @@
 
 namespace Test\Functional;
 
-use App\Http\Action\CreatePayment\RequestAction;
+use App\Http\Action\CreatePayment;
+use App\Http\Action\HookPayment;
 use App\Http\JsonResponse;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Slim\Psr7\Factory\ResponseFactory;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
 class WebTestCase extends TestCase
@@ -39,9 +39,14 @@ class WebTestCase extends TestCase
         $path = $request->getUri()->getPath();
 
         switch($path){
-            case '/process-payment':
-                $action = $container->get(RequestAction::class);
-                /** @var RequestAction $action */
+            case '/payment-service/process-payment':
+                $action = $container->get(CreatePayment\RequestAction::class);
+                /** @var CreatePayment\RequestAction $action */
+                $response = $action->handle($request);
+                break;
+            case '/payment-service/payment-webhook':
+                $action = $container->get(HookPayment\RequestAction::class);
+                /** @var HookPayment\RequestAction $action */
                 $response = $action->handle($request);
                 break;
             default:
