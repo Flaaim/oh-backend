@@ -5,14 +5,14 @@ namespace Test\Functional\CreatePayment;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
-use YooKassa\Helpers\UUID;
+
 
 class RequestActionTest extends WebTestCase
 {
     use ArraySubsetAsserts;
     public function testSuccess(): void
     {
-        $response = $this->handle(self::json('POST', '/process-payment', [
+        $response = $this->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@app.ru',
             'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8809f'
         ]));
@@ -29,7 +29,7 @@ class RequestActionTest extends WebTestCase
 
     public function testNotFound(): void
     {
-        $response = $this->handle(self::json('POST', '/process-payment', [
+        $response = $this->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@app.ru',
             'productId' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
         ]));
@@ -47,7 +47,7 @@ class RequestActionTest extends WebTestCase
 
     public function testInvalidEmail(): void
     {
-        $response = $this->handle(self::json('POST', '/process-payment', [
+        $response = $this->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'invalid',
             'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8809f'
         ]));
@@ -65,7 +65,7 @@ class RequestActionTest extends WebTestCase
 
     public function testInvalidProductId(): void
     {
-        $response = $this->handle(self::json('POST', '/process-payment', [
+        $response = $this->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@user.ru',
             'productId' => 'someInvalidProductId',
         ]));
