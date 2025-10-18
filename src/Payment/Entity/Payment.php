@@ -82,7 +82,7 @@ class Payment
         }
         $this->status = $newStatus;
     }
-    public function getIsSend(): bool
+    public function isSend(): bool
     {
         return $this->isSend;
     }
