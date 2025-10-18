@@ -13,6 +13,7 @@ use Slim\Psr7\Factory\ServerRequestFactory;
 
 class WebTestCase extends TestCase
 {
+    private ?MailerClient $mailer = null;
     protected static function json(string $method, string $path, array $body = []): ServerRequestInterface
     {
         $request = self::request($method, $path)
@@ -53,5 +54,13 @@ class WebTestCase extends TestCase
                 $response = new JsonResponse(['message' => 'Not found'], 404);
         }
         return $response;
+    }
+
+    protected function mailer(): MailerClient
+    {
+        if (null === $this->mailer) {
+            $this->mailer = new MailerClient();
+        }
+        return $this->mailer;
     }
 }
