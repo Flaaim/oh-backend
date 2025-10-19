@@ -4,6 +4,7 @@ namespace Test\Functional;
 
 use App\Http\Action\CreatePayment;
 use App\Http\Action\HookPayment;
+use App\Http\Action\Result;
 use App\Http\JsonResponse;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
@@ -53,6 +54,11 @@ class WebTestCase extends TestCase
             case '/payment-service/payment-webhook':
                 $action = $container->get(HookPayment\RequestAction::class);
                 /** @var HookPayment\RequestAction $action */
+                $response = $action->handle($request);
+                break;
+            case '/payment-service/result':
+                $action = $container->get(Result\RequestAction::class);
+                /** @var Result\RequestAction $action */
                 $response = $action->handle($request);
                 break;
             default:

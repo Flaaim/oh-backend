@@ -7,6 +7,7 @@ use App\Http\JsonResponse;
 use Psr\Container\ContainerInterface;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use App\Http\Action\HookPayment;
+use App\Http\Action\Result;
 
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -28,6 +29,11 @@ switch($request->getUri()->getPath()){
     case '/payment-service/payment-webhook':
         $action = $container->get(HookPayment\RequestAction::class);
         /** @var HookPayment\RequestAction $action */
+        $response = $action->handle($request);
+        break;
+    case '/payment-service/result':
+        $action = $container->get(Result\RequestAction::class);
+        /** @var Result\RequestAction $action */
         $response = $action->handle($request);
         break;
     default:
