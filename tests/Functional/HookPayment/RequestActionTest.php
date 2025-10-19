@@ -2,11 +2,20 @@
 
 namespace HookPayment;
 
+use Test\Functional\HookPayment\RequestFixture;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
 
 class RequestActionTest extends WebTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->loadFixtures([
+            RequestFixture::class,
+        ]);
+    }
     public function testSuccess(): void
     {
         $this->mailer()->clear();
@@ -29,7 +38,7 @@ class RequestActionTest extends WebTestCase
             'type' => 'notification',
             'event' => 'payment.succeeded',
             'object' => [
-                'id' => '30853db7-000f-5001-8000-13e37ec6e877',
+                'id' => '308648ae-000f-5001-8000-127b00f66a5a',
                 'status' => 'succeeded',
                 'paid' => true,
                 'amount' => [
@@ -47,7 +56,7 @@ class RequestActionTest extends WebTestCase
                 'created_at' => '2025-10-13T05:19:27.347Z',
                 'captured_at' => '2025-10-13T05:20:00.000Z',
                 'metadata' => [
-                    'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8809f',
+                    'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f',
                     'cms_name' => 'yookassa_sdk_php_3',
                     'email' => 'test@app.ru'
                 ]

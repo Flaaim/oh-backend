@@ -5,6 +5,11 @@ namespace Test\Functional;
 use App\Http\Action\CreatePayment;
 use App\Http\Action\HookPayment;
 use App\Http\JsonResponse;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Loader;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -62,5 +67,20 @@ class WebTestCase extends TestCase
             $this->mailer = new MailerClient();
         }
         return $this->mailer;
+    }
+
+    protected function loadFixtures(array $fixtures): void
+    {
+        $container = $this->container();
+        $loader = new Loader();
+        foreach ($fixtures as $name => $class) {
+            /** @var AbstractFixture $fixture */
+            $fixture = $container->get($class);
+            $loader->addFixture($fixture);
+        }
+        /** @var EntityManagerInterface $em */
+        $em = $container->get(EntityManagerInterface::class);
+        $executor = new ORMExecutor($em, new ORMPurger($em));
+        $executor->execute($loader->getFixtures());
     }
 }

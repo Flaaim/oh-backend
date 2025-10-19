@@ -10,11 +10,20 @@ use Test\Functional\WebTestCase;
 class RequestActionTest extends WebTestCase
 {
     use ArraySubsetAsserts;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->loadFixtures([
+           RequestFixture::class,
+        ]);
+    }
     public function testSuccess(): void
     {
         $response = $this->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@app.ru',
-            'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8809f'
+            'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f'
         ]));
 
         $this->assertEquals(201, $response->getStatusCode());
