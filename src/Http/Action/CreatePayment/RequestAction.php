@@ -23,12 +23,7 @@ class RequestAction implements RequestHandlerInterface
             return new JsonResponse(['message' => 'Method not allowed'], 405);
         }
         try{
-            $data = $request->getParsedBody();
-
-            if (empty($data)) {
-                $body = (string) $request->getBody();
-                $data = json_decode($body, true) ?? [];
-            }
+            $data = $request->getParsedBody() ?? [];
 
             if (!isset($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                 throw new InvalidArgumentException('Invalid email address');

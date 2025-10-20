@@ -21,13 +21,7 @@ class RequestAction
         }
 
         try {
-            $data = $request->getParsedBody();
-
-            if ($data === null || $data === []) {
-                $body = (string) $request->getBody();
-                $data = json_decode($body, true, ) ?? [];
-
-            }
+            $data = $request->getParsedBody() ?? [];
 
             if(json_last_error() !== JSON_ERROR_NONE) {
                 return new JsonResponse(['message' => json_last_error_msg()], 400);

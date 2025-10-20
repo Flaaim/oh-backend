@@ -23,12 +23,7 @@ class RequestAction
             return new JsonResponse(['message' => 'Not allowed'], 405);
         }
         try{
-            $data = $request->getParsedBody();
-
-            if (empty($data)) {
-                $body = (string) $request->getBody();
-                $data = json_decode($body, true) ?? [];
-            }
+            $data = $request->getParsedBody() ?? [];
 
             if(empty($data['returnToken'])){
                 throw new \Exception('Return token is empty');

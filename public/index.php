@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use App\Http\Action\CreatePayment;
 use App\Http\JsonResponse;
+use App\Middleware\BodyParserMiddleware;
 use Psr\Container\ContainerInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use App\Http\Action\HookPayment;
 use App\Http\Action\Result;
@@ -21,25 +23,41 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-Type');
 
-switch($request->getUri()->getPath()){
-    case '/payment-service/process-payment':
-        $action = $container->get(CreatePayment\RequestAction::class);
-        $response = $action->handle($request);
-        break;
-    case '/payment-service/payment-webhook':
-        $action = $container->get(HookPayment\RequestAction::class);
-        /** @var HookPayment\RequestAction $action */
-        $response = $action->handle($request);
-        break;
-    case '/payment-service/result':
-        $action = $container->get(Result\RequestAction::class);
-        /** @var Result\RequestAction $action */
-        $response = $action->handle($request);
-        break;
-    default:
-        $response = new JsonResponse(['message' => 'Not found'], 404);
-        break;
-}
+
+$middleware = new BodyParserMiddleware();
+
+$handler = new class($container) implements RequestHandlerInterface{
+    private ContainerInterface $container;
+
+    public function __construct(ContainerInterface $container){
+        $this->container = $container;
+    }
+    public function handle(\Psr\Http\Message\ServerRequestInterface $request): \Psr\Http\Message\ResponseInterface
+    {
+        switch($request->getUri()->getPath()){
+            case '/payment-service/process-payment':
+                $action = $this->container->get(CreatePayment\RequestAction::class);
+                $response = $action->handle($request);
+                break;
+            case '/payment-service/payment-webhook':
+                $action = $this->container->get(HookPayment\RequestAction::class);
+                /** @var HookPayment\RequestAction $action */
+                $response = $action->handle($request);
+                break;
+            case '/payment-service/result':
+                $action = $this->container->get(Result\RequestAction::class);
+                /** @var Result\RequestAction $action */
+                $response = $action->handle($request);
+                break;
+            default:
+                $response = new JsonResponse(['message' => 'Not found'], 404);
+                break;
+        }
+        return $response;
+    }
+};
+
+$response = $middleware->process($request, $handler);
 
 http_response_code($response->getStatusCode());
 foreach ($response->getHeaders() as $name => $values) {
