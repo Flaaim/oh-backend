@@ -21,6 +21,11 @@ class BodyParserMiddleware implements MiddlewareInterface
             return $result;
         });
 
+        $this->registerBodyParser('application/x-www-form-urlencoded', function($input){
+            parse_str($input, $data);
+            return $data;
+        });
+
     }
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
