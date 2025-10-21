@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Action\CreatePayment;
 use App\Http\JsonResponse;
 use App\Middleware\BodyParserMiddleware;
+use App\Middleware\MiddlewareDispatcher;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Psr7\Factory\ServerRequestFactory;
@@ -23,8 +24,6 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-Type');
 
-
-$middleware = new BodyParserMiddleware();
 
 $handler = new class($container) implements RequestHandlerInterface{
     private ContainerInterface $container;
@@ -56,8 +55,10 @@ $handler = new class($container) implements RequestHandlerInterface{
         return $response;
     }
 };
+$dispatcher = new MiddlewareDispatcher($handler);
+$dispatcher->addMiddleware(new BodyParserMiddleware());
+$response = $dispatcher->handle($request);
 
-$response = $middleware->process($request, $handler);
 
 http_response_code($response->getStatusCode());
 foreach ($response->getHeaders() as $name => $values) {
