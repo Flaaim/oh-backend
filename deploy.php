@@ -16,7 +16,7 @@ try {
     set('bin/php', '/opt/php/8.2/bin/php');
     set('writable_mode', 'chmod');
 
-    host('production')
+    host('resp-help.ru')
         ->set('hostname', '31.31.198.114')
         ->set('port', 22)
         ->set('remote_user', 'u1656040')
