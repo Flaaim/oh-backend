@@ -9,7 +9,8 @@ use Psr\Container\ContainerInterface;
 
 return [
     'config' => [
-        'debug' => getenv('APP_DEBUG'),
+        'debug' => (bool)getenv('APP_DEBUG'),
+        'authToken' => getenv('AUTH_TOKEN'),
         'template_paths' => __DIR__ . '/../../public/templates',
     ],
     TemplatePath::class => function (ContainerInterface $container) {
