@@ -47,18 +47,18 @@ class WebTestCase extends TestCase
 
         switch($path){
             case '/payment-service/process-payment':
-                $action = $container->get(CreatePayment\RequestAction::class);
-                /** @var CreatePayment\RequestAction $action */
+                $action = $container->get(\App\Http\Action\Payment\CreatePayment\RequestAction::class);
+                /** @var \App\Http\Action\Payment\CreatePayment\RequestAction $action */
                 $response = $action->handle($request);
                 break;
             case '/payment-service/payment-webhook':
-                $action = $container->get(HookPayment\RequestAction::class);
-                /** @var HookPayment\RequestAction $action */
+                $action = $container->get(\App\Http\Action\Payment\HookPayment\RequestAction::class);
+                /** @var \App\Http\Action\Payment\HookPayment\RequestAction $action */
                 $response = $action->handle($request);
                 break;
             case '/payment-service/result':
-                $action = $container->get(Result\RequestAction::class);
-                /** @var Result\RequestAction $action */
+                $action = $container->get(\App\Http\Action\Payment\Result\RequestAction::class);
+                /** @var \App\Http\Action\Payment\Result\RequestAction $action */
                 $response = $action->handle($request);
                 break;
             default:

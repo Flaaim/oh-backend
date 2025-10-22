@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Action\Result;
+namespace App\Http\Action\Payment\Result;
 
 use App\Http\JsonResponse;
 use App\Payment\Command\GetPaymentResult\Command;

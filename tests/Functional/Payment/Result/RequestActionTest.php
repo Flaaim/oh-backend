@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\Functional\Result;
+namespace Test\Functional\Payment\Result;
 
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Test\Functional\Json;

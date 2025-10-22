@@ -1,8 +1,7 @@
 <?php
 
-namespace HookPayment;
+namespace Test\Functional\Payment\HookPayment;
 
-use Test\Functional\HookPayment\RequestFixture;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
 

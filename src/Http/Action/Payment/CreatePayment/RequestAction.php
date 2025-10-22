@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Action\CreatePayment;
+namespace App\Http\Action\Payment\CreatePayment;
 
 use App\Http\JsonResponse;
 use App\Payment\Command\CreatePayment\Command;
