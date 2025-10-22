@@ -25,4 +25,31 @@ class ProductRepository
         /** @var Product $product */
         return $product;
     }
+    public function findByCipher(string $cipher): ?Product
+    {
+        return $this->repo->findOneBy(['cipher' => $cipher]);
+    }
+    public function upsert(Product $product): void
+    {
+        $qb = $this->em->createQueryBuilder();
+
+        $sql = '
+        INSERT INTO products (id, name, price, file, cipher) 
+        VALUES (:id, :name, :price, :file, :cipher)
+        ON DUPLICATE KEY UPDATE 
+            name = VALUES(name),
+            price = VALUES(price),
+            file = VALUES(file)
+         ';
+
+        $qb->getEntityManager()
+            ->getConnection()
+            ->executeStatement($sql, [
+                'id' => $product->getId()->getValue(),
+                'name' => $product->getName(),
+                'price' => $product->getPrice()->getValue(),
+                'file' => $product->getFile()->getPathToFile(),
+                'cipher' => $product->getCipher()
+            ]);
+    }
 }

@@ -14,7 +14,7 @@ class Product
     private Id $id;
     #[ORM\Column(type: 'string', length: 255)]
     private string $name;
-    #[ORM\Column(type: 'string', length: 25)]
+    #[ORM\Column(type: 'string', length: 25, unique: true)]
     private string $cipher;
     #[ORM\Column(type: 'price')]
     private Price $price;
@@ -47,5 +47,12 @@ class Product
     public function getCipher(): string
     {
         return $this->cipher;
+    }
+
+    public function update(string $name, Price $price, File $file): void
+    {
+        $this->name = $name;
+        $this->price = $price;
+        $this->file = $file;
     }
 }

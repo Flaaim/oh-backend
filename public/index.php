@@ -3,14 +3,15 @@
 declare(strict_types=1);
 
 use App\Http\Action\CreatePayment;
+use App\Http\Action\HookPayment;
+use App\Http\Action\Product\Upsert;
+use App\Http\Action\Result;
 use App\Http\JsonResponse;
 use App\Middleware\BodyParserMiddleware;
 use App\Middleware\MiddlewareDispatcher;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Psr7\Factory\ServerRequestFactory;
-use App\Http\Action\HookPayment;
-use App\Http\Action\Result;
 
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -35,17 +36,22 @@ $handler = new class($container) implements RequestHandlerInterface{
     {
         switch($request->getUri()->getPath()){
             case '/payment-service/process-payment':
-                $action = $this->container->get(CreatePayment\RequestAction::class);
+                $action = $this->container->get(\App\Http\Action\Payment\CreatePayment\RequestAction::class);
                 $response = $action->handle($request);
                 break;
             case '/payment-service/payment-webhook':
-                $action = $this->container->get(HookPayment\RequestAction::class);
-                /** @var HookPayment\RequestAction $action */
+                $action = $this->container->get(\App\Http\Action\Payment\HookPayment\RequestAction::class);
+                /** @var \App\Http\Action\Payment\HookPayment\RequestAction $action */
                 $response = $action->handle($request);
                 break;
             case '/payment-service/result':
-                $action = $this->container->get(Result\RequestAction::class);
-                /** @var Result\RequestAction $action */
+                $action = $this->container->get(\App\Http\Action\Payment\Result\RequestAction::class);
+                /** @var \App\Http\Action\Payment\Result\RequestAction $action */
+                $response = $action->handle($request);
+                break;
+            case '/payment-service/product/upsert':
+                $action = $this->container->get(Upsert\RequestAction::class);
+                /** @var Upsert\RequestAction $action */
                 $response = $action->handle($request);
                 break;
             default:
