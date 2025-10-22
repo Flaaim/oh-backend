@@ -55,8 +55,8 @@ $handler = new class($container) implements RequestHandlerInterface{
         return $response;
     }
 };
-$dispatcher = new MiddlewareDispatcher($handler);
-$dispatcher->addMiddleware(new BodyParserMiddleware());
+$dispatcher = new MiddlewareDispatcher($handler, $container);
+$dispatcher->add(BodyParserMiddleware::class);
 $response = $dispatcher->handle($request);
 
 
