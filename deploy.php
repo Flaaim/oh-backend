@@ -9,19 +9,19 @@ use Exception;
 require 'recipe/symfony.php';
 
 try {
-    set('application', 'payment-service');
+    set('application', 'oh-backend');
     set('git_ssh_command', 'ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa');
-    set('repository', 'https://github.com/Flaaim/payment-service.git');
+    set('repository', 'https://github.com/Flaaim/oh-backend.git');
     set('php_version', '8.2');
     set('bin/php', '/opt/php/8.2/bin/php');
     set('writable_mode', 'chmod');
 
-    host('resp-help.ru')
+    host('production')
         ->set('hostname', '31.31.198.114')
         ->set('port', 22)
         ->set('remote_user', 'u1656040')
-        ->set('deploy_path', '~/www/resp-help.ru/public')
-        ->set('branch', 'payment');
+        ->set('deploy_path', '~/www/olimpoks-help.ru/public')
+        ->set('branch', 'main');
 
 
     set('shared_dirs', [
