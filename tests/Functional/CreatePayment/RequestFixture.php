@@ -20,7 +20,7 @@ class RequestFixture extends AbstractFixture
             'Инструктажи образцы документов',
             new Price(450.00, new Currency()),
             new File('/ppe/templates.txt'),
-            '1'
+            'ot218.1'
         );
 
         $manager->persist($product);

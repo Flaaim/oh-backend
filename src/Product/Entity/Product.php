@@ -14,19 +14,19 @@ class Product
     private Id $id;
     #[ORM\Column(type: 'string', length: 255)]
     private string $name;
+    #[ORM\Column(type: 'string', length: 25)]
+    private string $cipher;
     #[ORM\Column(type: 'price')]
     private Price $price;
     #[ORM\Column(type: 'file')]
     private File $file;
-    #[ORM\Column(type: 'string', length: 10)]
-    private string $version;
-    public function __construct(Id $id, string $name, Price $price, File $file, string $version)
+    public function __construct(Id $id, string $name, Price $price, File $file, string $cipher)
     {
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
         $this->file = $file;
-        $this->version = $version;
+        $this->cipher = $cipher;
     }
     public function getId(): Id
     {
@@ -44,8 +44,8 @@ class Product
     {
         return $this->file;
     }
-    public function getVersion(): string
+    public function getCipher(): string
     {
-        return $this->version;
+        return $this->cipher;
     }
 }
