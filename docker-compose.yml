@@ -31,7 +31,7 @@ services:
           MAILER_FROM_NAME: admin
           YOOKASSA_SHOP_ID: 221345
           YOOKASSA_SECRET_KEY: test_0B3flJqsbdKNA2sS2dT0ahs74LtF7fwJq2oVR-8wTCM
-          YOOKASSA_RETURN_URL: https://resp-help.ru/success
+          YOOKASSA_RETURN_URL: https://localhost/success
     php-cli:
       build:
           context: docker/php-cli
@@ -55,7 +55,7 @@ services:
           MAILER_FROM_NAME: admin
           YOOKASSA_SHOP_ID: 221345
           YOOKASSA_SECRET_KEY: test_0B3flJqsbdKNA2sS2dT0ahs74LtF7fwJq2oVR-8wTCM
-          YOOKASSA_RETURN_URL: https://resp-help.ru/success
+          YOOKASSA_RETURN_URL: https://localhost/success
     mysql:
       image:  mysql:8.0
       restart: always
