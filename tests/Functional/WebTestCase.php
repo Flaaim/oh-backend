@@ -2,10 +2,6 @@
 
 namespace Test\Functional;
 
-use App\Http\Action\CreatePayment;
-use App\Http\Action\HookPayment;
-use App\Http\Action\Result;
-use App\Http\JsonResponse;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
@@ -13,8 +9,8 @@ use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Slim\App;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
 class WebTestCase extends TestCase
@@ -39,34 +35,11 @@ class WebTestCase extends TestCase
         /** @var ContainerInterface */
         return require __DIR__ . '/../../config/container.php';
     }
-
-    public function handle(ServerRequestInterface $request): ResponseInterface
+    protected function app(): App
     {
-        $container = $this->container();
-        $path = $request->getUri()->getPath();
-
-        switch($path){
-            case '/payment-service/process-payment':
-                $action = $container->get(\App\Http\Action\Payment\CreatePayment\RequestAction::class);
-                /** @var \App\Http\Action\Payment\CreatePayment\RequestAction $action */
-                $response = $action->handle($request);
-                break;
-            case '/payment-service/payment-webhook':
-                $action = $container->get(\App\Http\Action\Payment\HookPayment\RequestAction::class);
-                /** @var \App\Http\Action\Payment\HookPayment\RequestAction $action */
-                $response = $action->handle($request);
-                break;
-            case '/payment-service/result':
-                $action = $container->get(\App\Http\Action\Payment\Result\RequestAction::class);
-                /** @var \App\Http\Action\Payment\Result\RequestAction $action */
-                $response = $action->handle($request);
-                break;
-            default:
-                $response = new JsonResponse(['message' => 'Not found'], 404);
-        }
-        return $response;
+        /** @var App */
+        return (require __DIR__ . '/../../config/app.php')($this->container());
     }
-
     protected function mailer(): MailerClient
     {
         if (null === $this->mailer) {
