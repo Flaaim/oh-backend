@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Middleware\BasicAuthMiddleware;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 use App\Http\Action\Payment;
@@ -16,7 +17,7 @@ return static function(App $app): void {
     });
 
     $app->group('/products', function (RouteCollectorProxy $group): void {
-       $group->post('/upsert', Upsert\RequestAction::class);
+       $group->post('/upsert', Upsert\RequestAction::class)->add(BasicAuthMiddleware::class);
     });
 
 };

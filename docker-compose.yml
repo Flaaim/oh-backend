@@ -32,6 +32,8 @@ services:
           YOOKASSA_SHOP_ID: 221345
           YOOKASSA_SECRET_KEY: test_0B3flJqsbdKNA2sS2dT0ahs74LtF7fwJq2oVR-8wTCM
           YOOKASSA_RETURN_URL: https://localhost/success
+          AUTH_LOGIN: app
+          AUTH_PASSWORD: secret
     php-cli:
       build:
           context: docker/php-cli
@@ -56,6 +58,8 @@ services:
           YOOKASSA_SHOP_ID: 221345
           YOOKASSA_SECRET_KEY: test_0B3flJqsbdKNA2sS2dT0ahs74LtF7fwJq2oVR-8wTCM
           YOOKASSA_RETURN_URL: https://localhost/success
+          AUTH_LOGIN: app
+          AUTH_PASSWORD: secret
     mysql:
       image:  mysql:8.0
       restart: always
