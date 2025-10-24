@@ -2,6 +2,8 @@
 
 namespace Test\Functional\Payment\HookPayment;
 
+use App\Http\JsonResponse;
+use App\Payment\Command\HookPayment\Handler;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
 
@@ -10,7 +12,6 @@ class RequestActionTest extends WebTestCase
     protected function setUp(): void
     {
         parent::setUp();
-
         $this->loadFixtures([
             RequestFixture::class,
         ]);
@@ -19,13 +20,14 @@ class RequestActionTest extends WebTestCase
     {
         $this->mailer()->clear();
 
-        $response = $this->handle(self::json('POST', '/payment-service/payment-webhook', $this->getRequestBody()));
+        $response = $this->app()->handle(self::json('POST', '/payment-service/payment-webhook',
+            $this->getRequestBody()
+        ));
 
         self::assertEquals(204, $response->getStatusCode());
         self::assertEquals('', (string)$response->getBody());
 
         $json = file_get_contents('http://mailer:8025/api/v2/search?query=test@app.ru&kind=to');
-
         $data = Json::decode($json);
 
         self::assertGreaterThan(0, $data['total']);
@@ -37,15 +39,15 @@ class RequestActionTest extends WebTestCase
             'type' => 'notification',
             'event' => 'payment.succeeded',
             'object' => [
-                'id' => '308648ae-000f-5001-8000-127b00f66a5a',
+                'id' => 'hook_test_payment_id',
                 'status' => 'succeeded',
                 'paid' => true,
                 'amount' => [
-                    'value' => '450.00',
+                    'value' => '350.00',
                     'currency' => 'RUB'
                 ],
                 'income_amount' => [
-                    'value' => '435.00',
+                    'value' => '325.00',
                     'currency' => 'RUB'
                 ],
                 'recipient' => [

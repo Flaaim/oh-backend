@@ -5,6 +5,7 @@ namespace Test\Functional\Payment\CreatePayment;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
+use Test\Functional\YookassaClient;
 
 
 class RequestActionTest extends WebTestCase
@@ -14,14 +15,13 @@ class RequestActionTest extends WebTestCase
     protected function setUp(): void
     {
         parent::setUp();
-
         $this->loadFixtures([
            RequestFixture::class,
         ]);
     }
     public function testSuccess(): void
     {
-        $response = $this->handle(self::json('POST', '/payment-service/process-payment', [
+        $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@app.ru',
             'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f'
         ]));
@@ -31,14 +31,14 @@ class RequestActionTest extends WebTestCase
 
         $data = Json::decode($body);
         self::assertArraySubset([
-            'amount' => 450,
+            'amount' => 350,
             'currency' => 'RUB',
         ],$data);
     }
 
     public function testNotFound(): void
     {
-        $response = $this->handle(self::json('POST', '/payment-service/process-payment', [
+        $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@app.ru',
             'productId' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
         ]));
@@ -56,7 +56,7 @@ class RequestActionTest extends WebTestCase
 
     public function testInvalidEmail(): void
     {
-        $response = $this->handle(self::json('POST', '/payment-service/process-payment', [
+        $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'invalid',
             'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8809f'
         ]));
@@ -74,7 +74,7 @@ class RequestActionTest extends WebTestCase
 
     public function testInvalidProductId(): void
     {
-        $response = $this->handle(self::json('POST', '/payment-service/process-payment', [
+        $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@user.ru',
             'productId' => 'someInvalidProductId',
         ]));

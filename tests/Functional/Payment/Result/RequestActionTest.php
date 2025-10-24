@@ -2,8 +2,10 @@
 
 namespace Test\Functional\Payment\Result;
 
+use App\Payment\Entity\Token;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Test\Functional\Json;
+use Test\Functional\Payment\PaymentBuilder;
 use Test\Functional\WebTestCase;
 
 class RequestActionTest extends WebTestCase
@@ -19,9 +21,8 @@ class RequestActionTest extends WebTestCase
     }
     public function testSuccess(): void
     {
-        $returnToken = '392b1c38-f3e4-4533-a6cb-5b4e7c08d91f';
-
-        $response = $this->handle(self::json('POST', '/payment-service/result', [
+        $returnToken = $this->getReturnToken()->getValue();
+        $response = $this->app()->handle(self::json('POST', '/payment-service/result', [
             'returnToken' => $returnToken
         ]));
 
@@ -35,5 +36,12 @@ class RequestActionTest extends WebTestCase
             'status' => 'succeeded',
             'email' => 'test@app.ru'
         ], $data);
+    }
+
+    private function getReturnToken(): Token
+    {
+        $payment = (new PaymentBuilder())->build();
+
+        return $payment->getReturnToken();
     }
 }
