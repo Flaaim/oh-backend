@@ -5,23 +5,20 @@ namespace App\Http\Action\Payment\Result;
 use App\Http\JsonResponse;
 use App\Payment\Command\GetPaymentResult\Command;
 use App\Payment\Command\GetPaymentResult\Handler;
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 
-class RequestAction
+class RequestAction implements RequestHandlerInterface
 {
-    private ContainerInterface $container;
-    public function __construct(ContainerInterface $container)
+    private Handler $handler;
+    public function __construct(Handler $handler)
     {
-        $this->container = $container;
+        $this->handler = $handler;
     }
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        if($request->getMethod() === '!POST') {
-            return new JsonResponse(['message' => 'Not allowed'], 405);
-        }
         try{
             $data = $request->getParsedBody() ?? [];
 
@@ -30,9 +27,8 @@ class RequestAction
             }
 
             $command = new Command($data['returnToken']);
-            $handler = $this->container->get(Handler::class);
-            /** @var Handler $handler */
-            $response = $handler->handle($command);
+            $response = $this->handler->handle($command);
+
             return new JsonResponse($response, 200);
         }catch (\DomainException $e){
             return new JsonResponse(['message' => $e->getMessage()], 400);

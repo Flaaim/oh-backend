@@ -6,20 +6,16 @@ use App\Http\EmptyResponse;
 use App\Http\JsonResponse;
 use App\Payment\Command\HookPayment\Command;
 use App\Payment\Command\HookPayment\Handler;
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-class RequestAction
+class RequestAction implements RequestHandlerInterface
 {
-    public function __construct(private readonly ContainerInterface $container)
+    public function __construct(private readonly Handler $handler)
     {}
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        if($request->getMethod() !== 'POST') {
-            return new JsonResponse(['message' => 'Method not allowed'], 405);
-        }
-
         try {
             $data = $request->getParsedBody() ?? [];
 
@@ -28,10 +24,7 @@ class RequestAction
             }
 
             $command = new Command($data);
-
-            $handler = $this->container->get(Handler::class);
-            /** @var Handler $handler */
-            $handler->handle($command);
+            $this->handler->handle($command);
             return new EmptyResponse();
         }catch (\RuntimeException|\Exception $e){
             return new JsonResponse(['message' => $e->getMessage()], 500);

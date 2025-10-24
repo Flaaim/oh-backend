@@ -19,9 +19,6 @@ class RequestAction implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        if ($request->getMethod() !== 'POST') {
-            return new JsonResponse(['message' => 'Method not allowed'], 405);
-        }
         try{
             $data = $request->getParsedBody() ?? [];
 
