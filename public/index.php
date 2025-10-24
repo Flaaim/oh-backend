@@ -5,8 +5,6 @@ declare(strict_types=1);
 use Psr\Container\ContainerInterface;
 use Slim\App;
 
-require __DIR__ . '/../vendor/autoload.php';
-
 http_response_code(500);
 require __DIR__ . '/../vendor/autoload.php';
 
