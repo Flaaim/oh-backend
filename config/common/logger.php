@@ -16,6 +16,10 @@ return [
 
         $log = new Logger('payment-service');
 
+        if ($config['stderr']) {
+            $log->pushHandler(new StreamHandler('php://stderr', $level));
+        }
+
         if (!empty($config['file'])) {
             $log->pushHandler(new StreamHandler($config['file'], $level));
         }
@@ -25,6 +29,7 @@ return [
         'logger' => [
             'debug' => (bool)getenv('APP_DEBUG'),
             'file' => __DIR__ . '/../../var/log/' . PHP_SAPI . '/application.log',
+            'stderr' => true
         ]
     ]
 ];
