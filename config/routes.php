@@ -14,10 +14,13 @@ return static function(App $app): void {
         $group->post('/process-payment', Payment\CreatePayment\RequestAction::class);
         $group->post('/payment-webhook', Payment\HookPayment\RequestAction::class);
         $group->post('/result', Payment\Result\RequestAction::class);
+
+
+        $group->group('/products', function (RouteCollectorProxy $group): void {
+            $group->post('/upsert', Upsert\RequestAction::class)->add(BasicAuthMiddleware::class);
+        });
     });
 
-    $app->group('/products', function (RouteCollectorProxy $group): void {
-       $group->post('/upsert', Upsert\RequestAction::class)->add(BasicAuthMiddleware::class);
-    });
+
 
 };
