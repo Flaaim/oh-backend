@@ -22,7 +22,7 @@ class BasicAuthMiddleware implements MiddlewareInterface
         $log = __DIR__ . '/../../var/log/oh-backend.log';
         file_put_contents($log, "{$login}:{$password}\n", FILE_APPEND);
         $expectedAuth = "Basic " . base64_encode("$login:$password");
-
+        file_put_contents($log, $expectedAuth, FILE_APPEND);
         if($expectedAuth !== $request->getHeaderLine('Authorization')) {
             return new JsonResponse([
                 'message' => 'Unauthorized',
