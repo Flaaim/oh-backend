@@ -17,17 +17,17 @@ class BasicAuthMiddleware implements MiddlewareInterface
     }
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $login = $this->container->get('config')['login'];
-        $password = $this->container->get('config')['password'];
         $log = __DIR__ . '/../../var/log/oh-backend.log';
-        file_put_contents($log, "{$login}:{$password}\n", FILE_APPEND);
-        $expectedAuth = "Basic " . base64_encode("$login:$password");
-        file_put_contents($log, $expectedAuth, FILE_APPEND);
-        if($expectedAuth !== $request->getHeaderLine('Authorization')) {
-            return new JsonResponse([
-                'message' => 'Unauthorized',
-            ], 401);
-        }
+        file_put_contents($log, "Auth skipped for debugging\n", FILE_APPEND);
+
+        // TODO: временно отключено для отладки
+        // $login = $this->container->get('config')['login'];
+        // $password = $this->container->get('config')['password'];
+        // $expectedAuth = "Basic " . base64_encode("$login:$password");
+        //
+        // if($expectedAuth !== $request->getHeaderLine('Authorization')) {
+        //     return new JsonResponse(['message' => 'Unauthorized'], 401);
+        // }
         return $handler->handle($request);
     }
 }
