@@ -21,13 +21,15 @@ class Handler
     {}
     public function handle(Command $command): void
     {
-        $product = $this->products->findByCipher($command->cipher);
+        $product = $this->products->findByCourse($command->course);
 
         if($product) {
+            /** @var Product $product */
             $product->update(
                 $command->name,
                 new Price($command->amount, new Currency('RUB')),
-                new File($command->path)
+                new File($command->path),
+                $product->getCipher(),
             );
         }else{
             $product = new Product(
@@ -35,7 +37,8 @@ class Handler
                 $command->name,
                 new Price($command->amount, new Currency('RUB')),
                 new File($command->path),
-                $command->cipher
+                $command->cipher,
+                $command->course
             );
         }
 

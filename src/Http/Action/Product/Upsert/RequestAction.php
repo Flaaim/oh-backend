@@ -17,16 +17,13 @@ class RequestAction implements RequestHandlerInterface
     {}
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        if ($request->getMethod() !== 'POST') {
-            return new JsonResponse(['message' => 'Method not allowed'], 405);
-        }
         try{
             $data = $request->getParsedBody() ?? [];
             if(empty($data)){
                 throw new \Exception('Invalid request body');
             }
 
-            $command = new Command($data['name'], $data['cipher'], $data['amount'], $data['path']);
+            $command = new Command($data['name'], $data['cipher'], $data['amount'], $data['path'], $data['course']);
             /** @var Handler $handler */
             $handler = $this->container->get(Handler::class);
             $handler->handle($command);

@@ -8,6 +8,7 @@ class Command
         public string $name,
         public string $cipher,
         public float $amount,
-        public string $path
+        public string $path,
+        public string $course
     ){}
 }

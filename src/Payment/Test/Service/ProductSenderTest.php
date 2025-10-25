@@ -78,7 +78,8 @@ class ProductSenderTest extends TestCase
             'Образцы документов СИЗ',
             new Price(450.00, new Currency('RUB')),
             new EntityFile(basename($tempFile)),
-            '1'
+            '201.18',
+            '201'
         );
     }
 

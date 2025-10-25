@@ -15,6 +15,7 @@ class ProductBuilder
     private string $cipher;
     private Price $price;
     private File $file;
+    private string $course;
 
     public function __construct()
     {
@@ -23,6 +24,7 @@ class ProductBuilder
         $this->cipher = "ОТ 201.18";
         $this->price = new Price(350.00, new Currency('RUB'));
         $this->file = new File("201/ot201.18.docx");
+        $this->course = '201';
     }
 
     public function build(): Product
@@ -32,7 +34,8 @@ class ProductBuilder
             $this->name,
             $this->price,
             $this->file,
-            $this->cipher
+            $this->cipher,
+            $this->course
         );
     }
 }

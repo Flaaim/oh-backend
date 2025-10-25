@@ -25,21 +25,22 @@ class ProductRepository
         /** @var Product $product */
         return $product;
     }
-    public function findByCipher(string $cipher): ?Product
+    public function findByCourse(string $course): ?Product
     {
-        return $this->repo->findOneBy(['cipher' => $cipher]);
+        return $this->repo->findOneBy(['course' => $course]);
     }
     public function upsert(Product $product): void
     {
         $qb = $this->em->createQueryBuilder();
 
         $sql = '
-        INSERT INTO products (id, name, price, file, cipher) 
-        VALUES (:id, :name, :price, :file, :cipher)
+        INSERT INTO products (id, name, price, file, cipher, course) 
+        VALUES (:id, :name, :price, :file, :cipher, :course)
         ON DUPLICATE KEY UPDATE 
             name = VALUES(name),
             price = VALUES(price),
-            file = VALUES(file)
+            file = VALUES(file), 
+            cipher = VALUES(cipher)
          ';
 
         $qb->getEntityManager()
@@ -49,7 +50,8 @@ class ProductRepository
                 'name' => $product->getName(),
                 'price' => $product->getPrice()->getValue(),
                 'file' => $product->getFile()->getPathToFile(),
-                'cipher' => $product->getCipher()
+                'cipher' => $product->getCipher(),
+                'course' => $product->getCourse()
             ]);
     }
 }

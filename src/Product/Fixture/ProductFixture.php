@@ -20,7 +20,8 @@ class ProductFixture extends AbstractFixture
             'СИЗ образцы документов',
             new Price(450.00, new Currency()),
             new File('/ppe/templates.txt'),
-            'ot161.4'
+            'ot161.4',
+            '161'
         );
 
         $manager->persist($product);
