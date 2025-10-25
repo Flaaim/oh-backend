@@ -17,7 +17,7 @@ return static function(App $app): void {
 
 
         $group->group('/products', function (RouteCollectorProxy $group): void {
-            $group->post('/upsert', Upsert\RequestAction::class)->add(BasicAuthMiddleware::class);
+            $group->post('/upsert', Upsert\RequestAction::class);
         });
     });
 
