@@ -19,7 +19,8 @@ class BasicAuthMiddleware implements MiddlewareInterface
     {
         $login = $this->container->get('config')['login'];
         $password = $this->container->get('config')['password'];
-
+        $log = __DIR__ . '/../../var/log/oh-backend.log';
+        file_put_contents($log, "{$login}:{$password}\n", FILE_APPEND);
         $expectedAuth = "Basic " . base64_encode("$login:$password");
 
         if($expectedAuth !== $request->getHeaderLine('Authorization')) {
