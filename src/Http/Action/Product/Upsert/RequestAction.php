@@ -20,7 +20,7 @@ class RequestAction implements RequestHandlerInterface
         try{
             $data = $request->getParsedBody() ?? [];
             if(empty($data)){
-                throw new \Exception('Invalid request body');
+                throw new \DomainException('Invalid request body');
             }
 
             $command = new Command($data['name'], $data['cipher'], $data['amount'], $data['path'], $data['course']);
