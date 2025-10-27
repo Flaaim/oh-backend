@@ -13,7 +13,7 @@ class UploadDirTest extends TestCase
     {
         $uploadDir = new UploadDir(
             $this->getTemplatePath(),
-            'fire/1974/1974.8.docx',
+            'fire/1974',
             $this->getValidatePath()
         );
 

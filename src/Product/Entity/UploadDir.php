@@ -29,11 +29,9 @@ class UploadDir
 
     private function buildTargetPath(TemplatePath $uploadDir, string $targetPath): string
     {
-        $dirname = pathinfo($targetPath, PATHINFO_DIRNAME);
-
         return rtrim($uploadDir->getValue(), DIRECTORY_SEPARATOR)
             . DIRECTORY_SEPARATOR
-            . ltrim($dirname, DIRECTORY_SEPARATOR);
+            . ltrim($targetPath, DIRECTORY_SEPARATOR);
     }
 
 }

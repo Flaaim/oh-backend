@@ -6,7 +6,7 @@ class ValidatePath
 {
     public function validate(string $path): int
     {
-        $status = preg_match('/^[a-zA-Z]+\/\d+\/[a-z0-9]+\.[a-z]+$/', $path);
+        $status = preg_match('/^[a-zA-Z]+\/\d+$/', $path);
         if(false === $status) {
             throw new \DomainException('Error validate path');
         }
