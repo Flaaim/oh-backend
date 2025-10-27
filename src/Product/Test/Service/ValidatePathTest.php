@@ -14,6 +14,7 @@ class ValidatePathTest extends TestCase
             ['fire/1794/1974.1.docx'],
             ['fire/1794/1974.1.pdf'],
             ['test/1794/1974.1.pf'],
+            ['fire/1791/pi1791.docx']
         ];
     }
     #[DataProvider('allowedProvider')]
