@@ -28,9 +28,9 @@ class RequestAction implements RequestHandlerInterface
             $command = new Command($data['name'], $data['cipher'], $data['amount'], $data['path'], $data['course']);
             /** @var Handler $handler */
             $handler = $this->container->get(Handler::class);
-            $handler->handle($command);
+            $response = $handler->handle($command);
 
-            return new EmptyResponse(201);
+            return new JsonResponse($response, 201);
         }catch (\Exception $e){
             return new JsonResponse(['message' => $e->getMessage()], 500);
         }

@@ -19,7 +19,7 @@ class Handler
         private readonly Flusher $flusher,
     )
     {}
-    public function handle(Command $command): void
+    public function handle(Command $command): Response
     {
         $product = $this->products->findByCourse($command->course);
 
@@ -46,5 +46,6 @@ class Handler
 
         $this->flusher->flush();
 
+        return new Response($product->getId()->getValue());
     }
 }

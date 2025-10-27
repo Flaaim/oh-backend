@@ -26,6 +26,11 @@ class ProductBuilder
         $this->file = new File("201/ot201.18.docx");
         $this->course = '201';
     }
+    public function withId(Id $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
     public function withName(string $name): self
     {
         $this->name = $name;

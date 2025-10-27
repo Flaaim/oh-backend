@@ -28,7 +28,10 @@ class RequestActionTest extends WebTestCase
         ]));
 
         self::assertEquals(201, $response->getStatusCode());
-        self::assertEquals('', (string)$response->getBody());
+        self::assertJson($body = (string) $response->getBody());
+
+        $data = Json::decode($body);
+        self::assertArrayHasKey('productId', $data);
     }
 
     public function testUpdateProduct(): void
@@ -42,7 +45,11 @@ class RequestActionTest extends WebTestCase
         ]));
 
         self::assertEquals(201, $response->getStatusCode());
-        self::assertEquals('', (string)$response->getBody());
+        self::assertJson($body = (string) $response->getBody());
+
+        $data = Json::decode($body);
+        self::assertArrayHasKey('productId', $data);
+        self::assertEquals('b38e76c0-ac23-4c48-85fd-975f32c8801f', $data['productId']);
     }
     public function testEmpty(): void
     {
