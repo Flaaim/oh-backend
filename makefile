@@ -33,7 +33,7 @@ app-clear:
 	docker run --rm -v ${PWD}:/app -w /app  alpine sh -c 'rm -rf var/cache/* var/log/*'
 
 app-permission:
-	docker run --rm -v ${PWD}:/app -w /app alpine chmod 777 bin var/cache var/log
+	docker run --rm -v ${PWD}:/app -w /app alpine chmod 777 bin var/cache var/log public/templates
 
 unit-test:
 	docker-compose run --rm php-cli composer test -- --testsuite=Unit

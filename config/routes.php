@@ -8,6 +8,7 @@ use Slim\Routing\RouteCollectorProxy;
 use App\Http\Action\Payment;
 use App\Http\Action\Product\Upsert;
 use App\Http\Action\Auth\GetToken;
+use App\Http\Action\Product\Upload;
 
 return static function(App $app): void {
 
@@ -19,11 +20,13 @@ return static function(App $app): void {
 
         $group->group('/products', function (RouteCollectorProxy $group): void {
             $group->post('/upsert', Upsert\RequestAction::class);
+            $group->post('/upload', Upload\RequestAction::class);
         })->add(AuthMiddleware::class);
 
         $group->group('/auth', function (RouteCollectorProxy $group): void {
             $group->post('/login', GetToken\RequestAction::class);
         });
+
     });
 
 

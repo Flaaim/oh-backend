@@ -20,7 +20,8 @@ class WebTestCase extends TestCase
     {
         $request = self::request($method, $path)
             ->withHeader('Accept', 'application/json')
-            ->withHeader('Content-Type', 'application/json');
+            ->withHeader('Content-Type', 'application/json')
+            ->withHeader('Authorization', 'Bearer YXBwOnNlY3JldA==');
         $request->getBody()->write(json_encode($body, JSON_THROW_ON_ERROR));
         return $request;
     }
