@@ -25,7 +25,17 @@ class WebTestCase extends TestCase
         $request->getBody()->write(json_encode($body, JSON_THROW_ON_ERROR));
         return $request;
     }
+    protected static function formData(string $method, string $path, array $body = [], array $file = []): ServerRequestInterface
+    {
+        $request = self::request($method, $path)
+            ->withHeader('Accept', 'multipart/form-data')
+            ->withHeader('Content-Type', 'multipart/form-data')
+            ->withHeader('Authorization', 'Bearer YXBwOnNlY3JldA==');
 
+        $request = $request->withParsedBody($body);
+        $request = $request->withUploadedFiles($file);
+        return $request;
+    }
     protected static function request(string $method, string $path): ServerRequestInterface
     {
         return (new ServerRequestFactory())->createServerRequest($method, $path);

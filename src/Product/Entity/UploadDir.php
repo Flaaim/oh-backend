@@ -4,19 +4,26 @@ namespace App\Product\Entity;
 
 use App\Product\Service\ValidatePath;
 use App\Shared\Domain\Service\Template\TemplatePath;
+use Psr\Http\Message\UploadedFileInterface;
 
 class UploadDir
 {
     private string $targetPath;
-
-    public function __construct(TemplatePath $uploadDir, string $targetPath, ValidatePath $validatePath)
+    private ValidatePath $validatePath;
+    private TemplatePath $uploadDir;
+    public function __construct(TemplatePath $uploadDir, ValidatePath $validatePath)
     {
-        $this->ensurePathValid($targetPath, $validatePath);
-        $this->targetPath = $this->buildTargetPath($uploadDir, $targetPath);
+        $this->validatePath = $validatePath;
+        $this->uploadDir = $uploadDir;
     }
     public function getValue(): string
     {
         return $this->targetPath;
+    }
+    public function setTargetPath(string $targetPath): void
+    {
+        $this->ensurePathValid($targetPath, $this->validatePath);
+        $this->targetPath = $this->buildTargetPath($this->uploadDir, $targetPath);
     }
     public function ensurePathValid(string $targetPath, ValidatePath $validatePath): void
     {

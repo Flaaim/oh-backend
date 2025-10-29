@@ -23,10 +23,11 @@ class FileHandler
 
     public function handle(UploadedFileInterface $file): array
     {
+        $this->createDir();
+        $this->deleteFile($this->path->getValue());
         return $this->processFile($file);
     }
-
-    private function processFile(UploadedFileInterface $uploadedFile): array
+    private function createDir(): void
     {
         if(!is_dir($this->path->getValue())){
             $status = mkdir($this->path->getValue(), 0777, true);
@@ -34,6 +35,9 @@ class FileHandler
                 throw new RuntimeException('Unable to create directory ' . $this->path->getValue());
             }
         }
+    }
+    private function processFile(UploadedFileInterface $uploadedFile): array
+    {
         if($uploadedFile->getError() !== UPLOAD_ERR_OK){
             throw new RuntimeException('Error uploading file '. $uploadedFile->getError());
         }
@@ -41,8 +45,6 @@ class FileHandler
         if(!in_array($uploadedFile->getClientMediaType(), self::ALLOWED_MIME_TYPES)){
             throw new RuntimeException('Invalid file type '. $uploadedFile->getClientMediaType());
         }
-
-        $this->deleteFile($this->path->getValue());
 
         $file = $this->path->getValue() .
             DIRECTORY_SEPARATOR . $uploadedFile->getClientFilename();
@@ -59,6 +61,9 @@ class FileHandler
 
     private function deleteFile(string $dir): void
     {
+        if(!is_dir($dir)){
+            throw new RuntimeException('Unable to delete directory. Directory not found' . $dir);
+        }
         $it = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
         $files = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
         foreach ($files as $file) {

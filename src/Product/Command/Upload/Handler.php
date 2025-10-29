@@ -4,23 +4,21 @@ namespace App\Product\Command\Upload;
 
 use App\Product\Entity\UploadDir;
 use App\Product\Service\FileHandler;
-use App\Product\Service\ValidatePath;
-use App\Shared\Domain\Service\Template\TemplatePath;
 
 class Handler
 {
     public function __construct(
-        private readonly TemplatePath $templatePath,
-        private readonly ValidatePath $validatePath
+        private readonly UploadDir    $uploadDir,
     )
     {}
 
     public function handle(Command $command): Response
     {
-        $fileHandler = new FileHandler(
-            new UploadDir($this->templatePath, $command->targetPath, $this->validatePath)
-        );
+        $this->uploadDir->setTargetPath($command->targetPath);
 
+        $fileHandler = new FileHandler(
+            $this->uploadDir
+        );
         $result = $fileHandler->handle($command->uploadFiles);
 
         return Response::fromArray($result);
