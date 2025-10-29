@@ -4,11 +4,10 @@ namespace App\Product\Entity;
 
 use App\Product\Service\ValidatePath;
 use App\Shared\Domain\Service\Template\TemplatePath;
-use Psr\Http\Message\UploadedFileInterface;
 
 class UploadDir
 {
-    private string $targetPath;
+    private ?string $targetPath = null;
     private ValidatePath $validatePath;
     private TemplatePath $uploadDir;
     public function __construct(TemplatePath $uploadDir, ValidatePath $validatePath)
@@ -16,7 +15,7 @@ class UploadDir
         $this->validatePath = $validatePath;
         $this->uploadDir = $uploadDir;
     }
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->targetPath;
     }

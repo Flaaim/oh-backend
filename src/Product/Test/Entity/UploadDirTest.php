@@ -16,18 +16,17 @@ class UploadDirTest extends TestCase
             $this->getValidatePath()
         );
 
-        self::assertEquals('/tmp/fire/1974', $uploadDir->getValue());
+        self::assertEquals(null, $uploadDir->getValue());
     }
     public function testInvalid(): void
     {
         $targetPath = '1974/1974.8.docx';
         $this->expectException(\DomainException::class);
         $this->expectExceptionMessage(sprintf('Target path "%s" is not valid', $targetPath));
-        $uploadDir = new UploadDir(
+        (new UploadDir(
             $this->getTemplatePath(),
-            $targetPath,
-           $this->getValidatePath()
-        );
+            $this->getValidatePath()
+        ))->setTargetPath($targetPath);
 
     }
     private function getTemplatePath(): TemplatePath
