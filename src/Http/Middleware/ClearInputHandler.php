@@ -12,6 +12,27 @@ class ClearInputHandler implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        // TODO: Implement process() method.
+        $request = $request
+            ->withParsedBody(self::filterStrings($request->getParsedBody()));
+
+        return $handler->handle($request);
+    }
+
+    private static function filterStrings($items)
+    {
+        if (!is_array($items)) {
+            return $items;
+        }
+
+        $result = [];
+        foreach ($items as $key => $item) {
+            if (is_string($item)) {
+                $result[$key] = trim($item);
+            }else{
+                $result[$key] = self::filterStrings($item);
+            }
+        }
+
+        return $result;
     }
 }
