@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-use App\Middleware\AuthMiddleware;
+use App\Http\Action\Auth\GetToken;
+use App\Http\Action\Payment;
+use App\Http\Action\Product\Upload;
+use App\Http\Action\Product\Upsert;
+use App\Http\Middleware\AuthMiddleware;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
-use App\Http\Action\Payment;
-use App\Http\Action\Product\Upsert;
-use App\Http\Action\Auth\GetToken;
-use App\Http\Action\Product\Upload;
 
 return static function(App $app): void {
 
