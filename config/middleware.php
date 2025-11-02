@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-use App\Http\Middleware\ClearInputHandler;
-use Psr\Container\ContainerInterface;
+use App\Http\Middleware;
 use Slim\App;
 use Slim\Middleware\ErrorMiddleware;
 
 return static function(App $app): void {
-    $app->add(ClearInputHandler::class);
+    $app->add(Middleware\DomainExceptionHandler::class);
+
+    $app->add(Middleware\ClearInputHandler::class);
     $app->addBodyParsingMiddleware();
     $app->add(ErrorMiddleware::class);
+
 };

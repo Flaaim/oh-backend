@@ -55,7 +55,7 @@ class RequestActionTest extends WebTestCase
     {
         $response = $this->app()->handle(self::json('POST','/payment-service/products/upsert', []));
 
-        self::assertEquals(500, $response->getStatusCode());
+        self::assertEquals(400, $response->getStatusCode());
         self::assertJson($body = (string)$response->getBody());
 
         $data = Json::decode($body);

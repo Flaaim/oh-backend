@@ -87,11 +87,12 @@ class RequestActionTest extends WebTestCase
         $response = $this->app()->handle(self::formData('POST', '/payment-service/products/upload', [], [
             'file' => new UploadedFile($tempFile, '992', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', filesize($tempFile), UPLOAD_ERR_OK)
         ]));
-        self::assertEquals(500, $response->getStatusCode());
-        self::assertJson($body = $response->getBody());
+        self::assertEquals(400, $response->getStatusCode());
+        self::assertJson($body = (string)$response->getBody());
+
         $data = Json::decode($body);
 
-        self::assertArraySubset(['message' => 'Expected a non-empty value. Got: ""'], $data);
+        self::assertArraySubset(['message' => 'Target path "" is not valid'], $data);
     }
     public function testInvalidMimeType(): void
     {
@@ -100,8 +101,8 @@ class RequestActionTest extends WebTestCase
             'POST', '/payment-service/products/upload', ['path' => 'fire/992'], ['file' => $uploadedFile])
         );
 
-        self::assertEquals(500, $response->getStatusCode());
-        self::assertJson($body = $response->getBody());
+        self::assertEquals(400, $response->getStatusCode());
+        self::assertJson($body = (string)$response->getBody());
         $data = Json::decode($body);
 
         self::assertArraySubset(['message' => 'Invalid file type '. $invalidFileType], $data);
@@ -112,9 +113,9 @@ class RequestActionTest extends WebTestCase
         $uploadedFile = $this->buildUploadedFile('test', 'data',  'application/vnd.openxmlformats-officedocument.wordprocessingml.document', UPLOAD_ERR_NO_FILE);
         $response = $this->app()->handle(self::formData('POST', '/payment-service/products/upload', ['path' => 'fire/992'], ['file' => $uploadedFile]));
 
-        self::assertEquals(500, $response->getStatusCode());
+        self::assertEquals(400, $response->getStatusCode());
 
-        self::assertJson($body = $response->getBody());
+        self::assertJson($body = (string)$response->getBody());
         $data = Json::decode($body);
 
         self::assertArraySubset(['message' => 'Error uploading file '. $uploadedFile->getError()], $data);

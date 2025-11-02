@@ -20,17 +20,14 @@ class RequestAction implements RequestHandlerInterface
     {
         $uploadedFile = $request->getUploadedFiles()['file'] ?? [];
         $targetPath = $request->getParsedBody()['path'] ?? '';
-        try{
-            if($uploadedFile instanceof UploadedFileInterface){
-                $command = new Command($uploadedFile, $targetPath);
-                /** @var Handler $handler */
-                $handler = $this->container->get(Handler::class);
-                $response = $handler->handle($command);
-                return new JsonResponse($response);
-            }
-            return new JsonResponse(['message' => 'File upload failed'], 400);
-        }catch (\Exception $e){
-            return new JsonResponse(['message' => $e->getMessage()], 500);
+
+        if($uploadedFile instanceof UploadedFileInterface){
+            $command = new Command($uploadedFile, $targetPath);
+            /** @var Handler $handler */
+            $handler = $this->container->get(Handler::class);
+            $response = $handler->handle($command);
+            return new JsonResponse($response);
         }
+        return new JsonResponse(['message' => 'File upload failed'], 400);
     }
 }

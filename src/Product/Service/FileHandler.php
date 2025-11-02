@@ -3,11 +3,11 @@
 namespace App\Product\Service;
 
 use App\Product\Entity\UploadDir;
+use DomainException;
 use FilesystemIterator;
 use Psr\Http\Message\UploadedFileInterface;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
-use RuntimeException;
 
 class FileHandler
 {
@@ -32,18 +32,18 @@ class FileHandler
         if(!is_dir($this->path->getValue())){
             $status = mkdir($this->path->getValue(), 0777, true);
             if($status === false){
-                throw new RuntimeException('Unable to create directory ' . $this->path->getValue());
+                throw new \DomainException('Unable to create directory ' . $this->path->getValue());
             }
         }
     }
     private function processFile(UploadedFileInterface $uploadedFile): array
     {
         if($uploadedFile->getError() !== UPLOAD_ERR_OK){
-            throw new RuntimeException('Error uploading file '. $uploadedFile->getError());
+            throw new \DomainException('Error uploading file '. $uploadedFile->getError());
         }
 
         if(!in_array($uploadedFile->getClientMediaType(), self::ALLOWED_MIME_TYPES)){
-            throw new RuntimeException('Invalid file type '. $uploadedFile->getClientMediaType());
+            throw new \DomainException('Invalid file type '. $uploadedFile->getClientMediaType());
         }
 
         $file = $this->path->getValue() .
@@ -62,7 +62,7 @@ class FileHandler
     private function deleteFile(string $dir): void
     {
         if(!is_dir($dir)){
-            throw new RuntimeException('Unable to delete directory. Directory not found' . $dir);
+            throw new DomainException('Unable to delete directory. Directory not found' . $dir);
         }
         $it = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
         $files = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);

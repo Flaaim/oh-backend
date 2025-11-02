@@ -11,7 +11,5 @@ class Command
         public UploadedFileInterface $uploadFiles,
         public string $targetPath
     )
-    {
-        Assert::notEmpty($targetPath);
-    }
+    {}
 }

@@ -18,24 +18,17 @@ class RequestAction implements RequestHandlerInterface
     {}
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        try{
-            $data = $request->getParsedBody() ?? [];
+        $data = $request->getParsedBody() ?? [];
 
-            if(empty($data)){
-                throw new \DomainException('Invalid request body');
-            }
-
-            $command = new Command($data['name'], $data['cipher'], $data['amount'], $data['path'], $data['course']);
-            /** @var Handler $handler */
-            $handler = $this->container->get(Handler::class);
-            $response = $handler->handle($command);
-
-            return new JsonResponse($response, 201);
-        }catch (\Exception $e){
-            return new JsonResponse(['message' => $e->getMessage()], 500);
+        if(empty($data)){
+            throw new \DomainException('Invalid request body');
         }
 
+        $command = new Command($data['name'], $data['cipher'], $data['amount'], $data['path'], $data['course']);
+        /** @var Handler $handler */
+        $handler = $this->container->get(Handler::class);
+        $response = $handler->handle($command);
 
-
+        return new JsonResponse($response, 201);
     }
 }
