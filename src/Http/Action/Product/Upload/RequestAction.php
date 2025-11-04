@@ -3,19 +3,21 @@
 namespace App\Http\Action\Product\Upload;
 
 use App\Http\JsonResponse;
+use App\Http\Validator\ValidationException;
+use App\Http\Validator\Validator;
 use App\Product\Command\Upload\Command;
 use App\Product\Command\Upload\Handler;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 
 class RequestAction implements RequestHandlerInterface
 {
     public function __construct(
         private readonly ContainerInterface $container,
-        private readonly ValidatorInterface $validator,
+        private readonly Validator $validator,
     )
     {}
     public function handle(ServerRequestInterface $request): ResponseInterface
@@ -30,10 +32,11 @@ class RequestAction implements RequestHandlerInterface
 
         $command = new Command($uploadedFile, $targetPath);
 
-        $violations = $this->validator->validate($command);
-        if($violations->count() > 0){
+        try{
+            $this->validator->validate($command);
+        }catch (ValidationException $exception){
             $errors = [];
-            foreach ($violations as $violation){
+            foreach ($exception->getViolations() as $violation) {
                 $errors[$violation->getPropertyPath()] = $violation->getMessage();
             }
             return new JsonResponse(['errors' => $errors], 422);
