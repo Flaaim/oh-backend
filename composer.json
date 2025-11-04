@@ -17,7 +17,8 @@
     "slim/psr7": "^1.7",
     "psr/http-server-handler": "^1.0",
     "guzzlehttp/guzzle": "^7.10",
-    "slim/slim": "^4.15"
+    "slim/slim": "^4.15",
+    "symfony/validator": "^6.4"
   },
   "autoload": {
     "psr-4": {
