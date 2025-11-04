@@ -19,7 +19,7 @@ class Handler
         $fileHandler = new FileHandler(
             $this->uploadDir
         );
-        $result = $fileHandler->handle($command->uploadFiles);
+        $result = $fileHandler->handle($command->uploadFile);
 
         return Response::fromArray($result);
     }

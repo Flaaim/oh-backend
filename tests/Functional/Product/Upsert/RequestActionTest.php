@@ -55,12 +55,19 @@ class RequestActionTest extends WebTestCase
     {
         $response = $this->app()->handle(self::json('POST','/payment-service/products/upsert', []));
 
-        self::assertEquals(400, $response->getStatusCode());
+        self::assertEquals(422, $response->getStatusCode());
         self::assertJson($body = (string)$response->getBody());
 
         $data = Json::decode($body);
-        self::assertArraySubset([
-            'message' => 'Invalid request body'
+
+        self::assertEquals([
+            'errors' => [
+                'name' => 'This value is too short. It should have 5 characters or more.',
+                'cipher' => 'This value should not be blank.',
+                'amount' => 'This value should be positive.',
+                'path' => 'This value should not be blank.',
+                'course' => 'This value should not be blank.',
+            ]
         ], $data);
 
     }

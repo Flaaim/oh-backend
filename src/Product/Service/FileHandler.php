@@ -12,10 +12,6 @@ use RecursiveIteratorIterator;
 class FileHandler
 {
     private UploadDir $path;
-    const ALLOWED_MIME_TYPES = [
-        'application/msword',
-        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    ];
     public function __construct(UploadDir $path)
     {
         $this->path = $path;
@@ -40,10 +36,6 @@ class FileHandler
     {
         if($uploadedFile->getError() !== UPLOAD_ERR_OK){
             throw new \DomainException('Error uploading file '. $uploadedFile->getError());
-        }
-
-        if(!in_array($uploadedFile->getClientMediaType(), self::ALLOWED_MIME_TYPES)){
-            throw new \DomainException('Invalid file type '. $uploadedFile->getClientMediaType());
         }
 
         $file = $this->path->getValue() .
