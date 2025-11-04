@@ -2,13 +2,12 @@
 
 namespace Test\Functional\Product\Upsert;
 
-use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
 
 class RequestActionTest extends WebTestCase
 {
-    use ArraySubsetAsserts;
+
     public function setUp(): void
     {
         parent::setUp();
