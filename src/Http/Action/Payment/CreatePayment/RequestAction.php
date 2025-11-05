@@ -3,6 +3,8 @@
 namespace App\Http\Action\Payment\CreatePayment;
 
 use App\Http\JsonResponse;
+use App\Http\Validator\ValidationException;
+use App\Http\Validator\Validator;
 use App\Payment\Command\CreatePayment\Command;
 use App\Payment\Command\CreatePayment\Handler;
 use InvalidArgumentException;
@@ -14,40 +16,29 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class RequestAction implements RequestHandlerInterface
 {
-    public function __construct(private readonly ContainerInterface $container)
+    public function __construct(
+        private readonly ContainerInterface $container,
+        private readonly Validator $validator
+    )
     {}
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        try{
-            $data = $request->getParsedBody() ?? [];
-
-            if (!isset($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-                throw new InvalidArgumentException('Invalid email address');
-            }
-
-            if (!isset($data['productId'])) {
-                throw new InvalidArgumentException('Invalid product id');
-            }
+            $email = $request->getParsedBody()['email'] ?? '';
+            $productId = $request->getParsedBody()['productId'] ?? '';
 
             $command = new Command(
-                $data['email'],
-                $data['productId']
+                $email,
+                $productId
             );
+
+            $this->validator->validate($command);
 
             /** @var Handler $handler */
             $handler = $this->container->get(Handler::class);
             $response = $handler->handle($command);
 
             return new JsonResponse($response, 201);
-        }catch (InvalidArgumentException $e){
-            return new JsonResponse(['message' => $e->getMessage()], 400);
-        }catch (\DomainException $e){
-            return new JsonResponse(['message' => $e->getMessage()], 404);
-        } catch (\Exception $e){
-            return new JsonResponse(['message' => $e->getMessage()], 500);
-        }
-
 
     }
 }

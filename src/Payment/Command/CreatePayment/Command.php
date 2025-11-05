@@ -2,16 +2,17 @@
 
 namespace App\Payment\Command\CreatePayment;
 
-use Webmozart\Assert\Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Command
 {
     public function __construct(
+        #[Assert\NotBlank]
+        #[Assert\Email]
         public string $email,
-        public string $productId
+        #[Assert\NotBlank]
+        #[Assert\Uuid]
+        public string $productId,
     )
-    {
-        Assert::uuid($this->productId);
-        Assert::email($this->email);
-    }
+    {}
 }

@@ -35,7 +35,22 @@ class RequestActionTest extends WebTestCase
             'currency' => 'RUB',
         ],$data);
     }
+    public function testEmpty(): void
+    {
+        $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment'));
 
+        $this->assertEquals(422, $response->getStatusCode());
+
+        $body = (string)$response->getBody();
+        $data = Json::decode($body);
+
+        self::assertEquals([
+            'errors' => [
+                'email' => 'This value should not be blank.',
+                'productId' => 'This value should not be blank.',
+            ]
+        ], $data);
+    }
     public function testNotFound(): void
     {
         $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
@@ -43,7 +58,7 @@ class RequestActionTest extends WebTestCase
             'productId' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
         ]));
 
-        self::assertEquals(404, $response->getStatusCode());
+        self::assertEquals(400, $response->getStatusCode());
         self::assertJson($body = (string)$response->getBody());
 
         $data = Json::decode($body);
@@ -61,14 +76,16 @@ class RequestActionTest extends WebTestCase
             'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8809f'
         ]));
 
-        self::assertEquals(400, $response->getStatusCode());
+        self::assertEquals(422, $response->getStatusCode());
 
         self::assertJson($body = (string)$response->getBody());
 
         $data = Json::decode($body);
 
-        self::assertArraySubset([
-            'message' => 'Invalid email address',
+        self::assertEquals([
+            'errors' => [
+                'email' => 'This value is not a valid email address.'
+            ],
         ], $data);
     }
 
@@ -79,14 +96,16 @@ class RequestActionTest extends WebTestCase
             'productId' => 'someInvalidProductId',
         ]));
 
-        self::assertEquals(400, $response->getStatusCode());
+        self::assertEquals(422, $response->getStatusCode());
 
         self::assertJson($body = (string)$response->getBody());
 
         $data = Json::decode($body);
 
-        self::assertArraySubset([
-            'message' => 'Value "someInvalidProductId" is not a valid UUID.',
+        self::assertEquals([
+            'errors' => [
+                'productId' => 'This is not a valid UUID.',
+            ]
         ], $data);
     }
 
