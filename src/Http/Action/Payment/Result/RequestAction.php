@@ -12,14 +12,10 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class RequestAction implements RequestHandlerInterface
 {
-    private Handler $handler;
-    public function __construct(Handler $handler)
-    {
-        $this->handler = $handler;
-    }
+    public function __construct(private readonly Handler $handler)
+    {}
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        try{
             $data = $request->getParsedBody() ?? [];
 
             if(empty($data['returnToken'])){
@@ -27,14 +23,10 @@ class RequestAction implements RequestHandlerInterface
             }
 
             $command = new Command($data['returnToken']);
+
             $response = $this->handler->handle($command);
 
             return new JsonResponse($response, 200);
-        }catch (\DomainException $e){
-            return new JsonResponse(['message' => $e->getMessage()], 400);
-        } catch (\Exception $e){
-            return new JsonResponse(['message' => $e->getMessage()], 500);
-        }
 
     }
 }
