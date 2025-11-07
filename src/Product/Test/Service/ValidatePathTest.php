@@ -11,8 +11,8 @@ class ValidatePathTest extends TestCase
     public static function allowedProvider(): array
     {
         return [
-            ['fire/1794'],
-            ['test/17941'],
+            ['fire/ot1794'],
+            ['test/ot17941'],
         ];
     }
     #[DataProvider('allowedProvider')]
@@ -28,7 +28,8 @@ class ValidatePathTest extends TestCase
             ['195/1794/1974.1.docx'],
             ['test/abc/'],
             ['fire/1794abs'],
-            ['fire/1971/']
+            ['fire/1971/'],
+            ['fire/ot201/']
         ];
     }
     #[DataProvider('notAllowedProvider')]
