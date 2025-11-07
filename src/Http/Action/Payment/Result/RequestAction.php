@@ -3,6 +3,7 @@
 namespace App\Http\Action\Payment\Result;
 
 use App\Http\JsonResponse;
+use App\Http\Validator\Validator;
 use App\Payment\Command\GetPaymentResult\Command;
 use App\Payment\Command\GetPaymentResult\Handler;
 use Psr\Http\Message\ResponseInterface;
@@ -12,17 +13,18 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class RequestAction implements RequestHandlerInterface
 {
-    public function __construct(private readonly Handler $handler)
+    public function __construct(
+        private readonly Handler $handler,
+        private readonly Validator $validator
+    )
     {}
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-            $data = $request->getParsedBody() ?? [];
+            $returnToken = $request->getParsedBody()['returnToken'] ?? '';
 
-            if(empty($data['returnToken'])){
-                throw new \Exception('Return token is empty');
-            }
+            $command = new Command($returnToken);
 
-            $command = new Command($data['returnToken']);
+            $this->validator->validate($command);
 
             $response = $this->handler->handle($command);
 

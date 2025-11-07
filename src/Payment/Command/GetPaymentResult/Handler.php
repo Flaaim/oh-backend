@@ -13,7 +13,10 @@ class Handler
 
     public function handle(Command $command): Response
     {
+
         $payment = $this->payments->getByToken($command->returnToken);
+
+        $payment->validateToken($command->returnToken, new \DateTimeImmutable('now'));
 
         return new Response(
             $payment->getReturnToken()->getValue(),

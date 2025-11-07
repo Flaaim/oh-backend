@@ -2,10 +2,11 @@
 
 namespace Test\Functional\Payment\Result;
 
-use App\Payment\Entity\Token;
+
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Test\Functional\Json;
 use Test\Functional\Payment\PaymentBuilder;
+use Test\Functional\Payment\TokenBuilder;
 use Test\Functional\WebTestCase;
 
 class RequestActionTest extends WebTestCase
@@ -21,9 +22,10 @@ class RequestActionTest extends WebTestCase
     }
     public function testSuccess(): void
     {
-        $returnToken = $this->getReturnToken()->getValue();
+        $returnToken = (new TokenBuilder())->build();
+
         $response = $this->app()->handle(self::json('POST', '/payment-service/result', [
-            'returnToken' => $returnToken
+            'returnToken' => $returnToken->getValue()
         ]));
 
         $this->assertEquals(200, $response->getStatusCode());
@@ -32,16 +34,60 @@ class RequestActionTest extends WebTestCase
         $data = Json::decode($body);
 
         self::assertArraySubset([
-            'returnToken' => $returnToken,
+            'returnToken' => $returnToken->getValue(),
             'status' => 'succeeded',
             'email' => 'test@app.ru'
         ], $data);
     }
-
-    private function getReturnToken(): Token
+    public function testEmpty(): void
     {
-        $payment = (new PaymentBuilder())->build();
+        $response = $this->app()->handle(self::json('POST', '/payment-service/result'));
 
-        return $payment->getReturnToken();
+        self::assertEquals(422, $response->getStatusCode());
+        self::assertJson($body = (string)$response->getBody());
+
+        $data = Json::decode($body);
+
+        self::assertEquals([
+            'errors' => [
+                'returnToken' => 'This value should not be blank.',
+            ]
+        ], $data);
+
     }
+
+    public function testInvalid(): void
+    {
+        $response = $this->app()->handle(self::json('POST', '/payment-service/result', [
+            'returnToken' => 'invalid'
+        ]));
+        self::assertEquals(422, $response->getStatusCode());
+        self::assertJson($body = (string)$response->getBody());
+        $data = Json::decode($body);
+
+        self::assertEquals([
+            'errors' => [
+                'returnToken' => 'Token is not correct.',
+            ]
+        ], $data);
+    }
+    public function testExpired(): void
+    {
+        $expiredPayment = (new PaymentBuilder())
+            ->withExpiredToken()
+            ->build();
+
+        $response = $this->app()->handle(self::json('POST', '/payment-service/result', [
+            'returnToken' => $expiredPayment->getReturnToken()->getValue()
+        ]));
+
+        self::assertEquals(400, $response->getStatusCode());
+        self::assertJson($body = (string)$response->getBody());
+        $data = Json::decode($body);
+
+        self::assertArraySubset([
+           'message' => 'Token is expired.',
+        ], $data);
+    }
+
 }

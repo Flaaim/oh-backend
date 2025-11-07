@@ -82,6 +82,10 @@ class Payment
         }
         $this->status = $newStatus;
     }
+    public function validateToken(string $token, \DateTimeImmutable $date): void
+    {
+        $this->returnToken->validate($token, $date);
+    }
     public function isSend(): bool
     {
         return $this->isSend;

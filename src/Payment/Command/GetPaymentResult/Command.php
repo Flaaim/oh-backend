@@ -2,12 +2,14 @@
 
 namespace App\Payment\Command\GetPaymentResult;
 
-use Webmozart\Assert\Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Command
 {
-    public function __construct(public string $returnToken)
-    {
-        Assert::uuid($this->returnToken);
-    }
+    public function __construct(
+        #[Assert\NotBlank]
+        #[Assert\Uuid(message: 'Token is not correct.')]
+        public string $returnToken
+    )
+    {}
 }

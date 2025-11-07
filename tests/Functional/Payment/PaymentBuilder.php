@@ -70,6 +70,11 @@ class PaymentBuilder
         $this->isSend = true;
         return $this;
     }
+    public function withExpiredToken(): self
+    {
+        $this->returnToken = new Token('a1f10e06-bce8-43ab-9994-f23ce8c5a2b8', new DateTimeImmutable('- 1 hour'));
+        return $this;
+    }
     public function build(): Payment
     {
         $payment = new Payment(

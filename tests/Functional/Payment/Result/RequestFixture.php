@@ -5,6 +5,7 @@ namespace Test\Functional\Payment\Result;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
 use Test\Functional\Payment\PaymentBuilder;
+use Test\Functional\Payment\TokenBuilder;
 use Test\Functional\YookassaClient;
 
 class RequestFixture extends AbstractFixture
@@ -17,12 +18,22 @@ class RequestFixture extends AbstractFixture
             throw new \Exception('Payment id is null');
         }
 
-        $payment = (new PaymentBuilder())
+        $validPayment = (new PaymentBuilder())
             ->withExternalId($paymentId)
             ->withSucceededStatus()
             ->build();
 
-        $manager->persist($payment);
+        $manager->persist($validPayment);
+
+        $expiredPayment = (new PaymentBuilder())
+            ->withExternalId($paymentId)
+            ->withSucceededStatus()
+            ->withExpiredToken()
+            ->build();
+
+
+
+        $manager->persist($expiredPayment);
 
         $manager->flush();
     }
