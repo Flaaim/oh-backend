@@ -146,7 +146,7 @@ class RequestActionTest extends WebTestCase
 
         $uploadedFile = $this->buildUploadedFile('test.docx', 'data2', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',UPLOAD_ERR_OK);
 
-        $response = $this->app()->handle(self::formData('POST', '/payment-service/products/upload', ['path' => 'fire/992'], ['file' => $uploadedFile]));
+        $response = $this->app()->handle(self::formData('POST', '/payment-service/products/upload', ['path' => 'fire/pb992992'], ['file' => $uploadedFile]));
 
         self::assertEquals(200, $response->getStatusCode());
         self::assertJson($body = $response->getBody());

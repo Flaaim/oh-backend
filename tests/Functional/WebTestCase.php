@@ -12,10 +12,13 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\App;
 use Slim\Psr7\Factory\ServerRequestFactory;
+use Telegram\Bot\Api;
+use Test\Functional\Telegram\TelegramClient;
 
 class WebTestCase extends TestCase
 {
     private ?MailerClient $mailer = null;
+    protected ?TelegramClient $telegram = null;
     protected static function json(string $method, string $path, array $body = []): ServerRequestInterface
     {
         $request = self::request($method, $path)
@@ -58,7 +61,13 @@ class WebTestCase extends TestCase
         }
         return $this->mailer;
     }
-
+    public function telegram(): TelegramClient
+    {
+        if (null === $this->telegram) {
+            $this->telegram = new TelegramClient($this->container()->get(Api::class));
+        }
+        return $this->telegram;
+    }
     protected function loadFixtures(array $fixtures): void
     {
         $container = $this->container();

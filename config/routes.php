@@ -9,6 +9,7 @@ use App\Http\Action\Product\Upsert;
 use App\Http\Middleware\AuthMiddleware;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
+use App\Http\Action\Telegram;
 
 return static function(App $app): void {
 
@@ -27,6 +28,11 @@ return static function(App $app): void {
             $group->post('/login', GetToken\RequestAction::class);
         });
 
+        $group->group('/telegram', function (RouteCollectorProxy $group): void {
+
+            $group->post('/set-webhook', Telegram\SetWebhook\RequestAction::class);
+            //$group->post('/delete-webhook', Telegram\SetWebhook\RequestAction::class);
+        });
     });
 
 
