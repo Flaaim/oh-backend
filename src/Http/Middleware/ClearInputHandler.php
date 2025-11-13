@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\UploadedFileInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
@@ -13,7 +14,8 @@ class ClearInputHandler implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $request = $request
-            ->withParsedBody(self::filterStrings($request->getParsedBody()));
+            ->withParsedBody(self::filterStrings($request->getParsedBody()))
+            ->withUploadedFiles(self::filterFiles($request->getUploadedFiles()));
 
         return $handler->handle($request);
     }
@@ -33,6 +35,22 @@ class ClearInputHandler implements MiddlewareInterface
             }
         }
 
+        return $result;
+    }
+
+    private static function filterFiles($items): array
+    {
+        $result = [];
+
+        foreach ($items as $key => $item) {
+            if($item instanceof UploadedFileInterface) {
+                if($item->getError() !== UPLOAD_ERR_NO_FILE) {
+                    $result[$key] = $item;
+                }
+            }else{
+                $result[$key] = self::filterFiles($item);
+            }
+        }
         return $result;
     }
 }

@@ -128,7 +128,7 @@ class RequestActionTest extends WebTestCase
         $data = Json::decode($body);
 
         self::assertArraySubset(['errors' => [
-            'uploadFile' => 'No file was uploaded.',
+            'uploadFile' => 'Upload file required.',
         ]], $data);
     }
 
