@@ -30,8 +30,9 @@ return static function(App $app): void {
 
         $group->group('/telegram', function (RouteCollectorProxy $group): void {
 
+            $group->post('/', Telegram\ProcessWebhook\RequestAction::class);
+
             $group->post('/set-webhook', Telegram\SetWebhook\RequestAction::class);
-            //$group->post('/delete-webhook', Telegram\SetWebhook\RequestAction::class);
         });
     });
 

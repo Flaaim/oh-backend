@@ -2,8 +2,7 @@
 
 namespace App\TelegramBot\Command\SetWebhook;
 
-use GuzzleHttp\Client;
-use Psr\Http\Message\ResponseInterface;
+use App\TelegramBot\Command\Response;
 use Telegram\Bot\Api;
 use Telegram\Bot\Exceptions\TelegramSDKException;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\TelegramBot\Command\SetWebhook;
+namespace App\TelegramBot\Command;
 
 class Response
 {
