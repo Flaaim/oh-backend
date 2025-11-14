@@ -22,7 +22,9 @@ class RequestActionTest extends WebTestCase
             'message' => 'Message processed successfully',
             'data' => [
                 'chat_id' => $this->updateData()['message']['chat']['id'],
-                'text' => $this->updateData()['message']['text'],
+                'text' => "Добро пожаловать в бота сайта https://olimpoks-help.ru.\n\n"
+                    . "Доступные команды:\n"
+                    . "/help - Получить помощь",
             ]
         ], $data);
     }
@@ -60,6 +62,25 @@ class RequestActionTest extends WebTestCase
             ]
         ], $data);
     }
+    public function testUnsupported(): void
+    {
+        $response = $this->app()->handle(self::json('POST', '/payment-service/telegram/webhook', $this->updatedPoll()));
+
+        self::assertEquals(200, $response->getStatusCode());
+
+        self::assertJson($body = (string)$response->getBody());
+        $data = Json::decode($body);
+
+        self::assertEquals([
+            'status' => 'success',
+            'message' => 'Unsupported update type ignored',
+            'data' => [
+                'updated_type' => 'unknown'
+            ]
+        ], $data);
+
+    }
+
     private function updateData(): array
     {
         return [
@@ -72,6 +93,23 @@ class RequestActionTest extends WebTestCase
                     'username' => 'Flaaim'
                 ],
                 'text' => '/start'
+            ]
+        ];
+    }
+
+    private function updatedPoll(): array
+    {
+        return [
+            'update_id' => 123456,
+            'poll' => [
+                'id' => 1954013093,
+                'question' => 'some question',
+                'options' => [],
+                'total_voter_count' => 1,
+                'is_closed' => false,
+                'is_anonymous' => false,
+                'type' => 'regular',
+                'allows_multiple_answers' => false,
             ]
         ];
     }
