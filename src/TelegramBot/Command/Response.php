@@ -7,6 +7,7 @@ class Response
     public function __construct(
         public string $status,
         public string $message,
+        public array $data = []
     )
     {}
 }

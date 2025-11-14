@@ -2,13 +2,11 @@
 
 namespace Test\Functional\Telegram\SetWebhook;
 
-use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
 
 class RequestActionTest extends WebTestCase
 {
-    use ArraySubsetAsserts;
     public function testSetWebhook(): void
     {
         $response = $this->app()->handle(self::json('POST', '/payment-service/telegram/set-webhook', [
@@ -23,6 +21,7 @@ class RequestActionTest extends WebTestCase
         self::assertEquals([
             'status' => 'success',
             'message' => 'Webhook was successfully set to: https://olimpoks-help.ru/payment-service/telegram/test-set-webhook',
+            'data' => []
         ], $data);
     }
     public function testEmpty(): void
