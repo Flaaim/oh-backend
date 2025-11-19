@@ -2,7 +2,7 @@
 
 namespace App\TelegramBot\Command\SetWebhook;
 
-use App\TelegramBot\Command\Response;
+use App\TelegramBot\Command\WebhookResponse;
 use Telegram\Bot\Api;
 use Telegram\Bot\Exceptions\TelegramSDKException;
 
@@ -13,18 +13,18 @@ class Handler
         private readonly Api $telegram,
     )
     {}
-    public function handle(Command $command): Response
+    public function handle(Command $command): WebhookResponse
     {
         try{
             $response = $this->telegram->setWebhook([
                 'url' => $command->url
             ]);
-            return new Response(
+            return new WebhookResponse(
                 $response ? 'success' : 'error',
                 "Webhook was successfully set to: {$command->url}"
             );
         }catch (TelegramSDKException $e){
-            return new Response('error', "Failed to set webhook: " . $e->getMessage());
+            return new WebhookResponse('error', "Failed to set webhook: " . $e->getMessage());
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\TelegramBot\Command;
 
-class Response
+class WebhookResponse
 {
     public function __construct(
         public string $status,

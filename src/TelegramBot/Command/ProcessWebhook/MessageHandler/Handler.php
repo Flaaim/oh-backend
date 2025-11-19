@@ -2,7 +2,7 @@
 
 namespace App\TelegramBot\Command\ProcessWebhook\MessageHandler;
 
-use App\TelegramBot\Command\Response;
+use App\TelegramBot\Command\WebhookResponse;
 use Telegram\Bot\Api;
 use Telegram\Bot\Exceptions\TelegramSDKException;
 use Telegram\Bot\Objects\Update;
@@ -14,31 +14,43 @@ class Handler
         private readonly Command $command,
     )
     {}
-    public function handle(Update $update): Response
+    public function handle(Update $update): WebhookResponse
     {
         $message = $update->getMessage();
-        $responseText = $this->processCommand($message->get('text'));
-        try{
-            $this->telegram->sendMessage([
-                'chat_id' => $message->getChat()->getId(),
-                'parse_mode' => 'HTML',
-                'text' => $responseText,
-            ]);
 
-            return new Response(
+        if (!$message->has('text') || empty($message->get('text'))) {
+            return new WebhookResponse(
+                'success',
+                'Message without text ignored',
+                ['chat_id' => $message->getChat()->getId(), 'has_text' => false]
+            );
+        }
+
+        $response = $this->processCommand($message->get('text'));
+        try{
+            $messageParams  = [
+              'chat_id' => $message->getChat()->getId(),
+              'parse_mode' => 'HTML',
+              'text' => $response->message,
+            ];
+            if($response->replyMarkup !== null){
+                $messageParams['reply_markup'] = json_encode($response->replyMarkup);
+            }
+            $this->telegram->sendMessage($messageParams);
+
+            return new WebhookResponse(
                 'success',
                 'Message processed successfully',
                 [
-                    'chat_id' => $message->getChat()->getId(),
-                    'text' => $responseText,
+                    'response' => $messageParams,
                 ]
             );
         }catch (TelegramSDKException $e){
-            return new Response('error', "Failed to sendMessage: " . $e->getMessage());
+            return new WebhookResponse('error', "Failed to sendMessage: " . $e->getMessage());
         }
     }
 
-    private function processCommand(string $text): string
+    private function processCommand(string $text): Response
     {
         return $this->command->processCommand($text);
     }

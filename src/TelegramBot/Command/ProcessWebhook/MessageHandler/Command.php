@@ -4,7 +4,7 @@ namespace App\TelegramBot\Command\ProcessWebhook\MessageHandler;
 
 class Command
 {
-    public function processCommand(string $command): string
+    public function processCommand(string $command): Response
     {
         $normalizedCommand = strtolower(trim($command));
 
@@ -15,27 +15,44 @@ class Command
         };
     }
 
-    private function getStartMessage(): string
+    private function getStartMessage(): Response
     {
-        return "Добро пожаловать в бота сайта https://olimpoks-help.ru.\n\n"
+        $text =  "Добро пожаловать в бота сайта https://olimpoks-help.ru.\n\n"
             . "Доступные команды:\n"
             . "/help - Получить помощь";
+
+        $replyMarkup = [
+            'inline_keyboard' => [
+                [
+                    ['text' => '🚀 Получить ответы А.1', 'callback_data' => 'get_answers'],
+                ],
+            ]
+        ];
+
+        return new Response(
+            $text,
+            $replyMarkup
+        );
     }
 
-    private function getHelpMessage(): string
+    private function getHelpMessage(): Response
     {
-        return "Помощь по боту:\n\n"
+        $text =  "Помощь по боту:\n\n"
             . "/start - Начать работу с ботом\n"
             . "/help - Получить эту справку\n\n"
             . "Сайт: https://olimpoks-help.ru";
+
+        return new Response($text);
     }
 
-    private function getDefaultMessage(string $text): string
+    private function getDefaultMessage(string $text): Response
     {
         if (!str_starts_with($text, '/')) {
-            return "Вы сказали: \"{$text}\"\n\nИспользуйте /help для списка команд";
+            $text = "Вы сказали: \"{$text}\"\n\nИспользуйте /help для списка команд";
+            return new Response($text);
         }
 
-        return "Неизвестная команда: {$text}\n\nИспользуйте /help для списка доступных команд";
+        $text =  "Неизвестная команда: \"{$text}\"\n\nИспользуйте /help для списка доступных команд";
+        return new Response($text);
     }
 }
