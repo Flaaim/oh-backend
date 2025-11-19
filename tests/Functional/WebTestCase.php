@@ -2,6 +2,7 @@
 
 namespace Test\Functional;
 
+use App\TelegramBot\Service\ChannelChecker;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
@@ -19,6 +20,7 @@ class WebTestCase extends TestCase
 {
     private ?MailerClient $mailer = null;
     protected ?TelegramClient $telegram = null;
+    protected ?ChannelChecker $channelChecker = null;
     protected static function json(string $method, string $path, array $body = []): ServerRequestInterface
     {
         $request = self::request($method, $path)
@@ -67,6 +69,13 @@ class WebTestCase extends TestCase
             $this->telegram = new TelegramClient($this->container()->get(Api::class));
         }
         return $this->telegram;
+    }
+    public function channelChecker(): ChannelChecker
+    {
+        if(null === $this->channelChecker){
+            $this->channelChecker = $this->container()->get(ChannelChecker::class);
+        }
+        return $this->channelChecker;
     }
     protected function loadFixtures(array $fixtures): void
     {
