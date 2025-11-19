@@ -25,6 +25,35 @@ class RequestActionTest extends WebTestCase
                 'text' => "Добро пожаловать в бота сайта https://olimpoks-help.ru.\n\n"
                     . "Доступные команды:\n"
                     . "/help - Получить помощь",
+                'parse_mode' => 'HTML',
+                'reply_markup' =>
+                    json_encode(['inline_keyboard' => [
+                        [
+                            ['text' => '🚀 Получить ответы А.1', 'callback_data' => 'get_answers']
+                        ]
+                    ]])
+
+            ]
+        ], $data);
+    }
+    public function testEmptyText(): void
+    {
+        $updateData = $this->updateData();
+        $updateData['message']['text'] = '';
+        $response = $this->app()->handle(self::json(
+            'POST', '/payment-service/telegram/webhook', $updateData)
+        );
+        self::assertEquals(200, $response->getStatusCode());
+
+        self::assertJson($body = (string)$response->getBody());
+        $data = Json::decode($body);
+
+
+        self::assertEquals([
+            'status' => 'success',
+            'message' => 'Message without text ignored',
+            'data' => [
+                'chat_id' => $this->updateData()['message']['chat']['id'], 'has_text' => false
             ]
         ], $data);
     }

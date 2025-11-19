@@ -41,9 +41,7 @@ class Handler
             return new WebhookResponse(
                 'success',
                 'Message processed successfully',
-                [
-                    'response' => $messageParams,
-                ]
+                $messageParams
             );
         }catch (TelegramSDKException $e){
             return new WebhookResponse('error', "Failed to sendMessage: " . $e->getMessage());
