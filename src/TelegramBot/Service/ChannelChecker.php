@@ -4,6 +4,7 @@ namespace App\TelegramBot\Service;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Psr\Log\LoggerInterface;
 use Webmozart\Assert\Assert;
 
 class ChannelChecker
@@ -12,6 +13,7 @@ class ChannelChecker
         private readonly string $token,
         private readonly int $channelId,
         private readonly Client $client,
+        private readonly LoggerInterface $logger
     )
     {
         Assert::notEmpty($this->token);
@@ -27,6 +29,9 @@ class ChannelChecker
                 ]
             ]);
         }catch (GuzzleException $e){
+            $this->logger->warning($e->getMessage(),[
+                'user_id' => $chatId
+            ]);
             return false;
         }
 
