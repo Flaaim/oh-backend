@@ -6,6 +6,7 @@ use App\TelegramBot\Service\ChannelChecker;
 use App\TelegramBot\Service\FileHandler;
 use GuzzleHttp\Client;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 use Telegram\Bot\Api;
 
 return [
@@ -28,7 +29,8 @@ return [
             $config['channel_for_subscribe'],
             new Client([
                 'base_uri' => 'https://api.telegram.org/',
-            ])
+            ]),
+            $container->get(LoggerInterface::class)
         );
     },
     FileHandler::class => function (ContainerInterface $container) {
