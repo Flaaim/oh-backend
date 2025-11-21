@@ -57,6 +57,7 @@ return [
             'metadata_dirs' => [
                 __DIR__ . '/../../src/Payment/Entity',
                 __DIR__ . '/../../src/Product/Entity',
+                __DIR__ . '/../../src/TelegramBot/Entity',
             ],
             'types' => [
                 App\Shared\ValueObject\IdType::NAME => App\Shared\ValueObject\IdType::class,

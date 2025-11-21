@@ -18,9 +18,7 @@ class Command
     private function getStartMessage(): Response
     {
         $text =  "Добро пожаловать в бота сайта https://olimpoks-help.ru.\n\n"
-            . "Доступные команды:\n"
-            . "/help - Получить помощь";
-
+            . "Чтобы получить ответы по А.1 необходимо подписаться на канал https://t.me/olimpoks_help\n\n";
         $replyMarkup = [
             'inline_keyboard' => [
                 [

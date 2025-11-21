@@ -7,6 +7,13 @@ use Test\Functional\WebTestCase;
 
 class RequestActionTest extends WebTestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->loadFixtures([
+            RequestFixture::class,
+        ]);
+    }
     public function testSuccess(): void
     {
         $response = $this->app()->handle(self::json('POST', '/payment-service/telegram/webhook',
@@ -23,9 +30,9 @@ class RequestActionTest extends WebTestCase
             'data' => [
                 'chat_id' => $this->updateData()['message']['chat']['id'],
                 'text' => "Добро пожаловать в бота сайта https://olimpoks-help.ru.\n\n"
-                    . "Доступные команды:\n"
-                    . "/help - Получить помощь",
+                    . "Чтобы получить ответы по А.1 необходимо подписаться на канал https://t.me/olimpoks_help\n\n",
                 'parse_mode' => 'HTML',
+                'affected_rows' => 1,
                 'reply_markup' =>
                     json_encode(['inline_keyboard' => [
                         [
@@ -109,19 +116,104 @@ class RequestActionTest extends WebTestCase
         ], $data);
 
     }
+    public function testCallbackQuerySuccess(): void
+    {
+        $response = $this->app()->handle(self::json(
+            'POST',
+            '/payment-service/telegram/webhook',
+            $this->updateDataWithCallbackQuery())
+        );
+        self::assertEquals(200, $response->getStatusCode());
+        self::assertJson($body = (string)$response->getBody());
 
+        $data = Json::decode($body);
+
+        self::assertEquals([
+            'status' => 'success',
+            'message' => 'Message processed successfully',
+            'data' => [
+                'chat_id' => $this->updateDataWithCallbackQuery()['callback_query']['from']['id'],
+                'parse_mode' => 'HTML',
+                'text' => 'Подписка подтверждена! Отправляю файл.',
+            ]
+        ], $data);
+    }
+
+    public function testCallbackQueryFailed(): void
+    {
+        $chat_id = 12345698;
+        $data = $this->updateDataWithCallbackQuery();
+        $data['callback_query']['from']['id'] = $chat_id;
+
+        $response = $this->app()->handle(self::json(
+            'POST',
+            '/payment-service/telegram/webhook',
+            $data)
+        );
+        self::assertEquals(200, $response->getStatusCode());
+        self::assertJson($body = (string)$response->getBody());
+        $data = Json::decode($body);
+        self::assertEquals([
+            'status' => 'success',
+            'message' => 'Message processed successfully',
+            'data' => [
+                'chat_id' => $this->updateDataWithCallbackQuery()['callback_query']['from']['id'],
+                'parse_mode' => 'HTML',
+                'text' => 'Вы не подписались на канал! Чтобы получить ответы по А.1 необходимо подписаться на канала https://t.me/olimpoks_help',
+                'reply_markup' =>
+                    json_encode(['inline_keyboard' => [
+                    [
+                        ['text' => '🚀 Получить ответы А.1', 'callback_data' => 'get_answers']
+                    ]
+                ]])
+            ]
+        ], $data);
+    }
     private function updateData(): array
     {
         return [
             'update_id' => 123456,
             'message' => [
-                'message_id' => 1,
+                'message_id' => 123,
                 'chat' => [
                     'id' => 1954013093,
                     'type' => 'private',
                     'username' => 'Flaaim'
                 ],
                 'text' => '/start'
+            ]
+        ];
+    }
+    private function updateDataWithCallbackQuery(): array
+    {
+        return [
+            'update_id' => 123456,
+            'callback_query' => [
+                'id' => 'test_callback_' . uniqid(),
+                'from' => [
+                    'id' => 1954013093,
+                    'is_bot' => false,
+                    'first_name' => 'Flaaim',
+                    'username' => 'Flaaim'
+                ],
+                'message' => [
+                    'message_id' => 123,
+                    'from' => [
+                        'id' => 123456789,
+                        'is_bot' => true,
+                        'first_name' => 'Test Bot'
+                    ],
+                    'chat' => [
+                        'id' => 1954013093,
+                        'type' => 'private',
+                        'username' => 'Flaaim',
+                        'first_name' => 'Flaaim'
+                    ],
+                    'date' => time(),
+                    'text' => 'Нажмите кнопку для получения ответов'
+                ],
+                'chat_instance' => '123456789',
+                'data' => 'get_answers',
             ]
         ];
     }

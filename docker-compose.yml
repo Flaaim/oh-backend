@@ -35,6 +35,7 @@ services:
           TELEGRAM_BOT_TOKEN: 7239774817:AAEHex3R8hKasS08nahcCJ3WgDfroI2cLBY
           TELEGRAM_CHANNEL: 1954013093
           TELEGRAM_CHANNEL_FOR_SUBSCRIBE: -1003266180136
+          TG_FILE: test.log
           AUTH_LOGIN: app
           AUTH_PASSWORD: secret
     php-cli:
@@ -64,6 +65,7 @@ services:
           TELEGRAM_BOT_TOKEN: 7239774817:AAEHex3R8hKasS08nahcCJ3WgDfroI2cLBY
           TELEGRAM_CHANNEL: 1954013093
           TELEGRAM_CHANNEL_FOR_SUBSCRIBE: -1003266180136
+          TG_FILE: test.log
           AUTH_LOGIN: app
           AUTH_PASSWORD: secret
     mysql:

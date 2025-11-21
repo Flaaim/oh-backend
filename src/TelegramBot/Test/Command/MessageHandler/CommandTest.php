@@ -17,8 +17,7 @@ class CommandTest extends TestCase
         self::assertEquals(
             new Response(
                 "Добро пожаловать в бота сайта https://olimpoks-help.ru.\n\n"
-                . "Доступные команды:\n"
-                . "/help - Получить помощь",
+                . "Чтобы получить ответы по А.1 необходимо подписаться на канал https://t.me/olimpoks_help\n\n",
                 [
                     'inline_keyboard' => [
                         [
@@ -43,8 +42,7 @@ class CommandTest extends TestCase
             [
                 '/start', new Response(
                     "Добро пожаловать в бота сайта https://olimpoks-help.ru.\n\n"
-                    . "Доступные команды:\n"
-                    . "/help - Получить помощь",
+                    . "Чтобы получить ответы по А.1 необходимо подписаться на канал https://t.me/olimpoks_help\n\n",
                     [
                         'inline_keyboard' => [
                             [
@@ -71,8 +69,7 @@ class CommandTest extends TestCase
             [
                 '/START', new Response(
                     "Добро пожаловать в бота сайта https://olimpoks-help.ru.\n\n"
-                    . "Доступные команды:\n"
-                    . "/help - Получить помощь",
+                    . "Чтобы получить ответы по А.1 необходимо подписаться на канал https://t.me/olimpoks_help\n\n",
                     [
                         'inline_keyboard' => [
                             [
