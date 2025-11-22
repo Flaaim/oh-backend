@@ -25,7 +25,7 @@ class Handler
         $chat = new Chat(
             new Id(Uuid::uuid4()->toString()),
             $message->getChat()->getId(),
-            $message->getChat()->getUsername(),
+            $message->getChat()->getName(),
             new \DateTimeImmutable()
         );
 
