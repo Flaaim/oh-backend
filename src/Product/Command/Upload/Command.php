@@ -19,7 +19,8 @@ class Command
             ],
             extensions: [
                 'docx',
-                'doc'
+                'doc',
+                'pdf'
             ]
         )]
         public ?UploadedFileInterface $uploadFile,
