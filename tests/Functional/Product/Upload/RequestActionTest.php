@@ -111,7 +111,7 @@ class RequestActionTest extends WebTestCase
 
         self::assertEquals([
             'errors' => [
-                'uploadFile' => 'The mime type of the file is invalid (text/plain). Allowed mime types are application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document.'
+                'uploadFile' => 'The mime type of the file is invalid (text/plain). Allowed mime types are application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/pdf'
             ]
         ], $data);
     }
