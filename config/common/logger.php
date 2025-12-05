@@ -17,13 +17,13 @@ return [
 
         $log = new Logger('payment-service');
 
-        if($config['telegramBot']){
-            $log->pushHandler(new TelegramBotHandler(
-                $config['telegramBot']['token'],
-                $config['telegramBot']['channel'],
-                Level::Info,
-            ));
-        }
+//        if($config['telegramBot']){
+//            $log->pushHandler(new TelegramBotHandler(
+//                $config['telegramBot']['token'],
+//                $config['telegramBot']['channel'],
+//                Level::Info,
+//            ));
+//        }
 
         if ($config['stderr']) {
             $log->pushHandler(new StreamHandler('php://stderr', $level));

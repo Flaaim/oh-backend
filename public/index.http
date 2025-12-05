@@ -17,7 +17,7 @@ User-Agent: Yookassa
     "type": "notification",
     "event": "payment.succeeded",
     "object": {
-        "id": "308648ae-000f-5001-8000-127b00f66a5a",
+        "id": "308bd70f-000f-5000-b000-14529627fc7d",
         "status": "succeeded",
         "paid": true,
         "amount": {
@@ -38,7 +38,8 @@ User-Agent: Yookassa
             "productId": "b38e76c0-ac23-4c48-85fd-975f32c8801f",
             "cms_name": "yookassa_sdk_php_3",
             "email": "flaaim@list.ru"
-        }
+        },
+        "test": true
     }
 }
 
@@ -50,4 +51,38 @@ Content-Type: application/json
 
 {
     "returnToken": "392b1c38-f3e4-4533-a6cb-5b4e7c08d91f"
+}
+
+###
+
+#POST https://olimpoks-help.ru/payment-service/products/upsert
+POST http://localhost/payment-service/products/upsert
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "ПИ 1791.11 Итоговое тестирование по Программе IП",
+    "cipher": "ПИ 1791.11",
+    "amount": 500.00,
+    "path": "fire/1794/pi1794.10.docx",
+    "course": "1794"
+}
+
+###
+
+POST http://localhost/payment-service/auth/login
+Content-Type: application/json
+
+{
+   "login": "{{login}}",
+   "password": "{{password}}"
+}
+
+###
+
+POST http://localhost/payment-service/telegram/set-webhook
+Content-Type: application/json
+
+{
+    "url": "https://olimpoks-help.ru/payment-service/telegram"
 }

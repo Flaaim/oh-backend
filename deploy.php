@@ -16,11 +16,18 @@ try {
     set('bin/php', '/opt/php/8.2/bin/php');
     set('writable_mode', 'chmod');
 
-    host('production')
+    host('olimpoks-help')
         ->set('hostname', '31.31.198.114')
         ->set('port', 22)
         ->set('remote_user', 'u1656040')
         ->set('deploy_path', '~/www/olimpoks-help.ru/public')
+        ->set('branch', 'main');
+
+    host('rtn-answers')
+        ->set('hostname', '31.31.198.114')
+        ->set('port', 22)
+        ->set('remote_user', 'u1656040')
+        ->set('deploy_path', '~/www/rtn-answers.ru/public')
         ->set('branch', 'main');
 
 

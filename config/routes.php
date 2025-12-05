@@ -18,7 +18,6 @@ return static function(App $app): void {
         $group->post('/payment-webhook', Payment\HookPayment\RequestAction::class);
         $group->post('/result', Payment\Result\RequestAction::class);
 
-
         $group->group('/products', function (RouteCollectorProxy $group): void {
             $group->post('/upsert', Upsert\RequestAction::class);
             $group->post('/upload', Upload\RequestAction::class);
@@ -26,13 +25,6 @@ return static function(App $app): void {
 
         $group->group('/auth', function (RouteCollectorProxy $group): void {
             $group->post('/login', GetToken\RequestAction::class);
-        });
-
-        $group->group('/telegram', function (RouteCollectorProxy $group): void {
-
-            $group->post('/webhook', Telegram\ProcessWebhook\RequestAction::class);
-
-            $group->post('/set-webhook', Telegram\SetWebhook\RequestAction::class);
         });
     });
 
