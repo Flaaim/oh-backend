@@ -15,6 +15,6 @@ return [
         /** @var EntityRepository $repo */
         $repo = $em->getRepository(Ticket::class);
         return new TicketRepository($em, $repo);
-
     }
+
 ];

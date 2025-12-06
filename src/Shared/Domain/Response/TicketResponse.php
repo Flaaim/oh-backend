@@ -2,9 +2,7 @@
 
 namespace App\Shared\Domain\Response;
 
-use App\Parser\Entity\Ticket\Answer;
-use App\Parser\Entity\Ticket\Question;
-use App\Parser\Entity\Ticket\Ticket;
+use App\Ticket\Entity\Ticket;
 use Symfony\Component\Yaml\Yaml;
 
 class TicketResponse implements \JsonSerializable
@@ -14,24 +12,17 @@ class TicketResponse implements \JsonSerializable
         public readonly ?string $name,
         public readonly ?string $cipher,
         public readonly string  $status,
-        public readonly ?float $price,
         public readonly array $questions,
     ){}
 
     public static function fromResult(Ticket $ticket, $limit = null): self
     {
-        $price = null;
-
-        if($ticket->hasPrice()) {
-            $price = $ticket->getPrice()->getValue();
-        }
 
         return new self(
             $ticket->getId(),
             $ticket->getName(),
             $ticket->getCipher(),
             $ticket->getStatus()->getValue(),
-            $price,
             $ticket->getQuestions()->slice(0, $limit),
         );
     }
@@ -42,7 +33,6 @@ class TicketResponse implements \JsonSerializable
             'name' => $this->name,
             'cipher' => $this->cipher,
             'status' => $this->status,
-            'price' => $this->price,
             'questions' => array_map(
                 fn ($question) => [
                     'id' => $question->getId(),

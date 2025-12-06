@@ -10,20 +10,16 @@ use GuzzleHttp\Client;
 class ImageDownloader
 {
     public function __construct(
-        private readonly PathManager    $manager,
-        private readonly Client         $client,
-        private readonly Ticket         $ticket,
+        private readonly PathManager     $manager,
+        private readonly Client          $client,
         private readonly DownloadChecker $checker
     )
-    {
-        $this->manager
-            ->forTicket($ticket->getId()->getValue())
-                ->create();
-    }
-    public function download(): array
+    {}
+
+    public function download(Ticket $ticket): array
     {
         $results = [];
-        foreach ($this->ticket->getQuestions() as $question) {
+        foreach ($ticket->getQuestions() as $question) {
                 /** @var Question $question */
                 if (!$this->shouldDownloadQuestionImage($question)) {
                     continue;
