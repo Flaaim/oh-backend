@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Ticket\Command\Create\Request;
+namespace App\Ticket\Command\Create;
 
 use Webmozart\Assert\Assert;
 
