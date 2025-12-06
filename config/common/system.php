@@ -5,8 +5,6 @@ declare(strict_types=1);
 
 
 use App\Shared\Domain\Service\Template\TemplatePath;
-use App\Ticket\Service\ImageDownloader\PathManager;
-use App\Ticket\Service\ImageDownloader\UrlBuilder;
 use Psr\Container\ContainerInterface;
 
 return [
@@ -23,11 +21,5 @@ return [
             $container->get('config')['template_paths'],
         );
     },
-    PathManager::class => function (ContainerInterface $container) {
-        return new PathManager($container->get('config')['basePath']);
-    },
-    UrlBuilder::class => function (ContainerInterface $container) {
-        return new UrlBuilder($container->get('config')['urlPath']);
-    }
 
 ];
