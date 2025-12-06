@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\ValueObject;
+namespace App\Shared\Domain\ValueObject;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;

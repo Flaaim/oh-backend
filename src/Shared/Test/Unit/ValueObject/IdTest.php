@@ -2,7 +2,7 @@
 
 namespace App\Shared\Test\Unit\ValueObject;
 
-use App\Shared\ValueObject\Id;
+use App\Shared\Domain\ValueObject\Id;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 

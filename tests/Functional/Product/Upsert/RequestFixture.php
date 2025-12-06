@@ -5,7 +5,7 @@ namespace Test\Functional\Product\Upsert;
 use App\Product\Entity\Currency;
 use App\Product\Entity\File;
 use App\Product\Entity\Price;
-use App\Shared\ValueObject\Id;
+use App\Shared\Domain\ValueObject\Id;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
 use Test\Functional\Payment\ProductBuilder;

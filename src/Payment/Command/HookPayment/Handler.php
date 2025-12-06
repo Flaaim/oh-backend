@@ -14,7 +14,7 @@ use App\Shared\Domain\Service\Payment\PaymentProviderInterface;
 use App\Shared\Domain\Service\Payment\PaymentStatus;
 use App\Shared\Domain\Service\Payment\PaymentWebhookDataInterface;
 use App\Shared\Domain\Service\Payment\PaymentWebhookParserInterface;
-use App\Shared\ValueObject\Id;
+use App\Shared\Domain\ValueObject\Id;
 use Psr\Log\LoggerInterface;
 
 class Handler

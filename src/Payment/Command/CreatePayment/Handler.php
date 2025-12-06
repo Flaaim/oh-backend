@@ -14,7 +14,7 @@ use App\Product\Entity\ProductRepository;
 use App\Shared\Domain\Service\Payment\DTO\MakePaymentDTO;
 use App\Shared\Domain\Service\Payment\PaymentException;
 use App\Shared\Domain\Service\Payment\Provider\YookassaProvider;
-use App\Shared\ValueObject\Id;
+use App\Shared\Domain\ValueObject\Id;
 use DateTimeImmutable;
 use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;

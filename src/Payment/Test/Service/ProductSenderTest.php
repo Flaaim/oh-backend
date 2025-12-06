@@ -10,7 +10,7 @@ use App\Product\Entity\Price;
 use App\Product\Entity\Product;
 use App\Shared\Domain\Service\Template\TemplateManager;
 use App\Shared\Domain\Service\Template\TemplatePath;
-use App\Shared\ValueObject\Id;
+use App\Shared\Domain\ValueObject\Id;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Exception\TransportException;

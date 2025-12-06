@@ -2,7 +2,7 @@
 
 namespace App\Product\Entity;
 
-use App\Shared\ValueObject\Id;
+use App\Shared\Domain\ValueObject\Id;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]

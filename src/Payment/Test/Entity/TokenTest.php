@@ -3,7 +3,7 @@
 namespace App\Payment\Test\Entity;
 
 use App\Payment\Entity\Token;
-use App\Shared\ValueObject\Id;
+use App\Shared\Domain\ValueObject\Id;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 

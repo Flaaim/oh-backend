@@ -11,7 +11,7 @@ use App\Product\Entity\File;
 use App\Product\Entity\Price;
 use App\Product\Entity\Product;
 use App\Shared\Domain\Service\Template\TemplatePath;
-use App\Shared\ValueObject\Id;
+use App\Shared\Domain\ValueObject\Id;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

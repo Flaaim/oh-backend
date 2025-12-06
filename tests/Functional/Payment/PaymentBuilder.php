@@ -8,7 +8,7 @@ use App\Payment\Entity\Status;
 use App\Payment\Entity\Token;
 use App\Product\Entity\Currency;
 use App\Product\Entity\Price;
-use App\Shared\ValueObject\Id;
+use App\Shared\Domain\ValueObject\Id;
 use DateTimeImmutable;
 use Ramsey\Uuid\Uuid;
 

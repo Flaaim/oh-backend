@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\ValueObject;
+namespace App\Shared\Domain\ValueObject;
 
 use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;

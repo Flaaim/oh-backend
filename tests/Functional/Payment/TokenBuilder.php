@@ -3,7 +3,7 @@
 namespace Test\Functional\Payment;
 
 use App\Payment\Entity\Token;
-use App\Shared\ValueObject\Id;
+use App\Shared\Domain\ValueObject\Id;
 
 class TokenBuilder
 {

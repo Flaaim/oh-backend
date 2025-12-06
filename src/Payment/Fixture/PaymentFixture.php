@@ -7,7 +7,7 @@ use App\Payment\Entity\Payment;
 use App\Payment\Entity\Token;
 use App\Product\Entity\Currency;
 use App\Product\Entity\Price;
-use App\Shared\ValueObject\Id;
+use App\Shared\Domain\ValueObject\Id;
 use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
