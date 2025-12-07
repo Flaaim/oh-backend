@@ -21,7 +21,7 @@ class QuestionCollectionBuilder
                 'id' => '49336cb09422414399ec69aa582f60e4',
                 'number' => '1',
                 'text' => 'Какое требование предъявляется к кабелю переносной лампы, применяемой в работе с кислотными аккумуляторными батареями?',
-                'image' => 'http://olimpoks.chukk.ru:82/QuestionImages/c37111/49336cb0-9422-4143-99ec-69aa582f60e4/8/1.jpg',
+                'image' => 'https://www.gstatic.com/webp/gallery/1.jpg',
                 'answers' => [
                     [
                         'id' => 'e587aa55-e210-40cf-80c1-4fab48209192',
@@ -59,25 +59,25 @@ class QuestionCollectionBuilder
                         'id' => '87c1f2f9-395b-4517-afb8-9b2146660445',
                         'text' => '"Запрещается прикасаться. Опасно"',
                         'isCorrect' => true,
-                        'image' => 'http://olimpoks.chukk.ru:82/QuestionImages/81703c22-7f8e-4a37-9591-e0d59f4fc093/8/1.jpg'
+                        'image' => ''
                     ],
                     [
                         'id' => 'a9c8a646-4cd6-481d-bb93-1fdc9da1e782',
                         'text' => '"Осторожно. Возможно травмирование рук"',
                         'isCorrect' => true,
-                        'image' => 'http://olimpoks.chukk.ru:82/QuestionImages/81703c22-7f8e-4a37-9591-e0d59f4fc093/8/2.jpg'
+                        'image' => 'https://www.gstatic.com/webp/gallery/4.jpg'
                     ],
                     [
                         'id' => '67e194bd-2526-40c7-9eac-6e64e99419f4',
                         'text' => '"Работать в защитных перчатках"',
                         'isCorrect' => true,
-                        'image' => 'http://olimpoks.chukk.ru:82/QuestionImages/81703c22-7f8e-4a37-9591-e0d59f4fc093/8/3.jpg'
+                        'image' => 'https://www.gstatic.com/webp/gallery/1.jpg'
                     ],
                     [
                         'id' => 'ed70bd9b-f661-439a-99ac-82595324d2f8',
                         'text' => '"Опасно. Едкие и коррозионные вещества"',
                         'isCorrect' => true,
-                        'image' => 'http://olimpoks.chukk.ru:82/QuestionImages/81703c22-7f8e-4a37-9591-e0d59f4fc093/8/4.jpg'
+                        'image' => 'https://www.gstatic.com/webp/gallery/2.jpg'
                     ]
                 ]
             ],
@@ -85,7 +85,7 @@ class QuestionCollectionBuilder
                 'id' => '7c7f0af42f28486484010dccaf6942c8',
                 'number' => '3',
                 'text' => 'Установите правильную последовательность действий работника в случае обнаружения пожара.',
-                'image' => 'http://olimpoks.chukk.ru:82/QuestionImages/c37111/7c7f0af4-2f28-4864-8401-0dccaf6942c8/8/1.jpg',
+                'image' => 'https://www.gstatic.com/webp/gallery/2.jpg',
                 'answers' => [
                     [
                         'id' => '50d0ebdd-6c82-4fca-aa6c-6f7054c54dde',
@@ -111,7 +111,7 @@ class QuestionCollectionBuilder
                 'id' => '27b164d193474fb08555e08d5f9c2393',
                 'number' => '4',
                 'text' => 'Какие работники допускаются к работе с кислотой, щелочью и свинцом?',
-                'image' => 'http://olimpoks.chukk.ru:82/QuestionImages/c37111/27b164d1-9347-4fb0-8555-e08d5f9c2393/8/1.jpg',
+                'image' => '',
                 'answers' => [
                     [
                         'id' => 'ac5c09df-fc6a-4ece-865d-7d12db0f6e74',
@@ -143,7 +143,7 @@ class QuestionCollectionBuilder
                 'id' => '5f2c5383dfb841898721e977ad747171',
                 'number' => '5',
                 'text' => 'Каким документом определяются специальные меры предосторожности при выполнении работ с аккумуляторными батареями во избежание отравления свинцом и его соединениями?',
-                'image' => 'http://olimpoks.chukk.ru:82/QuestionImages/c37111/5f2c5383-dfb8-4189-8721-e977ad747171/8/1.jpg',
+                'image' => '',
                 'answers' => [
                     [
                         'id' => 'a767507f-e7db-435c-b737-10635f882ba5',
@@ -175,7 +175,7 @@ class QuestionCollectionBuilder
                 'id' => '7f1c0a2bb52a4ff5876e9ab636cd1eb7',
                 'number' => '6',
                 'text' => 'Что соответствует требованиям безопасности при хранении кислоты, предназначенной для приготовления электролита?',
-                'image' => 'http://olimpoks.chukk.ru:82/QuestionImages/c37111/7f1c0a2b-b52a-4ff5-876e-9ab636cd1eb7/8/1.jpg',
+                'image' => '',
                 'answers' => [
                     [
                         'id' => 'd5eeaed8-bbfb-4b90-82aa-95aa1216a85a',
