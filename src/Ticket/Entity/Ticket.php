@@ -11,7 +11,7 @@ use DomainException;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'tickets')]
-final class Ticket
+class Ticket
 {
     #[ORM\Id]
     #[ORM\Column(type: 'id', unique: true)]
