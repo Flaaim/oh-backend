@@ -2,6 +2,7 @@
 
 namespace App\Ticket\Test\Builder;
 
+use App\Ticket\Entity\Question;
 use App\Ticket\Entity\Status;
 use App\Ticket\Entity\Ticket;
 use App\Shared\Domain\ValueObject\Id;
@@ -12,49 +13,64 @@ use Doctrine\Common\Collections\Collection;
 class TicketBuilder
 {
     private  Id $id;
-    private  string $name;
-    private  string $cipher;
+    private  ?string $name = null;
+    private  ?string $cipher = null;
     private  Status $status;
     private Collection $questions;
     private readonly ?DateTimeImmutable $updatedAt;
 
-    public function __construct(
-        Id $id,
-        string $name = null,
-        string $cipher = null,
-        DateTimeImmutable $updatedAt = null)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->cipher = $cipher;
-        $this->name = $name;
+        $this->id = new Id('8bac1e13-cef0-405b-8fcd-b05c4d394730');
         $this->status = Status::inactive();
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTimeImmutable('now');
         $this->questions = new ArrayCollection();
     }
-
-    public function build(): Ticket
+    public function withId(Id $id): self
     {
-        $ticket = new Ticket(
-            $this->id,
-            $this->cipher,
-            $this->name,
-            new DateTimeImmutable(),
-        );
-
-        if($this->status === Status::active()) {
-            $ticket->setActive();
-        }
-        return $ticket;
+        $this->id = $id;
+        return $this;
     }
-    public function active(): self
+    public function withName(string $name): self
     {
-        $this->status = Status::active();
+        $this->name = $name;
+        return $this;
+    }
+    public function withCipher(string $cipher): self
+    {
+        $this->cipher = $cipher;
         return $this;
     }
     public function withQuestions(Collection $questions): self
     {
         $this->questions = $questions;
         return $this;
+    }
+    public function active(): self
+    {
+        $this->status = Status::active();
+        return $this;
+    }
+    public function build(): Ticket
+    {
+        $ticket = Ticket::fromArray([
+            'id' => $this->id,
+            'name' => $this->name,
+            'cipher' => $this->cipher,
+        ]);
+
+        if(!$this->questions->isEmpty()) {
+            foreach ($this->questions as $questionData) {
+                $question = Question::fromArray($questionData);
+                $ticket->addQuestions($question);
+            }
+        }
+
+        if($this->status === Status::active()) {
+            $ticket->setActive();
+        }
+
+        return $ticket;
     }
 
 }
