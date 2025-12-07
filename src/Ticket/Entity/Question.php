@@ -15,7 +15,7 @@ final class Question
     private string $id;
     #[ORM\Column(type: 'string', length: 255)]
     private string $number;
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 1000)]
     private string $text;
     #[ORM\Column(type: 'string', length: 255)]
     private string $questionMainImg;

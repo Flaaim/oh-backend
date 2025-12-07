@@ -12,7 +12,7 @@ final class Answer
     #[ORM\Id]
     #[ORM\Column(type: 'id', unique: true)]
     private Id $id;
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 500)]
     private string $text;
     #[ORM\Column(type: 'boolean')]
     private bool $isCorrect;
