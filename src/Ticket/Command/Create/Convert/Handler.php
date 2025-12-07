@@ -20,6 +20,5 @@ class Handler
             ->convertQuestionImages($ticket, $result['questions'])
             ->convertAnswerImages($ticket, $result['answers']);
 
-
     }
 }

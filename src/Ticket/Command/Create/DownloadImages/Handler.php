@@ -2,15 +2,14 @@
 
 namespace App\Ticket\Command\Create\DownloadImages;
 
-use App\Ticket\Service\ImageDownloader\DownloadChecker;
 use App\Ticket\Service\ImageDownloader\ImageDownloader;
-use App\Ticket\Service\ImageDownloader\PathConverter;
-use App\Ticket\Service\ImageDownloader\PathManager;
+use App\Ticket\Command\Create\DownloadImages\CreatePath\Handler as CreatePathHandler;
+use App\Ticket\Command\Create\DownloadImages\CreatePath\Command as CreatePathCommand;
 
 class Handler
 {
     public function __construct(
-        private readonly PathManager         $path,
+        private readonly CreatePathHandler   $createPathHandler,
         private readonly ImageDownloader     $imageDownloader,
     )
     {}
@@ -18,7 +17,7 @@ class Handler
     {
         $ticket = $command->ticket;
 
-        $this->path->forTicket($ticket->getId()->getValue())->create();
+        $this->createPathHandler->handle(new CreatePathCommand($ticket));
 
         return $this->imageDownloader->download($ticket);
     }

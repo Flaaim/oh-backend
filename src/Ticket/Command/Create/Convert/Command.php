@@ -12,6 +12,6 @@ class Command
         public readonly array $result
     )
     {
-        Assert::notEmpty($this->$result);
+        Assert::notEmpty($this->result);
     }
 }
