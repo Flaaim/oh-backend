@@ -19,6 +19,7 @@ class ImageDownloader
     public function download(Ticket $ticket): array
     {
         $results = [];
+        $this->manager->forTicket($ticket->getId()->getValue())->create();
         foreach ($ticket->getQuestions() as $question) {
                 /** @var Question $question */
                 if (!$this->shouldDownloadQuestionImage($question)) {
@@ -72,8 +73,6 @@ class ImageDownloader
                 'question_id' => $question->getId(),
                 'url' => $question->getQuestionMainImg(),
                 'status' => 'success',
-                'path' => $imagePath,
-                'downloaded_at' => new \DateTimeImmutable()
             ];
 
         } catch (\Exception $e) {
@@ -81,8 +80,6 @@ class ImageDownloader
                 'question_id' => $question->getId(),
                 'url' => $question->getQuestionMainImg(),
                 'status' => 'error',
-                'error' => $e->getMessage(),
-                'attempted_at' => new \DateTimeImmutable()
             ];
         }
     }
@@ -101,8 +98,6 @@ class ImageDownloader
                 'answer_id' => $answer->getId()->getValue(),
                 'url' => $answer->getImg(),
                 'status' => 'success',
-                'path' => $imagePath,
-                'downloaded_at' => new \DateTimeImmutable()
             ];
 
         } catch (\Exception $e) {
@@ -110,8 +105,6 @@ class ImageDownloader
                 'answer_id' => $answer->getId(),
                 'url' => $answer->getImg(),
                 'status' => 'error',
-                'error' => $e->getMessage(),
-                'attempted_at' => new \DateTimeImmutable()
             ];
         }
     }
