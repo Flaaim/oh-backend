@@ -73,6 +73,7 @@ class ImageDownloader
                 'question_id' => $question->getId(),
                 'url' => $question->getQuestionMainImg(),
                 'status' => 'success',
+                'path' => $imagePath,
             ];
 
         } catch (\Exception $e) {
@@ -98,6 +99,7 @@ class ImageDownloader
                 'answer_id' => $answer->getId()->getValue(),
                 'url' => $answer->getImg(),
                 'status' => 'success',
+                'path' => $imagePath,
             ];
 
         } catch (\Exception $e) {
