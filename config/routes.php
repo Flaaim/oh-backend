@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 use App\Http\Action\Auth\GetToken;
 use App\Http\Action\Payment;
-use App\Http\Action\Product\Upload;
-use App\Http\Action\Product\Upsert;
+use App\Http\Action\Product;
+use App\Http\Action\Ticket;
 use App\Http\Middleware\AuthMiddleware;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
-use App\Http\Action\Telegram;
 
 return static function(App $app): void {
 
@@ -19,9 +18,13 @@ return static function(App $app): void {
         $group->post('/result', Payment\Result\RequestAction::class);
 
         $group->group('/products', function (RouteCollectorProxy $group): void {
-            $group->post('/upsert', Upsert\RequestAction::class);
-            $group->post('/upload', Upload\RequestAction::class);
+            $group->post('/upsert', Product\Upsert\RequestAction::class);
+            $group->post('/upload', Product\Upload\RequestAction::class);
         })->add(AuthMiddleware::class);
+
+        $group->group('/tickets', function (RouteCollectorProxy $group): void {
+           $group->post('/create', Ticket\CreateOrUpdate\RequestAction::class);
+        });
 
         $group->group('/auth', function (RouteCollectorProxy $group): void {
             $group->post('/login', GetToken\RequestAction::class);

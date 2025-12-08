@@ -13,16 +13,18 @@ use Doctrine\Common\Collections\Collection;
 class TicketBuilder
 {
     private  Id $id;
-    private  ?string $name = null;
-    private  ?string $cipher = null;
+    private  string $name;
+    private  string $cipher;
     private  Status $status;
     private Collection $questions;
-    private readonly ?DateTimeImmutable $updatedAt;
+    private readonly DateTimeImmutable $updatedAt;
 
     public function __construct()
     {
         $this->id = new Id('8bac1e13-cef0-405b-8fcd-b05c4d394730');
         $this->status = Status::inactive();
+        $this->cipher = 'ПБП 115.26';
+        $this->name = 'Основы промышленной безопасности';
         $this->updatedAt = new \DateTimeImmutable('now');
         $this->questions = new ArrayCollection();
     }
@@ -57,6 +59,7 @@ class TicketBuilder
             'id' => $this->id,
             'name' => $this->name,
             'cipher' => $this->cipher,
+            'updatedAt' => $this->updatedAt,
         ]);
 
         if(!$this->questions->isEmpty()) {

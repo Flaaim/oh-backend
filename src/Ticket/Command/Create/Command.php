@@ -8,6 +8,33 @@ class Command
 {
     public function __construct(
         #[Assert\NotBlank]
+        #[Assert\Collection(
+            fields: [
+                'id' => new Assert\Required(
+                    new Assert\Uuid()
+                ),
+                'cipher' => new Assert\Required([
+                    new Assert\NotBlank(),
+                    new Assert\Type('string'),
+                ]),
+                'name' => new Assert\Required([
+                    new Assert\NotBlank(),
+                    new Assert\Type('string'),
+                ]),
+                'updatedAt' => new Assert\Required([
+                    new Assert\NotBlank(),
+                    new Assert\DateTime(),
+                ]),
+                'status' => new Assert\Required([
+                    new Assert\NotBlank(),
+                    new Assert\Type('string'),
+                ]),
+                'questions' => new Assert\Required([
+                    new Assert\NotBlank(),
+                    new Assert\Type('array'),
+                ]),
+            ],allowMissingFields: false
+        )]
         public readonly array $ticket
     )
     {

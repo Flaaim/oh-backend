@@ -18,18 +18,18 @@ class Ticket
     private Id $id;
     #[ORM\OneToMany(targetEntity: Question::class, mappedBy: 'ticket', cascade: ['persist'], orphanRemoval: true)]
     private Collection $questions;
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $cipher;
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $name;
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $cipher;
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $name;
     #[ORM\Column(type: 'ticket_status', length: 255)]
     private Status $status;
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private ?DateTimeImmutable $updatedAt;
+    private DateTimeImmutable $updatedAt;
     #[ORM\OneToOne(targetEntity: Course::class, inversedBy: 'ticket')]
     #[ORM\JoinColumn(name: 'course_id', referencedColumnName: 'id')]
     private ?Course $course = null;
-    public function __construct(Id $id, ?string $cipher = null, ?string $name = null, DateTimeImmutable $updatedAt = null)
+    public function __construct(Id $id, string $cipher, string $name, DateTimeImmutable $updatedAt)
     {
         $this->id = $id;
         $this->cipher = $cipher;
@@ -64,7 +64,7 @@ class Ticket
             new Id($data['id']),
             $data['cipher'],
             $data['name'],
-            $data['updatedAt'] ?? null
+            $data['updatedAt']
        );
 
         if(!empty($data['status'])){

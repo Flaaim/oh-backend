@@ -25,9 +25,7 @@ class Handler
         $ticket = Ticket::fromArray($command->ticket);
 
         if($this->downloadChecker->shouldDownload($ticket)) {
-
             $result = $this->downloadImagesHandler->handle(new DownloadImagesCommand($ticket));
-
             $this->convertHandler->handle(new ConvertCommand($ticket, $result));
         }
 

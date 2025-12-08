@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Action\Ticket\Create;
+namespace App\Http\Action\Ticket\CreateOrUpdate;
 
 use App\Http\EmptyResponse;
 use App\Http\Validator\Validator;
