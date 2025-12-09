@@ -4,6 +4,7 @@ namespace App\Ticket\Entity;
 
 use App\Shared\Domain\ValueObject\Id;
 use App\Shared\Domain\ValueObject\UpdatedAt;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -25,7 +26,7 @@ class Ticket
     #[ORM\Column(type: 'ticket_status', length: 255)]
     private Status $status;
     #[ORM\Column(type: 'datetime_immutable')]
-    private UpdatedAt $updatedAt;
+    private DateTimeImmutable $updatedAt;
     #[ORM\OneToOne(targetEntity: Course::class, inversedBy: 'ticket')]
     #[ORM\JoinColumn(name: 'course_id', referencedColumnName: 'id')]
     private ?Course $course = null;
@@ -35,7 +36,7 @@ class Ticket
         $this->cipher = $cipher;
         $this->name = $name;
         $this->status = Status::inactive();
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = $updatedAt->getValue();
         $this->questions = new ArrayCollection();
     }
     public function getId(): Id
@@ -58,7 +59,7 @@ class Ticket
     {
         return $this->status;
     }
-    public function getUpdatedAt(): UpdatedAt
+    public function getUpdatedAt(): DateTimeImmutable
     {
         return $this->updatedAt;
     }

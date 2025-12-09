@@ -52,4 +52,8 @@ class UpdatedAt
     {
         return $this->value->format($format);
     }
+    public function toString(): string
+    {
+        return $this->format('Y-m-d H:i:s');
+    }
 }

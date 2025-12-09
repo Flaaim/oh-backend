@@ -61,6 +61,9 @@ return [
             ],
             'types' => [
                 App\Shared\Domain\ValueObject\IdType::NAME => App\Shared\Domain\ValueObject\IdType::class,
+                App\Shared\Domain\ValueObject\UpdatedAtType::NAME => App\Shared\Domain\ValueObject\UpdatedAtType::class,
+
+
                 App\Product\Entity\PriceType::NAME => App\Product\Entity\PriceType::class,
                 App\Product\Entity\FileType::NAME => App\Product\Entity\FileType::class,
 
