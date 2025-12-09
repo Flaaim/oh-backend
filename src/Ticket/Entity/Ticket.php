@@ -3,7 +3,6 @@
 namespace App\Ticket\Entity;
 
 use App\Shared\Domain\ValueObject\Id;
-use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -24,12 +23,12 @@ class Ticket
     private string $name;
     #[ORM\Column(type: 'ticket_status', length: 255)]
     private Status $status;
-    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private DateTimeImmutable $updatedAt;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private UpdatedAt $updatedAt;
     #[ORM\OneToOne(targetEntity: Course::class, inversedBy: 'ticket')]
     #[ORM\JoinColumn(name: 'course_id', referencedColumnName: 'id')]
     private ?Course $course = null;
-    public function __construct(Id $id, string $cipher, string $name, DateTimeImmutable $updatedAt)
+    private function __construct(Id $id, string $cipher, string $name, UpdatedAt $updatedAt)
     {
         $this->id = $id;
         $this->cipher = $cipher;
@@ -58,18 +57,18 @@ class Ticket
     {
         return $this->status;
     }
+    public function getUpdatedAt(): UpdatedAt
+    {
+        return $this->updatedAt;
+    }
     public static function fromArray(array $data): self
     {
-       $ticket = new self(
-            new Id($data['id']),
-            $data['cipher'],
-            $data['name'],
-            $data['updatedAt']
-       );
-
-        if(!empty($data['status'])){
-            $ticket->setStatus(Status::inactive());
-        }
+        $ticket = new self(
+           new Id($data['id']),
+           $data['cipher'],
+           $data['name'],
+           new UpdatedAt($data['updatedAt']),
+        );
 
         if(!empty($data['questions'])){
             foreach ($data['questions'] as $questionData){

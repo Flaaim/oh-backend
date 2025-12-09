@@ -6,6 +6,7 @@ use App\Ticket\Entity\Question;
 use App\Ticket\Entity\Status;
 use App\Ticket\Entity\Ticket;
 use App\Shared\Domain\ValueObject\Id;
+use App\Ticket\Entity\UpdatedAt;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -17,7 +18,7 @@ class TicketBuilder
     private  string $cipher;
     private  Status $status;
     private Collection $questions;
-    private readonly DateTimeImmutable $updatedAt;
+    private string $updatedAt;
 
     public function __construct()
     {
@@ -25,7 +26,7 @@ class TicketBuilder
         $this->status = Status::inactive();
         $this->cipher = 'ПБП 115.26';
         $this->name = 'Основы промышленной безопасности';
-        $this->updatedAt = new \DateTimeImmutable('now');
+        $this->updatedAt = '12.11.2025';
         $this->questions = new ArrayCollection();
     }
     public function withId(Id $id): self
@@ -46,6 +47,11 @@ class TicketBuilder
     public function withQuestions(Collection $questions): self
     {
         $this->questions = $questions;
+        return $this;
+    }
+    public function withUpdatedAt(string $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
         return $this;
     }
     public function active(): self
