@@ -24,6 +24,7 @@ return static function(App $app): void {
 
         $group->group('/tickets', function (RouteCollectorProxy $group): void {
            $group->post('/create', Ticket\CreateOrUpdate\RequestAction::class);
+           $group->post('/updateDetails', Ticket\UpdateDetails\RequestAction::class);
         });
 
         $group->group('/auth', function (RouteCollectorProxy $group): void {

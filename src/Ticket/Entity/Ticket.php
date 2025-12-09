@@ -4,6 +4,7 @@ namespace App\Ticket\Entity;
 
 use App\Shared\Domain\ValueObject\Id;
 use App\Shared\Domain\ValueObject\UpdatedAt;
+use App\Shared\Domain\ValueObject\UpdatedAtType;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -147,8 +148,19 @@ class Ticket
         if($course !== null && $course->getTicket() !== $this){
             $course->setTicket($this);
         }
-
         $this->course = $course;
         return $this;
+    }
+    public function updateDetails(?string $name, ?string $cipher, ?string $updatedAt): void
+    {
+        if($name !== null){
+            $this->name = $name;
+        }
+        if($cipher !== null){
+            $this->cipher = $cipher;
+        }
+        if($updatedAt !== null){
+            $this->updatedAt = UpdatedAt::create($updatedAt)->getValue();
+        }
     }
 }

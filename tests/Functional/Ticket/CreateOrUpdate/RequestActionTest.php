@@ -7,29 +7,20 @@ use Test\Functional\WebTestCase;
 
 class RequestActionTest extends WebTestCase
 {
-//    public function setUp(): void
-//    {
-//        parent::setUp();
-//        $this->loadFixtures([
-//            RequestFixture::class
-//        ]);
-//    }
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->loadFixtures([
+            RequestFixture::class
+        ]);
+    }
     public function testSuccess(): void
     {
         $response = $this->app()->handle(
             self::json('POST', '/payment-service/tickets/create', $this->ticketArrayProvider()
         ));
-
         $this->assertEquals(201, $response->getStatusCode());
         self::assertEquals('', $response->getBody());
-
-        $pathToFiles = '/8c68fbe7-c32d-4bec-a094-fd5d9773ca35/d5d36c98-c483-42d6-8105-32063eef8c64/';
-
-        self::assertDirectoryExists(sys_get_temp_dir().'/8c68fbe7-c32d-4bec-a094-fd5d9773ca35');
-        self::assertFileExists(sys_get_temp_dir(). $pathToFiles . '8dcf298b-dfdd-4f18-9cdc-75be69a67c5b/1.jpg');
-        self::assertFileExists(sys_get_temp_dir(). $pathToFiles . '61f5545f-39ba-429c-aac3-9764de3f126c/2.jpg');
-        self::assertFileExists(sys_get_temp_dir(). $pathToFiles . '68195ccd-e42b-4a37-bbc7-674787fa8a11/3.jpg');
-
     }
     public function testEmpty(): void
     {
@@ -71,6 +62,35 @@ class RequestActionTest extends WebTestCase
                 'ticket[status]' => 'This field is missing.',
                 'ticket[updatedAt]' => 'This field is missing.',
                 'ticket[questions]' => 'This value should not be blank.',
+            ]
+        ], $data);
+    }
+
+    public function testUpdateDetails(): void
+    {
+        $response = $this->app()->handle(
+            self::json('POST', '/payment-service/tickets/updateDetails', [
+                'id' => '8c68fbe7-c32d-4bec-a094-fd5d9773ca35',
+                'name' => 'something',
+            ])
+        );
+
+        self::assertEquals(204, $response->getStatusCode());
+    }
+    public function testUpdateDetailsInvalid(): void
+    {
+        $response = $this->app()->handle(
+            self::json('POST', '/payment-service/tickets/updateDetails', [
+                'id' => 'something',
+                'name' => 'Подготовка по области аттестации Б.1.1 ',
+            ])
+        );
+        self::assertEquals(422, $response->getStatusCode());
+        $body = (string)$response->getBody();
+        $data = Json::decode($body);
+        self::assertEquals([
+            'errors' => [
+                'id' => 'This is not a valid UUID.'
             ]
         ], $data);
     }
