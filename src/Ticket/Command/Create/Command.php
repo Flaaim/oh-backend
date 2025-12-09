@@ -23,7 +23,7 @@ class Command
                 ]),
                 'updatedAt' => new Assert\Required([
                     new Assert\NotBlank(),
-                    new Assert\DateTime(),
+                    new Assert\Type('string'),
                 ]),
                 'status' => new Assert\Required([
                     new Assert\NotBlank(),
@@ -33,11 +33,9 @@ class Command
                     new Assert\NotBlank(),
                     new Assert\Type('array'),
                 ]),
-            ],allowMissingFields: false
+            ]
         )]
         public readonly array $ticket
     )
-    {
-
-    }
+    {}
 }
