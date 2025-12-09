@@ -2,12 +2,11 @@
 
 namespace App\Ticket\Test\Builder;
 
+use App\Shared\Domain\ValueObject\Id;
+use App\Shared\Domain\ValueObject\UpdatedAt;
 use App\Ticket\Entity\Question;
 use App\Ticket\Entity\Status;
 use App\Ticket\Entity\Ticket;
-use App\Shared\Domain\ValueObject\Id;
-use App\Ticket\Entity\UpdatedAt;
-use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 

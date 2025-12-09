@@ -3,6 +3,7 @@
 namespace App\Ticket\Entity;
 
 use App\Shared\Domain\ValueObject\Id;
+use App\Shared\Domain\ValueObject\UpdatedAt;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -67,7 +68,7 @@ class Ticket
            new Id($data['id']),
            $data['cipher'],
            $data['name'],
-           new UpdatedAt($data['updatedAt']),
+           UpdatedAt::create($data['updatedAt']),
         );
 
         if(!empty($data['questions'])){

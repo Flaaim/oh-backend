@@ -16,7 +16,7 @@ class RequestFixture extends AbstractFixture
         $ticket = (new TicketBuilder())
             ->withId(new Id('8c68fbe7-c32d-4bec-a094-fd5d9773ca35'))
             ->withQuestions(
-            (new QuestionCollectionBuilder())->build()
+            (new QuestionCollectionBuilder())->withImages()
         )->build();
 
         $manager->persist($ticket);
