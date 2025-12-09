@@ -44,11 +44,11 @@ class Ticket
     {
         return $this->id;
     }
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
-    public function getCipher(): ?string
+    public function getCipher(): string
     {
         return $this->cipher;
     }
