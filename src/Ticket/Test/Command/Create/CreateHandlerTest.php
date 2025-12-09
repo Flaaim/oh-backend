@@ -81,9 +81,10 @@ class CreateHandlerTest extends TestCase
     {
         return [
             'id' => '90f3b701-3602-4050-a27f-a246ee980fe7',
-            'name' => null,
-            'cipher' => null,
-            'status' => 'nonactive',
+            'name' => 'Проверочный тест',
+            'cipher' => 'ОТ 201.18',
+            'status' => 'inactive',
+            'updatedAt' => '12.11.2025',
             'questions' => [
                 [
                     'id' => '81703c227f8e4a379591e0d59f4fc093',
