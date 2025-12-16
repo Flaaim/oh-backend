@@ -90,8 +90,9 @@ class Payment
     {
         return $this->isSend;
     }
-    public function setSend(): void
+    public function setSuccess(Status $newStatus): void
     {
+        $this->setStatus($newStatus);
         $this->isSend = true;
     }
 }
