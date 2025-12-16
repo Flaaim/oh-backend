@@ -8,6 +8,7 @@ use App\Product\Entity\Currency;
 use App\Product\Entity\File as EntityFile;
 use App\Product\Entity\Price;
 use App\Product\Entity\Product;
+use App\Shared\Domain\Service\Payment\PaymentWebhookDataInterface;
 use App\Shared\Domain\Service\Template\TemplateManager;
 use App\Shared\Domain\Service\Template\TemplatePath;
 use App\Shared\Domain\ValueObject\Id;

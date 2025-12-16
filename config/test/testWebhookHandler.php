@@ -3,7 +3,10 @@
 declare(strict_types=1);
 
 use App\Flusher;
+use App\Payment\Command\HookPayment\Handler as HookPaymentHandler;
+use App\Payment\Command\HookPayment\SendProduct\Handler;
 use App\Payment\Entity\PaymentRepository;
+use App\Payment\Service\Delivery\ProductDeliveryService;
 use App\Payment\Service\ProductSender;
 use App\Product\Entity\ProductRepository;
 use App\Shared\Domain\Service\Payment\WebhookParser\YookassaWebhookParser;
@@ -14,7 +17,6 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Test\Functional\Payment\TestPaymentProvider;
 use Twig\Environment;
-use App\Payment\Command\HookPayment\Handler as HookPaymentHandler;
 
 return [
     HookPaymentHandler::class => function(ContainerInterface $c){
@@ -34,10 +36,14 @@ return [
         return new HookPaymentHandler(
             $yookassaWebhookParser,
             $yookassaProvider,
-            $productSender,
-            new ProductRepository($em),
             new PaymentRepository($em),
             new Flusher($em),
+            new Handler(
+                new ProductDeliveryService(
+                    new ProductRepository($em),
+                    $productSender
+                )
+            ),
             $logger
         );
     },
