@@ -3,7 +3,9 @@
 use App\Flusher;
 use App\Payment\Command\HookPayment\Handler as HookPaymentHandler;
 use App\Payment\Entity\PaymentRepository;
+use App\Payment\Service\Delivery\ProductDeliveryService;
 use App\Payment\Service\ProductSender;
+use App\Payment\Command\HookPayment\SendProduct\Handler as SendProductHandler;
 use App\Product\Entity\ProductRepository;
 use App\Shared\Domain\Service\Payment\Provider\YookassaProvider;
 use App\Shared\Domain\Service\Payment\WebhookParser\YookassaWebhookParser;
@@ -11,6 +13,7 @@ use App\Shared\Domain\Service\Template\TemplatePath;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Mailer\MailerInterface;
 use Twig\Environment;
 
@@ -28,15 +31,20 @@ return [
         );
 
         $em = $c->get(EntityManagerInterface::class);
-
+        $sendProductHandler = new SendProductHandler(
+            new ProductDeliveryService(
+                new ProductRepository($em),
+                $productSender
+            )
+        );
         return new HookPaymentHandler(
             $yookassaWebhookParser,
             $yookassaProvider,
-            $productSender,
-            new ProductRepository($em),
             new PaymentRepository($em),
             new Flusher($em),
-            $logger
+            $sendProductHandler,
+            $logger,
+            $c->get(EventDispatcher::class)
         );
     },
 ];

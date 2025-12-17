@@ -14,12 +14,14 @@ use App\Shared\Domain\Service\Template\TemplatePath;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Mailer\MailerInterface;
 use Test\Functional\Payment\TestPaymentProvider;
 use Twig\Environment;
 
 return [
     HookPaymentHandler::class => function(ContainerInterface $c){
+
         $yookassaWebhookParser = new YookassaWebhookParser();
 
         $yookassaProvider = $c->get(TestPaymentProvider::class);
@@ -44,7 +46,8 @@ return [
                     $productSender
                 )
             ),
-            $logger
+            $logger,
+            $c->get(EventDispatcher::class)
         );
     },
 ];

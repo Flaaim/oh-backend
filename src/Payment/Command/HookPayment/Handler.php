@@ -3,13 +3,15 @@
 namespace App\Payment\Command\HookPayment;
 
 use App\Flusher;
+use App\Payment\Command\HookPayment\SendProduct\Command as SendProductCommand;
+use App\Payment\Command\HookPayment\SendProduct\Handler as SendProductHandler;
 use App\Payment\Entity\PaymentRepository;
+use App\Shared\Domain\Event\Payment\SuccessfulPaymentEvent;
 use App\Shared\Domain\Service\Payment\DTO\PaymentCallbackDTO;
 use App\Shared\Domain\Service\Payment\PaymentProviderInterface;
 use App\Shared\Domain\Service\Payment\PaymentWebhookParserInterface;
-use App\Payment\Command\HookPayment\SendProduct\Handler as SendProductHandler;
-use App\Payment\Command\HookPayment\SendProduct\Command as SendProductCommand;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class Handler
 {
@@ -20,6 +22,7 @@ class Handler
         private readonly Flusher $flusher,
         private readonly SendProductHandler  $sendProductHandler,
         private readonly LoggerInterface $logger,
+        private readonly EventDispatcher $dispatcher
     )
     {}
     public function handle(Command $command): void
@@ -47,6 +50,10 @@ class Handler
             $this->sendProductHandler->handle(new SendProductCommand($payment, $paymentWebHookData));
 
             $this->paymentRepository->update($payment);
+
+            $event = new SuccessfulPaymentEvent($payment);
+
+            $this->dispatcher->dispatch($event);
 
             $this->flusher->flush();
         }catch (\Exception $e){

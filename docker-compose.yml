@@ -33,6 +33,7 @@ services:
           YOOKASSA_SECRET_KEY: test_0B3flJqsbdKNA2sS2dT0ahs74LtF7fwJq2oVR-8wTCM
           YOOKASSA_RETURN_URL: https://localhost/success
           TELEGRAM_BOT_TOKEN: 7239774817:AAEHex3R8hKasS08nahcCJ3WgDfroI2cLBY
+          TELEGRAM_CHAT_ID: 1954013093
           AUTH_LOGIN: app
           AUTH_PASSWORD: secret
     php-cli:
@@ -60,6 +61,7 @@ services:
           YOOKASSA_SECRET_KEY: test_0B3flJqsbdKNA2sS2dT0ahs74LtF7fwJq2oVR-8wTCM
           YOOKASSA_RETURN_URL: https://localhost/success
           TELEGRAM_BOT_TOKEN: 7239774817:AAEHex3R8hKasS08nahcCJ3WgDfroI2cLBY
+          TELEGRAM_CHAT_ID: 1954013093
           AUTH_LOGIN: app
           AUTH_PASSWORD: secret
     mysql:
