@@ -16,7 +16,7 @@ class Handler
     {}
     public function handle(Command $command): TicketResponse
     {
-        $ticket = $this->tickets->getById(new Id($command->ticketId));
+        $ticket = $this->tickets->getById(new Id($command->id));
 
         $ticket->setActive();
 
