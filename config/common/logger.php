@@ -22,7 +22,7 @@ return [
             $log->pushHandler(new TelegramBotHandler(
                 $telegramConfig['token'],
                 $telegramConfig['chatId'],
-                Level::Info,
+                Level::Warning,
             ));
         }
 
