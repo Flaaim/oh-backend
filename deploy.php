@@ -23,11 +23,18 @@ try {
         ->set('deploy_path', '~/www/olimpoks-help.ru/public')
         ->set('branch', 'main');
 
-    host('rtn-answers')
+    host('rtn-help')
         ->set('hostname', '31.31.198.114')
         ->set('port', 22)
         ->set('remote_user', 'u1656040')
-        ->set('deploy_path', '~/www/rtn-answers.ru/public')
+        ->set('deploy_path', '~/www/rtn-help.ru/public')
+        ->set('branch', 'main');
+
+    host('minstroy')
+        ->set('hostname', '31.31.198.114')
+        ->set('port', 22)
+        ->set('remote_user', 'u1656040')
+        ->set('deploy_path', '~/www/minstroy-help.ru/public')
         ->set('branch', 'main');
 
 
