@@ -12,10 +12,19 @@ use Psr\Log\LoggerInterface;
 return [
     LoggerInterface::class => function (ContainerInterface $container) {
         $config = $container->get('config')['logger'];
+        $telegramConfig = $container->get('config')['telegramBot'];
 
         $level = $config['debug'] ? Level::Debug : Level::Info;
 
         $log = new Logger('payment-service');
+
+        if(!empty($telegramConfig)){
+            $log->pushHandler(new TelegramBotHandler(
+                $telegramConfig['token'],
+                $telegramConfig['chatId'],
+                Level::Info,
+            ));
+        }
 
 
         if ($config['stderr']) {
