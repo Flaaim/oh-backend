@@ -33,8 +33,9 @@ class TelegramNotifier implements NotificationInterface
                     'form_params' => [
                         'chat_id' => $this->chatId,
                         'text' => 'Успешный платеж. ' . PHP_EOL
-                            . 'Сумма: ' . $payment->getPrice()->getValue() . PHP_EOL
+                            . 'Сумма: ' . $payment->getPrice()->formatted() . PHP_EOL
                             . 'Email: ' . $payment->getEmail()->getValue() . PHP_EOL
+                            . 'Продукт: ' . $payment->getProductId() . PHP_EOL
 
                     ]
                 ]);

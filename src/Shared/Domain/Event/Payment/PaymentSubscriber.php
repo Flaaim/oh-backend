@@ -34,6 +34,7 @@ class PaymentSubscriber implements EventSubscriberInterface
         $this->logger->info('Successful Payment', ['payment' => [
             'email' => $payment->getEmail()->getValue(),
             'price' => $payment->getPrice()->getValue(),
+            'productId' => $payment->getProductId()
         ]]);
     }
 }
