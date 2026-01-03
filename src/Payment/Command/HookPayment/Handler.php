@@ -6,7 +6,6 @@ use App\Flusher;
 use App\Payment\Command\HookPayment\SendProduct\Command as SendProductCommand;
 use App\Payment\Command\HookPayment\SendProduct\Handler as SendProductHandler;
 use App\Payment\Entity\PaymentRepository;
-use App\Shared\Domain\Event\Payment\SuccessfulPaymentEvent;
 use App\Shared\Domain\Service\Payment\DTO\PaymentCallbackDTO;
 use App\Shared\Domain\Service\Payment\PaymentProviderInterface;
 use App\Shared\Domain\Service\Payment\PaymentWebhookParserInterface;

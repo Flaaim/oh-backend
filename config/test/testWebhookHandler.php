@@ -44,10 +44,10 @@ return [
                 new ProductDeliveryService(
                     new ProductRepository($em),
                     $productSender
-                )
+                ),
+                $c->get(EventDispatcher::class)
             ),
             $logger,
-            $c->get(EventDispatcher::class)
         );
     },
 ];
