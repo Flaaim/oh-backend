@@ -35,7 +35,8 @@ return [
             new ProductDeliveryService(
                 new ProductRepository($em),
                 $productSender
-            )
+            ),
+            $c->get(EventDispatcher::class)
         );
         return new HookPaymentHandler(
             $yookassaWebhookParser,
@@ -44,7 +45,7 @@ return [
             new Flusher($em),
             $sendProductHandler,
             $logger,
-            $c->get(EventDispatcher::class)
+
         );
     },
 ];
