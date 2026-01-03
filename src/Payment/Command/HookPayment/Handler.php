@@ -11,7 +11,6 @@ use App\Shared\Domain\Service\Payment\DTO\PaymentCallbackDTO;
 use App\Shared\Domain\Service\Payment\PaymentProviderInterface;
 use App\Shared\Domain\Service\Payment\PaymentWebhookParserInterface;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class Handler
 {
@@ -22,7 +21,6 @@ class Handler
         private readonly Flusher $flusher,
         private readonly SendProductHandler  $sendProductHandler,
         private readonly LoggerInterface $logger,
-        private readonly EventDispatcher $dispatcher
     )
     {}
     public function handle(Command $command): void
@@ -50,10 +48,6 @@ class Handler
             $this->sendProductHandler->handle(new SendProductCommand($payment, $paymentWebHookData));
 
             $this->paymentRepository->update($payment);
-
-            $event = new SuccessfulPaymentEvent($payment);
-
-            $this->dispatcher->dispatch($event);
 
             $this->flusher->flush();
         }catch (\Exception $e){
