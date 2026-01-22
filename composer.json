@@ -33,7 +33,8 @@
   },
   "scripts": {
     "app": "php bin/app.php --ansi",
-    "test": "phpunit --display-warnings"
+    "test": "phpunit --display-warnings",
+    "lint": "phplint"
   },
   "require-dev": {
     "phpunit/phpunit": "^10.5",
