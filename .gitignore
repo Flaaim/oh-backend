@@ -1,5 +1,6 @@
-.idea
+.idea/
 vendor
 var
 public/templates
+public/QuestionImages
 config/env
