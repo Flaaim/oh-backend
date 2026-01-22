@@ -6,10 +6,7 @@ test: unit-test functional-test app-fixtures
 test-unit: unit-test
 test-functional: functional-test app-fixtures
 
-app-init:app-permission composer-install pause app-migrations app-fixtures
-
-pause:
-	sleep 10
+app-init:app-permission composer-install app-wait-for-db app-migrations app-fixtures
 
 docker-up:
 	docker-compose up -d
@@ -40,6 +37,9 @@ unit-test:
 
 functional-test:
 	docker-compose run --rm php-cli composer test -- --testsuite=Functional
+
+app-wait-for-db:
+	docker-compose run --rm php-cli wait-for-it mysql:3306 -t 30
 
 app-migrations:
 	docker-compose run --rm php-cli composer app migrations:migrate -- --no-interaction
