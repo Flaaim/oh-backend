@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Access\Test\Unit;
+namespace App\Access\Test\Unit\Entity;
 
 use App\Access\Entity\Access;
 use App\Access\Entity\AccessId;

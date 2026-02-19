@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Access\Test\Unit;
+namespace App\Access\Test\Unit\Entity;
 
 use App\Shared\Domain\ValueObject\Id;
 use PHPUnit\Framework\TestCase;

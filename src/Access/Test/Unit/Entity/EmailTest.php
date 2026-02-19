@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Access\Test\Unit;
+namespace App\Access\Test\Unit\Entity;
 
 use App\Payment\Entity\Email;
 use PHPUnit\Framework\TestCase;
