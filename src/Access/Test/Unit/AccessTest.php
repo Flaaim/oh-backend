@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Access\Test\Unit;
+
+use App\Access\Entity\Access;
+use App\Access\Entity\AccessId;
+use App\Access\Entity\Email;
+use App\Access\Entity\Token;
+use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
+
+class AccessTest extends TestCase
+{
+    public function testExpired(): void
+    {
+        $access = new Access(
+            AccessId::generate(),
+            new Email('test@email.ru'),
+            Uuid::uuid4()->toString(),
+            new Token(Uuid::uuid4()->toString(), new \DateTimeImmutable('-2 days')),
+        );
+
+        $this->assertTrue($access->isExpired());
+    }
+
+    public function testIsNotExpired(): void
+    {
+        $access = new Access(
+            AccessId::generate(),
+            new Email('test@email.ru'),
+            Uuid::uuid4()->toString(),
+            new Token(Uuid::uuid4()->toString(), new \DateTimeImmutable('+3 days')),
+        );
+
+        $this->assertFalse($access->isExpired());
+    }
+}
