@@ -2,8 +2,8 @@
 
 namespace App\Product\Query;
 
-use App\Product\Entity\Product;
 use App\Product\Entity\ProductRepository;
+use App\Shared\Domain\ProductQuery\ProductQueryDTO;
 use App\Shared\Domain\ProductQuery\ProductQueryInterface;
 use App\Shared\Domain\ValueObject\Id;
 
@@ -13,8 +13,14 @@ class ProductQuery implements ProductQueryInterface
         private readonly ProductRepository $products
     ){
     }
-    public function getProduct(string $productId): Product
+    public function getProduct(string $productId): ProductQueryDTO
     {
-        return $this->products->get(new Id($productId));
+        $product = $this->products->get(new Id($productId));
+
+        return new ProductQueryDTO(
+            $product->getId(),
+            $product->getName(),
+            $product->getCipher(),
+        );
     }
 }
