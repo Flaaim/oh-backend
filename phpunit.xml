@@ -15,7 +15,7 @@
             <directory suffix="Test.php">src/Payment/Test</directory>
             <directory suffix="Test.php">src/Shared/Test</directory>
             <directory suffix="Test.php">src/Product/Test</directory>
-            <directory suffix="Test.php">src/Ticket/Test</directory>
+            <directory suffix="Test.php">src/Access/Test</directory>
             <directory suffix="Test.php">src/Http/Test</directory>
         </testsuite>
         <testsuite name="Functional">
