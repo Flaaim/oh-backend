@@ -27,8 +27,10 @@ class Handler
         $product = $this->productQuery->getProduct($command->productId);
         $access = new Access(
             AccessId::generate(),
+            $product->name,
+            $product->cipher,
             new Email($command->email),
-            $product->getId()->getValue(),
+            $product->id,
             $token
         );
 
