@@ -7,6 +7,8 @@ class Access
 
     public function __construct(
         private AccessId $id,
+        private string $name,
+        private string $cipher,
         private Email $email,
         private string $productId,
         private Token $token
@@ -31,5 +33,14 @@ class Access
     public function isExpired(): bool
     {
         return $this->token->isExpiredTo(new \DateTimeImmutable('now'));
+    }
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getCipher(): string
+    {
+        return $this->cipher;
     }
 }

@@ -15,6 +15,8 @@ class AccessTest extends TestCase
     {
         $access = new Access(
             AccessId::generate(),
+            'Name',
+            'ot1555.1',
             new Email('test@email.ru'),
             Uuid::uuid4()->toString(),
             new Token(Uuid::uuid4()->toString(), new \DateTimeImmutable('-2 days')),
@@ -27,6 +29,8 @@ class AccessTest extends TestCase
     {
         $access = new Access(
             AccessId::generate(),
+            'Name',
+            'ot1555.1',
             new Email('test@email.ru'),
             Uuid::uuid4()->toString(),
             new Token(Uuid::uuid4()->toString(), new \DateTimeImmutable('+3 days')),
