@@ -2,19 +2,43 @@
 
 namespace App\Product\Entity;
 
+use App\Shared\Domain\Service\Template\RootPath;
 use Webmozart\Assert\Assert;
 
 class File
 {
     private string $value;
-    public function __construct(string $pathToFile)
+    private ?string $fullPath = null;
+    public function __construct(string $value)
     {
-        Assert::notEmpty($pathToFile);
-        $this->value = ltrim($pathToFile, '/');
+        Assert::notEmpty($value);
+        $this->value = trim($value, '/');
+    }
+    public function mergeRoot(RootPath $value): void
+    {
+        if($this->fullPath !== null) {
+            throw new \DomainException('Root path already merged.');
+        }
+        $this->fullPath = DIRECTORY_SEPARATOR .
+            trim($value->getValue(), '/') . DIRECTORY_SEPARATOR . $this->value;
+    }
+    public function getFile(): string
+    {
+        if(!$this->exists()) {
+            throw new \DomainException('File not exists at: ' . $this->fullPath);
+        }
+        return $this->fullPath;
     }
 
-    public function getPathToFile(): string
+    public function getValue(): string
     {
         return $this->value;
+    }
+    public function exists(): bool
+    {
+        if($this->fullPath === null) {
+            return false;
+        }
+        return file_exists($this->fullPath);
     }
 }
