@@ -7,7 +7,7 @@ use App\Payment\Service\Delivery\Product\FileDelivery;
 use App\Payment\Service\Delivery\Product\FileSender;
 use App\Product\Entity\File;
 use App\Product\Entity\Type;
-use App\Shared\Domain\Service\Template\RootPath;
+use App\Shared\Domain\ValueObject\RootPath;
 use PHPUnit\Framework\TestCase;
 use Test\Functional\Payment\ProductBuilder;
 

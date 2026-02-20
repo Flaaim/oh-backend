@@ -2,7 +2,7 @@
 
 namespace App\Product\Entity;
 
-use App\Shared\Domain\Service\Template\RootPath;
+use App\Shared\Domain\ValueObject\RootPath;
 use Webmozart\Assert\Assert;
 
 class File

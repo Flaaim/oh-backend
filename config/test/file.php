@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Product\Entity\UploadDir;
 use App\Product\Service\FileHandler;
 use App\Product\Service\ValidatePath;
-use App\Shared\Domain\Service\Template\RootPath;
+use App\Shared\Domain\ValueObject\RootPath;
 use Psr\Container\ContainerInterface;
 
 return [

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\Domain\Service\Template;
+namespace App\Shared\Domain\ValueObject;
 
 use Webmozart\Assert\Assert;
 

@@ -5,7 +5,7 @@ namespace App\Payment\Test\Service\Product;
 use App\Payment\Entity\Email as UserEmail;
 use App\Payment\Service\Delivery\Product\FileSender;
 use App\Product\Entity\File as EntityFile;
-use App\Shared\Domain\Service\Template\RootPath;
+use App\Shared\Domain\ValueObject\RootPath;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Exception\TransportException;

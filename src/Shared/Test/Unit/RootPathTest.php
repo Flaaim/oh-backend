@@ -2,7 +2,7 @@
 
 namespace App\Shared\Test\Unit;
 
-use App\Shared\Domain\Service\Template\RootPath;
+use App\Shared\Domain\ValueObject\RootPath;
 use PHPUnit\Framework\TestCase;
 
 class RootPathTest extends TestCase

@@ -6,7 +6,7 @@ use App\Payment\Entity\Email;
 use App\Payment\Service\Delivery\ProductDeliveryInterface;
 use App\Product\Entity\Product;
 use App\Product\Entity\Type;
-use App\Shared\Domain\Service\Template\RootPath;
+use App\Shared\Domain\ValueObject\RootPath;
 
 class FileDelivery implements ProductDeliveryInterface
 {

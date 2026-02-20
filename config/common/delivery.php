@@ -9,7 +9,7 @@ use App\Payment\Service\Delivery\DeliveryFactory;
 use App\Payment\Service\Delivery\Product\FileDelivery;
 use App\Payment\Service\Delivery\Product\FileSender;
 use App\Product\Entity\ProductRepository;
-use App\Shared\Domain\Service\Template\RootPath;
+use App\Shared\Domain\ValueObject\RootPath;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;

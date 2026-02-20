@@ -3,7 +3,7 @@
 namespace App\Product\Entity;
 
 use App\Product\Service\ValidatePath;
-use App\Shared\Domain\Service\Template\RootPath;
+use App\Shared\Domain\ValueObject\RootPath;
 
 class UploadDir
 {

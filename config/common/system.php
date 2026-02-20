@@ -4,7 +4,7 @@
 declare(strict_types=1);
 
 use App\Access\Service\UrlGenerator;
-use App\Shared\Domain\Service\Template\RootPath;
+use App\Shared\Domain\ValueObject\RootPath;
 use Psr\Container\ContainerInterface;
 
 return [

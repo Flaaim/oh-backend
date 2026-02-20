@@ -6,12 +6,6 @@ namespace App\Command;
 
 use App\Payment\Entity\Email;
 use App\Payment\Service\Delivery\Product\FileSender;
-use App\Product\Entity\Currency;
-use App\Product\Entity\File;
-use App\Product\Entity\Price;
-use App\Product\Entity\Product;
-use App\Shared\Domain\Service\Template\RootPath;
-use App\Shared\Domain\ValueObject\Id;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

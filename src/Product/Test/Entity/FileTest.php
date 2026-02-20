@@ -4,7 +4,7 @@ namespace App\Product\Test\Entity;
 
 use App\Product\Entity\File;
 use App\Product\Test\TempDir;
-use App\Shared\Domain\Service\Template\RootPath;
+use App\Shared\Domain\ValueObject\RootPath;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
