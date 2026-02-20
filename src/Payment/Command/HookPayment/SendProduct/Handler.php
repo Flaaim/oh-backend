@@ -4,7 +4,7 @@ namespace App\Payment\Command\HookPayment\SendProduct;
 
 use App\Payment\Entity\Payment;
 use App\Payment\Entity\Status;
-use App\Payment\Service\Delivery\ProductDeliveryService;
+use App\Payment\Service\Delivery\DeliveryFactory;
 use App\Shared\Domain\Event\Payment\SuccessfulPaymentEvent;
 use App\Shared\Domain\Service\Payment\PaymentStatus;
 use App\Shared\Domain\Service\Payment\PaymentWebhookDataInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 class Handler
 {
     public function __construct(
-        private readonly ProductDeliveryService $delivery,
+        private readonly DeliveryFactory $delivery,
         private readonly EventDispatcher $dispatcher
     )
     {}
@@ -23,7 +23,7 @@ class Handler
             return;
         }
 
-        $this->delivery->deliver($command->paymentWebHookData);
+        $this->delivery->createDelivery($command->paymentWebHookData);
 
         $command->payment->setSuccess(Status::succeeded());
 
