@@ -4,6 +4,7 @@ namespace App\Access\Command\GetAccess;
 
 use App\Access\Entity\Access;
 use App\Access\Entity\AccessRepository;
+use App\Access\Entity\DTO\GetAccessDTO;
 use App\Access\Service\UuidConverter;
 use App\Shared\Domain\ProductQuery\ProductQueryInterface;
 use App\Shared\Domain\ValueObject\RootPath;
@@ -19,7 +20,7 @@ class Handler
     ){
     }
 
-    public function handle(Command $command): string
+    public function handle(Command $command): GetAccessDTO
     {
         $token = $this->uuidConverter->decode($command->url);
 
@@ -36,6 +37,11 @@ class Handler
         if(!file_exists($pathToFile)){
             throw new \DomainException('Файл не найден...');
         }
-        return $pathToFile;
+        return new GetAccessDTO(
+            $pathToFile,
+            $access->getName(),
+            $access->getCipher(),
+            $access->getToken()->getExpired()->format('Y-m-d H:i:s'),
+        );
     }
 }
