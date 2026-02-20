@@ -4,7 +4,7 @@ namespace App\Shared\Domain\Service\Template;
 
 use Webmozart\Assert\Assert;
 
-class TemplatePath
+class RootPath
 {
     private readonly string $basePath;
     public function __construct(string $basePath)
