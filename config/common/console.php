@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Command\AccessSendCommand;
 use App\Command\FixturesLoadCommand;
-use App\Command\ProductSendCommand;
+use App\Command\FileSendCommand;
 use Doctrine\Migrations\Tools\Console\Command\DiffCommand;
 use Doctrine\Migrations\Tools\Console\Command\ExecuteCommand;
 use Doctrine\Migrations\Tools\Console\Command\LatestCommand;
@@ -39,7 +40,8 @@ return [
                 StatusCommand::class,
                 UpToDateCommand::class,
 
-                ProductSendCommand::class,
+                FileSendCommand::class,
+                AccessSendCommand::class,
             ],
             'fixture_paths' => [
                 __DIR__ . '/../../src/Product/Fixture',

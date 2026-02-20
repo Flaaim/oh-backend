@@ -5,13 +5,14 @@ namespace App\Command;
 
 
 use App\Payment\Entity\Email;
-use App\Payment\Service\ProductSender;
+use App\Payment\Service\Delivery\Product\FileSender;
 use App\Product\Entity\Currency;
 use App\Product\Entity\File;
 use App\Product\Entity\Price;
 use App\Product\Entity\Product;
-use App\Shared\Domain\Service\Template\TemplatePath;
+use App\Shared\Domain\Service\Template\RootPath;
 use App\Shared\Domain\ValueObject\Id;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -20,11 +21,11 @@ use Symfony\Component\Mailer\MailerInterface;
 use Twig\Environment;
 
 
-class ProductSendCommand extends Command
+class FileSendCommand extends Command
 {
     public function configure(): void
     {
-        $this->setName('product:send');
+        $this->setName('product:send_file');
         $this->setDescription('Send product message');
     }
 
@@ -34,21 +35,17 @@ class ProductSendCommand extends Command
 
         $container = require __DIR__ . '/../../config/container.php';
 
-        $productSender = new ProductSender(
+        $productSender = new FileSender(
             $container->get(MailerInterface::class),
-            new TemplatePath(sys_get_temp_dir()),
-            $container->get(Environment::class),
+            $twig = $container->get(Environment::class),
+            $container->get(LoggerInterface::class)
         );
         $tempFile = tempnam(sys_get_temp_dir(), 'template');
         $productSender->send(
             new Email('test@app.ru'),
-            new Product(
-                Id::generate(),
-                'Образцы документов СИЗ',
-                new Price(450.00, new Currency('RUB')),
-                new File(basename($tempFile)),
-                '1'
-            )
+            'Тестовое письмо',
+            $tempFile,
+            'mail/template_file.html.twig'
         );
             return self::SUCCESS;
         }catch (TransportExceptionInterface $e) {
