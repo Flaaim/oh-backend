@@ -43,7 +43,9 @@ class Handler
 
         $this->flusher->flush();
 
-        $url = $this->baseUrl->getValue() . '/' . $this->uuidConverter->encode($access->getToken()->getValue());
+        $url = $this->baseUrl->getValue() .'?'. http_build_query([
+            'token' => $this->uuidConverter->encode($access->getToken()->getValue())
+            ]);
 
         return new OpenAccessDTO(
             $url,

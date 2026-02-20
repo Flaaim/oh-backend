@@ -22,7 +22,7 @@ class HandlerTest extends TestCase
         $productId = '95dd9b76-a090-4e14-8c33-6a8c249c2279';
         $baseUrl = 'http://localhost';
         $encodedPart = 'someEncodedValue';
-        $expectedUrl = $baseUrl . '/' . $encodedPart;
+        $expectedUrl = 'http://localhost?token=someEncodedValue';
 
         $command = new Command($email->getValue(), $productId);
 
