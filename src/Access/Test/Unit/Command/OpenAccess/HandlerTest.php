@@ -7,10 +7,11 @@ use App\Access\Command\OpenAccess\Handler;
 use App\Access\Entity\Access;
 use App\Access\Entity\AccessRepository;
 use App\Access\Entity\Email;
-use App\Access\Service\UrlGenerator;
+use App\Access\Service\UuidConverter;
 use App\Flusher;
 use App\Shared\Domain\ProductQuery\ProductQueryDTO;
 use App\Shared\Domain\ProductQuery\ProductQueryInterface;
+use App\Shared\Domain\ValueObject\BaseUrl;
 use PHPUnit\Framework\TestCase;
 
 class HandlerTest extends TestCase
@@ -19,6 +20,9 @@ class HandlerTest extends TestCase
     {
         $email = new Email('test@email.ru');
         $productId = '95dd9b76-a090-4e14-8c33-6a8c249c2279';
+        $baseUrl = 'http://localhost';
+        $encodedPart = 'someEncodedValue';
+        $expectedUrl = $baseUrl . '/' . $encodedPart;
 
         $command = new Command($email->getValue(), $productId);
 
@@ -26,7 +30,8 @@ class HandlerTest extends TestCase
             $productQuery = $this->createMock(ProductQueryInterface::class),
             $accesses = $this->createMock(AccessRepository::class),
             $flusher = $this->createMock(Flusher::class),
-            $urlGenerator = $this->createMock(UrlGenerator::class)
+            new BaseUrl($baseUrl),
+            $uuidConverter = $this->createMock(UuidConverter::class),
         );
 
         $productQuery->expects($this->once())->method('getProduct')
@@ -37,6 +42,8 @@ class HandlerTest extends TestCase
                 $cipher = 'ot1555.5'
             ));
 
+        $uuidConverter->expects($this->once())->method('encode')->willReturn($encodedPart);
+
         $accesses->expects($this->once())->method('create')->with(
             $this->isInstanceOf(Access::class),
         );
@@ -45,6 +52,7 @@ class HandlerTest extends TestCase
 
         $openAccessDTO = $handler->handle($command);
 
+        self::assertEquals($expectedUrl, $openAccessDTO->url);
         self::assertEquals($openAccessDTO->name, $name);
         self::assertEquals($openAccessDTO->cipher, $cipher);
     }
@@ -60,7 +68,8 @@ class HandlerTest extends TestCase
             $productQuery = $this->createMock(ProductQueryInterface::class),
             $accesses = $this->createMock(AccessRepository::class),
             $flusher = $this->createMock(Flusher::class),
-            $urlGenerator = $this->createMock(UrlGenerator::class)
+            $baseUrl = $this->createMock(BaseUrl::class),
+            $converter = $this->createMock(UuidConverter::class),
         );
 
         $productQuery->expects($this->once())->method('getProduct')
