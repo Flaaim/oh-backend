@@ -23,7 +23,8 @@ class RequestActionTest extends WebTestCase
     {
         $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@app.ru',
-            'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f'
+            'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f',
+            'type' => 'file'
         ]));
 
         $this->assertEquals(201, $response->getStatusCode());
@@ -48,6 +49,7 @@ class RequestActionTest extends WebTestCase
             'errors' => [
                 'email' => 'This value should not be blank.',
                 'productId' => 'This value should not be blank.',
+                'type' => 'The value you selected is not a valid choice.'
             ]
         ], $data);
     }
@@ -56,6 +58,7 @@ class RequestActionTest extends WebTestCase
         $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@app.ru',
             'productId' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
+            'type' => 'file'
         ]));
 
         self::assertEquals(400, $response->getStatusCode());
@@ -73,7 +76,8 @@ class RequestActionTest extends WebTestCase
     {
         $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'invalid',
-            'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8809f'
+            'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8809f',
+            'type' => 'file'
         ]));
 
         self::assertEquals(422, $response->getStatusCode());
@@ -94,6 +98,7 @@ class RequestActionTest extends WebTestCase
         $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@user.ru',
             'productId' => 'someInvalidProductId',
+            'type' => 'file'
         ]));
 
         self::assertEquals(422, $response->getStatusCode());

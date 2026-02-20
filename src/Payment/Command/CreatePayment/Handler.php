@@ -50,7 +50,11 @@ class Handler
                     $payment->getPrice()->getCurrency()->getValue(),
                     $product->getCipher(),
                     $payment->getReturnToken()->getValue(),
-                    ['email' => $email->getValue(), 'productId' => $product->getId()->getValue()],
+                    [
+                        'email' => $email->getValue(),
+                        'productId' => $product->getId()->getValue(),
+                        'type' => $command->type,
+                    ],
                     $email->getValue(),
                 )
             );

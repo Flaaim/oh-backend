@@ -2,6 +2,7 @@
 
 namespace App\Payment\Command\CreatePayment;
 
+use App\Product\Entity\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Command
@@ -13,6 +14,8 @@ class Command
         #[Assert\NotBlank]
         #[Assert\Uuid]
         public string $productId,
+        #[Assert\Choice(choices: ['file', 'access'])]
+        public string $type,
     )
     {}
 }

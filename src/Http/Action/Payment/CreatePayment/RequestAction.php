@@ -23,10 +23,12 @@ class RequestAction implements RequestHandlerInterface
     {
             $email = $request->getParsedBody()['email'] ?? '';
             $productId = $request->getParsedBody()['productId'] ?? '';
+            $type = $request->getParsedBody()['type'] ?? '';
 
             $command = new Command(
                 $email,
-                $productId
+                $productId,
+                $type
             );
 
             $this->validator->validate($command);
