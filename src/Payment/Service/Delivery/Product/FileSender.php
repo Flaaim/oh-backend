@@ -3,8 +3,6 @@
 namespace App\Payment\Service\Delivery\Product;
 
 use App\Payment\Entity\Email;
-use App\Product\Entity\Product;
-use App\Shared\Domain\Service\Template\RootPath;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
