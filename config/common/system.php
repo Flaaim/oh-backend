@@ -4,8 +4,19 @@
 declare(strict_types=1);
 
 
-use App\Shared\Domain\Service\Template\TemplatePath;
+use App\Access\Command\OpenAccess\Handler;
+use App\Payment\Service\Delivery\Access\AccessDelivery;
+use App\Payment\Service\Delivery\Access\AccessSender;
+use App\Payment\Service\Delivery\DeliveryFactory;
+use App\Payment\Service\Delivery\Product\FileDelivery;
+use App\Payment\Service\Delivery\Product\FileSender;
+use App\Product\Entity\ProductRepository;
+use App\Shared\Domain\Service\Template\RootPath;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Twig\Environment;
 
 return [
     'config' => [
@@ -13,11 +24,9 @@ return [
         'login' => getenv('AUTH_LOGIN'),
         'password' => getenv('AUTH_PASSWORD'),
         'template_paths' => __DIR__ . '/../../public/templates',
-        'basePath' => __DIR__ . '/../../public/QuestionImages',
-        'urlPath' => 'http://localhost/QuestionImages',
     ],
-    TemplatePath::class => function (ContainerInterface $container) {
-        return new TemplatePath(
+    RootPath::class => function (ContainerInterface $container) {
+        return new RootPath(
             $container->get('config')['template_paths'],
         );
     },
