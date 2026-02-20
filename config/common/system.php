@@ -30,5 +30,29 @@ return [
             $container->get('config')['template_paths'],
         );
     },
+    DeliveryFactory::class => function (ContainerInterface $container) {
+        $em = $container->get(EntityManagerInterface::class);
+        $productRepository = new ProductRepository($em);
+
+        $fileSender = new FileSender(
+            $container->get(MailerInterface::class),
+            $container->get(Environment::class),
+            $container->get(LoggerInterface::class),
+        );
+        $fileDelivery = new FileDelivery($fileSender, $container->get(RootPath::class),);
+
+        $accessSender = new AccessSender(
+            $container->get(MailerInterface::class),
+            $container->get(Environment::class),
+            $container->get(LoggerInterface::class),
+        );
+
+        $accessDelivery = new AccessDelivery(
+            $container->get(Handler::class),
+            $accessSender
+        );
+
+        return new DeliveryFactory($productRepository, [$fileDelivery, $accessDelivery]);
+    }
 
 ];
