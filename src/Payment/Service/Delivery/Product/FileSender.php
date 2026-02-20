@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Payment\Service;
+namespace App\Payment\Service\Delivery\Product;
 
 use App\Payment\Entity\Email;
 use App\Product\Entity\Product;
-use App\Shared\Domain\Service\Template\TemplateManager;
-use App\Shared\Domain\Service\Template\TemplatePath;
+use App\Shared\Domain\Service\Template\RootPath;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -15,36 +14,29 @@ use Symfony\Component\Mime\Part\File;
 use Twig\Environment;
 
 
-class ProductSender
+class FileSender
 {
     private MailerInterface $mailer;
-    private TemplatePath $templatePath;
     private Environment $twig;
     private LoggerInterface $logger;
-    public function __construct(MailerInterface $mailer, TemplatePath $templatePath, Environment $twig, LoggerInterface $logger)
+    public function __construct(MailerInterface $mailer, Environment $twig, LoggerInterface $logger)
     {
         $this->mailer = $mailer;
-        $this->templatePath = $templatePath;
         $this->twig = $twig;
         $this->logger = $logger;
     }
-    public function send(Email $email, Product $product): void
+    public function send(Email $email, string $subject, string $pathFile, string $template): void
     {
         $message = new \Symfony\Component\Mime\Email();
-        $message->subject($product->getName());
+        $message->subject($subject);
         $message->to($email->getValue());
         $message->html(
-            $this->twig->render('mail/template.html.twig')
+            $this->twig->render($template)
         );
+
         $message->addPart(
             new DataPart(
-                new File(
-                    (new TemplateManager(
-                        $this->templatePath,
-                        $product->getFile()
-                    ))
-                        ->getTemplate()
-                )
+                new File($pathFile)
             )
         );
         try{
@@ -53,6 +45,6 @@ class ProductSender
             $this->logger->error('Failed to send mail: ', ['error' => $e->getMessage()]);
             throw new TransportException($e->getMessage());
         }
-
     }
+
 }

@@ -1,17 +1,11 @@
 <?php
 
-namespace App\Payment\Test\Service;
+namespace App\Payment\Test\Service\Product;
 
 use App\Payment\Entity\Email as UserEmail;
-use App\Payment\Service\ProductSender;
-use App\Product\Entity\Currency;
+use App\Payment\Service\Delivery\Product\FileSender;
 use App\Product\Entity\File as EntityFile;
-use App\Product\Entity\Price;
-use App\Product\Entity\Product;
-use App\Shared\Domain\Service\Payment\PaymentWebhookDataInterface;
-use App\Shared\Domain\Service\Template\TemplateManager;
-use App\Shared\Domain\Service\Template\TemplatePath;
-use App\Shared\Domain\ValueObject\Id;
+use App\Shared\Domain\Service\Template\RootPath;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Exception\TransportException;
@@ -22,70 +16,69 @@ use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mime\Part\File;
 use Twig\Environment;
 
-class ProductSenderTest extends TestCase
+class FileSenderTest extends TestCase
 {
     public function testSuccess()
     {
-        $product = $this->getProduct();
         $email = new UserEmail('test@app.ru');
-        $subject = $product->getName();
+        $subject = 'subject';
+        $file = $this->getFile();
+        $file->mergeRoot($this->getRootPath());
+        $template ='mail/template.html.twig';
 
         $twig = $this->createMock(Environment::class);
         $logger = $this->createMock(LoggerInterface::class);
+
         $message = (new Email())->subject($subject)->to($email->getValue())->html(
-            $twig->render('mail/template.html.twig')
+            $twig->render($template)
         )->addPart(
-            new DataPart(new File(
-                $templateManager = (new TemplateManager($this->getTemplatePath(), $product->getFile()))->getTemplate(),
-            ))
+            new DataPart(new File($file->getFile()))
         );
 
         $mailer = $this->createMock(MailerInterface::class);
         $mailer->expects($this->once())->method('send')->with(
             $this->equalTo($message),
-        )->willReturnCallback(static function ($message) use ($twig, $email, $subject, $product, $templateManager) {
+        )->willReturnCallback(static function ($message) use ($twig, $email, $subject, $file) {
             /** @var Email $message */
             self::assertEquals([new Address($email->getValue())], $message->getTo());
             self::assertEquals($subject, $message->getSubject());
             self::assertEquals($twig->render('mail/template.html.twig'), $message->getHtmlBody());
-            self::assertEquals([new DataPart(new File($templateManager))], $message->getAttachments());
+            self::assertEquals([new DataPart(new File($file->getFile()))], $message->getAttachments());
         });
 
-        $productSender = new ProductSender($mailer, $this->getTemplatePath(), $twig, $logger);
-        $productSender->send($email, $product);
+
+        $productSender = new FileSender($mailer, $twig, $logger);
+        $productSender->send($email, $subject, $file->getFile(), $template);
     }
 
     public function testFailed(): void
     {
-        $product = $this->getProduct();
         $email = new UserEmail('test@app.ru');
+        $subject = 'subject';
+        $file = $this->getFile();
+        $file->mergeRoot($this->getRootPath());
+        $template ='mail/template.html.twig';
+
         $mailer = $this->createMock(MailerInterface::class);
         $twig = $this->createMock(Environment::class);
         $logger = $this->createMock(LoggerInterface::class);
 
         $mailer->expects($this->once())->method('send')->willThrowException(new TransportException());
 
-        $productSender = new ProductSender($mailer, $this->getTemplatePath(), $twig, $logger);
+        $productSender = new FileSender($mailer, $twig, $logger);
 
         $this->expectException(TransportException::class);
-        $productSender->send($email, $product);
+        $productSender->send($email, $subject, $file->getFile(), $template);
     }
 
-    private function getProduct(): Product
+    private function getFile(): EntityFile
     {
         $tempFile = tempnam(sys_get_temp_dir(), 'template');
-        return new Product(
-            Id::generate(),
-            'Образцы документов СИЗ',
-            new Price(450.00, new Currency('RUB')),
-            new EntityFile(basename($tempFile)),
-            '201.18',
-            '201'
-        );
+        return new EntityFile(basename($tempFile));
     }
 
-    private function getTemplatePath(): TemplatePath
+    private function getRootPath(): RootPath
     {
-        return new TemplatePath(sys_get_temp_dir());
+        return new RootPath(sys_get_temp_dir());
     }
 }
