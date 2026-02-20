@@ -22,8 +22,6 @@ class Product
     private Price $price;
     #[ORM\Column(type: 'file')]
     private File $file;
-    #[ORM\Column(type: 'string', length: 25, enumType: Type::class)]
-    private Type $type = Type::File;
     public function __construct(Id $id, string $name, Price $price, File $file, string $cipher, string $course)
     {
         $this->id = $id;
@@ -56,10 +54,6 @@ class Product
     public function getCourse(): string
     {
         return $this->course;
-    }
-    public function getType(): string
-    {
-        return $this->type;
     }
     public function update(string $name, Price $price, File $file, string $cipher): void
     {
