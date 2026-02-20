@@ -16,7 +16,7 @@ class Access
         private string $name,
         #[ORM\Column(type:'string', length: 25)]
         private string $cipher,
-        #[ORM\Column(type: 'email')]
+        #[ORM\Column(type: 'access_email')]
         private Email $email,
         #[ORM\Column(type:'string', length: 255)]
         private string $productId,
