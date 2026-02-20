@@ -39,7 +39,8 @@ class HandlerTest extends TestCase
             ->willReturn(new ProductQueryDTO(
                 $productId,
                 $name = 'Name',
-                $cipher = 'ot1555.5'
+                $cipher = 'ot1555.5',
+                'ppe/template.txt'
             ));
 
         $uuidConverter->expects($this->once())->method('encode')->willReturn($encodedPart);

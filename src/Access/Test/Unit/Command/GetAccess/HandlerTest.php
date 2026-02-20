@@ -50,10 +50,10 @@ class HandlerTest extends TestCase
             )
         );
 
-        $path = $handler->handle($command);
+        $dto = $handler->handle($command);
 
-        self::assertFileExists($path);
-        self::assertEquals('/tmp/'.$tempFile, $path);
+        self::assertFileExists($dto->pathToFile);
+        self::assertEquals('/tmp/'.$tempFile, $dto->pathToFile);
     }
 
     public function testExpired(): void
