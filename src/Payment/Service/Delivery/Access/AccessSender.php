@@ -19,7 +19,7 @@ class AccessSender
     ){
     }
 
-    public function send(Email $email, OpenAccessDTO $accessDTO, $template): void
+    public function send(Email $email, OpenAccessDTO $accessDTO, string $template): void
     {
         $message = new \Symfony\Component\Mime\Email();
         $message->subject($accessDTO->name);

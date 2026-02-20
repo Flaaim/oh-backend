@@ -26,7 +26,7 @@ return [
             $container->get(Environment::class),
             $container->get(LoggerInterface::class),
         );
-        $fileDelivery = new FileDelivery($fileSender, $container->get(RootPath::class),);
+        $fileDelivery = new FileDelivery($fileSender, $container->get(RootPath::class));
 
         $accessSender = new AccessSender(
             $container->get(MailerInterface::class),

@@ -2,8 +2,6 @@
 
 namespace Test\Functional\Payment\HookPayment;
 
-use App\Http\JsonResponse;
-use App\Payment\Command\HookPayment\Handler;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
 
@@ -16,12 +14,12 @@ class RequestActionTest extends WebTestCase
             RequestFixture::class,
         ]);
     }
-    public function testSuccess(): void
+    public function testFileSuccess(): void
     {
         $this->mailer()->clear();
 
         $response = $this->app()->handle(self::json('POST', '/payment-service/payment-webhook',
-            $this->getRequestBody()
+            $this->getRequestBody('file')
         ));
 
         self::assertEquals(204, $response->getStatusCode());
@@ -33,7 +31,24 @@ class RequestActionTest extends WebTestCase
         self::assertGreaterThan(0, $data['total']);
     }
 
-    private function getRequestBody(): array
+    public function testAccessSuccess(): void
+    {
+        $this->mailer()->clear();
+
+        $response = $this->app()->handle(self::json('POST', '/payment-service/payment-webhook',
+            $this->getRequestBody('access')
+        ));
+
+        self::assertEquals(204, $response->getStatusCode());
+        self::assertEquals('', (string)$response->getBody());
+
+        $json = file_get_contents('http://mailer:8025/api/v2/search?query=test@app.ru&kind=to');
+        $data = Json::decode($json);
+
+        self::assertGreaterThan(0, $data['total']);
+    }
+
+    private function getRequestBody(string $type): array
     {
         return [
             'type' => 'notification',
@@ -59,7 +74,8 @@ class RequestActionTest extends WebTestCase
                 'metadata' => [
                     'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f',
                     'cms_name' => 'yookassa_sdk_php_3',
-                    'email' => 'test@app.ru'
+                    'email' => 'test@app.ru',
+                    'type' => $type
                 ]
             ]
         ];
