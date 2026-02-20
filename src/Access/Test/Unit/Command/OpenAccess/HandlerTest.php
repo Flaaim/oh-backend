@@ -7,6 +7,7 @@ use App\Access\Command\OpenAccess\Handler;
 use App\Access\Entity\Access;
 use App\Access\Entity\AccessRepository;
 use App\Access\Entity\Email;
+use App\Access\Service\UrlGenerator;
 use App\Flusher;
 use App\Shared\Domain\ProductQuery\ProductQueryDTO;
 use App\Shared\Domain\ProductQuery\ProductQueryInterface;
@@ -24,15 +25,16 @@ class HandlerTest extends TestCase
         $handler = new Handler(
             $productQuery = $this->createMock(ProductQueryInterface::class),
             $accesses = $this->createMock(AccessRepository::class),
-            $flusher = $this->createMock(Flusher::class)
+            $flusher = $this->createMock(Flusher::class),
+            $urlGenerator = $this->createMock(UrlGenerator::class)
         );
 
         $productQuery->expects($this->once())->method('getProduct')
             ->with($this->equalTo($productId))
             ->willReturn(new ProductQueryDTO(
                 $productId,
-                'Name',
-                'ot1555.5'
+                $name = 'Name',
+                $cipher = 'ot1555.5'
             ));
 
         $accesses->expects($this->once())->method('create')->with(
@@ -41,7 +43,10 @@ class HandlerTest extends TestCase
 
         $flusher->expects($this->once())->method('flush');
 
-        $handler->handle($command);
+        $openAccessDTO = $handler->handle($command);
+
+        self::assertEquals($openAccessDTO->name, $name);
+        self::assertEquals($openAccessDTO->cipher, $cipher);
     }
 
     public function testFailed(): void
@@ -54,7 +59,8 @@ class HandlerTest extends TestCase
         $handler = new Handler(
             $productQuery = $this->createMock(ProductQueryInterface::class),
             $accesses = $this->createMock(AccessRepository::class),
-            $flusher = $this->createMock(Flusher::class)
+            $flusher = $this->createMock(Flusher::class),
+            $urlGenerator = $this->createMock(UrlGenerator::class)
         );
 
         $productQuery->expects($this->once())->method('getProduct')
