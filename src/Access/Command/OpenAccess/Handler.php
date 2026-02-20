@@ -8,9 +8,10 @@ use App\Access\Entity\AccessRepository;
 use App\Access\Entity\DTO\OpenAccessDTO;
 use App\Access\Entity\Email;
 use App\Access\Entity\Token;
-use App\Access\Service\UrlGenerator;
+use App\Access\Service\UuidConverter;
 use App\Flusher;
 use App\Shared\Domain\ProductQuery\ProductQueryInterface;
+use App\Shared\Domain\ValueObject\BaseUrl;
 use Ramsey\Uuid\Uuid;
 
 class Handler
@@ -19,7 +20,8 @@ class Handler
         private readonly ProductQueryInterface $productQuery,
         private readonly AccessRepository $accesses,
         private readonly Flusher $flusher,
-        private readonly UrlGenerator $urlGenerator
+        private readonly BaseUrl $baseUrl,
+        private readonly UuidConverter $uuidConverter,
     ){
     }
 
@@ -41,8 +43,10 @@ class Handler
 
         $this->flusher->flush();
 
+        $url = $this->baseUrl->getValue() . '/' . $this->uuidConverter->encode($access->getToken()->getValue());
+
         return new OpenAccessDTO(
-            $this->urlGenerator->generate($access->getToken()->getValue()),
+            $url,
             $access->getName(),
             $access->getCipher(),
         );
