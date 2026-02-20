@@ -28,4 +28,19 @@ class AccessRepository
     {
         $this->em->persist($access);
     }
+
+    public function getByToken(string $token)
+    {
+        $queryBuilder = $this->repo->createQueryBuilder('p');
+        $access = $queryBuilder->where('p.token.value = :token')
+            ->setParameter('token', $token)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        if(!$access){
+            throw new \DomainException('Access not found.');
+        }
+
+        return $access;
+    }
 }
