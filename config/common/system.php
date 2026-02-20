@@ -3,6 +3,7 @@
 
 declare(strict_types=1);
 
+use App\Access\Service\UrlGenerator;
 use App\Shared\Domain\Service\Template\RootPath;
 use Psr\Container\ContainerInterface;
 
@@ -18,4 +19,8 @@ return [
             $container->get('config')['template_paths'],
         );
     },
+    UrlGenerator::class => function (ContainerInterface $container) {
+        $baseUrl = getenv('SITE_URL');
+        return new UrlGenerator($baseUrl);
+    }
 ];
