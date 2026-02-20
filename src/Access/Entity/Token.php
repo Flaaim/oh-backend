@@ -4,7 +4,8 @@ namespace App\Access\Entity;
 
 use DateTimeImmutable;
 use Webmozart\Assert\Assert;
-
+use Doctrine\ORM\Mapping as ORM;
+#[ORM\Embeddable]
 class Token
 {
     private string $value;
