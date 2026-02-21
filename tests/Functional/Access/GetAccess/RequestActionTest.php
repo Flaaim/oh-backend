@@ -1,0 +1,107 @@
+<?php
+
+namespace Test\Functional\Access\GetAccess;
+
+use App\Access\Service\UuidConverter;
+use App\Product\Test\TempDir;
+use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
+use Test\Functional\Json;
+use Test\Functional\WebTestCase;
+
+class RequestActionTest extends WebTestCase
+{
+    use ArraySubsetAsserts;
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->loadFixtures([RequestFixture::class]);
+        $this->tempDir = TempDir::create();
+    }
+    public function testSuccess(): void
+    {
+        $encodedToken = $this->getEncodedToken('b035e3dc-cadc-45dd-85a1-817b6060d6fe');
+        $response = $this->app()->handle(self::json('GET', '/payment-service/access/get?token='.$encodedToken));
+
+        self::assertEquals(200, $response->getStatusCode());
+
+        self::assertJson($body = (string)$response->getBody());
+        $data = Json::decode($body);
+
+        self::assertArraySubset([
+            'name' => 'Оказание первой помощи пострадавшим',
+            'cipher' => 'ОТ 201.18',
+            'expiredAt' => (new \DateTimeImmutable('+ 3 days'))->format('Y-m-d'),
+        ], $data);
+
+        self::assertFileExists($data['pathToFile']);
+    }
+    public function testNotFound(): void
+    {
+        $encodedToken = $this->getEncodedToken('94710e2e-02e5-439c-8674-d75178c3b59a');
+        $response = $this->app()->handle(self::json('GET', '/payment-service/access/get?token='.$encodedToken));
+
+        self::assertEquals(400, $response->getStatusCode());
+        self::assertJson($body = (string)$response->getBody());
+        $data = Json::decode($body);
+
+        self::assertArraySubset([
+            'message' => 'Access not found. token: 94710e2e-02e5-439c-8674-d75178c3b59a',
+        ], $data);
+    }
+    public function invalidToken(): void
+    {
+        $response = $this->app()->handle(self::json('GET', '/payment-service/access/get?token=invalid'));
+
+        self::assertEquals(422, $response->getStatusCode());
+        self::assertJson($body = (string)$response->getBody());
+
+        $data = Json::decode($body);
+
+        self::assertEquals([
+            'errors' => [
+                'encodedToken' => 'The format URL must be a valid.'
+            ]
+        ], $data);
+    }
+
+    public function testEmpty(): void
+    {
+        $response = $this->app()->handle(self::json('GET', '/payment-service/access/get?token='));
+
+        self::assertEquals(422, $response->getStatusCode());
+        self::assertJson($body = (string)$response->getBody());
+
+        $data = Json::decode($body);
+
+        self::assertEquals([
+            'errors' => [
+                'encodedToken' => 'This value should have exactly 22 characters.'
+            ]
+        ], $data);
+    }
+    public function testExpired(): void
+    {
+        $encodedToken = $this->getEncodedToken('02065614-eb7b-49a9-852d-0490972d4891');
+        $response = $this->app()->handle(self::json('GET', '/payment-service/access/get?token='.$encodedToken));
+
+        self::assertEquals(400, $response->getStatusCode());
+
+        self::assertJson($body = (string)$response->getBody());
+
+        $data = Json::decode($body);
+
+        self::assertArraySubset([
+            'message' => 'Срок действия доступа к файлу истек...',
+        ], $data);
+    }
+    public function tearDown(): void
+    {
+        $this->tempDir->clear();
+    }
+
+    private function getEncodedToken(string $uuid): string
+    {
+        return (new UuidConverter())->encode($uuid);
+    }
+
+}
