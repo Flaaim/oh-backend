@@ -22,6 +22,10 @@ return static function(App $app): void {
             $group->post('/upload', Product\Upload\RequestAction::class);
         })->add(AuthMiddleware::class);
 
+        $group->group('/access', function (RouteCollectorProxy $group): void {
+            $group->get('/get', Access\GetAccess\RequestAction::class);
+        });
+
         $group->group('/auth', function (RouteCollectorProxy $group): void {
             $group->post('/login', GetToken\RequestAction::class);
         });

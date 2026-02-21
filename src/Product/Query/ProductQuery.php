@@ -21,6 +21,7 @@ class ProductQuery implements ProductQueryInterface
             $product->getId(),
             $product->getName(),
             $product->getCipher(),
+            $product->getFile()->getValue(),
         );
     }
 }

@@ -6,7 +6,6 @@ use App\Product\Entity\Currency;
 use App\Product\Entity\File;
 use App\Product\Entity\Price;
 use App\Product\Entity\Product;
-use App\Product\Entity\Type;
 use App\Shared\Domain\ValueObject\Id;
 
 class ProductBuilder

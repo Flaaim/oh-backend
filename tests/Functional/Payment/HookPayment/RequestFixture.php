@@ -2,6 +2,7 @@
 
 namespace Test\Functional\Payment\HookPayment;
 
+use App\Product\Entity\File;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
 use Test\Functional\Payment\PaymentBuilder;
@@ -12,7 +13,8 @@ class RequestFixture extends AbstractFixture
 {
     public function load(ObjectManager $manager): void
     {
-        $product = (new ProductBuilder())->build();
+        $product = (new ProductBuilder())->withFile(new File($this->tempFile()))
+            ->build();
 
         $manager->persist($product);
 
@@ -23,5 +25,11 @@ class RequestFixture extends AbstractFixture
         $manager->persist($payment);
 
         $manager->flush();
+    }
+
+    public function tempFile(): string
+    {
+        $file1 = tempnam(sys_get_temp_dir(), 'test');
+        return basename($file1);
     }
 }

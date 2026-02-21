@@ -22,7 +22,7 @@ class Handler
 
     public function handle(Command $command): GetAccessDTO
     {
-        $token = $this->uuidConverter->decode($command->url);
+        $token = $this->uuidConverter->decode($command->encodedToken);
 
         $access = $this->accesses->getByToken($token);
         /** @var Access $access */
@@ -41,7 +41,7 @@ class Handler
             $pathToFile,
             $access->getName(),
             $access->getCipher(),
-            $access->getToken()->getExpired()->format('Y-m-d H:i:s'),
+            $access->getToken()->getExpired()->format('Y-m-d'),
         );
     }
 }
