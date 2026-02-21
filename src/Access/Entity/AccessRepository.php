@@ -38,7 +38,7 @@ class AccessRepository
             ->getOneOrNullResult();
 
         if(!$access){
-            throw new \DomainException('Access not found.');
+            throw new \DomainException('Access not found. token: '. $token);
         }
 
         return $access;
