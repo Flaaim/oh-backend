@@ -10,7 +10,7 @@ class Access
 {
     public function __construct(
         #[ORM\Id]
-        #[ORM\Column(type:'id', length: 255)]
+        #[ORM\Column(type:'access_id', length: 255)]
         private AccessId $id,
         #[ORM\Column(type:'string', length: 255)]
         private string $name,
