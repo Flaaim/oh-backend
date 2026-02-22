@@ -15,7 +15,6 @@ class AccessBuilder
     private Email $email;
     private string $productId;
     private Token $token;
-    private ?\DateTimeImmutable $expire = null;
 
     public function __construct()
     {
@@ -72,10 +71,5 @@ class AccessBuilder
             $this->token,
         );
 
-        if($this->expire){
-            $this->token = new Token($this->token->getValue(), $this->expire);
-        }
-
-        return $access;
     }
 }
