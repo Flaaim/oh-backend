@@ -19,7 +19,7 @@ class RequestActionTest extends WebTestCase
     }
     public function testSuccess(): void
     {
-        $encodedToken = $this->getEncodedToken('b035e3dc-cadc-45dd-85a1-817b6060d6fe');
+        $encodedToken = $this->getEncodedString('b035e3dc-cadc-45dd-85a1-817b6060d6fe');
         $response = $this->app()->handle(self::json('GET', '/payment-service/access/get?token='.$encodedToken));
 
         self::assertEquals(200, $response->getStatusCode());
@@ -27,18 +27,18 @@ class RequestActionTest extends WebTestCase
         self::assertJson($body = (string)$response->getBody());
         $data = Json::decode($body);
 
-        self::assertArraySubset([
+        self::assertEquals([
             'name' => 'Оказание первой помощи пострадавшим',
             'cipher' => 'ОТ 201.18',
             'expiredAt' => (new \DateTimeImmutable('+ 3 days'))->format('Y-m-d'),
-            'email' => 'test@email.ru'
+            'email' => 'test@email.ru',
+            'productId' => $this->getEncodedString('b38e76c0-ac23-4c48-85fd-975f32c8801f')
         ], $data);
 
-        self::assertFileExists($data['pathToFile']);
     }
     public function testNotFound(): void
     {
-        $encodedToken = $this->getEncodedToken('94710e2e-02e5-439c-8674-d75178c3b59a');
+        $encodedToken = $this->getEncodedString('94710e2e-02e5-439c-8674-d75178c3b59a');
         $response = $this->app()->handle(self::json('GET', '/payment-service/access/get?token='.$encodedToken));
 
         self::assertEquals(400, $response->getStatusCode());
@@ -82,7 +82,7 @@ class RequestActionTest extends WebTestCase
     }
     public function testExpired(): void
     {
-        $encodedToken = $this->getEncodedToken('02065614-eb7b-49a9-852d-0490972d4891');
+        $encodedToken = $this->getEncodedString('02065614-eb7b-49a9-852d-0490972d4891');
         $response = $this->app()->handle(self::json('GET', '/payment-service/access/get?token='.$encodedToken));
 
         self::assertEquals(400, $response->getStatusCode());
@@ -100,7 +100,7 @@ class RequestActionTest extends WebTestCase
         $this->tempDir->clear();
     }
 
-    private function getEncodedToken(string $uuid): string
+    private function getEncodedString(string $uuid): string
     {
         return (new UuidConverter())->encode($uuid);
     }
