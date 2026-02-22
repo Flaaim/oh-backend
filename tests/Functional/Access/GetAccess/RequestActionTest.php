@@ -31,6 +31,7 @@ class RequestActionTest extends WebTestCase
             'name' => 'Оказание первой помощи пострадавшим',
             'cipher' => 'ОТ 201.18',
             'expiredAt' => (new \DateTimeImmutable('+ 3 days'))->format('Y-m-d'),
+            'email' => 'test@email.ru'
         ], $data);
 
         self::assertFileExists($data['pathToFile']);

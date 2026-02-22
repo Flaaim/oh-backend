@@ -42,6 +42,7 @@ class Handler
             $access->getName(),
             $access->getCipher(),
             $access->getToken()->getExpired()->format('Y-m-d'),
+            $access->getEmail()->getValue(),
         );
     }
 }
