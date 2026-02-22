@@ -37,8 +37,11 @@ class Handler
         if(!file_exists($pathToFile)){
             throw new \DomainException('Файл не найден...');
         }
+
+        $encodedProductId = $this->uuidConverter->encode($access->getProductId());
+
         return new GetAccessDTO(
-            $pathToFile,
+            $encodedProductId,
             $access->getName(),
             $access->getCipher(),
             $access->getToken()->getExpired()->format('Y-m-d'),

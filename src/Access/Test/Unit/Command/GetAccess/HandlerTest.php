@@ -8,6 +8,7 @@ use App\Access\Command\GetAccess\Handler;
 use App\Access\Entity\Access;
 use App\Access\Entity\AccessRepository;
 use App\Access\Service\UuidConverter;
+use App\Access\Test\Builder\AccessBuilder;
 use App\Shared\Domain\ProductQuery\ProductQueryDTO;
 use App\Shared\Domain\ProductQuery\ProductQueryInterface;
 use App\Shared\Domain\ValueObject\RootPath;
@@ -32,15 +33,15 @@ class HandlerTest extends TestCase
             $accesses = $this->createMock(AccessRepository::class),
             new UuidConverter(),
             $productQuery = $this->createMock(ProductQueryInterface::class),
-            $rootPath = new RootPath(sys_get_temp_dir()),
+            new RootPath(sys_get_temp_dir()),
         );
 
         $accesses->expects(self::once())->method('getByToken')
             ->with(
                 $this->equalTo($uuid),
-            )->willReturn($access = $this->createMock(Access::class));
+            )->willReturn($access = (new AccessBuilder())->build());
 
-        $access->expects(self::once())->method('isExpired')->willReturn(false);
+
         $productQuery->expects(self::once())->method('getProduct')->willReturn(
             new ProductQueryDTO(
                 Uuid::uuid4()->toString(),
@@ -52,8 +53,12 @@ class HandlerTest extends TestCase
 
         $dto = $handler->handle($command);
 
-        self::assertFileExists($dto->pathToFile);
-        self::assertEquals('/tmp/'.$tempFile, $dto->pathToFile);
+        self::assertFileExists('/tmp/'.$tempFile);
+        self::assertEquals(22, strlen($dto->productId));
+        self::assertEquals($access->getEmail()->getValue(), $dto->email);
+        self::assertEquals($access->getCipher(), $dto->cipher);
+        self::assertEquals($access->getName(), $dto->name);
+        self::assertFalse($access->isExpired());
     }
 
     public function testExpired(): void

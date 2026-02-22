@@ -10,7 +10,6 @@ class UuidConverter
     {
         Assert::uuid($uuid);
 
-
         $binaryUuid = hex2bin(str_replace('-', '', $uuid));
 
         $base64 = base64_encode($binaryUuid);
