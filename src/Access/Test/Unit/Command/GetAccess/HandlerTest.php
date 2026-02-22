@@ -17,32 +17,36 @@ use Ramsey\Uuid\Uuid;
 
 class HandlerTest extends TestCase
 {
-    private readonly UuidConverter $uuidConverter;
+    private string $uuid;
+    private Command $command;
+    private Handler $handler;
+    private ProductQueryInterface $productQuery;
+    private AccessRepository $accesses;
     public function setUp(): void
     {
-        $this->uuidConverter = new UuidConverter();
+        $this->uuid = Uuid::uuid4()->toString();
+        $uuidConverter = new UuidConverter();
+        $this->command = new Command(
+            $uuidConverter->encode($this->uuid)
+        );
+        $this->handler = new Handler(
+            $this->accesses = $this->createMock(AccessRepository::class),
+            $uuidConverter,
+            $this->productQuery = $this->createMock(ProductQueryInterface::class),
+            new RootPath(sys_get_temp_dir())
+        );
+
     }
     public function testSuccess(): void
     {
-        $command = new Command(
-            $this->uuidConverter->encode($uuid = Uuid::uuid4()->toString()),
-        );
         $tempFile = $this->tempFile();
 
-        $handler = new Handler(
-            $accesses = $this->createMock(AccessRepository::class),
-            new UuidConverter(),
-            $productQuery = $this->createMock(ProductQueryInterface::class),
-            new RootPath(sys_get_temp_dir()),
-        );
-
-        $accesses->expects(self::once())->method('getByToken')
+        $this->accesses->expects(self::once())->method('getByToken')
             ->with(
-                $this->equalTo($uuid),
+                $this->equalTo($this->uuid),
             )->willReturn($access = (new AccessBuilder())->build());
 
-
-        $productQuery->expects(self::once())->method('getProduct')->willReturn(
+        $this->productQuery->expects(self::once())->method('getProduct')->willReturn(
             new ProductQueryDTO(
                 Uuid::uuid4()->toString(),
                 'Ответы на вопросы тестирования',
@@ -51,7 +55,7 @@ class HandlerTest extends TestCase
             )
         );
 
-        $dto = $handler->handle($command);
+        $dto = $this->handler->handle($this->command);
 
         self::assertFileExists('/tmp/'.$tempFile);
         self::assertEquals(22, strlen($dto->productId));
@@ -63,48 +67,28 @@ class HandlerTest extends TestCase
 
     public function testExpired(): void
     {
-        $command = new Command(
-            $this->uuidConverter->encode($uuid = Uuid::uuid4()->toString()),
-        );
-
-        $handler = new Handler(
-            $accesses = $this->createMock(AccessRepository::class),
-            new UuidConverter(),
-            $this->createMock(ProductQueryInterface::class),
-            new RootPath(sys_get_temp_dir()),
-        );
-
-        $accesses->expects(self::once())->method('getByToken')
+        $this->accesses->expects(self::once())->method('getByToken')
             ->with(
-                $this->equalTo($uuid),
+                $this->equalTo($this->uuid),
             )->willReturn($access = $this->createMock(Access::class));
 
         $access->expects(self::once())->method('isExpired')->willReturn(true);
 
         self::expectException(\DomainException::class);
         self::expectExceptionMessage('Срок действия доступа к файлу истек...');
-        $handler->handle($command);
+
+        $this->handler->handle($this->command);
     }
     public function testFileNotExists(): void
     {
-        $command = new Command(
-            $this->uuidConverter->encode($uuid = Uuid::uuid4()->toString()),
-        );
-
-        $handler = new Handler(
-            $accesses = $this->createMock(AccessRepository::class),
-            new UuidConverter(),
-            $productQuery = $this->createMock(ProductQueryInterface::class),
-            $rootPath = new RootPath(sys_get_temp_dir()),
-        );
-
-        $accesses->expects(self::once())->method('getByToken')
+        $this->accesses->expects(self::once())->method('getByToken')
             ->with(
-                $this->equalTo($uuid),
+                $this->equalTo($this->uuid),
             )->willReturn($access = $this->createMock(Access::class));
 
         $access->expects(self::once())->method('isExpired')->willReturn(false);
-        $productQuery->expects(self::once())->method('getProduct')->willReturn(
+
+        $this->productQuery->expects(self::once())->method('getProduct')->willReturn(
             new ProductQueryDTO(
                 Uuid::uuid4()->toString(),
                 'Ответы на вопросы тестирования',
@@ -113,11 +97,10 @@ class HandlerTest extends TestCase
             )
         );
 
-
         self::expectException(\DomainException::class);
         self::expectExceptionMessage('Файл не найден...');
 
-        $handler->handle($command);
+        $this->handler->handle($this->command);
     }
 
     public function tempFile(): string
