@@ -55,11 +55,6 @@ class AccessBuilder
         $this->productId = $productId;
         return $this;
     }
-    public function expired(): self
-    {
-        $this->expire =  new \DateTimeImmutable('-3 days');
-        return $this;
-    }
     public function build(): Access
     {
         return  new Access(

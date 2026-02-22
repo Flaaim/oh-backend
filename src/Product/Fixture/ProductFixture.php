@@ -19,7 +19,7 @@ class ProductFixture extends AbstractFixture
             new Id('b38e76c0-ac23-4c48-85fd-975f32c8801f'),
             'СИЗ образцы документов',
             new Price(450.00, new Currency()),
-            new File('/ppe/templates.txt'),
+            new File('/ot201/ot201.18.pdf'),
             'ot161.4',
             '161'
         );

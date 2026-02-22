@@ -24,6 +24,8 @@ return static function(App $app): void {
 
         $group->group('/access', function (RouteCollectorProxy $group): void {
             $group->get('/get', Access\GetAccess\RequestAction::class);
+
+            $group->get('/stream-pdf', Access\Stream\RequestAction::class);
         });
 
         $group->group('/auth', function (RouteCollectorProxy $group): void {
