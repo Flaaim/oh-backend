@@ -17,6 +17,7 @@ services:
           APP_DEBUG: 1
           SITE_URL: http://localhost:80
           SITE_NAME: Docker
+          LINK_ANSWERS: http://localhost/answers
           APP_ENV: dev
           DB_HOST: mysql
           DB_USER: app
@@ -45,6 +46,7 @@ services:
           APP_DEBUG: 1
           SITE_URL: http://localhost:80
           SITE_NAME: Docker
+          LINK_ANSWERS: http://localhost/answers
           APP_ENV: dev
           DB_HOST: mysql
           DB_USER: app

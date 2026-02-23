@@ -20,7 +20,7 @@ return [
         );
     },
     BaseUrl::class => function () {
-        $baseUrl = getenv('SITE_URL');
+        $baseUrl = getenv('LINK_ANSWERS');
         return new BaseUrl($baseUrl);
     }
 ];
