@@ -1,6 +1,27 @@
 {% extends '/layout/mail.html.twig' %}
 
 {% block content %}
-    Спасибо за покупку! Ваша ссылка для доступа к ответам <a href="{{ link }}">{{ link }}</a>
+    <tr>
+        <td class="wrapper">
+            <p>Добрый день!</p>
+            <p>Спасибо за покупку! Ваша ссылка для доступа к ответам:</p>
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                <tbody>
+                <tr>
+                    <td align="left">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                            <tr>
+                                <td>  <a href="{{ link }}">Ответы</a>.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <p>Внимание! Срок действия ссылки ограничен 3 днями.</p>
+        </td>
+    </tr>
 
 {% endblock %}
