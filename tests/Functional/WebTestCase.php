@@ -26,6 +26,19 @@ class WebTestCase extends TestCase
         $request->getBody()->write(json_encode($body, JSON_THROW_ON_ERROR));
         return $request;
     }
+    protected static function access(string $method, string $path, array $body = []): ServerRequestInterface
+    {
+        $request = (new ServerRequestFactory())->createServerRequest($method, $path, [
+            'REMOTE_ADDR' => '127.0.0.1',
+        ])
+            ->withHeader('Accept', 'application/json')
+            ->withHeader('Content-Type', 'application/json')
+            ->withHEader('User-Agent', 'Test User-Agent');
+
+        $request->getBody()->write(json_encode($body, JSON_THROW_ON_ERROR));
+        return $request;
+
+    }
     protected static function formData(string $method, string $path, array $body = [], array $file = []): ServerRequestInterface
     {
         $request = self::request($method, $path)

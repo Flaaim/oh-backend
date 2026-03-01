@@ -20,7 +20,7 @@ class RequestActionTest extends WebTestCase
     public function testSuccess(): void
     {
         $encodedToken = $this->getEncodedString('b035e3dc-cadc-45dd-85a1-817b6060d6fe');
-        $response = $this->app()->handle(self::json('GET', '/payment-service/access/get?token='.$encodedToken));
+        $response = $this->app()->handle(self::access('GET', '/payment-service/access/get?token='.$encodedToken));
 
         self::assertEquals(200, $response->getStatusCode());
 
@@ -39,7 +39,7 @@ class RequestActionTest extends WebTestCase
     public function testNotFound(): void
     {
         $encodedToken = $this->getEncodedString('94710e2e-02e5-439c-8674-d75178c3b59a');
-        $response = $this->app()->handle(self::json('GET', '/payment-service/access/get?token='.$encodedToken));
+        $response = $this->app()->handle(self::access('GET', '/payment-service/access/get?token='.$encodedToken));
 
         self::assertEquals(400, $response->getStatusCode());
         self::assertJson($body = (string)$response->getBody());
@@ -51,7 +51,7 @@ class RequestActionTest extends WebTestCase
     }
     public function invalidToken(): void
     {
-        $response = $this->app()->handle(self::json('GET', '/payment-service/access/get?token=invalid'));
+        $response = $this->app()->handle(self::access('GET', '/payment-service/access/get?token=invalid'));
 
         self::assertEquals(422, $response->getStatusCode());
         self::assertJson($body = (string)$response->getBody());
@@ -67,7 +67,7 @@ class RequestActionTest extends WebTestCase
 
     public function testEmpty(): void
     {
-        $response = $this->app()->handle(self::json('GET', '/payment-service/access/get?token='));
+        $response = $this->app()->handle(self::access('GET', '/payment-service/access/get?token='));
 
         self::assertEquals(422, $response->getStatusCode());
         self::assertJson($body = (string)$response->getBody());
@@ -76,14 +76,14 @@ class RequestActionTest extends WebTestCase
 
         self::assertEquals([
             'errors' => [
-                'encodedToken' => 'This value should have exactly 22 characters.'
+                'token' => 'This value should have exactly 22 characters.'
             ]
         ], $data);
     }
     public function testExpired(): void
     {
         $encodedToken = $this->getEncodedString('02065614-eb7b-49a9-852d-0490972d4891');
-        $response = $this->app()->handle(self::json('GET', '/payment-service/access/get?token='.$encodedToken));
+        $response = $this->app()->handle(self::access('GET', '/payment-service/access/get?token='.$encodedToken));
 
         self::assertEquals(400, $response->getStatusCode());
 

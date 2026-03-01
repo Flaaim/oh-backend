@@ -10,6 +10,7 @@ use App\Shared\Domain\ProductQuery\ProductQueryInterface;
 use App\Shared\Domain\ValueObject\RootPath;
 
 
+
 class Handler
 {
     public function __construct(

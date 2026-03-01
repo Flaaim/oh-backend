@@ -4,7 +4,6 @@ namespace App\Http\Action\Access\GetAccess;
 
 use App\Access\Command\GetAccess\Command;
 use App\Access\Command\GetAccess\Handler;
-use App\Access\Entity\Access;
 use App\Http\JsonResponse;
 use App\Http\Validator\Validator;
 use Psr\Http\Message\ResponseInterface;
@@ -23,7 +22,10 @@ class RequestAction implements RequestHandlerInterface
     {
         $encodedToken = $request->getQueryParams()['token'] ?? '';
 
-        $command = new Command($encodedToken);
+
+        $command = new Command(
+            $encodedToken
+        );
 
         $this->validator->validate($command);
 
