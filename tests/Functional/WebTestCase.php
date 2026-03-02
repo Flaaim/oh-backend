@@ -26,18 +26,23 @@ class WebTestCase extends TestCase
         $request->getBody()->write(json_encode($body, JSON_THROW_ON_ERROR));
         return $request;
     }
-    protected static function access(string $method, string $path, array $body = []): ServerRequestInterface
-    {
-        $request = (new ServerRequestFactory())->createServerRequest($method, $path, [
-            'REMOTE_ADDR' => '127.0.0.1',
-        ])
+    protected static function access(
+        string $method,
+        string $path,
+        array $body = [],
+        ?string $sessionId = null
+    ): ServerRequestInterface {
+        $sessionId = $sessionId ?? bin2hex(random_bytes(32));
+
+        $request = (new ServerRequestFactory())->createServerRequest($method, $path, ['REMOTE_ADDR' => '127.0.0.1'])
             ->withHeader('Accept', 'application/json')
             ->withHeader('Content-Type', 'application/json')
-            ->withHEader('User-Agent', 'Test User-Agent');
+            ->withHeader('User-Agent', 'Test User-Agent')
+            ->withCookieParams(['pdf_session' => $sessionId]);
 
         $request->getBody()->write(json_encode($body, JSON_THROW_ON_ERROR));
-        return $request;
 
+        return $request;
     }
     protected static function formData(string $method, string $path, array $body = [], array $file = []): ServerRequestInterface
     {
