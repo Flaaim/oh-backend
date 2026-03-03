@@ -33,7 +33,6 @@ class FileResponse extends Response
                 'Content-Type' => 'application/pdf',
                 'Content-Disposition' => 'inline; filename="' . basename($path) . '"',
                 'Content-Length' => filesize($path),
-                'Accept-Ranges' => 'none',
                 'Cache-Control' => 'private, no-cache, no-store, must-revalidate',
                 'Pragma' => 'no-cache',
                 'Expires' => '0',
