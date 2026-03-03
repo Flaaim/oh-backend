@@ -7,7 +7,7 @@ use App\Http\Action\Payment;
 use App\Http\Action\Product;
 use App\Http\Action\Access;
 use App\Http\Middleware\AuthMiddleware;
-use App\Http\Middleware\CheckSessionMiddleware;
+use App\Http\Middleware\InitializeSessionMiddleware;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 
@@ -24,9 +24,9 @@ return static function(App $app): void {
         })->add(AuthMiddleware::class);
 
         $group->group('/access', function (RouteCollectorProxy $group): void {
-            $group->get('/get', Access\GetAccess\RequestAction::class)->add(CheckSessionMiddleware::class);
+            $group->get('/get', Access\GetAccess\RequestAction::class)->add(InitializeSessionMiddleware::class);
 
-            $group->get('/stream-pdf', Access\Stream\RequestAction::class)->add(CheckSessionMiddleware::class);
+            $group->get('/stream-pdf', Access\Stream\RequestAction::class)->add(InitializeSessionMiddleware::class);
         });
 
         $group->group('/auth', function (RouteCollectorProxy $group): void {

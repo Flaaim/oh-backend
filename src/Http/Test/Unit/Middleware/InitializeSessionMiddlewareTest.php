@@ -3,7 +3,7 @@
 namespace App\Http\Test\Unit\Middleware;
 
 use App\Access\Command\SyncSession\Handler;
-use App\Http\Middleware\CheckSessionMiddleware;
+use App\Http\Middleware\InitializeSessionMiddleware;
 use App\Http\Validator\ValidationException;
 use App\Http\Validator\Validator;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +15,7 @@ use Slim\Psr7\Factory\ServerRequestFactory;
 use Symfony\Component\Validator\Validation;
 use Test\Functional\Json;
 
-class CheckSessionMiddlewareTest extends TestCase
+class InitializeSessionMiddlewareTest extends TestCase
 {
 
     public function testSuccess(): void
@@ -26,7 +26,7 @@ class CheckSessionMiddlewareTest extends TestCase
         $cookieParams = ['pdf_session' => bin2hex(random_bytes(32))];
 
 
-        $middleware = new CheckSessionMiddleware($checkSessionHandler, $validator);
+        $middleware = new InitializeSessionMiddleware($checkSessionHandler, $validator);
 
         $request = (new ServerRequestFactory())->createServerRequest('GET', '/test', [
             'REMOTE_ADDR' => '127.0.0.1',
@@ -55,7 +55,7 @@ class CheckSessionMiddlewareTest extends TestCase
             ->enableAttributeMapping()
             ->getValidator());
 
-        $middleware = new CheckSessionMiddleware($checkSessionHandler, $validator);
+        $middleware = new InitializeSessionMiddleware($checkSessionHandler, $validator);
 
         $request = (new ServerRequestFactory())->createServerRequest('GET', '/test');
 
