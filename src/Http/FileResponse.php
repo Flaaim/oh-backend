@@ -32,12 +32,10 @@ class FileResponse extends Response
             new Headers([
                 'Content-Type' => 'application/pdf',
                 'Content-Disposition' => 'inline; filename="' . basename($path) . '"',
-                'Content-Length' => filesize($path),
-                'Cache-Control' => 'private, no-cache, no-store, must-revalidate',
+                'Cache-Control' => 'private, max-age=600',
                 'Pragma' => 'no-cache',
                 'Expires' => '0',
                 'X-Content-Type-Options' => 'nosniff',
-                'Content-Security-Policy' => 'default-src \'none\'; sandbox',
             ]),
             (new StreamFactory())->createStreamFromFile($path)
         );
