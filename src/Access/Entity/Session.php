@@ -31,17 +31,9 @@ class Session
         $this->lastSeen = new \DateTimeImmutable();
         $this->createdAt = new \DateTimeImmutable();
     }
-    public function isExpired(int $minutes): bool
+    public function getSessionId(): string
     {
-        return $this->lastSeen < new \DateTimeImmutable("-{$minutes} minutes");
-    }
-    public function assertSameSession(string $sessionId): void
-    {
-        if ($this->sessionId !== $sessionId) {
-            throw new \DomainException(
-                'Доступ уже используется на другом устройстве'
-            );
-        }
+        return $this->sessionId;
     }
     public function replace(string $sessionId, string $ip, string $userAgent): void
     {

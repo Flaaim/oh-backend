@@ -48,7 +48,18 @@ class RequestActionTest extends WebTestCase
         $response = $this->app()->handle(self::access('GET', '/payment-service/access/get?token='.$encodedToken, [], $sessionId));
 
         self::assertEquals(200, $response->getStatusCode());
+    }
+    public function testFailedWithDifferentDevice(): void
+    {
+        $encodedToken = $this->getEncodedString('b035e3dc-cadc-45dd-85a1-817b6060d6fe');
+        $sessionId = bin2hex(random_bytes(32));
 
+        $response = $this->app()->handle(self::access('GET', '/payment-service/access/get?token='.$encodedToken, [], $sessionId));
+        self::assertEquals(200, $response->getStatusCode());
+
+        $response = $this->app()->handle(self::access('GET', '/payment-service/access/get?token='.$encodedToken));
+
+        self::assertEquals(200, $response->getStatusCode());
     }
     public function testNotFound(): void
     {

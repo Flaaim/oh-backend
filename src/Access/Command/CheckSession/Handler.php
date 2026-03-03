@@ -36,14 +36,13 @@ class Handler
             return;
         }
 
-        if($session->isExpired(30)){
+        if($session->getSessionId() !== $command->sessionId) {
             $session->replace(
                 $command->sessionId,
                 $command->ip,
                 $command->userAgent,
             );
         }else{
-            $session->assertSameSession($command->sessionId);
             $session->touch();
         }
 
