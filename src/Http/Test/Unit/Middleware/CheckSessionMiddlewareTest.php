@@ -2,7 +2,7 @@
 
 namespace App\Http\Test\Unit\Middleware;
 
-use App\Access\Command\CheckSession\Handler;
+use App\Access\Command\SyncSession\Handler;
 use App\Http\Middleware\CheckSessionMiddleware;
 use App\Http\Validator\ValidationException;
 use App\Http\Validator\Validator;

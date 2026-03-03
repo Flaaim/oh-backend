@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Access\Command\CheckSession\Command;
-use App\Access\Command\CheckSession\Handler;
+use App\Access\Command\SyncSession\Command;
+use App\Access\Command\SyncSession\Handler;
 use App\Http\Validator\Validator;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -33,7 +33,6 @@ class CheckSessionMiddleware implements MiddlewareInterface
         $serverParams = $request->getServerParams();
         $ip = $serverParams['REMOTE_ADDR'] ?? '';
         $userAgent = $request->getHeaderLine('User-Agent');
-
 
         $command = new Command(
             $encodedToken,

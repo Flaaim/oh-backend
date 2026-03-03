@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Access\Command\CheckSession;
+namespace App\Access\Command\SyncSession;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
