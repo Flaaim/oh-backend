@@ -27,7 +27,7 @@ class Handler
 
     public function handle(Command $command): OpenAccessDTO
     {
-        $token = new Token(Uuid::uuid4()->toString(), new \DateTimeImmutable('+2 days'));
+        $token = new Token(Uuid::uuid4()->toString(), new \DateTimeImmutable('+5 days'));
 
         $product = $this->productQuery->getProduct($command->productId);
         $access = new Access(
