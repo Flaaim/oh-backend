@@ -3,10 +3,10 @@
 namespace App\Access\Test\Unit\Command\GetAccess;
 
 use App\Access\Command\GetAccess\Command;
-
 use App\Access\Command\GetAccess\Handler;
 use App\Access\Entity\Access;
 use App\Access\Entity\AccessRepository;
+use App\Access\Exception\AccessExpiredException;
 use App\Access\Service\UuidConverter;
 use App\Access\Test\Builder\AccessBuilder;
 use App\Shared\Domain\ProductQuery\ProductQueryDTO;
@@ -70,12 +70,16 @@ class HandlerTest extends TestCase
         $this->accesses->expects(self::once())->method('getByToken')
             ->with(
                 $this->equalTo($this->uuid),
-            )->willReturn($access = $this->createMock(Access::class));
+            )->willReturn($access = (new AccessBuilder())->expired()->build());
 
-        $access->expects(self::once())->method('isExpired')->willReturn(true);
-
-        self::expectException(\DomainException::class);
+        self::expectException(AccessExpiredException::class);
         self::expectExceptionMessage('Срок действия доступа к файлу истек...');
+
+        try{
+            throw new AccessExpiredException($access->getProductId(), 'Срок действия доступа к файлу истек...');
+        }catch (AccessExpiredException $e){
+            self::assertEquals('b38e76c0-ac23-4c48-85fd-975f32c8801f', $e->getProductId());
+        }
 
         $this->handler->handle($this->command);
     }

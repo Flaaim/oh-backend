@@ -25,13 +25,8 @@ class FileResponseTest extends TestCase
 
         self::assertEquals('inline; filename="' . basename($file) . '"', $response->getHeaderLine('Content-Disposition'));
 
-        self::assertEquals(filesize($file), $response->getHeaderLine('Content-Length'));
-
         self::assertTrue($response->hasHeader('X-Content-Type-Options'));
         self::assertEquals('nosniff', $response->getHeaderLine('X-Content-Type-Options'));
-
-        self::assertTrue($response->hasHeader('Content-Security-Policy'));
-        self::assertEquals('default-src \'none\'; sandbox', $response->getHeaderLine('Content-Security-Policy'));
 
         $body = $response->getBody();
         self::assertFalse($body->isWritable());

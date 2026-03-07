@@ -110,7 +110,7 @@ class RequestActionTest extends WebTestCase
         $encodedToken = $this->getEncodedString('02065614-eb7b-49a9-852d-0490972d4891');
         $response = $this->app()->handle(self::access('GET', '/payment-service/access/get?token='.$encodedToken));
 
-        self::assertEquals(400, $response->getStatusCode());
+        self::assertEquals(410, $response->getStatusCode());
 
         self::assertJson($body = (string)$response->getBody());
 
@@ -118,6 +118,7 @@ class RequestActionTest extends WebTestCase
 
         self::assertArraySubset([
             'message' => 'Срок действия доступа к файлу истек...',
+            'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f'
         ], $data);
     }
     public function tearDown(): void

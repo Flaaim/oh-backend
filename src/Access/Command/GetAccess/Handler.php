@@ -5,10 +5,10 @@ namespace App\Access\Command\GetAccess;
 use App\Access\Entity\Access;
 use App\Access\Entity\AccessRepository;
 use App\Access\Entity\DTO\GetAccessDTO;
+use App\Access\Exception\AccessExpiredException;
 use App\Access\Service\UuidConverter;
 use App\Shared\Domain\ProductQuery\ProductQueryInterface;
 use App\Shared\Domain\ValueObject\RootPath;
-
 
 
 class Handler
@@ -28,7 +28,7 @@ class Handler
         $access = $this->accesses->getByToken($token);
         /** @var Access $access */
         if($access->isExpired()){
-            throw new \DomainException('Срок действия доступа к файлу истек...');
+            throw new AccessExpiredException($access->getProductId(), 'Срок действия доступа к файлу истек...');
         }
 
         $product = $this->productQuery->getProduct($access->getProductId());

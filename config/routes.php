@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Access\Exception\AccessExpiredException;
 use App\Http\Action\Auth\GetToken;
 use App\Http\Action\Payment;
 use App\Http\Action\Product;
 use App\Http\Action\Access;
+use App\Http\Middleware\AccessExpiredExceptionHandler;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\InitializeSessionMiddleware;
 use Slim\App;
@@ -24,7 +26,9 @@ return static function(App $app): void {
         })->add(AuthMiddleware::class);
 
         $group->group('/access', function (RouteCollectorProxy $group): void {
-            $group->get('/get', Access\GetAccess\RequestAction::class)->add(InitializeSessionMiddleware::class);
+            $group->get('/get', Access\GetAccess\RequestAction::class)
+                ->add(AccessExpiredExceptionHandler::class)
+                ->add(InitializeSessionMiddleware::class);
 
             $group->get('/stream-pdf', Access\Stream\RequestAction::class)->add(InitializeSessionMiddleware::class);
         });

@@ -55,6 +55,11 @@ class AccessBuilder
         $this->productId = $productId;
         return $this;
     }
+    public function expired(): self
+    {
+        $this->token =  new Token('14415f3b-3f03-48fc-8abb-435353da4ac5', new \DateTimeImmutable('-3 days'));
+        return $this;
+    }
     public function build(): Access
     {
         return  new Access(
