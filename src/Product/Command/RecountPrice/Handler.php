@@ -17,7 +17,7 @@ class Handler
     {
         $product = $this->products->get(new Id($command->productId));
 
-        $price = $product->recountPrice($command->type);
+        $price = $product->calculatePriceFor($command->type);
 
         return new ProductDTO(
             $product->getId()->getValue(),
