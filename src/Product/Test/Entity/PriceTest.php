@@ -30,4 +30,20 @@ class PriceTest extends TestCase
         $newPrice = new Price(150.00, new Currency('RUB'));
         $this->assertTrue($price->equals($newPrice));
     }
+
+    public function testRecountNoChanges(): void
+    {
+        $price = new Price(150.00, new Currency('RUB'));
+
+        $price->recount('access');
+        self::assertEquals(150.00, $price->getValue());
+    }
+
+    public function testRecount(): void
+    {
+        $price = new Price(150.00, new Currency('RUB'));
+        $price->recount('file');
+
+        self::assertEquals(262.50, $price->getValue());
+    }
 }

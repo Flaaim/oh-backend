@@ -31,4 +31,16 @@ class Price
     {
         return $this->value === $price->getValue();
     }
+
+    public function recount(string $type): void
+    {
+        switch ($type) {
+            case Type::Access->value: return;
+            case Type::File->value: $this->value = round(($this->value * 1.75), 2);
+                break;
+            default:
+                throw new \DomainException('Unsupported price type: ' . $type);
+        }
+
+    }
 }

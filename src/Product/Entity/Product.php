@@ -62,4 +62,9 @@ class Product
         $this->file = $file;
         $this->cipher = $cipher;
     }
+
+    public function recountPrice(string $type): void
+    {
+        $this->price->recount($type);
+    }
 }
