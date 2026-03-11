@@ -32,15 +32,13 @@ class Price
         return $this->value === $price->getValue();
     }
 
-    public function recount(string $type): void
+    public function withRecount(string $type): self
     {
-        switch ($type) {
-            case Type::Access->value: return;
-            case Type::File->value: $this->value = round(($this->value * 1.75), 2);
-                break;
-            default:
-                throw new \DomainException('Unsupported price type: ' . $type);
-        }
-
+        $value = match ($type) {
+            Type::Access->value => $this->value,
+            Type::File->value => round(($this->value * 1.75), 2),
+            default =>  throw new \DomainException('Unsupported price type: ' . $type)
+        };
+        return new self($value, $this->currency);
     }
 }

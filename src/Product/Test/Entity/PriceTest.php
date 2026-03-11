@@ -35,15 +35,15 @@ class PriceTest extends TestCase
     {
         $price = new Price(150.00, new Currency('RUB'));
 
-        $price->recount('access');
-        self::assertEquals(150.00, $price->getValue());
+        $newPrice = $price->withRecount('access');
+        self::assertEquals(150.00, $newPrice->getValue());
     }
 
     public function testRecount(): void
     {
         $price = new Price(150.00, new Currency('RUB'));
-        $price->recount('file');
+        $newPrice = $price->withRecount('file');
 
-        self::assertEquals(262.50, $price->getValue());
+        self::assertEquals(262.5, $newPrice->getValue());
     }
 }

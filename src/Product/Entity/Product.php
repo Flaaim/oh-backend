@@ -63,8 +63,8 @@ class Product
         $this->cipher = $cipher;
     }
 
-    public function recountPrice(string $type): void
+    public function calculatePriceFor(string $type): Price
     {
-        $this->price->recount($type);
+        return $this->price->withRecount($type);
     }
 }
