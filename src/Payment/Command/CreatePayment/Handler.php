@@ -35,11 +35,13 @@ class Handler
         $email = new Email($command->email);
         $product = $this->products->get(new Id($command->productId));
         $returnToken = new Token(Id::generate(), new DateTimeImmutable('+ 1 hour'));
+        $paymentPrice = $product->calculatePriceFor($command->type);
+
         $payment = new Payment(
             new Id(Uuid::uuid4()->toString()),
             $email,
             $command->productId,
-            new Price($product->getPrice()->getValue(), new Currency('RUB')),
+            $paymentPrice,
             new DateTimeImmutable(),
             $returnToken
         );

@@ -5,7 +5,6 @@ namespace Test\Functional\Payment\CreatePayment;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
-use Test\Functional\YookassaClient;
 
 
 class RequestActionTest extends WebTestCase
@@ -19,7 +18,7 @@ class RequestActionTest extends WebTestCase
            RequestFixture::class,
         ]);
     }
-    public function testSuccess(): void
+    public function testSuccessFile(): void
     {
         $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@app.ru',
@@ -32,10 +31,29 @@ class RequestActionTest extends WebTestCase
 
         $data = Json::decode($body);
         self::assertArraySubset([
+            'amount' => 612.5,
+            'currency' => 'RUB',
+        ],$data);
+    }
+
+    public function testSuccessAccess(): void
+    {
+        $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
+            'email' => 'test@app.ru',
+            'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f',
+            'type' => 'access'
+        ]));
+
+        $this->assertEquals(201, $response->getStatusCode());
+        self::assertJson($body = (string)$response->getBody());
+
+        $data = Json::decode($body);
+        self::assertArraySubset([
             'amount' => 350,
             'currency' => 'RUB',
         ],$data);
     }
+
     public function testEmpty(): void
     {
         $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment'));

@@ -22,6 +22,7 @@ return static function(App $app): void {
 
         $group->group('/products', function (RouteCollectorProxy $group): void {
             $group->get('/get', Product\Get\RequestAction::class);
+            $group->post('/recount-price', Product\RecountPrice\RequestAction::class);
 
             $group->post('/upsert', Product\Upsert\RequestAction::class)->add(AuthMiddleware::class);
             $group->post('/upload', Product\Upload\RequestAction::class)->add(AuthMiddleware::class);
