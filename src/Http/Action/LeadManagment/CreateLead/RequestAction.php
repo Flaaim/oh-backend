@@ -2,6 +2,7 @@
 
 namespace App\Http\Action\LeadManagment\CreateLead;
 
+use App\Http\EmptyResponse;
 use App\Http\Validator\Validator;
 use App\LeadManagement\Command\CreateLead\Command;
 use App\LeadManagement\Command\CreateLead\Handler;
@@ -32,5 +33,7 @@ class RequestAction implements RequestHandlerInterface
         $this->validator->validate($command);
 
         $this->handler->handle($command);
+
+        return new EmptyResponse(204);
     }
 }

@@ -3,7 +3,6 @@
 namespace App\LeadManagement\Command\CreateLead;
 
 use App\Shared\Domain\Service\Notification\TelegramNotifier;
-use GuzzleHttp\Client;
 
 class Handler
 {
