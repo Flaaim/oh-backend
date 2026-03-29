@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Http\Action\LeadManagment\CreateLead;
+
+use App\Http\Validator\Validator;
+use App\LeadManagement\Command\CreateLead\Command;
+use App\LeadManagement\Command\CreateLead\Handler;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+
+class RequestAction implements RequestHandlerInterface
+{
+    public function __construct(
+        private readonly Handler  $handler,
+        private readonly Validator $validator
+    ){
+
+    }
+    public function handle(ServerRequestInterface $request): ResponseInterface
+    {
+        $name = $request->getParsedBody()['name'] ?? '';
+        $contact = $request->getParsedBody()['contact'] ?? '';
+        $message = $request->getParsedBody()['message'] ?? '';
+
+        $command = new Command(
+            $name,
+            $contact,
+            $message
+        );
+
+        $this->validator->validate($command);
+
+        $this->handler->handle($command);
+    }
+}

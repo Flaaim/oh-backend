@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Access\Exception\AccessExpiredException;
+
 use App\Http\Action\Auth\GetToken;
 use App\Http\Action\Payment;
 use App\Http\Action\Product;
 use App\Http\Action\Access;
+use App\Http\Action\LeadManagment;
 use App\Http\Middleware\AccessExpiredExceptionHandler;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\InitializeSessionMiddleware;
@@ -38,6 +39,10 @@ return static function(App $app): void {
 
         $group->group('/auth', function (RouteCollectorProxy $group): void {
             $group->post('/login', GetToken\RequestAction::class);
+        });
+
+        $group->group('/lead', function (RouteCollectorProxy $group): void {
+            $group->get('/request', LeadManagment\CreateLead\RequestAction::class);
         });
     });
 

@@ -43,4 +43,24 @@ class TelegramNotifier implements NotificationInterface
             $this->logger->error('Telegram notifier exception: ' . $e->getMessage());
         }
     }
+
+
+    public function sendLeadRequest(string $name, string $contact, string $message): void
+    {
+        try{
+            $this->client->request('GET',
+                '/bot'. $this->token .'/sendMessage', [
+                    'form_params' => [
+                        'chat_id' => $this->chatId,
+                        'text' => 'Новая заявка. ' . PHP_EOL
+                            . 'Имя: ' . $name . PHP_EOL
+                            . 'Контакт: ' . $contact . PHP_EOL
+                            . 'Сообщение: ' . $message . PHP_EOL
+
+                    ]
+                ]);
+        }catch (GuzzleException $e){
+            $this->logger->error('Telegram notifier exception: ' . $e->getMessage());
+        }
+    }
 }
