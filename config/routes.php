@@ -42,7 +42,7 @@ return static function(App $app): void {
         });
 
         $group->group('/lead', function (RouteCollectorProxy $group): void {
-            $group->get('/request', LeadManagment\CreateLead\RequestAction::class);
+            $group->post('/request', LeadManagment\CreateLead\RequestAction::class);
         });
     });
 
