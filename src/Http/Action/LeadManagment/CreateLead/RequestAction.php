@@ -34,6 +34,6 @@ class RequestAction implements RequestHandlerInterface
 
         $this->handler->handle($command);
 
-        return new EmptyResponse(204);
+        return new EmptyResponse(200);
     }
 }
