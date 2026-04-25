@@ -29,7 +29,7 @@ return [
         ];
 
         $sendersLocator = new SendersLocator([
-            '*' => ($container->get('config')['messenger']['async'] ? [$container->get('messenger.transport.async')] : [])
+            '*' => getenv('MESSENGER_TRANSPORT_DSN') ? ['messenger.transport.async'] : []
         ], $container);
 
         return new MessageBus([
