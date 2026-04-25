@@ -11,9 +11,9 @@ use Doctrine\ORM\ORMSetup;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
 use Psr\Container\ContainerInterface;
-use Symfony\Component\Messenger\Bridge\Doctrine\Transport\DoctrineTransportFactory;
+use Symfony\Component\Messenger\Bridge\Doctrine\Transport\DoctrineTransport;
+use Symfony\Component\Messenger\Bridge\Doctrine\Transport\Connection as MessengerDoctrineConnection;
 use Symfony\Component\Messenger\Transport\Serialization\PhpSerializer;
-use Symfony\Component\Messenger\Transport\TransportFactory;
 
 return [
     EntityManagerInterface::class => function (ContainerInterface $container) {
@@ -44,13 +44,12 @@ return [
     'messenger.transport.async' => function (ContainerInterface $container) {
 
         $em = $container->get(EntityManagerInterface::class);
-        $transport = new DoctrineTransportFactory($em->getConnection());
+        $dbalConnection = $em->getConnection();
 
-        return $transport->createTransport(
-            'doctrine://default?table_name=messenger_messages',
-            [],
-            new PhpSerializer()
-        );
+        $messengerConnection = new MessengerDoctrineConnection([
+            'table_name' => 'messenger_messages',
+        ], $dbalConnection);
+        return new DoctrineTransport($messengerConnection, new PhpSerializer());
     },
     'config' => [
         'doctrine' => [
