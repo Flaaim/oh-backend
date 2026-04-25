@@ -47,7 +47,7 @@ class RequestActionTest extends WebTestCase
         $message = $sentMessages[0];
         self::assertEquals('Тестовая отправка рассылки', $message['subject']);
         self::assertEquals('30b1812e-3f6e-11f1-90b8-76fb82c9d6b5', $message['templateId']);
-        self::assertEquals([['email' => new Email('test1@app.ru')]], $message['recipients']);
+        self::assertEquals([['email' => (new Email('test1@app.ru'))->getValue()]], $message['recipients']);
     }
 
     public function testEmpty(): void

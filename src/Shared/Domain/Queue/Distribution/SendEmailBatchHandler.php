@@ -7,6 +7,7 @@ use App\Distribution\Entity\Distribution;
 use App\Distribution\Entity\DistributionId;
 use App\Distribution\Entity\DistributionRepository;
 use App\Flusher;
+use App\Recipient\Entity\Email;
 use App\Shared\Domain\RecipientQuery\RecipientFilter;
 use App\Shared\Domain\RecipientQuery\RecipientQueryInterface;
 use App\Shared\Domain\Service\Distribution\DistributionInterface;
@@ -36,7 +37,8 @@ class SendEmailBatchHandler
         $filter = new RecipientFilter(isActive: true);
         $batch = [];
         foreach ($this->recipientQuery->getIterable($filter) as $recipient){
-            $batch[] = ['email' => $recipient['email']];
+            /** @var array<Email> $recipient */
+            $batch[] = ['email' => $recipient['email']->getValue()];
 
             if(count($batch) >= self::BATCH_SIZE){
                 $this->sendChunk($distribution, $batch);

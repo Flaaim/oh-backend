@@ -6,6 +6,7 @@ use App\Distribution\Entity\Distribution;
 use App\Distribution\Entity\DistributionId;
 use App\Distribution\Entity\DistributionRepository;
 use App\Flusher;
+use App\Recipient\Entity\Email;
 use App\Shared\Domain\Queue\Distribution\SendEmailBatchHandler;
 use App\Shared\Domain\Queue\Distribution\SendEmailBatchMessage;
 use App\Shared\Domain\RecipientQuery\RecipientQueryInterface;
@@ -65,9 +66,9 @@ class SendEmailBatchHandlerTest extends TestCase
         $this->distributions->expects(self::once())->method('findById')->with($distributionId)->willReturn($distribution);
 
         $this->recipientQuery->expects(self::once())->method('getIterable')->willReturn([
-            ['email' => 'test@app.ru'],
-            ['email' => 'test1@app.ru'],
-            ['email' => 'test2@app.ru'],
+            ['email' => new Email('test@app.ru')],
+            ['email' => new Email('test1@app.ru')],
+            ['email' => new Email('test2@app.ru')],
         ]);
 
         $this->flusher->expects(self::once())->method('flush');
@@ -110,7 +111,7 @@ class SendEmailBatchHandlerTest extends TestCase
 
         $recipients = [];
         for($i = 1; $i <= 150; $i++){
-            $recipients[] = ['email' => "user{$i}@app.ru"];
+            $recipients[] = ['email' => new Email("user{$i}@app.ru")];
         }
 
         $this->recipientQuery->expects(self::once())->method('getIterable')->willReturn($recipients);
