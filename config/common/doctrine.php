@@ -42,6 +42,11 @@ return [
         return new EntityManager($connection, $config);
     },
     'messenger.transport.async' => function (ContainerInterface $container) {
+        $dsn = getenv('MESSENGER_TRANSPORT_DSN');
+
+        if (!$dsn) {
+            return null;
+        }
 
         $em = $container->get(EntityManagerInterface::class);
         $dbalConnection = $em->getConnection();
