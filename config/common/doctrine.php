@@ -11,6 +11,7 @@ use Doctrine\ORM\ORMSetup;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\Messenger\Bridge\Doctrine\Transport\DoctrineTransportFactory;
 use Symfony\Component\Messenger\Transport\Serialization\PhpSerializer;
 use Symfony\Component\Messenger\Transport\TransportFactory;
 
@@ -42,9 +43,8 @@ return [
     },
     'messenger.transport.async' => function (ContainerInterface $container) {
 
-        $transport = new TransportFactory([
-            $container->get(EntityManagerProvider::class)
-        ]);
+        $em = $container->get(EntityManagerInterface::class);
+        $transport = new DoctrineTransportFactory($em->getConnection());
 
         return $transport->createTransport(
             'doctrine://default?table_name=messenger_messages',
