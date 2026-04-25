@@ -18,10 +18,11 @@
             <directory suffix="Test.php">src/Access/Test</directory>
             <directory suffix="Test.php">src/LeadManagement/Test</directory>
             <directory suffix="Test.php">src/Recipient/Test</directory>
+            <directory suffix="Test.php">src/Distribution/Test</directory>
             <directory suffix="Test.php">src/Http/Test</directory>
         </testsuite>
         <testsuite name="Functional">
-            <directory suffix="Test.php">tests</directory>
+            <directory suffix="Test.php">tests/Functional</directory>
         </testsuite>
     </testsuites>
 

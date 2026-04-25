@@ -13,7 +13,7 @@ class PaymentSubscriber implements EventSubscriberInterface
     public function __construct(
         private readonly TelegramNotifier $notifier,
         private readonly LoggerInterface $logger,
-        private readonly MessageBusInterface $commandBus,
+        private readonly MessageBusInterface $messageBus,
     )
     {}
 
@@ -29,7 +29,7 @@ class PaymentSubscriber implements EventSubscriberInterface
     public function onSuccessPayment(SuccessfulPaymentEvent $event): void
     {
         $this->notifier->sendSuccessfulPayment($event);
-        $this->commandBus->dispatch(
+        $this->messageBus->dispatch(
             new AddRecipientCommand($event->getPayment()->getEmail()->getValue())
         );
     }

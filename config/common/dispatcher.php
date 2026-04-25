@@ -3,10 +3,7 @@
 declare(strict_types=1);
 
 use App\Shared\Domain\Event\Payment\PaymentSubscriber;
-use App\Shared\Domain\Service\Notification\Notifier;
-use App\Shared\Domain\Service\Notification\TelegramNotifier;
 use Psr\Container\ContainerInterface;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -29,10 +26,4 @@ return [
             PaymentSubscriber::class,
         ]
     ],
-    PaymentSubscriber::class => function (ContainerInterface $container) {
-        return new PaymentSubscriber(
-            $container->get(TelegramNotifier::class),
-            $container->get(LoggerInterface::class)
-        );
-    }
 ];

@@ -37,6 +37,8 @@ services:
           TELEGRAM_CHAT_ID: 1954013093
           AUTH_LOGIN: app
           AUTH_PASSWORD: secret
+          MESSENGER_TRANSPORT_DSN: doctrine://default
+          UNI_SENDER_API: 6azj4xf5tp7kkkmqi6z1jsqokrse9z5c177tn6de
     php-cli:
       build:
           context: docker/php-cli
@@ -66,6 +68,8 @@ services:
           TELEGRAM_CHAT_ID: 1954013093
           AUTH_LOGIN: app
           AUTH_PASSWORD: secret
+          MESSENGER_TRANSPORT_DSN: doctrine://default
+          UNI_SENDER_API: 6azj4xf5tp7kkkmqi6z1jsqokrse9z5c177tn6de
     mysql:
       image:  mysql:8.0
       restart: always

@@ -8,6 +8,7 @@ use App\Http\Action\Payment;
 use App\Http\Action\Product;
 use App\Http\Action\Access;
 use App\Http\Action\LeadManagment;
+use App\Http\Action\Distribution;
 use App\Http\Middleware\AccessExpiredExceptionHandler;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\InitializeSessionMiddleware;
@@ -43,6 +44,10 @@ return static function(App $app): void {
 
         $group->group('/lead', function (RouteCollectorProxy $group): void {
             $group->post('/request', LeadManagment\CreateLead\RequestAction::class);
+        });
+
+        $group->group('/distribution', function (RouteCollectorProxy $group): void {
+            $group->post('', Distribution\Create\RequestAction::class)->add(AuthMiddleware::class);
         });
     });
 

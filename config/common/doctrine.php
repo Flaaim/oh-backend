@@ -59,6 +59,7 @@ return [
                 __DIR__ . '/../../src/Product/Entity',
                 __DIR__ . '/../../src/Access/Entity',
                 __DIR__ . '/../../src/Distribution/Entity',
+                __DIR__ . '/../../src/Recipient/Entity',
             ],
             'types' => [
                 App\Shared\Domain\ValueObject\IdType::NAME => App\Shared\Domain\ValueObject\IdType::class,
@@ -77,6 +78,8 @@ return [
 
                 \App\Recipient\Entity\EmailType::NAME => \App\Recipient\Entity\EmailType::class,
                 \App\Recipient\Entity\RecipientIdType::NAME => \App\Recipient\Entity\RecipientIdType::class,
+
+                \App\Distribution\Entity\DistributionIdType::NAME => \App\Distribution\Entity\DistributionIdType::class,
 
             ]
         ]

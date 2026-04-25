@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Recipient\Entity;
+namespace App\Distribution\Entity;
 
-use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
 
-class RecipientIdType extends StringType
+class DistributionIdType extends StringType
 {
-    public const NAME = 'recipient_id';
+    public const NAME = 'distribution_id';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
-        return $value instanceof RecipientId ? $value->getValue() : $value;
+        return $value instanceof DistributionId ? $value->getValue() : $value;
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform): ?RecipientId
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?DistributionId
     {
-        return !empty($value) ? new RecipientId((string)$value) : null;
+        return !empty($value) ? new DistributionId((string)$value) : null;
     }
     public function getName(): string
     {
