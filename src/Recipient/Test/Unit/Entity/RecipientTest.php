@@ -19,4 +19,16 @@ class RecipientTest extends TestCase
         self::assertSame($id, $recipient->getId());
         self::assertSame($email, $recipient->getEmail());
     }
+
+    public function testDeactivate(): void
+    {
+        $recipient = new Recipient(
+            RecipientId::generate(),
+            new Email('test@app.ru')
+        );
+
+        $recipient->deactivate();
+
+        self::assertFalse($recipient->isActive());
+    }
 }

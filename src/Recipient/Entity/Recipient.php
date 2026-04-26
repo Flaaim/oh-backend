@@ -37,4 +37,10 @@ class Recipient
     {
         return $this->createdAt;
     }
+    public function deactivate(): void
+    {
+        if($this->isActive){
+            $this->isActive = false;
+        }
+    }
 }
