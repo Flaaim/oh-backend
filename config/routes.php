@@ -9,6 +9,7 @@ use App\Http\Action\Product;
 use App\Http\Action\Access;
 use App\Http\Action\LeadManagment;
 use App\Http\Action\Distribution;
+use App\Http\Action\Recipient;
 use App\Http\Middleware\AccessExpiredExceptionHandler;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\InitializeSessionMiddleware;
@@ -48,6 +49,10 @@ return static function(App $app): void {
 
         $group->group('/distribution', function (RouteCollectorProxy $group): void {
             $group->post('', Distribution\Create\RequestAction::class)->add(AuthMiddleware::class);
+        });
+
+        $group->group('/recipients', function (RouteCollectorProxy $group): void {
+            $group->post('unsubscribe', Recipient\Unsubscribe\RequestAction::class);
         });
     });
 
