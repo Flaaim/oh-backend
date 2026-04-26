@@ -30,7 +30,7 @@ class RecipientRepository
     public function findAllByEmails(array $emails): array
     {
         $qb = $this->repo->createQueryBuilder('r');
-        $qb->where($qb->expr()->in('r.email.value', ':emails'))
+        $qb->where($qb->expr()->in('r.email', ':emails'))
             ->setParameter('emails', $emails);
 
         return $qb->getQuery()->getResult();

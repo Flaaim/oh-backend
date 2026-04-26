@@ -22,6 +22,10 @@ class UnsubscribeMiddleware implements MiddlewareInterface
         $data = $request->getParsedBody() ?? [];
         $expectedAuth = $this->container->get('config')['uniSender']['apiKey'];
 
+        if(!isset($data['auth'])) {
+            return new JsonResponse(['error' => 'Forbidden'], 403);
+        }
+
         if($data['auth'] !== $expectedAuth) {
             $this->logger->error('Auth in unsubscribed request invalid.');
             return new JsonResponse(['error' => 'Forbidden'], 403);

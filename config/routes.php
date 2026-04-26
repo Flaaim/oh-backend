@@ -53,7 +53,7 @@ return static function(App $app): void {
         });
 
         $group->group('/recipients', function (RouteCollectorProxy $group): void {
-            $group->post('unsubscribe', Recipient\Unsubscribe\RequestAction::class)
+            $group->post('/unsubscribe', Recipient\Unsubscribe\RequestAction::class)
                 ->add(UnsubscribeMiddleware::class);
         });
     });
