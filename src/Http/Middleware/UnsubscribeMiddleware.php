@@ -19,15 +19,23 @@ class UnsubscribeMiddleware implements MiddlewareInterface
     }
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        $rawBody = (string) $request->getBody();
         $data = $request->getParsedBody() ?? [];
-        $expectedAuth = $this->container->get('config')['uniSender']['apiKey'];
+        $apiKey = $this->container->get('config')['uniSender']['apiKey'];
 
         if(!isset($data['auth'])) {
             return new JsonResponse(['error' => 'Forbidden'], 403);
         }
 
-        if($data['auth'] !== $expectedAuth) {
-            $this->logger->error('Auth in unsubscribed request invalid.');
+        $receivedHash = $data['auth'];
+        $stringForCheck = str_replace($receivedHash, $apiKey, $rawBody);
+
+        $calculatedHash = md5($stringForCheck);
+        if (!hash_equals($calculatedHash, $receivedHash)) {
+            $this->logger->error('Auth in unsubscribed request invalid.', [
+                'received' => $receivedHash,
+                'calculated' => $calculatedHash
+            ]);
             return new JsonResponse(['error' => 'Forbidden'], 403);
         }
 

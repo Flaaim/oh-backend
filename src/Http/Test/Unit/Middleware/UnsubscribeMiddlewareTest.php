@@ -29,21 +29,16 @@ class UnsubscribeMiddlewareTest extends TestCase
     }
     public function testAuthTokenInvalid(): void
     {
-
-        $request = (new ServerRequestFactory())->createServerRequest(
-            'POST', '/unsubscribe')
-            ->withParsedBody($this->getRequestData());
+        $request = $this->createValidWebhookRequest([], 'hacker-key');
 
         $this->container->expects($this->once())
-            ->method('get')->willReturn([
-                'uniSender' => [
-                    'apiKey' => 'invalid'
-                ]
-            ]);
+            ->method('get')->willReturn(['uniSender' => ['apiKey' => 'test-auth']]);
+
         $this->logger->expects($this->once())
             ->method('error')->with($this->equalTo('Auth in unsubscribed request invalid.'));
 
         $handler = $this->createMock(RequestHandlerInterface::class);
+        $handler->expects($this->never())->method('handle');
 
         $response = $this->middleware->process($request, $handler);
 
@@ -56,22 +51,31 @@ class UnsubscribeMiddlewareTest extends TestCase
     }
     public function testSuccess(): void
     {
-        $request = (new ServerRequestFactory())->createServerRequest(
-            'POST', '/unsubscribe')
-            ->withParsedBody($this->getRequestData('unsubscribed'));
+        $events = [
+            [
+                'user_id' => 456,
+                'events' => [
+                    [
+                        'event_name' => 'transactional_email_status',
+                        'event_data' => [
+                            'email' => 'bad-recipient@example.com',
+                            'status' => 'unsubscribed',
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $request = $this->createValidWebhookRequest($events, 'test-auth');
 
         $this->container->expects($this->once())
-            ->method('get')->willReturn([
-                'uniSender' => [
-                    'apiKey' => 'test-auth'
-                ]
-            ]);
+            ->method('get')->willReturn(['uniSender' => ['apiKey' => 'test-auth']]);
 
         $handler = $this->createMock(RequestHandlerInterface::class);
 
         $handler->expects($this->once())->method('handle')->willReturnCallback(
             static function(ServerRequestInterface $request): ResponseInterface {
-                self::assertEquals(['recipient1@example.com'], $request->getParsedBody());
+                self::assertEquals(['bad-recipient@example.com'], $request->getParsedBody());
                 return (new ResponseFactory())->createResponse();
             }
         );
@@ -81,16 +85,32 @@ class UnsubscribeMiddlewareTest extends TestCase
 
     public function testSpamBlock(): void
     {
-        $request = (new ServerRequestFactory())->createServerRequest(
-            'POST', '/unsubscribe')
-            ->withParsedBody($this->getRequestSpamBlockData());
+
+        $events = [
+            [
+                'user_id' => 456,
+                'events' => [
+                    [
+                        'event_name' => 'transactional_spam_block',
+                        'event_data' => [
+                            'job_id' => '1a3Q2V-0000OZ-S0',
+                            'metadata' => [
+                                'block_time' => '2015-11-30 15:09:42',
+                                'block_type' => 'one_smtp',
+                                'domain' => 'domain.com',
+                                "SMTP_blocks_count" => 8,
+                                "domain_status" => "blocked",
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $request = $this->createValidWebhookRequest($events);
 
         $this->container->expects($this->once())
-            ->method('get')->willReturn([
-                'uniSender' => [
-                    'apiKey' => 'test-auth'
-                ]
-            ]);
+            ->method('get')->willReturn(['uniSender' => ['apiKey' => 'test-auth']]);
+
 
         $this->logger->expects($this->once())->method('critical')
             ->with(
@@ -117,89 +137,24 @@ class UnsubscribeMiddlewareTest extends TestCase
 
         $this->middleware->process($request, $handler);
     }
-    private function getRequestData(string $status = 'sent'): array
-    {
 
-        return [
-            'auth' => 'test-auth',
-            'events_by_user' => [
-                [
-                    'user_id' => 456,
-                    'project_id' => '6432890213745872',
-                    'project_name' => 'MyProject',
-                    'events' => [
-                        [
-                            'event_name' => 'transactional_email_status',
-                            'event_data' => [
-                                'job_id' => '1a3Q2V-0000OZ-S0',
-                                'metadata' => [
-                                    'key1' => 'val1',
-                                    'key2' => 'val2'
-                                ],
-                                'email' => 'recipient1@example.com',
-                                'status' => $status,
-                                'event_time' => '2015-11-30 15:09:42',
-                                'url' => 'http://some.url.com',
-                                'delivery_info' => [
-                                    'delivery_status' => 'err_delivery_failed',
-                                    'destination_response' => '550 Spam rejected',
-                                    'user_agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
-                                    'ip' => '111.111.111.111'
-                                ]
-                            ]
-                        ],
-                        [
-                            'event_name' => 'transactional_email_status',
-                            'event_data' => [
-                                'job_id' => '1a3Q2V-0000OZ-S0',
-                                'metadata' => [
-                                    'key1' => 'val1',
-                                    'key2' => 'val2'
-                                ],
-                                'email' => 'recipient2@example.com',
-                                'status' => 'sent',
-                                'event_time' => '2015-11-30 15:09:42',
-                                'url' => 'http://some.url.com',
-                                'delivery_info' => [
-                                    'delivery_status' => 'err_delivery_failed',
-                                    'destination_response' => '550 Spam rejected',
-                                    'user_agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
-                                    'ip' => '111.111.111.111'
-                                ]
-                            ]
-                        ],
-                    ]
-                ]
-            ]
-        ];
-    }
-
-    private function getRequestSpamBlockData(): array
+    private function createValidWebhookRequest(array $eventsByUser, string $apiKey = 'test-auth'): ServerRequestInterface
     {
-        return [
-            'auth' => 'test-auth',
-            'events_by_user' => [
-                [
-                    'user_id' => 456,
-                    'project_id' => '6432890213745872',
-                    'project_name' => 'MyProject',
-                    'events' => [
-                        [
-                            'event_name' => 'transactional_spam_block',
-                            'event_data' => [
-                                'job_id' => '1a3Q2V-0000OZ-S0',
-                                'metadata' => [
-                                    'block_time' => '2015-11-30 15:09:42',
-                                    'block_type' => 'one_smtp',
-                                    'domain' => 'domain.com',
-                                    "SMTP_blocks_count" => 8,
-                                    "domain_status" => "blocked",
-                                ]
-                            ],
-                        ]
-                    ]
-                ]
-            ]
+        $initialData = [
+            'auth' => $apiKey,
+            'events_by_user' => $eventsByUser
         ];
+        $jsonStringWithKey = json_encode($initialData);
+        $validHash = md5($jsonStringWithKey);
+        $finalRawBody = str_replace($apiKey, $validHash, $jsonStringWithKey);
+        $finalParsedBody = json_decode($finalRawBody, true);
+
+        $request = (new ServerRequestFactory())->createServerRequest('POST', '/unsubscribe');
+
+        $request->getBody()->write($finalRawBody);
+        $request->getBody()->rewind();
+
+        $request = $request->withParsedBody($finalParsedBody);
+        return $request;
     }
 }
