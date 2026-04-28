@@ -2,6 +2,7 @@ init: docker-down-clear app-clear docker-pull docker-build docker-up app-init
 up: docker-up
 down: docker-down
 restart: down up
+check: lint test
 test: unit-test functional-test app-fixtures
 test-unit: unit-test
 lint: app-lint
@@ -25,7 +26,7 @@ docker-build:
 	docker compose build
 
 composer-install:
-	docker compose run --rm "$(id -u):$(id -g)" php-cli composer install
+	docker compose run --rm -u $$(id -u):$$(id -g) php-cli composer install
 
 app-clear:
 	docker run --rm -v ${PWD}:/app -w /app  alpine sh -c 'rm -rf var/cache/* var/log/*'
