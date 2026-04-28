@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7be66b3b3ab1a73a7c2db9d21571dc73",
+    "content-hash": "b2a3053caedd67ff07db80e1b20d5c88",
     "packages": [
         {
             "name": "brick/math",
@@ -10631,6 +10631,84 @@
                 "source": "https://github.com/vimeo/psalm"
             },
             "time": "2026-03-19T10:56:09+00:00"
+        },
+        {
+            "name": "weirdan/doctrine-psalm-plugin",
+            "version": "v2.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/psalm/psalm-plugin-doctrine.git",
+                "reference": "8d604c817976e156cd6f1cfab983eadd35b04a2f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/psalm/psalm-plugin-doctrine/zipball/8d604c817976e156cd6f1cfab983eadd35b04a2f",
+                "reference": "8d604c817976e156cd6f1cfab983eadd35b04a2f",
+                "shasum": ""
+            },
+            "require": {
+                "composer/semver": "^1.4 || ^2.0 || ^3.0",
+                "php": "^8",
+                "vimeo/psalm": "^6"
+            },
+            "conflict": {
+                "doctrine/collections": "<1.8",
+                "doctrine/orm": "<2.6",
+                "doctrine/persistence": "<2.0"
+            },
+            "require-dev": {
+                "codeception/codeception": "^4.0",
+                "doctrine/coding-standard": "^9.0",
+                "doctrine/collections": "^1.8 || ^2.0",
+                "doctrine/doctrine-bundle": "^1.11 || ^2.0",
+                "doctrine/orm": "^2.6",
+                "doctrine/persistence": "^2.0",
+                "phly/keep-a-changelog": "^2.1",
+                "squizlabs/php_codesniffer": "^3.3",
+                "weirdan/codeception-psalm-module": "^0.13.1"
+            },
+            "type": "psalm-plugin",
+            "extra": {
+                "psalm": {
+                    "pluginClass": "Weirdan\\DoctrinePsalmPlugin\\Plugin"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Weirdan\\DoctrinePsalmPlugin\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bruce Weirdan",
+                    "email": "weirdan@gmail.com"
+                }
+            ],
+            "description": "Stubs to let Psalm understand Doctrine better",
+            "keywords": [
+                "code",
+                "dbal",
+                "doctrine",
+                "doctrine2",
+                "extension",
+                "inspection",
+                "orm",
+                "php",
+                "plugin",
+                "psalm",
+                "psalm-plugin",
+                "static analysis",
+                "static-analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/psalm/psalm-plugin-doctrine/issues",
+                "source": "https://github.com/psalm/psalm-plugin-doctrine/tree/v2.10.0"
+            },
+            "time": "2025-01-26T11:36:27+00:00"
         }
     ],
     "aliases": [],
