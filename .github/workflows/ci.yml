@@ -1,4 +1,4 @@
-name: Pipeline
+name: ci.yml
 
 on:
   push:
