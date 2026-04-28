@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Shared\Domain\ValueObject;
 
@@ -24,11 +24,11 @@ class UpdatedAt
         }
         $this->value = $value;
     }
-    public static function create($value, string $format = self::FORMAT_DOT): self
-    {
-        return new self($value, $format);
-    }
-    public static function createDot($value): self
+
+    /**
+     * @psalm-param ' 12.11.2025 '|'12.11.2025' $value
+     */
+    public static function createDot(string $value): self
     {
         return new self($value, self::FORMAT_DOT);
     }
@@ -52,8 +52,5 @@ class UpdatedAt
     {
         return $this->value->format($format);
     }
-    public function toString(): string
-    {
-        return $this->format('Y-m-d H:i:s');
-    }
+
 }

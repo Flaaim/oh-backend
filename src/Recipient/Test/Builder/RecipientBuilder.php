@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Recipient\Test\Builder;
 
@@ -20,11 +20,7 @@ class RecipientBuilder
         $this->createdAt = new \DateTimeImmutable('now');
     }
 
-    public function withId(RecipientId $id): self
-    {
-        $this->id = $id;
-        return $this;
-    }
+
     public function withEmail(Email $email): self
     {
         $this->email = $email;

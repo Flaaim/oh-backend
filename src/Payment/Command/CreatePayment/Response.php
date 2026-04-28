@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Payment\Command\CreatePayment;
 
@@ -11,6 +11,7 @@ class Response implements \JsonSerializable
         public string $returnUrl,
     ){}
 
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [

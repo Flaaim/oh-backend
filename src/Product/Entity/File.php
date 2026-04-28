@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Product\Entity;
 
@@ -23,7 +23,8 @@ class File implements AttachableFileInterface
         $this->fullPath = DIRECTORY_SEPARATOR .
             trim($value->getValue(), '/') . DIRECTORY_SEPARATOR . $this->value;
     }
-    public function getFile(): string
+    #[\Override]
+    public function getFile(): string|null
     {
         if(!$this->exists()) {
             throw new \DomainException('File not exists at: ' . $this->fullPath);
@@ -31,10 +32,12 @@ class File implements AttachableFileInterface
         return $this->fullPath;
     }
 
+    #[\Override]
     public function getValue(): string
     {
         return $this->value;
     }
+    #[\Override]
     public function exists(): bool
     {
         if($this->fullPath === null) {

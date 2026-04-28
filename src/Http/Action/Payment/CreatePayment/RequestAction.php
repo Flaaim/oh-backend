@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Http\Action\Payment\CreatePayment;
 
@@ -19,6 +19,7 @@ class RequestAction implements RequestHandlerInterface
     )
     {}
 
+    #[\Override]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
             $email = $request->getParsedBody()['email'] ?? '';

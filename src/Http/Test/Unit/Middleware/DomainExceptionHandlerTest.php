@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Http\Test\Unit\Middleware;
 

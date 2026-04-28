@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Payment\Entity;
 
@@ -9,13 +9,7 @@ class PaymentRepository
 {
     private EntityRepository $repo;
     private EntityManagerInterface $em;
-    public function __construct(EntityManagerInterface $em)
-    {
-        $repo = $em->getRepository(Payment::class);
-        $this->repo = $repo;
-        $this->em = $em;
 
-    }
     public function create(Payment $payment): void
     {
         $this->em->persist($payment);

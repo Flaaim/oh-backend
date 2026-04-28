@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Http\Validator;
 
@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class SlimUploadedFileValidator extends ConstraintValidator
 {
+    #[\Override]
     public function validate(mixed $value, Constraint $constraint): void
     {
         if(!$constraint instanceof SlimUploadedFile){

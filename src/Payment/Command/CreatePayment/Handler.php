@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Payment\Command\CreatePayment;
 
@@ -22,14 +22,7 @@ use Ramsey\Uuid\Uuid;
 class Handler
 {
 
-    public function __construct(
-        private readonly Flusher $flusher,
-        private readonly ProductRepository $products,
-        private readonly YookassaProvider $yookassaProvider,
-        private readonly PaymentRepository $payments,
-        private readonly LoggerInterface $logger
-    )
-    {}
+
     public function handle(Command $command): Response
     {
         $email = new Email($command->email);

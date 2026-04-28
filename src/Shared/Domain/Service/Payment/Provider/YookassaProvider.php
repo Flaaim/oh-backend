@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Shared\Domain\Service\Payment\Provider;
 
@@ -14,11 +14,8 @@ use YooKassa\Request\Payments\PaymentResponse;
 
 class YookassaProvider implements PaymentProviderInterface
 {
-    public function __construct(
-        private readonly Client $client,
-        private readonly YookassaConfig $config
-    )
-    {}
+
+    #[\Override]
     public function initiatePayment(MakePaymentDTO $paymentData): PaymentInfoDTO
     {
         $idempotenceKey = uniqid('', true);
@@ -54,6 +51,7 @@ class YookassaProvider implements PaymentProviderInterface
         }
     }
 
+    #[\Override]
     public function handleCallback(PaymentCallbackDTO $callbackData): ?string
     {
         $factory = new NotificationFactory();
@@ -65,16 +63,19 @@ class YookassaProvider implements PaymentProviderInterface
         return $this->verifyPaymentStatus($paymentId);
     }
 
+    #[\Override]
     public function checkPaymentStatus(string $paymentId): string
     {
         // TODO: Implement checkPaymentStatus() method.
     }
 
+    #[\Override]
     public function getSupportedCurrencies(): array
     {
         // TODO: Implement getSupportedCurrencies() method.
     }
 
+    #[\Override]
     public function getName(): string
     {
         return $this->config->getName();

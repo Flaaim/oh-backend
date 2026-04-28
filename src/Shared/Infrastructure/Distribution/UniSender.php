@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Shared\Infrastructure\Distribution;
 
@@ -15,6 +15,7 @@ class UniSender implements DistributionInterface
         private string $apiKey
     ){
     }
+    #[\Override]
     public function send(string $subject, array $recipients, string $templateId): void
     {
         $requestBody =  [

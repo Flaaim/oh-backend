@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Access\Command\GetAccess;
 

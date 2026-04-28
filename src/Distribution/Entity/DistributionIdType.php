@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Distribution\Entity;
 
@@ -9,11 +9,13 @@ class DistributionIdType extends StringType
 {
     public const NAME = 'distribution_id';
 
+    #[\Override]
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
         return $value instanceof DistributionId ? $value->getValue() : $value;
     }
 
+    #[\Override]
     public function convertToPHPValue($value, AbstractPlatform $platform): ?DistributionId
     {
         return !empty($value) ? new DistributionId((string)$value) : null;
@@ -22,6 +24,7 @@ class DistributionIdType extends StringType
     {
         return self::NAME;
     }
+    #[\Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         $column['length'] = 36;

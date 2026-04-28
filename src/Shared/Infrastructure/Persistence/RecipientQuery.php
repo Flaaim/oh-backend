@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Shared\Infrastructure\Persistence;
 
@@ -16,6 +16,7 @@ class RecipientQuery implements RecipientQueryInterface
     {
         $this->em = $em;
     }
+    #[\Override]
     public function getIterable(?RecipientFilter $filter = null): iterable
     {
         $qb = $this->em->createQueryBuilder()

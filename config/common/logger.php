@@ -18,13 +18,13 @@ return [
 
         $log = new Logger('payment-service');
 
-        if(!empty($telegramConfig)){
-            $log->pushHandler(new TelegramBotHandler(
-                $telegramConfig['token'],
-                $telegramConfig['chatId'],
-                Level::Warning,
-            ));
-        }
+//        if(!empty($telegramConfig)){
+//            $log->pushHandler(new TelegramBotHandler(
+//                $telegramConfig['token'],
+//                $telegramConfig['chatId'],
+//                Level::Warning,
+//            ));
+//        }
 
 
         if ($config['stderr']) {

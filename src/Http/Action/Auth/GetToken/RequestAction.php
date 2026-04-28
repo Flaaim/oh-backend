@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Http\Action\Auth\GetToken;
 
@@ -13,6 +13,7 @@ class RequestAction implements RequestHandlerInterface
 {
     public function __construct(private readonly ContainerInterface $container)
     {}
+    #[\Override]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         try {

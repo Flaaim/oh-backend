@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Http\Action\Product\RecountPrice;
 
@@ -17,6 +17,7 @@ class RequestAction implements RequestHandlerInterface
         private readonly Handler $handler
     ){
     }
+    #[\Override]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
        $productId = $request->getParsedBody()['productId'] ?? '';

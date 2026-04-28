@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Payment\Test\Entity;
 
@@ -16,7 +16,7 @@ class StatusTest extends TestCase
     public function testInvalid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $status = new Status('invalid');
+        new Status('invalid');
     }
 
     public function testPending(): void

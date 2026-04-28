@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Command;
 
@@ -9,17 +9,19 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 class DistributionSendCommand extends Command
 {
+    #[\Override]
     public function configure(): void
     {
         $this->setName('distribution:send');
         $this->setDescription('Send distribution');
     }
 
+    #[\Override]
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         $client = new Client(['base_uri' => 'https://goapi.unisender.ru/ru/transactional/api/v1/']);
         $emails = ['flaeim@gmail.com', 'flaaim@list.ru'];
-        $subject = 'test';
+        
         $templateId = '30b1812e-3f6e-11f1-90b8-76fb82c9d6b5';
 
         $recipients = array_map(fn($email) => ['email' => $email], $emails);

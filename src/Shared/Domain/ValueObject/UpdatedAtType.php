@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Shared\Domain\ValueObject;
 
@@ -12,11 +12,13 @@ class UpdatedAtType extends DateTimeImmutableType
 {
     public const NAME = 'updated_at';
 
+    #[\Override]
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         return $value instanceof UpdatedAt ? $value->format('Y-m-d H:i:s') : $value;
     }
 
+    #[\Override]
     public function convertToPHPValue($value, AbstractPlatform $platform): ?DateTimeImmutable
     {
         return !empty($value) ? new DateTimeImmutable((string)$value) : null;

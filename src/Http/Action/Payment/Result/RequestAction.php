@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Http\Action\Payment\Result;
 
@@ -18,6 +18,7 @@ class RequestAction implements RequestHandlerInterface
         private readonly Validator $validator
     )
     {}
+    #[\Override]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
             $returnToken = $request->getParsedBody()['returnToken'] ?? '';

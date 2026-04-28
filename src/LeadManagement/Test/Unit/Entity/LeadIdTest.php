@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\LeadManagement\Test\Unit\Entity;
 

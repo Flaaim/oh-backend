@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Payment\Entity;
 
@@ -10,10 +10,12 @@ class StatusType extends StringType
 
     const NAME = 'status';
 
+    #[\Override]
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
         return $value instanceof Status ? $value->getValue() : $value;
     }
+    #[\Override]
     public function convertToPHPValue($value, AbstractPlatform $platform): ?Status
     {
         return !empty($value) ? new Status((string)$value) : null;
@@ -22,6 +24,7 @@ class StatusType extends StringType
     {
         return self::NAME;
     }
+    #[\Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         $column['length'] = 36;

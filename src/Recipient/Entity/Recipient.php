@@ -2,7 +2,7 @@
 
 namespace App\Recipient\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use final Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name:'recipients')]
@@ -33,10 +33,7 @@ class Recipient
     {
         return $this->isActive;
     }
-    public function getCreatedAt(): \DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+
     public function deactivate(): void
     {
         if($this->isActive){

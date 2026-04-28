@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Http\Middleware;
 
@@ -17,6 +17,7 @@ class UnsubscribeMiddleware implements MiddlewareInterface
         private readonly LoggerInterface $logger,
     ){
     }
+    #[\Override]
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $rawBody = (string) $request->getBody();

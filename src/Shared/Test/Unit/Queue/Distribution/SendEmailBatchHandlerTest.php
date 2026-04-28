@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Shared\Test\Unit\Queue\Distribution;
 
@@ -22,6 +22,7 @@ class SendEmailBatchHandlerTest extends TestCase
     private readonly DistributionInterface $uniSender;
     private readonly Flusher $flusher;
     private SendEmailBatchHandler $handler;
+    #[\Override]
     public function setUp(): void
     {
         $this->distributions = $this->createMock(DistributionRepository::class);

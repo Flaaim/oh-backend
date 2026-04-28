@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Http\Middleware;
 
@@ -11,6 +11,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 class ClearInputHandler implements MiddlewareInterface
 {
 
+    #[\Override]
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $request = $request
@@ -20,7 +21,10 @@ class ClearInputHandler implements MiddlewareInterface
         return $handler->handle($request);
     }
 
-    private static function filterStrings($items)
+    /**
+     * @param array|null|object $items
+     */
+    private static function filterStrings(array|object|null $items)
     {
         if (!is_array($items)) {
             return $items;
@@ -38,7 +42,7 @@ class ClearInputHandler implements MiddlewareInterface
         return $result;
     }
 
-    private static function filterFiles($items): array
+    private static function filterFiles(array $items): array
     {
         $result = [];
 

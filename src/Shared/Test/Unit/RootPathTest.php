@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Shared\Test\Unit;
 

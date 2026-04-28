@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Product\Command\Upsert;
 
@@ -13,17 +13,13 @@ use Ramsey\Uuid\Uuid;
 
 class Handler
 {
-    public function __construct(
-        private readonly ProductRepository $products,
-        private readonly Flusher $flusher,
-    )
-    {}
+
     public function handle(Command $command): Response
     {
         $product = $this->products->findByCourse($command->course);
 
         if($product) {
-            /** @var Product $product */
+            
             $product->update(
                 $command->name,
                 new Price($command->amount, new Currency('RUB')),

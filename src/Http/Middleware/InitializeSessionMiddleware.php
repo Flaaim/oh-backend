@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Http\Middleware;
 
@@ -17,6 +17,7 @@ class InitializeSessionMiddleware implements MiddlewareInterface
         private readonly Validator $validator,
     ){
     }
+    #[\Override]
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $encodedToken = $request->getQueryParams()['token'] ?? '';

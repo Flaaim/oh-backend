@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Shared\Domain\ValueObject;
 
@@ -9,11 +9,13 @@ class IdType extends StringType
 {
     public const NAME = 'id';
 
+    #[\Override]
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
         return $value instanceof Id ? $value->getValue() : $value;
     }
 
+    #[\Override]
     public function convertToPHPValue($value, AbstractPlatform $platform): ?Id
     {
         return !empty($value) ? new Id((string)$value) : null;
@@ -22,6 +24,7 @@ class IdType extends StringType
     {
         return self::NAME;
     }
+    #[\Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         $column['length'] = 36;

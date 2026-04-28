@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Access\Test\Unit\Command\GetAccess;
 
@@ -22,6 +22,7 @@ class HandlerTest extends TestCase
     private Handler $handler;
     private ProductQueryInterface $productQuery;
     private AccessRepository $accesses;
+    #[\Override]
     public function setUp(): void
     {
         $this->uuid = Uuid::uuid4()->toString();

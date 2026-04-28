@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Http\Action\Product\Upload;
 
@@ -18,6 +18,7 @@ class RequestAction implements RequestHandlerInterface
         private readonly Validator $validator,
     )
     {}
+    #[\Override]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $uploadedFile = $request->getUploadedFiles()['file'] ?? null;

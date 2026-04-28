@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Access\Entity;
 

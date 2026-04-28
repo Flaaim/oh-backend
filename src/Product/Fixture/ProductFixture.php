@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Product\Fixture;
 
@@ -13,6 +13,7 @@ use Doctrine\Persistence\ObjectManager;
 class ProductFixture extends AbstractFixture
 {
 
+    #[\Override]
     public function load(ObjectManager $manager): void
     {
         $product = new Product(

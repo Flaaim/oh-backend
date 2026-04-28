@@ -2,7 +2,7 @@
 
 namespace App\Access\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Dofinal ctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'accesses')]

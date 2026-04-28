@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Payment\Service\Delivery\Product;
 
@@ -15,6 +15,7 @@ class FileDelivery implements ProductDeliveryInterface
         private readonly RootPath $rootPath
     ){
     }
+    #[\Override]
     public function deliver(string $email, Product $product): void
     {
         $file = $product->getFile();
@@ -26,6 +27,7 @@ class FileDelivery implements ProductDeliveryInterface
         $this->fileSender->send(new Email($email), $subject, $pathToFile, 'mail/template_file.html.twig');
     }
 
+    #[\Override]
     public function supports(string $type): bool
     {
         return Type::File->value === $type;

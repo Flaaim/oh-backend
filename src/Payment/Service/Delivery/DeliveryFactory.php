@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Payment\Service\Delivery;
 

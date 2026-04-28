@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Access\Test\Unit\Command\Stream;
 
@@ -21,6 +21,7 @@ class HandlerTest extends TestCase
     private AccessRepository $accesses;
     private ProductQueryInterface $productQuery;
     private Handler $handler;
+    #[\Override]
     public function setUp(): void
     {
         $this->token = Uuid::uuid4()->toString();

@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Distribution\Entity;
 
@@ -9,12 +9,7 @@ class DistributionRepository
 {
     private EntityRepository $repo;
     private EntityManagerInterface $em;
-    public function __construct(EntityManagerInterface $em)
-    {
-        $repo = $em->getRepository(Distribution::class);
-        $this->repo = $repo;
-        $this->em = $em;
-    }
+
     public function add(Distribution $distribution): void
     {
         $this->em->persist($distribution);
@@ -25,9 +20,6 @@ class DistributionRepository
         return $this->repo->findOneBy(['id' => $id]);
     }
 
-    public function findAll(): array
-    {
-        return $this->repo->findAll();
-    }
+
 
 }

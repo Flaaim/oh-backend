@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Access\Entity;
+namespace final App\Access\Entity;
 
 use DateTimeImmutable;
 use Webmozart\Assert\Assert;
@@ -28,15 +28,7 @@ class Token
         return $this->expired;
     }
 
-    public function validate(string $value, DateTimeImmutable $date): void
-    {
-        if(!$this->isEqualTo($value)) {
-            throw new \DomainException('Token is invalid.');
-        }
-        if($this->isExpiredTo($date)) {
-            throw new \DomainException('Token is expired.');
-        }
-    }
+
     public function isEqualTo(string $value): bool
     {
         return $this->value === $value;

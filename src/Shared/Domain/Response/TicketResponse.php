@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Shared\Domain\Response;
 
@@ -14,18 +14,7 @@ class TicketResponse implements \JsonSerializable
         public readonly string  $status,
         public readonly array $questions,
     ){}
-
-    public static function fromResult(Ticket $ticket, $limit = null): self
-    {
-
-        return new self(
-            $ticket->getId(),
-            $ticket->getName(),
-            $ticket->getCipher(),
-            $ticket->getStatus()->getValue(),
-            $ticket->getQuestions()->slice(0, $limit),
-        );
-    }
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [

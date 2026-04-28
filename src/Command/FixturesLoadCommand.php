@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Command;
 
@@ -21,12 +21,14 @@ class FixturesLoadCommand extends Command
         $this->paths = $paths;
     }
 
+    #[\Override]
     protected function configure(): void
     {
         $this->setName('fixtures:load')
             ->setDescription('Load fixtures');
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('<comment>Loading fixtures</comment>');

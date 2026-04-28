@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Product\Test\Entity;
 
@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 class FileTest extends TestCase
 {
     private TempDir $tempDir;
+    #[\Override]
     public function setUp(): void
     {
         $this->tempDir = TempDir::create();
@@ -54,7 +55,7 @@ class FileTest extends TestCase
         $file->mergeRoot($root);
 
     }
-    public function testFile()
+    public function testFile(): void
     {
         $file = new File($this->tempFile());
         $root = new RootPath($this->tempDir->getValue());
@@ -96,6 +97,7 @@ class FileTest extends TestCase
         return basename($file1);
     }
 
+    #[\Override]
     public function tearDown(): void
     {
         $this->tempDir->clear();

@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Product\Query;
 
@@ -13,6 +13,7 @@ class ProductQuery implements ProductQueryInterface
         private readonly ProductRepository $products
     ){
     }
+    #[\Override]
     public function getProduct(string $productId): ProductQueryDTO
     {
         $product = $this->products->get(new Id($productId));

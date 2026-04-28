@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Shared\Domain\Event\Payment;
 
@@ -17,6 +17,7 @@ class PaymentSubscriber implements EventSubscriberInterface
     )
     {}
 
+    #[\Override]
     public static function getSubscribedEvents(): array
     {
         return [

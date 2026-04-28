@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Http\Test\Unit\Validator;
 
@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
 {
     private array $files = [];
+    #[\Override]
     protected function createValidator(): ConstraintValidatorInterface
     {
         return new SlimUploadedFileValidator();
@@ -170,6 +171,7 @@ class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
     }
 
 
+    #[\Override]
     public function tearDown(): void
     {
         foreach ($this->files as $file) {

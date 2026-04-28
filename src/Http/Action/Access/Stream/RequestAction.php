@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Http\Action\Access\Stream;
 
@@ -17,6 +17,7 @@ class RequestAction implements RequestHandlerInterface
         private readonly Validator $validator
     ){
     }
+    #[\Override]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $encodedToken = $request->getQueryParams()['token'] ?? '';

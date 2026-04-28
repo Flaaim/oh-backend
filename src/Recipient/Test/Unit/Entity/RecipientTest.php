@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Recipient\Test\Unit\Entity;
 

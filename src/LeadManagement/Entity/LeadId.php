@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\LeadManagement\Entity;
 
@@ -17,10 +17,7 @@ class LeadId
     {
         return $this->value;
     }
-    public static function generate(): self
-    {
-        return new self(Uuid::uuid4()->toString());
-    }
+
 
     public function __toString(): string
     {

@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Command;
 
@@ -17,12 +17,14 @@ use Twig\Environment;
 
 class FileSendCommand extends Command
 {
+    #[\Override]
     public function configure(): void
     {
         $this->setName('product:send_file');
         $this->setDescription('Send product message');
     }
 
+    #[\Override]
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         try{
