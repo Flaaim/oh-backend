@@ -1,0 +1,41 @@
+name: Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Cache API Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('api/composer.lock') }}
+          restore-keys: |
+          ${{ runner.os }}-composer-
+
+      - name: Init
+        run: make init
+
+      - name: Lint
+        run: make lint
+
+      - name: Test
+        run: make test
+
+      - name: Archive tests output
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-output
+          path: /var/log
+        if: ${{ always() && steps.api-test.outcome == 'failure' }}
