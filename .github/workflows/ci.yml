@@ -22,7 +22,7 @@ jobs:
           path: vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('api/composer.lock') }}
           restore-keys: |
-          ${{ runner.os }}-composer-
+            ${{ runner.os }}-composer-
 
       - name: Init
         run: make init
