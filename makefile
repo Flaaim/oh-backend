@@ -25,7 +25,7 @@ docker-build:
 	docker compose build
 
 composer-install:
-	docker compose run --rm $$(id -u):$$(id -g) php-cli composer install
+	docker compose run --rm "$(id -u):$(id -g)" php-cli composer install
 
 app-clear:
 	docker run --rm -v ${PWD}:/app -w /app  alpine sh -c 'rm -rf var/cache/* var/log/*'
