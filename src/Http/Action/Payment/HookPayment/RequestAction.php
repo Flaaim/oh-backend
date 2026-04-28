@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Http\Action\Payment\HookPayment;
 
@@ -14,7 +14,6 @@ class RequestAction implements RequestHandlerInterface
 {
     public function __construct(private readonly Handler $handler)
     {}
-    #[\Override]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         try {

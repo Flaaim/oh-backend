@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Payment\Test\Service\Product;
 
@@ -18,7 +18,7 @@ use Twig\Environment;
 
 class FileSenderTest extends TestCase
 {
-    public function testSuccess(): void
+    public function testSuccess()
     {
         $email = new UserEmail('test@app.ru');
         $subject = 'subject';

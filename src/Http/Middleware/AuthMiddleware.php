@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Http\Middleware;
 
@@ -13,7 +13,6 @@ class AuthMiddleware implements MiddlewareInterface
 {
     public function __construct(private readonly ContainerInterface $container)
     {}
-    #[\Override]
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $token = $request->getHeader('Authorization');

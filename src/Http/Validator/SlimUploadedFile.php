@@ -1,6 +1,6 @@
 <?php
 
-namespfinal ace App\Http\Validator;
+namespace App\Http\Validator;
 
 use Symfony\Component\Validator\Constraint;
 
@@ -15,7 +15,6 @@ class SlimUploadedFile extends Constraint
     public $mimeTypesMessage = 'The mime type of the file is invalid ({{ type }}). Allowed mime types are {{ types }}.';
     public $maxSizeMessage = 'The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}.';
     public $extensionsMessage = 'The extension of the file is invalid ({{ extension }}). Allowed extensions are {{ extensions }}.';
-    #[\Override]
     public function getTargets(): array|string
     {
         return self::PROPERTY_CONSTRAINT;

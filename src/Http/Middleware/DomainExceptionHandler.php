@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Http\Middleware;
 
@@ -13,7 +13,6 @@ class DomainExceptionHandler implements MiddlewareInterface
 {
     public function __construct(private readonly LoggerInterface $logger)
     {}
-    #[\Override]
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         try {

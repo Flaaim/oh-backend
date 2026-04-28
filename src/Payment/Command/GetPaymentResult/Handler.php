@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Payment\Command\GetPaymentResult;
 
@@ -6,7 +6,10 @@ use App\Payment\Entity\PaymentRepository;
 
 class Handler
 {
-
+    public function __construct(
+        private readonly PaymentRepository $payments
+    )
+    {}
 
     public function handle(Command $command): Response
     {

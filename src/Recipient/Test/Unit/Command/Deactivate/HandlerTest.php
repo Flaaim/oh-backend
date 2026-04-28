@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Recipient\Test\Unit\Command\Deactivate;
 
@@ -15,7 +15,6 @@ class HandlerTest extends TestCase
 {
     private RecipientRepository $recipients;
     private Handler $handler;
-    #[\Override]
     public function setUp(): void
     {
         $this->recipients = $this->createMock(RecipientRepository::class);

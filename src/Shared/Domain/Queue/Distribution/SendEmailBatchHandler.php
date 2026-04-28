@@ -1,6 +1,6 @@
 <?php
 
-namespace Apfinal p\Shared\Domain\Queue\Distribution;
+namespace App\Shared\Domain\Queue\Distribution;
 
 
 use App\Distribution\Entity\Distribution;

@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Payment\Command\HookPayment;
 
@@ -13,7 +13,15 @@ use Psr\Log\LoggerInterface;
 
 class Handler
 {
-
+    public function __construct(
+        private readonly PaymentWebhookParserInterface  $webhookParser,
+        private readonly PaymentProviderInterface       $provider,
+        private readonly PaymentRepository $paymentRepository,
+        private readonly Flusher $flusher,
+        private readonly SendProductHandler  $sendProductHandler,
+        private readonly LoggerInterface $logger,
+    )
+    {}
     public function handle(Command $command): void
     {
 

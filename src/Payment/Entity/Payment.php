@@ -2,7 +2,7 @@
 
 namespace App\Payment\Entity;
 
-use Afinal pp\Product\Entity\Price;
+use App\Product\Entity\Price;
 use App\Shared\Domain\ValueObject\Id;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -59,12 +59,18 @@ class Payment
     {
         return $this->price;
     }
-
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
     public function setExternalId(string $externalId): void
     {
         $this->externalId = $externalId;
     }
-
+    public function getExternalId(): string
+    {
+        return $this->externalId;
+    }
     public function getReturnToken(): Token
     {
         return $this->returnToken;

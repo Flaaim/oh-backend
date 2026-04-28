@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Product\Command\Get;
 
@@ -9,7 +9,9 @@ use App\Shared\Domain\ValueObject\Id;
 class Handler
 {
 
-
+    public function __construct(
+        private ProductRepository $products,
+    ){}
     public function handle(Command $command): ProductDTO
     {
         $product = $this->products->get(new Id($command->productId));

@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Access\Entity;
 
@@ -9,7 +9,12 @@ class SessionRepository
 {
     private EntityRepository $repo;
     private EntityManagerInterface $em;
-
+    public function __construct(EntityManagerInterface $em)
+    {
+        $repo = $em->getRepository(Session::class);
+        $this->repo = $repo;
+        $this->em = $em;
+    }
     public function findByToken(string $token): ?Session
     {
         return $this->repo->findOneBy(['token' => $token]);

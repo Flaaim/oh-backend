@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Http\Action\LeadManagment\CreateLead;
 
@@ -18,7 +18,6 @@ class RequestAction implements RequestHandlerInterface
     ){
 
     }
-    #[\Override]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $name = $request->getParsedBody()['name'] ?? '';

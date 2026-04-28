@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Command;
 
@@ -15,14 +15,12 @@ use Twig\Environment;
 
 class AccessSendCommand extends Command
 {
-    #[\Override]
     public function configure(): void
     {
         $this->setName('product:send_access');
         $this->setDescription('Send access message');
     }
 
-    #[\Override]
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         try{

@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Http\Action\Access\GetAccess;
 
@@ -18,7 +18,6 @@ class RequestAction implements RequestHandlerInterface
     ){
 
     }
-    #[\Override]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $encodedToken = $request->getQueryParams()['token'] ?? '';

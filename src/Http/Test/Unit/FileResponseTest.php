@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Http\Test\Unit;
 
@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 class FileResponseTest extends TestCase
 {
     private TempDir $tempDir;
-    #[\Override]
     protected function setUp(): void
     {
         $this->tempDir = TempDir::create();
@@ -45,15 +44,11 @@ class FileResponseTest extends TestCase
         new FileResponse('/file-not-found.pdf');
 
     }
-    #[\Override]
     protected function tearDown(): void
     {
         $this->tempDir->clear();
     }
-    /**
-     * @return false|string
-     */
-    private function tempFile(): string|false
+    private function tempFile(): string
     {
         $file = tempnam($this->tempDir->getValue(), 'pdf_test_');
         $result = file_put_contents($file, '%PDF-1.4 test content');

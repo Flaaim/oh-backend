@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Payment\Service\Delivery\Access;
 
@@ -16,14 +16,12 @@ class AccessDelivery implements ProductDeliveryInterface
         private readonly AccessSender $accessSender
     ){
     }
-    #[\Override]
     public function deliver(string $email, Product $product): void
     {
         $accessDTO = $this->handler->handle(new OpenAccessCommand($email, $product->getId()->getValue()));
         $this->accessSender->send(new Email($email), $accessDTO, 'mail/template_access.html.twig');
     }
 
-    #[\Override]
     public function supports(string $type): bool
     {
         return Type::Access->value === $type;

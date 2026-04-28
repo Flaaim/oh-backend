@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Access\Entity;
 
@@ -9,12 +9,10 @@ class EmailType extends StringType
 {
     public const NAME = 'access_email';
 
-    #[\Override]
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
         return $value instanceof Email ? $value->getValue() : $value;
     }
-    #[\Override]
     public function convertToPHPValue($value, AbstractPlatform $platform): ?Email
     {
         return !empty($value) ? new Email((string)$value) : null;
@@ -23,7 +21,6 @@ class EmailType extends StringType
     {
         return self::NAME;
     }
-    #[\Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         $column['length'] = 36;

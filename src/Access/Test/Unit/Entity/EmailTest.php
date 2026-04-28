@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Access\Test\Unit\Entity;
 

@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Distribution\Test\Unit\Command;
 
@@ -18,7 +18,6 @@ class HandlerTest extends TestCase
     private readonly Flusher $flusher;
     private readonly MessageBusInterface $messageBus;
     private readonly Handler  $handler;
-    #[\Override]
     public function setUp(): void
     {
         $this->distributions = $this->createMock(DistributionRepository::class);

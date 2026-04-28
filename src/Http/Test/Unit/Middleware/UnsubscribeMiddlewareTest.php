@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Http\Test\Unit\Middleware;
 
@@ -19,7 +19,6 @@ class UnsubscribeMiddlewareTest extends TestCase
     private ContainerInterface $container;
     private LoggerInterface $logger;
     private UnsubscribeMiddleware $middleware;
-    #[\Override]
     public function setUp(): void
     {
         parent::setUp();

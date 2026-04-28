@@ -12,13 +12,11 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20251022054036 extends AbstractMigration
 {
-    #[\Override]
     public function getDescription(): string
     {
         return '';
     }
 
-    #[\Override]
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
@@ -26,7 +24,6 @@ final class Version20251022054036 extends AbstractMigration
         $this->addSql('CREATE TABLE products (id CHAR(36) NOT NULL, name VARCHAR(255) NOT NULL, cipher VARCHAR(25) NOT NULL, price CHAR(36) NOT NULL, file CHAR(36) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4');
     }
 
-    #[\Override]
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs

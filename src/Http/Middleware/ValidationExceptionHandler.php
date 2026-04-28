@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Http\Middleware;
 
@@ -11,7 +11,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class ValidationExceptionHandler implements MiddlewareInterface
 {
-    #[\Override]
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         try {

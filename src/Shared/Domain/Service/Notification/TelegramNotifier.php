@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Shared\Domain\Service\Notification;
 
@@ -10,9 +10,14 @@ use Psr\Log\LoggerInterface;
 
 class TelegramNotifier implements NotificationInterface
 {
+    public function __construct(
+        private readonly Client $client,
+        private readonly LoggerInterface $logger,
+        private readonly string $token,
+        private readonly string $chatId
+    )
+    {}
 
-
-    #[\Override]
     public function notify(object $event): void
     {
        if($event instanceof SuccessfulPaymentEvent) {

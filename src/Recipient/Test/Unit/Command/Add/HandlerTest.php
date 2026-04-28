@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Recipient\Test\Unit\Command\Add;
 
@@ -16,7 +16,6 @@ class HandlerTest extends TestCase
     private RecipientRepository $recipients;
     private Flusher $flusher;
     private Handler $handler;
-    #[\Override]
     public function setUp(): void
     {
         $this->recipients = $this->createMock(RecipientRepository::class);

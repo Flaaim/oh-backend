@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Product\Entity;
 
@@ -10,7 +10,12 @@ class ProductRepository
 {
     private EntityRepository $repo;
     private EntityManagerInterface $em;
-
+    public function __construct(EntityManagerInterface $em)
+    {
+        $repo = $em->getRepository(Product::class);
+        $this->repo = $repo;
+        $this->em = $em;
+    }
 
     public function get(Id $id): Product
     {

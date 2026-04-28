@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Product\Command\Upload;
 
@@ -7,7 +7,10 @@ use App\Product\Service\FileHandler;
 
 class Handler
 {
-
+    public function __construct(
+        private readonly UploadDir    $uploadDir,
+    )
+    {}
 
     public function handle(Command $command): Response
     {

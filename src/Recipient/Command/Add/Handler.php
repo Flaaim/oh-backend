@@ -1,6 +1,6 @@
 <?php
 
-namespace Apfinal p\Recipient\Command\Add;
+namespace App\Recipient\Command\Add;
 
 use App\Flusher;
 use App\Recipient\Entity\Email;

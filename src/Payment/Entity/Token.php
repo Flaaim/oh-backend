@@ -1,6 +1,6 @@
 <?php
 
-namespace final App\Payment\Entity;
+namespace App\Payment\Entity;
 
 use DateTimeImmutable;
 use Webmozart\Assert\Assert;

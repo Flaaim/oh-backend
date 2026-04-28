@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Payment\Command\HookPayment\SendProduct;
 
@@ -12,7 +12,11 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class Handler
 {
-
+    public function __construct(
+        private readonly DeliveryFactory $delivery,
+        private readonly EventDispatcher $dispatcher
+    )
+    {}
     public function handle(Command $command): void
     {
         if(!$this->shouldSendProduct($command->payment, $command->paymentWebHookData)){

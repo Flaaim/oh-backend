@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Payment\Fixture;
 
@@ -16,7 +16,6 @@ use Ramsey\Uuid\Uuid;
 class PaymentFixture extends AbstractFixture
 {
 
-    #[\Override]
     public function load(ObjectManager $manager): void
     {
         $payment = new Payment(

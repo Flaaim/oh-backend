@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Http\Test\Unit\Middleware;
 
@@ -13,7 +13,7 @@ use Test\Functional\Json;
 
 class AccessExpiredExceptionHandlerTest extends TestCase
 {
-    public function testSuccess(): void
+    public function testSuccess()
     {
         $middleware = new AccessExpiredExceptionHandler($logger = $this->createMock(LoggerInterface::class));
 

@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\ErrorHandler;
 
@@ -21,7 +21,6 @@ class LogErrorHandler extends ErrorHandler
         $this->logger = $logger;
     }
 
-    #[\Override]
     protected function writeToErrorLog(): void
     {
         $this->logger->error($this->exception->getMessage(), [

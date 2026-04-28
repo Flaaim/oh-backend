@@ -14,9 +14,9 @@ interface PaymentProviderInterface
 
     public function handleCallback(PaymentCallbackDTO $callbackData): ?string;
 
+    public function checkPaymentStatus(string $paymentId): string;
 
-
-
+    public function getSupportedCurrencies(): array;
 
     public function getName(): string;
 }

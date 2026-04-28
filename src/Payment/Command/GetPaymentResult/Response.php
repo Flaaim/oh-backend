@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Payment\Command\GetPaymentResult;
 
@@ -11,7 +11,6 @@ class Response implements \JsonSerializable
      )
      {}
 
-    #[\Override]
     public function jsonSerialize(): array
     {
         return [

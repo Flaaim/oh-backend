@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Http\Action\Product\Upsert;
 
@@ -19,7 +19,6 @@ class RequestAction implements RequestHandlerInterface
         private readonly Validator $validator
     )
     {}
-    #[\Override]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $data = $request->getParsedBody() ?? [];

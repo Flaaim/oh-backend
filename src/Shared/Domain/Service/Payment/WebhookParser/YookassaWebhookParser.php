@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Shared\Domain\Service\Payment\WebhookParser;
 
@@ -12,7 +12,6 @@ class YookassaWebhookParser implements PaymentWebhookParserInterface
     const PROVIDER_NAME = 'Yookassa';
     const NOTIFICATION_TYPE = 'notification';
 
-    #[\Override]
     public function supports(string $provider, array $data): bool
     {
         if ($provider !== self::PROVIDER_NAME) {
@@ -25,7 +24,6 @@ class YookassaWebhookParser implements PaymentWebhookParserInterface
 
     }
 
-    #[\Override]
     public function parse(array $data): PaymentWebhookDataInterface
     {
         if (!$this->supports(self::PROVIDER_NAME, $data)) {

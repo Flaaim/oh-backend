@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Payment\Test\Service;
 
@@ -52,7 +52,7 @@ class DeliveryFactoryTest extends TestCase
         $delivery->createDelivery($paymentWebhookData);
     }
 
-    public function testInvalidDeliverElement(): void
+    public function testInvalidDeliverElement()
     {
         self::expectException(\DomainException::class);
         self::expectExceptionMessage('Delivery is not a valid array element.');

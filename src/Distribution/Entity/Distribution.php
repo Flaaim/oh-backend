@@ -2,7 +2,7 @@
 
 namespace App\Distribution\Entity;
 
-use final Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 #[ORM\Table(name:'distributions')]
 class Distribution
@@ -37,7 +37,10 @@ class Distribution
     {
         return $this->isEnded;
     }
-
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
 
     public function ended(): void
     {

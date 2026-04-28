@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Access\Fixture;
 
@@ -12,7 +12,6 @@ use Doctrine\Persistence\ObjectManager;
 class AccessFixture extends AbstractFixture
 {
 
-    #[\Override]
     public function load(ObjectManager $manager): void
     {
         $access = new Access(

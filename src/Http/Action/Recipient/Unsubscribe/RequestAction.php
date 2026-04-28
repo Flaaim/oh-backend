@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Http\Action\Recipient\Unsubscribe;
 
@@ -18,7 +18,6 @@ class RequestAction implements RequestHandlerInterface
         private readonly Validator $validator,
     ){
     }
-    #[\Override]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $emails = $request->getParsedBody() ?? [];

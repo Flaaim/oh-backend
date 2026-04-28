@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Http\Action\Product\Get;
 
@@ -18,7 +18,6 @@ class RequestAction implements RequestHandlerInterface
         private readonly Handler $handler
     ){
     }
-    #[\Override]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $productId = $request->getQueryParams()['productId'] ?? '';
