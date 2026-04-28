@@ -28,7 +28,10 @@ jobs:
         run: make init
 
       - name: Lint
-        run: make lint
+        run: make app-lint
+
+      - name: Psalm
+        run: make app-psalm
 
       - name: Test
         run: make test
