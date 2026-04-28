@@ -1,0 +1,1224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="6.16.1@f1f5de594dc76faf8784e02d3dc4716c91c6f6ac">
+  <file src="src/Access/Command/CheckSession/Command.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Access/Command/CheckSession/Handler.php">
+    <UnusedClass>
+      <code><![CDATA[Handler]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Access/Command/SyncSession/Handler.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Access/Entity/Access.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getId]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Access/Entity/AccessIdType.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
+      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?AccessId]]></code>
+      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[AccessIdType]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Access/Entity/AccessRepository.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[get]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Access/Entity/DTO/GetAccessDTO.php">
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$expiredAt]]></code>
+    </PossiblyUnusedProperty>
+  </file>
+  <file src="src/Access/Entity/EmailType.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
+      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Email]]></code>
+      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[EmailType]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Access/Entity/Session.php">
+    <UnusedProperty>
+      <code><![CDATA[$createdAt]]></code>
+      <code><![CDATA[$ip]]></code>
+      <code><![CDATA[$lastSeen]]></code>
+      <code><![CDATA[$token]]></code>
+      <code><![CDATA[$userAgent]]></code>
+    </UnusedProperty>
+  </file>
+  <file src="src/Access/Entity/SessionRepository.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Access/Entity/Token.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[validate]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Access/Exception/AccessExpiredException.php">
+    <PossiblyUnusedParam>
+      <code><![CDATA[$previous]]></code>
+    </PossiblyUnusedParam>
+  </file>
+  <file src="src/Access/Fixture/AccessFixture.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function load(ObjectManager $manager): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Access/Service/UuidConverter.php">
+    <InvalidOperand>
+      <code><![CDATA[ceil(strlen($base64) / 4) * 4]]></code>
+    </InvalidOperand>
+    <InvalidScalarArgument>
+      <code><![CDATA[ceil(strlen($base64) / 4) * 4]]></code>
+    </InvalidScalarArgument>
+  </file>
+  <file src="src/Access/Test/Builder/AccessBuilder.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[withAccessId]]></code>
+      <code><![CDATA[withCipher]]></code>
+      <code><![CDATA[withEmail]]></code>
+      <code><![CDATA[withName]]></code>
+      <code><![CDATA[withProductId]]></code>
+      <code><![CDATA[withToken]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Access/Test/Unit/Command/GetAccess/HandlerTest.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+    </UndefinedInterfaceMethod>
+    <UndefinedMethod>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+    </UndefinedMethod>
+    <UnusedClass>
+      <code><![CDATA[HandlerTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Access/Test/Unit/Command/OpenAccess/HandlerTest.php">
+    <UnusedClass>
+      <code><![CDATA[HandlerTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Access/Test/Unit/Command/Stream/HandlerTest.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+    </UndefinedInterfaceMethod>
+    <UndefinedMethod>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+    </UndefinedMethod>
+    <UndefinedThisPropertyAssignment>
+      <code><![CDATA[$this->command]]></code>
+    </UndefinedThisPropertyAssignment>
+    <UndefinedThisPropertyFetch>
+      <code><![CDATA[$this->command]]></code>
+      <code><![CDATA[$this->command]]></code>
+      <code><![CDATA[$this->command]]></code>
+    </UndefinedThisPropertyFetch>
+    <UnusedClass>
+      <code><![CDATA[HandlerTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Access/Test/Unit/Entity/AccessIdTest.php">
+    <UnusedClass>
+      <code><![CDATA[AccessIdTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Access/Test/Unit/Entity/AccessTest.php">
+    <UnusedClass>
+      <code><![CDATA[AccessTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Access/Test/Unit/Entity/EmailTest.php">
+    <UnusedClass>
+      <code><![CDATA[EmailTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Access/Test/Unit/Entity/TokenTest.php">
+    <ImplicitToStringCast>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value = Id::generate()]]></code>
+      <code><![CDATA[$value = Id::generate()]]></code>
+      <code><![CDATA[Id::generate()]]></code>
+      <code><![CDATA[Id::generate()]]></code>
+      <code><![CDATA[Id::generate()]]></code>
+      <code><![CDATA[Id::generate()]]></code>
+      <code><![CDATA[Id::generate()]]></code>
+    </ImplicitToStringCast>
+    <UnusedClass>
+      <code><![CDATA[TokenTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Access/Test/Unit/Service/UuidConverterTest.php">
+    <UnusedClass>
+      <code><![CDATA[UuidConverterTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Command/AccessSendCommand.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function configure(): void]]></code>
+      <code><![CDATA[public function execute(InputInterface $input, OutputInterface $output): int]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[AccessSendCommand]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Command/DistributionSendCommand.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function configure(): void]]></code>
+      <code><![CDATA[public function execute(InputInterface $input, OutputInterface $output): int]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[DistributionSendCommand]]></code>
+    </UnusedClass>
+    <UnusedVariable>
+      <code><![CDATA[$subject]]></code>
+    </UnusedVariable>
+  </file>
+  <file src="src/Command/FileSendCommand.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function configure(): void]]></code>
+      <code><![CDATA[public function execute(InputInterface $input, OutputInterface $output): int]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[FileSendCommand]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Command/FixturesLoadCommand.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+      <code><![CDATA[protected function execute(InputInterface $input, OutputInterface $output): int]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[FixturesLoadCommand]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Data/Migration/Version20251022054036.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function down(Schema $schema): void]]></code>
+      <code><![CDATA[public function getDescription(): string]]></code>
+      <code><![CDATA[public function up(Schema $schema): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Data/Migration/Version20251025225025.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function down(Schema $schema): void]]></code>
+      <code><![CDATA[public function getDescription(): string]]></code>
+      <code><![CDATA[public function up(Schema $schema): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Data/Migration/Version20251120053155.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function down(Schema $schema): void]]></code>
+      <code><![CDATA[public function getDescription(): string]]></code>
+      <code><![CDATA[public function up(Schema $schema): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Data/Migration/Version20260219113410.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function down(Schema $schema): void]]></code>
+      <code><![CDATA[public function getDescription(): string]]></code>
+      <code><![CDATA[public function up(Schema $schema): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Data/Migration/Version20260220033522.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function down(Schema $schema): void]]></code>
+      <code><![CDATA[public function getDescription(): string]]></code>
+      <code><![CDATA[public function up(Schema $schema): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Data/Migration/Version20260220045000.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function down(Schema $schema): void]]></code>
+      <code><![CDATA[public function getDescription(): string]]></code>
+      <code><![CDATA[public function up(Schema $schema): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Data/Migration/Version20260220061935.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function down(Schema $schema): void]]></code>
+      <code><![CDATA[public function getDescription(): string]]></code>
+      <code><![CDATA[public function up(Schema $schema): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Data/Migration/Version20260301015741.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function down(Schema $schema): void]]></code>
+      <code><![CDATA[public function getDescription(): string]]></code>
+      <code><![CDATA[public function up(Schema $schema): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Data/Migration/Version20260423080147.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function down(Schema $schema): void]]></code>
+      <code><![CDATA[public function getDescription(): string]]></code>
+      <code><![CDATA[public function up(Schema $schema): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Data/Migration/Version20260424222121.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function down(Schema $schema): void]]></code>
+      <code><![CDATA[public function getDescription(): string]]></code>
+      <code><![CDATA[public function up(Schema $schema): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Distribution/Entity/Distribution.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getCreatedAt]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Distribution/Entity/DistributionIdType.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
+      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?DistributionId]]></code>
+      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[DistributionIdType]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Distribution/Entity/DistributionRepository.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[findAll]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Distribution/Test/Unit/Command/HandlerTest.php">
+    <InaccessibleProperty>
+      <code><![CDATA[$this->distributions]]></code>
+      <code><![CDATA[$this->flusher]]></code>
+      <code><![CDATA[$this->handler]]></code>
+      <code><![CDATA[$this->messageBus]]></code>
+    </InaccessibleProperty>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[expects]]></code>
+    </UndefinedInterfaceMethod>
+    <UndefinedMethod>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+    </UndefinedMethod>
+    <UnusedClass>
+      <code><![CDATA[HandlerTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/ErrorHandler/LogErrorHandler.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function writeToErrorLog(): void]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[LogErrorHandler]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Flusher.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Http/Action/Access/GetAccess/RequestAction.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RequestAction]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Action/Access/Stream/RequestAction.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RequestAction]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Action/Auth/GetToken/RequestAction.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RequestAction]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Action/Distribution/Create/RequestAction.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RequestAction]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Action/LeadManagment/CreateLead/RequestAction.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RequestAction]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Action/Payment/CreatePayment/RequestAction.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RequestAction]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Action/Payment/HookPayment/RequestAction.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RequestAction]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Action/Payment/Result/RequestAction.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RequestAction]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Action/Product/Get/RequestAction.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RequestAction]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Action/Product/RecountPrice/RequestAction.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RequestAction]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Action/Product/Upload/RequestAction.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RequestAction]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Action/Product/Upsert/RequestAction.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RequestAction]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Action/Recipient/Unsubscribe/RequestAction.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RequestAction]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Middleware/AccessExpiredExceptionHandler.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Http/Middleware/AuthMiddleware.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[AuthMiddleware]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Middleware/ClearInputHandler.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[ResponseInterface]]></code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="src/Http/Middleware/DomainExceptionHandler.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Http/Middleware/InitializeSessionMiddleware.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[ResponseInterface]]></code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="src/Http/Middleware/UnsubscribeMiddleware.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Http/Middleware/ValidationExceptionHandler.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Http/Test/Unit/EmptyResponseTest.php">
+    <UnusedClass>
+      <code><![CDATA[EmptyResponseTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Test/Unit/FileResponseTest.php">
+    <FalsableReturnStatement>
+      <code><![CDATA[$file]]></code>
+    </FalsableReturnStatement>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function setUp(): void]]></code>
+      <code><![CDATA[protected function tearDown(): void]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[FileResponseTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Test/Unit/Middleware/AccessExpiredExceptionHandlerTest.php">
+    <UnusedClass>
+      <code><![CDATA[AccessExpiredExceptionHandlerTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Test/Unit/Middleware/ClearInputHandlerTest.php">
+    <UnusedClass>
+      <code><![CDATA[ClearInputHandlerTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Test/Unit/Middleware/DomainExceptionHandlerTest.php">
+    <UnusedClass>
+      <code><![CDATA[DomainExceptionHandlerTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Test/Unit/Middleware/InitializeSessionMiddlewareTest.php">
+    <UnusedClass>
+      <code><![CDATA[InitializeSessionMiddlewareTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Test/Unit/Middleware/UnsubscribeMiddlewareTest.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+    </UndefinedInterfaceMethod>
+    <UnusedClass>
+      <code><![CDATA[UnsubscribeMiddlewareTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Test/Unit/Middleware/ValidationExceptionHandlerTest.php">
+    <UnusedClass>
+      <code><![CDATA[ValidationExceptionHandlerTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Test/Unit/Validator/SlimUploadedFileValidatorTest.php">
+    <InvalidScalarArgument>
+      <code><![CDATA[$maxFileSize]]></code>
+      <code><![CDATA[$maxFileSize]]></code>
+      <code><![CDATA[$uploadedFileSize]]></code>
+      <code><![CDATA[$uploadedFileSize]]></code>
+    </InvalidScalarArgument>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function createValidator(): ConstraintValidatorInterface]]></code>
+      <code><![CDATA[public function tearDown(): void]]></code>
+    </MissingOverrideAttribute>
+    <MissingTemplateParam>
+      <code><![CDATA[SlimUploadedFileValidatorTest]]></code>
+    </MissingTemplateParam>
+    <UnusedClass>
+      <code><![CDATA[SlimUploadedFileValidatorTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Validator/SlimUploadedFile.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getTargets(): array|string]]></code>
+    </MissingOverrideAttribute>
+    <RedundantCondition>
+      <code><![CDATA[$extensions]]></code>
+      <code><![CDATA[$mimeTypes]]></code>
+    </RedundantCondition>
+    <TypeDoesNotContainNull>
+      <code><![CDATA[$this->extensions]]></code>
+      <code><![CDATA[$this->mimeTypes]]></code>
+    </TypeDoesNotContainNull>
+  </file>
+  <file src="src/Http/Validator/SlimUploadedFileValidator.php">
+    <InvalidScalarArgument>
+      <code><![CDATA[$constraint->maxSize]]></code>
+      <code><![CDATA[$value->getSize()]]></code>
+    </InvalidScalarArgument>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function validate(mixed $value, Constraint $constraint): void]]></code>
+    </MissingOverrideAttribute>
+    <TypeDoesNotContainType>
+      <code><![CDATA[is_string($size)]]></code>
+    </TypeDoesNotContainType>
+  </file>
+  <file src="src/LeadManagement/Command/CreateLead/Handler.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/LeadManagement/Entity/Lead.php">
+    <UnusedClass>
+      <code><![CDATA[Lead]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/LeadManagement/Entity/LeadId.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[generate]]></code>
+      <code><![CDATA[getValue]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/LeadManagement/Test/Unit/Entity/LeadIdTest.php">
+    <UnusedClass>
+      <code><![CDATA[LeadIdTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Payment/Command/CreatePayment/Handler.php">
+    <ImplicitToStringCast>
+      <code><![CDATA[Id::generate()]]></code>
+    </ImplicitToStringCast>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Payment/Command/CreatePayment/Response.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function jsonSerialize(): array]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Payment/Command/GetPaymentResult/Handler.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Payment/Command/GetPaymentResult/Response.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function jsonSerialize(): array]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Payment/Command/HookPayment/Handler.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Payment/Command/HookPayment/SendProduct/Handler.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Payment/Entity/EmailType.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
+      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Email]]></code>
+      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[EmailType]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Payment/Entity/Payment.php">
+    <InvalidNullableReturnType>
+      <code><![CDATA[string]]></code>
+    </InvalidNullableReturnType>
+    <NullableReturnStatement>
+      <code><![CDATA[$this->externalId]]></code>
+    </NullableReturnStatement>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getCreatedAt]]></code>
+      <code><![CDATA[getExternalId]]></code>
+      <code><![CDATA[getId]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Payment/Entity/PaymentRepository.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Payment/Entity/StatusType.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
+      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Status]]></code>
+      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[StatusType]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Payment/Fixture/PaymentFixture.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function load(ObjectManager $manager): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Payment/Service/Delivery/Access/AccessDelivery.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function deliver(string $email, Product $product): void]]></code>
+      <code><![CDATA[public function supports(string $type): bool]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Payment/Service/Delivery/Product/FileDelivery.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function deliver(string $email, Product $product): void]]></code>
+      <code><![CDATA[public function supports(string $type): bool]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Payment/Test/Entity/EmailTest.php">
+    <UnusedClass>
+      <code><![CDATA[EmailTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Payment/Test/Entity/StatusTest.php">
+    <UnusedClass>
+      <code><![CDATA[StatusTest]]></code>
+    </UnusedClass>
+    <UnusedVariable>
+      <code><![CDATA[$status]]></code>
+    </UnusedVariable>
+  </file>
+  <file src="src/Payment/Test/Entity/TokenTest.php">
+    <ImplicitToStringCast>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value = Id::generate()]]></code>
+      <code><![CDATA[$value = Id::generate()]]></code>
+      <code><![CDATA[Id::generate()]]></code>
+      <code><![CDATA[Id::generate()]]></code>
+      <code><![CDATA[Id::generate()]]></code>
+      <code><![CDATA[Id::generate()]]></code>
+      <code><![CDATA[Id::generate()]]></code>
+    </ImplicitToStringCast>
+    <UnusedClass>
+      <code><![CDATA[TokenTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Payment/Test/Service/Access/AccessDeliveryTest.php">
+    <UnusedClass>
+      <code><![CDATA[AccessDeliveryTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Payment/Test/Service/Access/AccessSenderTest.php">
+    <UnusedClass>
+      <code><![CDATA[AccessSenderTest]]></code>
+    </UnusedClass>
+    <UnusedVariable>
+      <code><![CDATA[$twig]]></code>
+    </UnusedVariable>
+  </file>
+  <file src="src/Payment/Test/Service/DeliveryFactoryTest.php">
+    <InvalidArgument>
+      <code><![CDATA[[new stdClass(), new stdClass()]]]></code>
+    </InvalidArgument>
+    <UnusedClass>
+      <code><![CDATA[DeliveryFactoryTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Payment/Test/Service/Product/FileDeliveryTest.php">
+    <UnusedClass>
+      <code><![CDATA[FileDeliveryTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Payment/Test/Service/Product/FileSenderTest.php">
+    <UnusedClass>
+      <code><![CDATA[FileSenderTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Product/Command/Get/Handler.php">
+    <ImplicitToStringCast>
+      <code><![CDATA[$product->getId()]]></code>
+    </ImplicitToStringCast>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Product/Command/RecountPrice/Handler.php">
+    <InvalidScalarArgument>
+      <code><![CDATA[$price->getValue()]]></code>
+    </InvalidScalarArgument>
+  </file>
+  <file src="src/Product/Command/Upload/Handler.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Product/Command/Upload/Response.php">
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$mime_type]]></code>
+      <code><![CDATA[$name]]></code>
+      <code><![CDATA[$path]]></code>
+      <code><![CDATA[$size]]></code>
+    </PossiblyUnusedProperty>
+  </file>
+  <file src="src/Product/Command/Upsert/Handler.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+    <UnnecessaryVarAnnotation>
+      <code><![CDATA[Product]]></code>
+    </UnnecessaryVarAnnotation>
+  </file>
+  <file src="src/Product/Command/Upsert/Response.php">
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$productId]]></code>
+    </PossiblyUnusedProperty>
+  </file>
+  <file src="src/Product/Entity/DTO/ProductDTO.php">
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$id]]></code>
+    </PossiblyUnusedProperty>
+  </file>
+  <file src="src/Product/Entity/File.php">
+    <InvalidNullableReturnType>
+      <code><![CDATA[string]]></code>
+    </InvalidNullableReturnType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function exists(): bool]]></code>
+      <code><![CDATA[public function getFile(): string]]></code>
+      <code><![CDATA[public function getValue(): string]]></code>
+    </MissingOverrideAttribute>
+    <NullableReturnStatement>
+      <code><![CDATA[$this->fullPath]]></code>
+    </NullableReturnStatement>
+  </file>
+  <file src="src/Product/Entity/FileType.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
+      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?File]]></code>
+      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[FileType]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Product/Entity/PriceType.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
+      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Price]]></code>
+      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[PriceType]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Product/Entity/ProductRepository.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Product/Fixture/ProductFixture.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function load(ObjectManager $manager): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Product/Query/ProductQuery.php">
+    <ImplicitToStringCast>
+      <code><![CDATA[$product->getId()]]></code>
+    </ImplicitToStringCast>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getProduct(string $productId): ProductQueryDTO]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[ProductQuery]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Product/Test/Command/RecountPrice/RecountPriceTest.php">
+    <UnusedClass>
+      <code><![CDATA[RecountPriceTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Product/Test/Entity/CurrencyTest.php">
+    <UnusedClass>
+      <code><![CDATA[CurrencyTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Product/Test/Entity/FileTest.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+      <code><![CDATA[public function tearDown(): void]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[FileTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Product/Test/Entity/PriceTest.php">
+    <UnusedClass>
+      <code><![CDATA[PriceTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Product/Test/Entity/ProductTest.php">
+    <UnusedClass>
+      <code><![CDATA[ProductTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Product/Test/Entity/UploadDirTest.php">
+    <UnusedClass>
+      <code><![CDATA[UploadDirTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Product/Test/Service/ValidatePathTest.php">
+    <UnusedClass>
+      <code><![CDATA[ValidatePathTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Product/Test/TempDirTest.php">
+    <UnusedClass>
+      <code><![CDATA[TempDirTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Recipient/Entity/EmailType.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
+      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Email]]></code>
+      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[EmailType]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Recipient/Entity/Recipient.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getCreatedAt]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Recipient/Entity/RecipientIdType.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
+      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?RecipientId]]></code>
+      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RecipientIdType]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Recipient/Entity/RecipientRepository.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[findAll]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Recipient/Test/Builder/RecipientBuilder.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[withId]]></code>
+    </PossiblyUnusedMethod>
+    <UnusedProperty>
+      <code><![CDATA[$createdAt]]></code>
+    </UnusedProperty>
+  </file>
+  <file src="src/Recipient/Test/Unit/Command/Add/HandlerTest.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+    <UndefinedMethod>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+    </UndefinedMethod>
+    <UnusedClass>
+      <code><![CDATA[HandlerTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Recipient/Test/Unit/Command/Deactivate/HandlerTest.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+    <UndefinedMethod>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+    </UndefinedMethod>
+    <UndefinedThisPropertyAssignment>
+      <code><![CDATA[$this->flusher]]></code>
+    </UndefinedThisPropertyAssignment>
+    <UndefinedThisPropertyFetch>
+      <code><![CDATA[$this->flusher]]></code>
+      <code><![CDATA[$this->flusher]]></code>
+    </UndefinedThisPropertyFetch>
+    <UnusedClass>
+      <code><![CDATA[HandlerTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Recipient/Test/Unit/Entity/RecipientEmailTest.php">
+    <UnusedClass>
+      <code><![CDATA[RecipientEmailTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Recipient/Test/Unit/Entity/RecipientIdTest.php">
+    <UnusedClass>
+      <code><![CDATA[RecipientIdTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Recipient/Test/Unit/Entity/RecipientTest.php">
+    <UnusedClass>
+      <code><![CDATA[RecipientTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Shared/Domain/Event/Payment/PaymentSubscriber.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public static function getSubscribedEvents(): array]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[PaymentSubscriber]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Shared/Domain/RecipientQuery/RecipientFilter.php">
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$isActive]]></code>
+    </PossiblyUnusedProperty>
+  </file>
+  <file src="src/Shared/Domain/Response/TicketResponse.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function jsonSerialize(): array]]></code>
+    </MissingOverrideAttribute>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[fromResult]]></code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedParam>
+      <code><![CDATA[$limit]]></code>
+      <code><![CDATA[$ticket]]></code>
+    </PossiblyUnusedParam>
+    <UndefinedClass>
+      <code><![CDATA[Ticket]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="src/Shared/Domain/Response/TicketResponseFactory.php">
+    <UndefinedClass>
+      <code><![CDATA[HtmlResponse]]></code>
+      <code><![CDATA[YamlResponse]]></code>
+    </UndefinedClass>
+    <UnusedClass>
+      <code><![CDATA[TicketResponseFactory]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Shared/Domain/Service/Notification/NotificationInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[notify]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Shared/Domain/Service/Notification/TelegramNotifier.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function notify(object $event): void]]></code>
+    </MissingOverrideAttribute>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Shared/Domain/Service/Payment/DTO/PaymentCallbackDTO.php">
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$signature]]></code>
+    </PossiblyUnusedProperty>
+  </file>
+  <file src="src/Shared/Domain/Service/Payment/DTO/PaymentInfoDTO.php">
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$paymentData]]></code>
+      <code><![CDATA[$status]]></code>
+    </PossiblyUnusedProperty>
+  </file>
+  <file src="src/Shared/Domain/Service/Payment/PaymentProviderInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[checkPaymentStatus]]></code>
+      <code><![CDATA[getSupportedCurrencies]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Shared/Domain/Service/Payment/PaymentWebhookDataInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getAmount]]></code>
+      <code><![CDATA[getCurrency]]></code>
+      <code><![CDATA[getPaymentId]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Shared/Domain/Service/Payment/Provider/YookassaConfig.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[getSecretKey]]></code>
+      <code><![CDATA[getShopId]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Shared/Domain/Service/Payment/Provider/YookassaProvider.php">
+    <InvalidReturnType>
+      <code><![CDATA[array]]></code>
+      <code><![CDATA[string]]></code>
+    </InvalidReturnType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function checkPaymentStatus(string $paymentId): string]]></code>
+      <code><![CDATA[public function getName(): string]]></code>
+      <code><![CDATA[public function getSupportedCurrencies(): array]]></code>
+      <code><![CDATA[public function handleCallback(PaymentCallbackDTO $callbackData): ?string]]></code>
+      <code><![CDATA[public function initiatePayment(MakePaymentDTO $paymentData): PaymentInfoDTO]]></code>
+    </MissingOverrideAttribute>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+    <UndefinedMethod>
+      <code><![CDATA[getConfirmationUrl]]></code>
+    </UndefinedMethod>
+  </file>
+  <file src="src/Shared/Domain/Service/Payment/WebhookParser/YookassaWebhookData.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getAmount(): float]]></code>
+      <code><![CDATA[public function getCurrency(): string]]></code>
+      <code><![CDATA[public function getMetadata(string $key): ?string]]></code>
+      <code><![CDATA[public function getPaymentId(): string]]></code>
+      <code><![CDATA[public function getStatus(): string]]></code>
+      <code><![CDATA[public function isPaid(): bool]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Shared/Domain/Service/Payment/WebhookParser/YookassaWebhookParser.php">
+    <InvalidScalarArgument>
+      <code><![CDATA[$amount]]></code>
+    </InvalidScalarArgument>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function parse(array $data): PaymentWebhookDataInterface]]></code>
+      <code><![CDATA[public function supports(string $provider, array $data): bool]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[YookassaWebhookParser]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Shared/Domain/ValueObject/IdType.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
+      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Id]]></code>
+      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[IdType]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Shared/Domain/ValueObject/UpdatedAt.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[create]]></code>
+      <code><![CDATA[getValue]]></code>
+      <code><![CDATA[toString]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Shared/Domain/ValueObject/UpdatedAtType.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string]]></code>
+      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?DateTimeImmutable]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[UpdatedAtType]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Shared/Infrastructure/Distribution/UniSender.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function send(string $subject, array $recipients, string $templateId): void]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[UniSender]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Shared/Infrastructure/Persistence/RecipientQuery.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getIterable(?RecipientFilter $filter = null): iterable]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[RecipientQuery]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Shared/Test/Unit/Queue/Distribution/SendEmailBatchHandlerTest.php">
+    <ImplicitToStringCast>
+      <code><![CDATA[$distributionId]]></code>
+      <code><![CDATA[$distributionId]]></code>
+      <code><![CDATA[$distributionId]]></code>
+      <code><![CDATA[$distributionId]]></code>
+    </ImplicitToStringCast>
+    <InaccessibleProperty>
+      <code><![CDATA[$this->distributions]]></code>
+      <code><![CDATA[$this->flusher]]></code>
+      <code><![CDATA[$this->logger]]></code>
+      <code><![CDATA[$this->recipientQuery]]></code>
+      <code><![CDATA[$this->uniSender]]></code>
+    </InaccessibleProperty>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+    </UndefinedInterfaceMethod>
+    <UndefinedMethod>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[method]]></code>
+    </UndefinedMethod>
+    <UnusedClass>
+      <code><![CDATA[SendEmailBatchHandlerTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Shared/Test/Unit/RootPathTest.php">
+    <UnusedClass>
+      <code><![CDATA[RootPathTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Shared/Test/Unit/ValueObject/BaseUrlTest.php">
+    <UnusedClass>
+      <code><![CDATA[BaseUrlTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Shared/Test/Unit/ValueObject/IdTest.php">
+    <UnusedClass>
+      <code><![CDATA[IdTest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Shared/Test/Unit/ValueObject/UpdatedAtTest.php">
+    <UnusedClass>
+      <code><![CDATA[UpdatedAtTest]]></code>
+    </UnusedClass>
+  </file>
+</files>
