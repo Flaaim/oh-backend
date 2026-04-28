@@ -10,22 +10,22 @@ test-functional: functional-test app-fixtures
 app-init:app-permission composer-install app-wait-for-db app-migrations app-fixtures
 
 docker-up:
-	docker-compose up -d
+	docker compose up -d
 
 docker-down:
-	docker-compose down --remove-orphan
+	docker compose down --remove-orphan
 
 docker-down-clear:
-	docker-compose down -v --remove-orphans
+	docker compose down -v --remove-orphans
 
 docker-pull:
-	docker-compose pull
+	docker compose pull
 
 docker-build:
-	docker-compose build
+	docker compose build
 
 composer-install:
-	docker-compose run --rm php-cli composer install
+	docker compose run --rm php-cli composer install
 
 app-clear:
 	docker run --rm -v ${PWD}:/app -w /app  alpine sh -c 'rm -rf var/cache/* var/log/*'
@@ -34,19 +34,19 @@ app-permission:
 	docker run --rm -v ${PWD}:/app -w /app alpine chmod 777 bin var/cache var/log public/templates
 
 unit-test:
-	docker-compose run --rm php-cli composer test -- --testsuite=Unit
+	docker compose run --rm php-cli composer test -- --testsuite=Unit
 
 functional-test:
-	docker-compose run --rm php-cli composer test -- --testsuite=Functional
+	docker compose run --rm php-cli composer test -- --testsuite=Functional
 
 app-wait-for-db:
-	docker-compose run --rm php-cli wait-for-it mysql:3306 -t 30
+	docker compose run --rm php-cli wait-for-it mysql:3306 -t 30
 
 app-lint:
-	docker-compose run --rm php-cli composer lint
+	docker compose run --rm php-cli composer lint
 
 app-migrations:
-	docker-compose run --rm php-cli composer app migrations:migrate -- --no-interaction
+	docker compose run --rm php-cli composer app migrations:migrate -- --no-interaction
 
 app-fixtures:
-	docker-compose run --rm php-cli composer app fixtures:load
+	docker compose run --rm php-cli composer app fixtures:load
