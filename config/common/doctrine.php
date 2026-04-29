@@ -28,6 +28,10 @@ return [
 
         $config->setNamingStrategy(new UnderscoreNamingStrategy());
 
+        $config->setSchemaAssetsFilter(function ($assetName){
+            return !str_starts_with($assetName, 'doctrine_migration_versions');
+        });
+
         foreach ($settings['types'] as $name => $class) {
             if (!Type::hasType($name)) {
                 Type::addType($name, $class);
