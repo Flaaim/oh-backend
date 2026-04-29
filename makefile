@@ -2,7 +2,7 @@ init: docker-down-clear app-clear docker-pull docker-build docker-up app-init
 up: docker-up
 down: docker-down
 restart: down up
-check: app-lint app-psalm test
+check: app-lint app-psalm validate-schema test
 test: unit-test functional-test app-fixtures
 test-unit: unit-test
 test-functional: functional-test app-fixtures
@@ -47,6 +47,9 @@ app-lint:
 
 app-psalm:
 	docker compose run --rm php-cli composer psalm
+
+validate-schema:
+	docker compose run --rm php-cli composer app orm:validate-schema
 
 app-migrations:
 	docker compose run --rm php-cli composer app migrations:migrate -- --no-interaction
