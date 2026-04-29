@@ -33,6 +33,9 @@ jobs:
       - name: Psalm
         run: make app-psalm
 
+      - name: validate-schema
+        run: make validate-schema
+
       - name: Test
         run: make test
 
