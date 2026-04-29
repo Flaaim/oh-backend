@@ -22,7 +22,7 @@ docker-pull:
 	docker compose pull
 
 docker-build:
-	docker compose build
+	docker compose build --pull
 
 composer-install:
 	docker compose run --rm -u $$(id -u):$$(id -g) php-cli composer install
