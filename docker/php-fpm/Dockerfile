@@ -9,6 +9,8 @@ RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS linux-headers \
     && docker-php-ext-enable xdebug \
     && apk del .build-deps
 
+COPY ./common/php/conf.d /usr/local/etc/php/conf.d
+
 RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
 
 WORKDIR /app

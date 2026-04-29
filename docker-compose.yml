@@ -10,7 +10,8 @@ services:
           - php-fpm
     php-fpm:
       build:
-          context: docker/php-fpm
+          context: docker
+          dockerfile: php-fpm/Dockerfile
       volumes:
           - ./:/app
       environment:
@@ -41,7 +42,8 @@ services:
           UNI_SENDER_API: 6azj4xf5tp7kkkmqi6z1jsqokrse9z5c177tn6de
     php-cli:
       build:
-          context: docker/php-cli
+          context: docker
+          dockerfile: php-cli/Dockerfile
       volumes:
           - ./:/app
       environment:
