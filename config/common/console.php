@@ -13,6 +13,8 @@ use Doctrine\Migrations\Tools\Console\Command\MigrateCommand;
 use Doctrine\Migrations\Tools\Console\Command\StatusCommand;
 use Doctrine\Migrations\Tools\Console\Command\UpToDateCommand;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Tools\Console\Command\ClearCache\MetadataCommand;
+use Doctrine\ORM\Tools\Console\Command\SchemaTool\UpdateCommand;
 use Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand;
 use Psr\Container\ContainerInterface;
 
@@ -33,6 +35,8 @@ return [
             'commands' => [
                 FixturesLoadCommand::class,
                 ValidateSchemaCommand::class,
+                UpdateCommand::class,
+                MetadataCommand::class,
 
                 DiffCommand::class,
                 ExecuteCommand::class,
