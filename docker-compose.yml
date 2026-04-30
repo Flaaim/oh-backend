@@ -3,7 +3,7 @@ services:
       build:
           context: docker/nginx
       ports:
-          - "80:80"
+          - "8080:8080"
       volumes:
           - ./:/app
       depends_on:
@@ -18,7 +18,7 @@ services:
           - ./:/app
       environment:
           APP_DEBUG: 1
-          SITE_URL: http://localhost:80
+          SITE_URL: http://localhost:8080
           SITE_NAME: Docker
           LINK_ANSWERS: http://localhost/answers
           APP_ENV: dev
@@ -50,7 +50,7 @@ services:
           - ./:/app
       environment:
           APP_DEBUG: 1
-          SITE_URL: http://localhost:80
+          SITE_URL: http://localhost:8080
           SITE_NAME: Docker
           LINK_ANSWERS: http://localhost/answers
           APP_ENV: dev
