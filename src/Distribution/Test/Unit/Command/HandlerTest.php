@@ -8,14 +8,18 @@ use App\Distribution\Entity\Distribution;
 use App\Distribution\Entity\DistributionRepository;
 use App\Flusher;
 use App\Shared\Domain\Queue\Distribution\SendEmailBatchMessage;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 class HandlerTest extends TestCase
 {
+    /** @var DistributionRepository&MockObject  */
     private readonly DistributionRepository $distributions;
+    /** @var Flusher&MockObject  */
     private readonly Flusher $flusher;
+    /** @var MessageBusInterface&MockObject  */
     private readonly MessageBusInterface $messageBus;
     private readonly Handler  $handler;
     public function setUp(): void

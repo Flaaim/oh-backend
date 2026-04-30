@@ -9,11 +9,14 @@ use App\Recipient\Entity\Email;
 use App\Recipient\Entity\RecipientRepository;
 use App\Recipient\Test\Builder\RecipientBuilder;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class HandlerTest extends TestCase
 {
+    /** @var RecipientRepository&MockObject  */
     private RecipientRepository $recipients;
+    /** @var Flusher&MockObject  */
     private Flusher $flusher;
     private Handler $handler;
     public function setUp(): void

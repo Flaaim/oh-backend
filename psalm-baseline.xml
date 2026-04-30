@@ -133,14 +133,6 @@
       <code><![CDATA[expects]]></code>
       <code><![CDATA[expects]]></code>
     </UndefinedMethod>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->command]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->command]]></code>
-      <code><![CDATA[$this->command]]></code>
-      <code><![CDATA[$this->command]]></code>
-    </UndefinedThisPropertyFetch>
     <UnusedClass>
       <code><![CDATA[HandlerTest]]></code>
     </UnusedClass>
@@ -321,13 +313,6 @@
     <MissingOverrideAttribute>
       <code><![CDATA[public function setUp(): void]]></code>
     </MissingOverrideAttribute>
-    <UndefinedInterfaceMethod>
-      <code><![CDATA[expects]]></code>
-    </UndefinedInterfaceMethod>
-    <UndefinedMethod>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
-    </UndefinedMethod>
     <UnusedClass>
       <code><![CDATA[HandlerTest]]></code>
     </UnusedClass>
@@ -963,17 +948,6 @@
     <MissingOverrideAttribute>
       <code><![CDATA[public function setUp(): void]]></code>
     </MissingOverrideAttribute>
-    <UndefinedMethod>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
-    </UndefinedMethod>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->flusher]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->flusher]]></code>
-      <code><![CDATA[$this->flusher]]></code>
-    </UndefinedThisPropertyFetch>
     <UnusedClass>
       <code><![CDATA[HandlerTest]]></code>
     </UnusedClass>
