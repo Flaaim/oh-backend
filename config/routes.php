@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 
+use App\Http\Action\Access;
 use App\Http\Action\Auth\GetToken;
+use App\Http\Action\Distribution;
+use App\Http\Action\LeadManagment;
 use App\Http\Action\Payment;
 use App\Http\Action\Product;
-use App\Http\Action\Access;
-use App\Http\Action\LeadManagment;
-use App\Http\Action\Distribution;
 use App\Http\Action\Recipient;
 use App\Http\Middleware\AccessExpiredExceptionHandler;
 use App\Http\Middleware\AuthMiddleware;
@@ -20,7 +20,7 @@ use Slim\Routing\RouteCollectorProxy;
 return static function(App $app): void {
 
 
-    $app->get('/', \App\Http\Action\HomeAction::class);
+    $app->get('/', \App\Http\Action\Home\HomeAction::class);
     $app->group('/payment-service', function (RouteCollectorProxy $group): void {
 
         $group->post('/process-payment', Payment\CreatePayment\RequestAction::class);
