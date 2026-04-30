@@ -1,4 +1,4 @@
-FROM php:8.1-cli-alpine
+FROM php:8.2-cli-alpine
 
 RUN apk add --no-cache mysql-dev bash coreutils \
     && docker-php-ext-install pdo_mysql mysqli
