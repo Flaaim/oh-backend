@@ -13,14 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
       - name: Cache API Composer dependencies
         uses: actions/cache@v4
         with:
           path: vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('api/composer.lock') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
 
@@ -43,5 +40,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-output
-          path: /var/log
-        if: ${{ always() && steps.api-test.outcome == 'failure' }}
+          path: var/log
+        if: ${{ always() && steps.Test.outcome == 'failure' }}
