@@ -14,6 +14,7 @@ use PHPUnit\Framework\TestCase;
 class HandlerTest extends TestCase
 {
     private RecipientRepository $recipients;
+    private Flusher $flusher;
     private Handler $handler;
     public function setUp(): void
     {

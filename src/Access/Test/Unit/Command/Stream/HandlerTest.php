@@ -20,6 +20,7 @@ class HandlerTest extends TestCase
     private string $productId;
     private AccessRepository $accesses;
     private ProductQueryInterface $productQuery;
+    private Command $command;
     private Handler $handler;
     public function setUp(): void
     {
