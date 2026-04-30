@@ -19,7 +19,10 @@ use Slim\Routing\RouteCollectorProxy;
 
 return static function(App $app): void {
 
+
+    $app->get('/', \App\Http\Action\HomeAction::class);
     $app->group('/payment-service', function (RouteCollectorProxy $group): void {
+
         $group->post('/process-payment', Payment\CreatePayment\RequestAction::class);
         $group->post('/payment-webhook', Payment\HookPayment\RequestAction::class);
         $group->post('/result', Payment\Result\RequestAction::class);
