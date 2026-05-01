@@ -44,6 +44,7 @@ app-wait-for-db:
 
 app-lint:
 	docker compose run --rm php-cli composer lint
+	docker compose run --rm php-cli composer cs-check
 
 app-psalm:
 	docker compose run --rm php-cli composer psalm
