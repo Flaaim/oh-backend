@@ -18,7 +18,7 @@ class Recipient
         private bool $isActive = true,
         #[ORM\Column(type: 'datetime_immutable')]
         private \DateTimeImmutable $createdAt = new \DateTimeImmutable('now')
-    ){
+    ) {
     }
 
     public function getId(): RecipientId
@@ -39,7 +39,7 @@ class Recipient
     }
     public function deactivate(): void
     {
-        if($this->isActive){
+        if ($this->isActive) {
             $this->isActive = false;
         }
     }

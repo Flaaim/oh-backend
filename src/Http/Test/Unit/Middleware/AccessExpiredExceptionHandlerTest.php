@@ -50,8 +50,5 @@ class AccessExpiredExceptionHandlerTest extends TestCase
             'productId' => $e->getProductId(),
             'message' => $e->getMessage(),
         ], $data);
-
-
-
     }
 }

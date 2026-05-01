@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
 class DistributionSendCommand extends Command
 {
     public function configure(): void
@@ -34,7 +35,7 @@ class DistributionSendCommand extends Command
             ],
         ];
 
-        try{
+        try {
             $client->request('POST', 'email/send.json', [
                 'headers' => [
                     'X-API-KEY' => '6azj4xf5tp7kkkmqi6z1jsqokrse9z5c177tn6de',
@@ -43,11 +44,9 @@ class DistributionSendCommand extends Command
                 'json' => $requestBody,
             ]);
             return self::SUCCESS;
-        }catch (GuzzleException $e){
+        } catch (GuzzleException $e) {
             $output->writeln('<error>' . $e->getMessage() . '</error>');
             return self::FAILURE;
         }
-
     }
-
 }

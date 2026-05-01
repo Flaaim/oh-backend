@@ -70,6 +70,5 @@ class AccessBuilder
             $this->productId,
             $this->token,
         );
-
     }
 }

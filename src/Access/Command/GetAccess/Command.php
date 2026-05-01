@@ -14,6 +14,6 @@ class Command
             message: 'The format URL must be a valid.',
         )]
         public string $encodedToken
-    ){
+    ) {
     }
 }

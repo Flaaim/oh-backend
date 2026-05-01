@@ -6,11 +6,10 @@ use App\Shared\Domain\Service\Payment\PaymentWebhookDataInterface;
 use App\Shared\Domain\Service\Payment\PaymentWebhookParserInterface;
 use InvalidArgumentException;
 
-
 class YookassaWebhookParser implements PaymentWebhookParserInterface
 {
-    const PROVIDER_NAME = 'Yookassa';
-    const NOTIFICATION_TYPE = 'notification';
+    private const PROVIDER_NAME = 'Yookassa';
+    private const NOTIFICATION_TYPE = 'notification';
 
     public function supports(string $provider, array $data): bool
     {
@@ -21,7 +20,6 @@ class YookassaWebhookParser implements PaymentWebhookParserInterface
         return isset($data['object']['id'])
             && isset($data['type'])
             && $data['type'] === self::NOTIFICATION_TYPE;
-
     }
 
     public function parse(array $data): PaymentWebhookDataInterface

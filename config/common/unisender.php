@@ -8,7 +8,6 @@ use GuzzleHttp\Client;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 
-
 return [
     DistributionInterface::class => function (ContainerInterface $container) {
         $client = new Client([

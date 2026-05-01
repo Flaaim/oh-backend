@@ -3,6 +3,7 @@
 namespace App\Distribution\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 #[ORM\Entity]
 #[ORM\Table(name:'distributions')]
 class Distribution
@@ -19,7 +20,8 @@ class Distribution
         private bool $isEnded = false,
         #[ORM\Column(type: 'datetime_immutable')]
         private \DateTimeImmutable $createdAt = new \DateTimeImmutable('now')
-    ){}
+    ) {
+    }
 
     public function getId(): DistributionId
     {

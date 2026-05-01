@@ -10,6 +10,6 @@ class GetAccessDTO
         public string $cipher,
         public string $expiredAt,
         public string $email
-    ){
+    ) {
     }
 }

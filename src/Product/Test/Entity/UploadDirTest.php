@@ -27,7 +27,6 @@ class UploadDirTest extends TestCase
             $this->getTemplatePath(),
             $this->getValidatePath()
         ))->setTargetPath($targetPath);
-
     }
     private function getTemplatePath(): RootPath
     {

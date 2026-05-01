@@ -15,19 +15,19 @@ class RequestAction implements RequestHandlerInterface
     public function __construct(
         private readonly Validator $validator,
         private readonly Handler $handler
-    ){
+    ) {
     }
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-       $productId = $request->getParsedBody()['productId'] ?? '';
-       $type = $request->getParsedBody()['type'] ?? '';
+        $productId = $request->getParsedBody()['productId'] ?? '';
+        $type = $request->getParsedBody()['type'] ?? '';
 
-       $command = new Command($type, $productId, );
+        $command = new Command($type, $productId,);
 
-       $this->validator->validate($command);
+        $this->validator->validate($command);
 
-       $productDTO = $this->handler->handle($command);
+        $productDTO = $this->handler->handle($command);
 
-       return new JsonResponse($productDTO);
+        return new JsonResponse($productDTO);
     }
 }

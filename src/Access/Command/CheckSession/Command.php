@@ -16,7 +16,6 @@ class Command
         public string $token,
         #[Assert\NotBlank]
         public string $sessionId,
-    )
-    {}
-
+    ) {
+    }
 }

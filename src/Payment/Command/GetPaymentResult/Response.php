@@ -4,12 +4,12 @@ namespace App\Payment\Command\GetPaymentResult;
 
 class Response implements \JsonSerializable
 {
-     public function __construct(
-         public string $returnToken,
-         public string $status,
-         public string $email
-     )
-     {}
+    public function __construct(
+        public string $returnToken,
+        public string $status,
+        public string $email
+    ) {
+    }
 
     public function jsonSerialize(): array
     {

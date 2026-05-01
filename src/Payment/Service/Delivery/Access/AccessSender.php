@@ -16,7 +16,7 @@ class AccessSender
         private MailerInterface $mailer,
         private Environment $twig,
         private LoggerInterface $logger
-    ){
+    ) {
     }
 
     public function send(Email $email, OpenAccessDTO $accessDTO, string $template): void
@@ -25,7 +25,7 @@ class AccessSender
         $message->subject($accessDTO->name);
         $message->to($email->getValue());
         $message->html($this->twig->render($template, ['link' => $accessDTO->url]));
-        try{
+        try {
             $this->mailer->send($message);
         } catch (TransportExceptionInterface $e) {
             $this->logger->error('Failed to send mail: ', ['error' => $e->getMessage()]);

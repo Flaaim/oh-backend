@@ -43,8 +43,5 @@ class TicketResponseFactory
             ),
             default => throw new \RuntimeException('Unknown response type')
         };
-
     }
-
-
 }

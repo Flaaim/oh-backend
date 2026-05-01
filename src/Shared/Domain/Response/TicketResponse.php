@@ -8,12 +8,13 @@ use Symfony\Component\Yaml\Yaml;
 class TicketResponse implements \JsonSerializable
 {
     public function __construct(
-        public readonly string  $id,
+        public readonly string $id,
         public readonly ?string $name,
         public readonly ?string $cipher,
-        public readonly string  $status,
+        public readonly string $status,
         public readonly array $questions,
-    ){}
+    ) {
+    }
 
     public static function fromResult(Ticket $ticket, $limit = null): self
     {
@@ -45,9 +46,11 @@ class TicketResponse implements \JsonSerializable
                             'text' => $answer->getText(),
                             'isCorrect' => $answer->isCorrect(),
                             'image' => $answer->getImg(),
-                        ], $question->getAnswers()->toArray()
+                        ],
+                        $question->getAnswers()->toArray()
                     )
-                ], $this->questions
+                ],
+                $this->questions
             )
         ];
     }

@@ -16,6 +16,6 @@ class Command
         public string $productId,
         #[Assert\Choice(choices: ['file', 'access'])]
         public string $type,
-    )
-    {}
+    ) {
+    }
 }

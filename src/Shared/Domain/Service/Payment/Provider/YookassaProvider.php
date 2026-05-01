@@ -17,13 +17,13 @@ class YookassaProvider implements PaymentProviderInterface
     public function __construct(
         private readonly Client $client,
         private readonly YookassaConfig $config
-    )
-    {}
+    ) {
+    }
     public function initiatePayment(MakePaymentDTO $paymentData): PaymentInfoDTO
     {
         $idempotenceKey = uniqid('', true);
         $returnUrl = $this->config->getReturnUrl() . '?token=' . $paymentData->returnToken;
-        try{
+        try {
             $response = $this->client->createPayment([
                 'amount' => [
                     'value' => $paymentData->amount,
@@ -49,7 +49,7 @@ class YookassaProvider implements PaymentProviderInterface
                 $response->getStatus(),
                 $response->getConfirmation()->getConfirmationUrl()
             );
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             throw new PaymentException($e->getMessage());
         }
     }
@@ -81,7 +81,7 @@ class YookassaProvider implements PaymentProviderInterface
     }
     private function verifyPaymentStatus(string $paymentId): ?string
     {
-        try{
+        try {
             $payment = $this->client->getPaymentInfo($paymentId);
 
             return match ($payment->getStatus()) {
@@ -89,7 +89,7 @@ class YookassaProvider implements PaymentProviderInterface
                 'pending', 'canceled' => null,
                 default => throw new PaymentException("Unknown payment status: " . $payment->getStatus()),
             };
-        }catch (PaymentException $e){
+        } catch (PaymentException $e) {
             throw new PaymentException('Failed to verify payment status: ' . $e->getMessage());
         }
     }

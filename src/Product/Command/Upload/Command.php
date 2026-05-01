@@ -26,6 +26,6 @@ class Command
         public ?UploadedFileInterface $uploadFile,
         #[Assert\NotBlank]
         public string $targetPath
-    )
-    {}
+    ) {
+    }
 }

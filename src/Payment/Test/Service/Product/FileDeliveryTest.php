@@ -39,7 +39,7 @@ class FileDeliveryTest extends TestCase
         $sender->expects($this->once())->method('send')->with(
             $this->equalTo($email),
             $this->equalTo($product->getName()),
-            $this->callback(function($path) use ($file) {
+            $this->callback(function ($path) use ($file) {
                 return str_contains($path, $file->getValue());
             }),
             $this->equalTo($template)

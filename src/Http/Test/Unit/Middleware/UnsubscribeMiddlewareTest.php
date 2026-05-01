@@ -2,7 +2,6 @@
 
 namespace App\Http\Test\Unit\Middleware;
 
-
 use App\Http\Middleware\UnsubscribeMiddleware;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
@@ -74,7 +73,7 @@ class UnsubscribeMiddlewareTest extends TestCase
         $handler = $this->createMock(RequestHandlerInterface::class);
 
         $handler->expects($this->once())->method('handle')->willReturnCallback(
-            static function(ServerRequestInterface $request): ResponseInterface {
+            static function (ServerRequestInterface $request): ResponseInterface {
                 self::assertEquals(['bad-recipient@example.com'], $request->getParsedBody());
                 return (new ResponseFactory())->createResponse();
             }
@@ -129,7 +128,7 @@ class UnsubscribeMiddlewareTest extends TestCase
         $handler = $this->createMock(RequestHandlerInterface::class);
 
         $handler->expects($this->once())->method('handle')->willReturnCallback(
-            static function(ServerRequestInterface $request): ResponseInterface {
+            static function (ServerRequestInterface $request): ResponseInterface {
                 self::assertEquals([], $request->getParsedBody());
                 return (new ResponseFactory())->createResponse();
             }

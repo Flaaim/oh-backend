@@ -20,6 +20,6 @@ class Command
         public string $ip,
         #[Assert\NotBlank]
         public string $userAgent,
-    )
-    {}
+    ) {
+    }
 }

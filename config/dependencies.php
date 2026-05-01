@@ -8,7 +8,7 @@ use Laminas\ConfigAggregator\PhpFileProvider;
 
 $envValue = getenv('APP_ENV');
 
-if(empty($envValue)){
+if (empty($envValue)) {
     $envDir = __DIR__ . '/env';
     $file = $envDir . '/.env';
     if (file_exists($file)) {

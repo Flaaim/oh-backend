@@ -24,7 +24,7 @@ class FileSenderTest extends TestCase
         $subject = 'subject';
         $file = $this->getFile();
         $file->mergeRoot($this->getRootPath());
-        $template ='mail/template.html.twig';
+        $template = 'mail/template.html.twig';
 
         $twig = $this->createMock(Environment::class);
         $logger = $this->createMock(LoggerInterface::class);
@@ -57,7 +57,7 @@ class FileSenderTest extends TestCase
         $subject = 'subject';
         $file = $this->getFile();
         $file->mergeRoot($this->getRootPath());
-        $template ='mail/template.html.twig';
+        $template = 'mail/template.html.twig';
 
         $mailer = $this->createMock(MailerInterface::class);
         $twig = $this->createMock(Environment::class);

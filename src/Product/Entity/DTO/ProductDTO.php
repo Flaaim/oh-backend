@@ -9,6 +9,6 @@ class ProductDTO
         public string $name,
         public string $cipher,
         public string $price,
-    ){
+    ) {
     }
 }

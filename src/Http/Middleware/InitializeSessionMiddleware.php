@@ -15,7 +15,7 @@ class InitializeSessionMiddleware implements MiddlewareInterface
     public function __construct(
         private readonly Handler $checkSessionHandler,
         private readonly Validator $validator,
-    ){
+    ) {
     }
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {

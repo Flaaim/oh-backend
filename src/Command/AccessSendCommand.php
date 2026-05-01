@@ -23,8 +23,7 @@ class AccessSendCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        try{
-
+        try {
             $container = require __DIR__ . '/../../config/container.php';
 
             $productSender = new AccessSender(
@@ -43,7 +42,7 @@ class AccessSendCommand extends Command
                 'mail/template_access.html.twig'
             );
             return self::SUCCESS;
-        }catch (TransportExceptionInterface $e) {
+        } catch (TransportExceptionInterface $e) {
             $output->writeln('<error>' . $e->getMessage() . '</error>');
             return self::FAILURE;
         }

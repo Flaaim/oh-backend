@@ -15,7 +15,7 @@ class UnsubscribeMiddleware implements MiddlewareInterface
     public function __construct(
         private readonly ContainerInterface $container,
         private readonly LoggerInterface $logger,
-    ){
+    ) {
     }
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
@@ -23,7 +23,7 @@ class UnsubscribeMiddleware implements MiddlewareInterface
         $data = $request->getParsedBody() ?? [];
         $apiKey = $this->container->get('config')['uniSender']['apiKey'];
 
-        if(!isset($data['auth'])) {
+        if (!isset($data['auth'])) {
             return new JsonResponse(['error' => 'Forbidden'], 403);
         }
 
@@ -51,8 +51,7 @@ class UnsubscribeMiddleware implements MiddlewareInterface
                                 $emails[] = $event['event_data']['email'];
                             }
                         }
-                    }
-                    elseif ($event['event_name'] === 'transactional_spam_block') {
+                    } elseif ($event['event_name'] === 'transactional_spam_block') {
                         $this->logger->critical('ВНИМАНИЕ! UniSender заблокировал отправку (Spam Block)!', [
                             'event_data' => $event['event_data']
                         ]);

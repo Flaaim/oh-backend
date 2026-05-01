@@ -14,8 +14,8 @@ class PaymentSubscriber implements EventSubscriberInterface
         private readonly TelegramNotifier $notifier,
         private readonly LoggerInterface $logger,
         private readonly MessageBusInterface $messageBus,
-    )
-    {}
+    ) {
+    }
 
     public static function getSubscribedEvents(): array
     {

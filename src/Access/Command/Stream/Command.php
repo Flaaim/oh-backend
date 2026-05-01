@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Access\Command\Stream;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Command
@@ -15,6 +16,6 @@ class Command
         public string $encodedToken,
         #[Assert\NotBlank]
         public string $encodedProductId,
-    )
-    {}
+    ) {
+    }
 }

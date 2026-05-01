@@ -38,7 +38,7 @@ class FileTest extends TestCase
         $root = new RootPath($this->tempDir->getValue());
         $file->mergeRoot($root);
 
-        self::assertEquals('/tmp/phpunit_test_/'.$filename, $file->getFile());
+        self::assertEquals('/tmp/phpunit_test_/' . $filename, $file->getFile());
     }
 
 
@@ -52,7 +52,6 @@ class FileTest extends TestCase
         self::expectException(\DomainException::class);
         self::expectExceptionMessage('Root path already merged.');
         $file->mergeRoot($root);
-
     }
     public function testFile()
     {

@@ -15,7 +15,7 @@ class Handler
     public function __construct(
         private readonly RecipientRepository $recipients,
         private readonly Flusher $flusher
-    ){
+    ) {
     }
     public function handle(Command $command): void
     {
@@ -23,7 +23,7 @@ class Handler
         $email = new Email($command->email);
         $recipient = $this->recipients->findByEmail($email);
 
-        if($recipient){
+        if ($recipient) {
             return;
         }
 
@@ -35,6 +35,5 @@ class Handler
         $this->recipients->add($recipient);
 
         $this->flusher->flush();
-
     }
 }

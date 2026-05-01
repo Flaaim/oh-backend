@@ -42,7 +42,6 @@ class FileResponseTest extends TestCase
     {
         self::expectException(\InvalidArgumentException::class);
         new FileResponse('/file-not-found.pdf');
-
     }
     protected function tearDown(): void
     {
@@ -52,7 +51,7 @@ class FileResponseTest extends TestCase
     {
         $file = tempnam($this->tempDir->getValue(), 'pdf_test_');
         $result = file_put_contents($file, '%PDF-1.4 test content');
-        if(!$result) {
+        if (!$result) {
             throw new \RuntimeException('Failed to write temp file');
         }
         return $file;

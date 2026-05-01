@@ -61,7 +61,7 @@ class HandlerTest extends TestCase
         $path = $this->handler->handle($this->command);
 
         self::assertFileExists($path);
-        self::assertFileEquals('/tmp/'. $tempFile, $path);
+        self::assertFileEquals('/tmp/' . $tempFile, $path);
     }
 
     public function testExpired(): void
@@ -92,7 +92,7 @@ class HandlerTest extends TestCase
         $this->productQuery->expects(self::once())->method('getProduct')
             ->with(
                 $this->equalTo($this->productId),
-            )->willReturn( new ProductQueryDTO(
+            )->willReturn(new ProductQueryDTO(
                 $this->productId,
                 $access->getName(),
                 $access->getCipher(),

@@ -35,5 +35,4 @@ class RecipientRepository
 
         return $qb->getQuery()->getResult();
     }
-
 }

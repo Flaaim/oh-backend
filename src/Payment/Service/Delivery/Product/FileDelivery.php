@@ -13,7 +13,7 @@ class FileDelivery implements ProductDeliveryInterface
     public function __construct(
         private readonly FileSender $fileSender,
         private readonly RootPath $rootPath
-    ){
+    ) {
     }
     public function deliver(string $email, Product $product): void
     {

@@ -7,6 +7,6 @@ class RecipientFilter
     public function __construct(
         public ?bool $isActive = true,
         public ?array $categories = null
-    ){
+    ) {
     }
 }

@@ -13,13 +13,14 @@ class Handler
     public function __construct(
         private RecipientRepository $recipients,
         private Flusher $flusher
-    ){}
+    ) {
+    }
     public function handle(Command $command): void
     {
         /** @var array<Recipient> $recipients */
         $recipients = $this->recipients->findAllByEmails($command->emails);
 
-        if(empty($recipients)) {
+        if (empty($recipients)) {
             return;
         }
 

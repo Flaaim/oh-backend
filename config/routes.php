@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 use App\Http\Action\Access;
 use App\Http\Action\Auth\GetToken;
 use App\Http\Action\Distribution;
@@ -17,7 +16,7 @@ use App\Http\Middleware\UnsubscribeMiddleware;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 
-return static function(App $app): void {
+return static function (App $app): void {
 
 
     $app->get('/', \App\Http\Action\Home\HomeAction::class);
@@ -60,7 +59,4 @@ return static function(App $app): void {
                 ->add(UnsubscribeMiddleware::class);
         });
     });
-
-
-
 };

@@ -17,43 +17,36 @@ class FileHandler
         $this->path = $path;
     }
 
-    public function handle(UploadedFileInterface $file): array
+    public function handle(UploadedFileInterface $file): void
     {
         $this->createDir();
         $this->deleteFile($this->path->getValue());
-        return $this->processFile($file);
+        $this->processFile($file);
     }
     private function createDir(): void
     {
-        if(!is_dir($this->path->getValue())){
+        if (!is_dir($this->path->getValue())) {
             $status = mkdir($this->path->getValue(), 0777, true);
-            if($status === false){
+            if ($status === false) {
                 throw new \DomainException('Unable to create directory ' . $this->path->getValue());
             }
         }
     }
-    private function processFile(UploadedFileInterface $uploadedFile): array
+    private function processFile(UploadedFileInterface $uploadedFile): void
     {
-        if($uploadedFile->getError() !== UPLOAD_ERR_OK){
-            throw new \DomainException('Error uploading file '. $uploadedFile->getError());
+        if ($uploadedFile->getError() !== UPLOAD_ERR_OK) {
+            throw new \DomainException('Error uploading file ' . $uploadedFile->getError());
         }
 
         $file = $this->path->getValue() .
             DIRECTORY_SEPARATOR . $uploadedFile->getClientFilename();
 
         $uploadedFile->moveTo($file);
-
-        return [
-            'name' => $uploadedFile->getClientFilename(),
-            'mime_type' => $uploadedFile->getClientMediaType(),
-            'size' => $uploadedFile->getSize(),
-            'path' => $file,
-        ];
     }
 
     private function deleteFile(string $dir): void
     {
-        if(!is_dir($dir)){
+        if (!is_dir($dir)) {
             throw new DomainException('Unable to delete directory. Directory not found' . $dir);
         }
         $it = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
@@ -61,6 +54,5 @@ class FileHandler
         foreach ($files as $file) {
             unlink($file->getRealPath());
         }
-
     }
 }

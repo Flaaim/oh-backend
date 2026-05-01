@@ -26,7 +26,7 @@ class UploadDir
     }
     public function ensurePathValid(string $targetPath, ValidatePath $validatePath): void
     {
-        if(!$validatePath->validate($targetPath)){
+        if (!$validatePath->validate($targetPath)) {
             throw new \DomainException(
                 sprintf('Target path "%s" is not valid', $targetPath)
             );
@@ -39,5 +39,4 @@ class UploadDir
             . DIRECTORY_SEPARATOR
             . ltrim($targetPath, DIRECTORY_SEPARATOR);
     }
-
 }

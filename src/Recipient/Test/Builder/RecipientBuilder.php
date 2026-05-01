@@ -13,7 +13,8 @@ class RecipientBuilder
     private bool $isActive;
     private \DateTimeImmutable $createdAt;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->id = new RecipientId('fbe7e106-cd58-4076-be9d-035cbd71e625');
         $this->email = new Email('recipient@app.ru');
         $this->isActive = true;

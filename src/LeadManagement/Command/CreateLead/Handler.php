@@ -8,7 +8,7 @@ class Handler
 {
     public function __construct(
         private readonly TelegramNotifier $notifier,
-    ){
+    ) {
     }
     public function handle(Command $command): void
     {

@@ -18,5 +18,6 @@ class Command
         public string $path,
         #[Assert\NotBlank]
         public string $course
-    ){}
+    ) {
+    }
 }

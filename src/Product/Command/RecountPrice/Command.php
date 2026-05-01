@@ -12,6 +12,6 @@ class Command
         #[Assert\NotBlank]
         #[Assert\Uuid]
         public readonly string $productId,
-    ){
+    ) {
     }
 }

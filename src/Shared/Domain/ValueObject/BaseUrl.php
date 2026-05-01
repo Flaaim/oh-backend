@@ -4,12 +4,11 @@ namespace App\Shared\Domain\ValueObject;
 
 use Webmozart\Assert\Assert;
 
-
 class BaseUrl
 {
     public function __construct(
         private string $url,
-    ){
+    ) {
         Assert::notEmpty($this->url);
         $this->url = rtrim($this->url, '/');
     }
@@ -18,5 +17,4 @@ class BaseUrl
     {
         return $this->url;
     }
-
 }

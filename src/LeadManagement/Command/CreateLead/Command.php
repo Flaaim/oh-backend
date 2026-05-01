@@ -8,5 +8,6 @@ class Command
         public string $name,
         public string $contact,
         public string $message,
-    ){}
+    ) {
+    }
 }

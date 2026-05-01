@@ -12,9 +12,9 @@ class DeliveryFactory
         private readonly ProductRepository $products,
         /** @var array<ProductDeliveryInterface> */
         private array $deliverers,
-    ){
+    ) {
         foreach ($this->deliverers as $delivery) {
-            if(!$delivery instanceof ProductDeliveryInterface){
+            if (!$delivery instanceof ProductDeliveryInterface) {
                 throw new \DomainException('Delivery is not a valid array element.');
             }
         }
@@ -24,14 +24,14 @@ class DeliveryFactory
         $productId = $paymentWebHookData->getMetadata('productId');
         $email = $paymentWebHookData->getMetadata('email');
 
-        if(!$productId || !$email){
+        if (!$productId || !$email) {
             throw new \DomainException('Missing required metadata in webhook');
         }
 
         $product = $this->products->get(new Id($productId));
 
         foreach ($this->deliverers as $delivery) {
-            if($delivery->supports($paymentWebHookData->getMetadata('type'))){
+            if ($delivery->supports($paymentWebHookData->getMetadata('type'))) {
                 $delivery->deliver($email, $product);
                 return;
             }

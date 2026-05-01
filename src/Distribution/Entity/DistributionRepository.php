@@ -29,5 +29,4 @@ class DistributionRepository
     {
         return $this->repo->findAll();
     }
-
 }

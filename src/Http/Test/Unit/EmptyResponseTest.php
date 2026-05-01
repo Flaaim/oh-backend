@@ -23,6 +23,5 @@ class EmptyResponseTest extends TestCase
         $response = new EmptyResponse(201);
 
         self::assertEquals(201, $response->getStatusCode());
-
     }
 }

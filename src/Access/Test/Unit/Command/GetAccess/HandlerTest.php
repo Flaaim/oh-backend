@@ -35,7 +35,6 @@ class HandlerTest extends TestCase
             $this->productQuery = $this->createMock(ProductQueryInterface::class),
             new RootPath(sys_get_temp_dir())
         );
-
     }
     public function testSuccess(): void
     {
@@ -57,7 +56,7 @@ class HandlerTest extends TestCase
 
         $dto = $this->handler->handle($this->command);
 
-        self::assertFileExists('/tmp/'.$tempFile);
+        self::assertFileExists('/tmp/' . $tempFile);
         self::assertEquals(22, strlen($dto->productId));
         self::assertEquals($access->getEmail()->getValue(), $dto->email);
         self::assertEquals($access->getCipher(), $dto->cipher);
@@ -75,9 +74,9 @@ class HandlerTest extends TestCase
         self::expectException(AccessExpiredException::class);
         self::expectExceptionMessage('Срок действия доступа к файлу истек...');
 
-        try{
+        try {
             throw new AccessExpiredException($access->getProductId(), 'Срок действия доступа к файлу истек...');
-        }catch (AccessExpiredException $e){
+        } catch (AccessExpiredException $e) {
             self::assertEquals('b38e76c0-ac23-4c48-85fd-975f32c8801f', $e->getProductId());
         }
 

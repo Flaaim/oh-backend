@@ -9,7 +9,6 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class RecipientQuery implements RecipientQueryInterface
 {
-
     private EntityManagerInterface $em;
 
     public function __construct(EntityManagerInterface $em)
@@ -27,7 +26,6 @@ class RecipientQuery implements RecipientQueryInterface
         if ($filter !== null && $filter->categories !== null) {
             $qb->andWhere('r.category IN (:categories)')
                 ->setParameter('categories', $filter->categories);
-
         }
 
         return $qb->getQuery()->toIterable();

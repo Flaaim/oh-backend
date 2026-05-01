@@ -22,7 +22,7 @@ class Handler
         private readonly Flusher $flusher,
         private readonly BaseUrl $baseUrl,
         private readonly UuidConverter $uuidConverter,
-    ){
+    ) {
     }
 
     public function handle(Command $command): OpenAccessDTO
@@ -43,7 +43,7 @@ class Handler
 
         $this->flusher->flush();
 
-        $url = $this->baseUrl->getValue() .'?'. http_build_query([
+        $url = $this->baseUrl->getValue() . '?' . http_build_query([
             'token' => $this->uuidConverter->encode($access->getToken()->getValue())
             ]);
 

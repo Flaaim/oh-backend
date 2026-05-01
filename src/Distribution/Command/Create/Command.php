@@ -3,6 +3,7 @@
 namespace App\Distribution\Command\Create;
 
 use Symfony\Component\Validator\Constraints as Assert;
+
 class Command
 {
     public function __construct(
@@ -10,5 +11,6 @@ class Command
         public string $subject,
         #[Assert\NotBlank]
         public string $templateId,
-    ){}
+    ) {
+    }
 }

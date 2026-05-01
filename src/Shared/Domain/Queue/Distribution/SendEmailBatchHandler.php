@@ -2,7 +2,6 @@
 
 namespace App\Shared\Domain\Queue\Distribution;
 
-
 use App\Distribution\Entity\Distribution;
 use App\Distribution\Entity\DistributionId;
 use App\Distribution\Entity\DistributionRepository;
@@ -24,23 +23,23 @@ class SendEmailBatchHandler
         private readonly LoggerInterface $logger,
         private readonly DistributionInterface $uniSender,
         private readonly Flusher $flusher,
-    ){
+    ) {
     }
     public function handle(SendEmailBatchMessage $message): void
     {
         $distribution = $this->distributions->findById(new DistributionId($message->distributionId));
 
-        if(null === $distribution) {
+        if (null === $distribution) {
             throw new \RuntimeException('Distribution not found.');
         }
 
         $filter = new RecipientFilter(isActive: true);
         $batch = [];
-        foreach ($this->recipientQuery->getIterable($filter) as $recipient){
+        foreach ($this->recipientQuery->getIterable($filter) as $recipient) {
             /** @var array<Email> $recipient */
             $batch[] = ['email' => $recipient['email']->getValue()];
 
-            if(count($batch) >= self::BATCH_SIZE){
+            if (count($batch) >= self::BATCH_SIZE) {
                 $this->sendChunk($distribution, $batch);
                 $batch = [];
             }

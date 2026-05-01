@@ -8,19 +8,18 @@ use App\Product\Service\FileHandler;
 class Handler
 {
     public function __construct(
-        private readonly UploadDir    $uploadDir,
-    )
-    {}
+        private readonly UploadDir $uploadDir,
+    ) {
+    }
 
-    public function handle(Command $command): Response
+    public function handle(Command $command): void
     {
         $this->uploadDir->setTargetPath($command->targetPath);
 
         $fileHandler = new FileHandler(
             $this->uploadDir
         );
-        $result = $fileHandler->handle($command->uploadFile);
 
-        return Response::fromArray($result);
+        $fileHandler->handle($command->uploadFile);
     }
 }

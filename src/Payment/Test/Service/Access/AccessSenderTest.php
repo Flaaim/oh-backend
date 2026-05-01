@@ -35,13 +35,12 @@ class AccessSenderTest extends TestCase
         $message = (new \Symfony\Component\Mime\Email())
             ->subject($accessDto->name)
             ->to($email->getValue())
-            ->html($twig->render($template, ['link' => $accessDto->url])
-        );
+            ->html($twig->render($template, ['link' => $accessDto->url]));
 
 
         $mailer->expects($this->once())->method('send')->with(
             $this->equalTo($message)
-        )->willReturnCallback(static function($message) use($accessDto, $email, $twig) {
+        )->willReturnCallback(static function ($message) use ($accessDto, $email, $twig) {
             self::assertEquals($accessDto->name, $message->getSubject());
             self::assertEquals([new Address($email->getValue())], $message->getTo());
             self::assertEquals("<a href='some_url'>Ссылка</a>", $message->getHtmlBody());

@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityRepository;
 use Psr\Container\ContainerInterface;
 
 return [
-    TicketRepository::class => function(ContainerInterface $container): TicketRepository {
+    TicketRepository::class => function (ContainerInterface $container): TicketRepository {
         /** @var EntityManagerInterface $em */
         $em = $container->get(EntityManagerInterface::class);
         /** @var EntityRepository $repo */

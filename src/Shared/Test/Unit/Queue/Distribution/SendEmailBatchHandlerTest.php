@@ -77,7 +77,6 @@ class SendEmailBatchHandlerTest extends TestCase
         $this->handler->handle($command);
 
         self::assertTrue($distribution->isEnded());
-
     }
 
     public function testEmptyRecipients(): void
@@ -110,7 +109,7 @@ class SendEmailBatchHandlerTest extends TestCase
         $this->distributions->method('findById')->willReturn($distribution);
 
         $recipients = [];
-        for($i = 1; $i <= 150; $i++){
+        for ($i = 1; $i <= 150; $i++) {
             $recipients[] = ['email' => new Email("user{$i}@app.ru")];
         }
 
@@ -121,13 +120,11 @@ class SendEmailBatchHandlerTest extends TestCase
             ->willReturnCallback(function (string $subject, array $recipients, string $templateId) use (&$callCount) {
                 $callCount++;
 
-                if($callCount === 1){
+                if ($callCount === 1) {
                     self::assertEquals('test-subject', $subject);
                     self::assertEquals('template-id', $templateId);
                     self::assertCount(100, $recipients);
                 }
-
-
             });
 
 

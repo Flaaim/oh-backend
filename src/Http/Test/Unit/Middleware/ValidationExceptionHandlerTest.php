@@ -11,7 +11,6 @@ use Slim\Psr7\Response;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationList;
 
-
 class ValidationExceptionHandlerTest extends TestCase
 {
     public function testValid(): void
@@ -32,7 +31,7 @@ class ValidationExceptionHandlerTest extends TestCase
     public function testInvalid(): void
     {
         $violations = new ConstraintViolationList([
-            new ConstraintViolation('Invalid email', null, [],null, 'email', 'not-email'),
+            new ConstraintViolation('Invalid email', null, [], null, 'email', 'not-email'),
             new ConstraintViolation('Invalid product Id', null, [], null, 'productId', 'productId'),
         ]);
         $request = (new ServerRequestFactory())->createServerRequest('POST', '/test');
@@ -58,6 +57,4 @@ class ValidationExceptionHandlerTest extends TestCase
             ]
         ], $data);
     }
-
-
 }

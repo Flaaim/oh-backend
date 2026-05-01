@@ -2,8 +2,6 @@
 
 namespace App\Command;
 
-
-
 use App\Payment\Entity\Email;
 use App\Payment\Service\Delivery\Product\FileSender;
 use Psr\Log\LoggerInterface;
@@ -13,7 +11,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Twig\Environment;
-
 
 class FileSendCommand extends Command
 {
@@ -25,27 +22,25 @@ class FileSendCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        try{
+        try {
+            $container = require __DIR__ . '/../../config/container.php';
 
-        $container = require __DIR__ . '/../../config/container.php';
-
-        $productSender = new FileSender(
-            $container->get(MailerInterface::class),
-            $twig = $container->get(Environment::class),
-            $container->get(LoggerInterface::class)
-        );
-        $tempFile = tempnam(sys_get_temp_dir(), 'template');
-        $productSender->send(
-            new Email('test@app.ru'),
-            'Тестовое письмо',
-            $tempFile,
-            'mail/template_file.html.twig'
-        );
+            $productSender = new FileSender(
+                $container->get(MailerInterface::class),
+                $twig = $container->get(Environment::class),
+                $container->get(LoggerInterface::class)
+            );
+            $tempFile = tempnam(sys_get_temp_dir(), 'template');
+            $productSender->send(
+                new Email('test@app.ru'),
+                'Тестовое письмо',
+                $tempFile,
+                'mail/template_file.html.twig'
+            );
             return self::SUCCESS;
-        }catch (TransportExceptionInterface $e) {
+        } catch (TransportExceptionInterface $e) {
             $output->writeln('<error>' . $e->getMessage() . '</error>');
             return self::FAILURE;
         }
-
     }
 }

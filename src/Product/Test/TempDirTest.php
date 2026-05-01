@@ -36,7 +36,7 @@ class TempDirTest extends TestCase
     {
         $temp = TempDir::create();
 
-        $subDir = $temp->getValue(). DIRECTORY_SEPARATOR .'nested';
+        $subDir = $temp->getValue() . DIRECTORY_SEPARATOR . 'nested';
         mkdir($subDir);
 
         $file1 = tempnam($subDir, 'test1');

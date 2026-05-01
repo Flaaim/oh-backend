@@ -14,14 +14,14 @@ use Psr\Log\LoggerInterface;
 class Handler
 {
     public function __construct(
-        private readonly PaymentWebhookParserInterface  $webhookParser,
-        private readonly PaymentProviderInterface       $provider,
+        private readonly PaymentWebhookParserInterface $webhookParser,
+        private readonly PaymentProviderInterface $provider,
         private readonly PaymentRepository $paymentRepository,
         private readonly Flusher $flusher,
-        private readonly SendProductHandler  $sendProductHandler,
+        private readonly SendProductHandler $sendProductHandler,
         private readonly LoggerInterface $logger,
-    )
-    {}
+    ) {
+    }
     public function handle(Command $command): void
     {
 
@@ -31,7 +31,7 @@ class Handler
             $this->provider->getName()
         );
 
-        if(!$this->webhookParser->supports($callbackDTO->provider, $callbackDTO->rawData)){
+        if (!$this->webhookParser->supports($callbackDTO->provider, $callbackDTO->rawData)) {
             throw new \RuntimeException('Unsupported webhook format');
         }
 
@@ -43,20 +43,15 @@ class Handler
         $payment = $this->paymentRepository->getByExternalId($paymentId);
         $paymentWebHookData = $this->webhookParser->parse($callbackDTO->rawData);
 
-        try{
+        try {
             $this->sendProductHandler->handle(new SendProductCommand($payment, $paymentWebHookData));
 
             $this->paymentRepository->update($payment);
 
             $this->flusher->flush();
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             $this->logger->error('Failed to handle webhook', ['error' => $e->getMessage()]);
             throw new \RuntimeException('Failed to send product: ' . $e->getMessage());
         }
-
-
-
-
     }
-
 }

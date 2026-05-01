@@ -50,5 +50,4 @@ class UuidConverterTest extends TestCase
         $decoded = $converter->decode($url);
         self::assertEquals(strtolower($uuid), $decoded);
     }
-
 }

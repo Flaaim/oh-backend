@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Recipient\Entity;;
+namespace App\Recipient\Entity;
 
 use Webmozart\Assert\Assert;
 

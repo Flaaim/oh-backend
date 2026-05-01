@@ -23,7 +23,7 @@ return [
         $connection = $entityManager->getConnection();
 
         $configuration = new Configuration($connection);
-        $configuration->addMigrationsDirectory('App\Data\Migration',  __DIR__ . '/../../src/Data/Migration');
+        $configuration->addMigrationsDirectory('App\Data\Migration', __DIR__ . '/../../src/Data/Migration');
 
         $configuration->setAllOrNothing(true);
         $configuration->setCheckDatabasePlatform(false);

@@ -2,7 +2,6 @@
 
 namespace App\Http\Action\Distribution\Create;
 
-
 use App\Distribution\Command\Create\Command;
 use App\Distribution\Command\Create\Handler;
 use App\Http\EmptyResponse;
@@ -16,8 +15,7 @@ class RequestAction implements RequestHandlerInterface
     public function __construct(
         private readonly Handler $handler,
         private readonly Validator $validator
-    ){
-
+    ) {
     }
     public function handle(ServerRequestInterface $request): ResponseInterface
     {

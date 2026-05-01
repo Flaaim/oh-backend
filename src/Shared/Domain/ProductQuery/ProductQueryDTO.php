@@ -9,6 +9,6 @@ class ProductQueryDTO
         public string $name,
         public string $cipher,
         public string $file
-    ){
+    ) {
     }
 }

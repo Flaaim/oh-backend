@@ -21,7 +21,7 @@ class HandlerTest extends TestCase
     private readonly Flusher $flusher;
     /** @var MessageBusInterface&MockObject  */
     private readonly MessageBusInterface $messageBus;
-    private readonly Handler  $handler;
+    private readonly Handler $handler;
     public function setUp(): void
     {
         $this->distributions = $this->createMock(DistributionRepository::class);
@@ -48,5 +48,4 @@ class HandlerTest extends TestCase
 
         $this->handler->handle($command);
     }
-
 }

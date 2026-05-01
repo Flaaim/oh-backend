@@ -17,7 +17,7 @@ class File implements AttachableFileInterface
     }
     public function mergeRoot(RootPath $value): void
     {
-        if($this->fullPath !== null) {
+        if ($this->fullPath !== null) {
             throw new \DomainException('Root path already merged.');
         }
         $this->fullPath = DIRECTORY_SEPARATOR .
@@ -25,7 +25,7 @@ class File implements AttachableFileInterface
     }
     public function getFile(): string
     {
-        if(!$this->exists()) {
+        if (!$this->exists()) {
             throw new \DomainException('File not exists at: ' . $this->fullPath);
         }
         return $this->fullPath;
@@ -37,7 +37,7 @@ class File implements AttachableFileInterface
     }
     public function exists(): bool
     {
-        if($this->fullPath === null) {
+        if ($this->fullPath === null) {
             return false;
         }
         return file_exists($this->fullPath);

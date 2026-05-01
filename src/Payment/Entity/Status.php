@@ -6,7 +6,7 @@ use Webmozart\Assert\Assert;
 
 class Status
 {
-    const ALLOWED_STATUSES = [
+    private const ALLOWED_STATUSES = [
         'pending',
         'cancelled',
         'succeeded',
@@ -34,6 +34,4 @@ class Status
     {
         return new self('succeeded');
     }
-
-
 }

@@ -15,7 +15,6 @@ use Slim\Psr7\Response;
 use Slim\Psr7\Stream;
 use Slim\Psr7\UploadedFile;
 
-
 class ClearInputHandlerTest extends TestCase
 {
     public function testParsedBody(): void
@@ -51,16 +50,19 @@ class ClearInputHandlerTest extends TestCase
             });
 
         $middleware->process($request, $handler);
-
     }
 
     public function testUploadedFiles(): void
     {
         $realFile = (new UploadedFileFactory())->createUploadedFile(
-            (new StreamFactory())->createStream(''), 1, UPLOAD_ERR_OK,
+            (new StreamFactory())->createStream(''),
+            1,
+            UPLOAD_ERR_OK,
         );
         $noFile = (new UploadedFileFactory())->createUploadedFile(
-            (new StreamFactory())->createStream(''), 2, UPLOAD_ERR_NO_FILE,
+            (new StreamFactory())->createStream(''),
+            2,
+            UPLOAD_ERR_NO_FILE,
         );
         $request = (new ServerRequestFactory())->createServerRequest('GET', '/test')->withUploadedFiles([
             'realFile' => $realFile,

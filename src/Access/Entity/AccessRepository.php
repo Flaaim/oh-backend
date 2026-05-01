@@ -2,7 +2,6 @@
 
 namespace App\Access\Entity;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 
@@ -18,7 +17,7 @@ class AccessRepository
     }
     public function get(AccessId $id): Access
     {
-        if(!$access = $this->repo->find($id)){
+        if (!$access = $this->repo->find($id)) {
             throw new \DomainException('Access not found');
         }
         return $access;
@@ -37,8 +36,8 @@ class AccessRepository
             ->getQuery()
             ->getOneOrNullResult();
 
-        if(!$access){
-            throw new \DomainException('Access not found. token: '. $token);
+        if (!$access) {
+            throw new \DomainException('Access not found. token: ' . $token);
         }
 
         return $access;

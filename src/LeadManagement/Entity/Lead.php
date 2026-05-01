@@ -9,6 +9,6 @@ class Lead
         private string $name,
         private string $contact,
         private string $message,
-    ){
+    ) {
     }
 }

@@ -15,13 +15,13 @@ class AccessExpiredExceptionHandler implements MiddlewareInterface
 {
     public function __construct(
         private readonly LoggerInterface $logger,
-    )
-    {}
+    ) {
+    }
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        try{
+        try {
             return $handler->handle($request);
-        }catch (AccessExpiredException $e){
+        } catch (AccessExpiredException $e) {
             $this->logger->info($e->getMessage(), [
                 'message' => $e->getMessage(),
                 'uri' => $request->getUri()->__toString(),
@@ -30,7 +30,9 @@ class AccessExpiredExceptionHandler implements MiddlewareInterface
                 [
                     'message' => $e->getMessage(),
                     'productId' => $e->getProductId(),
-                ] , 410);
+                ],
+                410
+            );
         }
     }
 }

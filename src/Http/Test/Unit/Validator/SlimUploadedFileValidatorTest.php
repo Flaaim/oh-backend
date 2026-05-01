@@ -20,15 +20,15 @@ class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
     }
     public function testSuccess(): void
     {
-        $file = $this->buildUploadedFile('test.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 10,UPLOAD_ERR_OK);
+        $file = $this->buildUploadedFile('test.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 10, UPLOAD_ERR_OK);
 
         $this->validator->validate($file, new SlimUploadedFile());
         $this->assertNoViolation();
-
     }
     public function testInvalidUploadFile(): void
     {
-        $file = new class(){};
+        $file = new class (){
+        };
         $this->validator->validate($file, new SlimUploadedFile());
 
         $this->buildViolation('Uploaded file should be an instance of UploadedFileInterface')
@@ -36,12 +36,11 @@ class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
     }
     public function testFileError(): void
     {
-        $file = $this->buildUploadedFile('test.docx', 'application/msword',10,UPLOAD_ERR_CANT_WRITE);
+        $file = $this->buildUploadedFile('test.docx', 'application/msword', 10, UPLOAD_ERR_CANT_WRITE);
         $this->validator->validate($file, new SlimUploadedFile());
 
         $this->buildViolation('Cannot write file to disk.')
             ->assertRaised();
-
     }
 
     public function testInvalidConstraint(): void
@@ -53,7 +52,6 @@ class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
             $file,
             new Blank()
         );
-
     }
     public function testInvalidSize(): void
     {
@@ -71,7 +69,6 @@ class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
         ));
         $this->buildViolation('The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}.') ->setParameter('{{ limit }}', $maxFileSize)->setParameter('{{ size }}', $uploadedFileSize)
             ->assertRaised();
-
     }
 
     public function testInvalidMimeType(): void
@@ -95,7 +92,6 @@ class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
             ->setParameter('{{ type }}', $uploadedFile->getClientMediaType())
             ->setParameter('{{ types }}', implode(', ', $allowedMimeTypes))
             ->assertRaised();
-
     }
 
     public function testInvalidExtension(): void
@@ -150,7 +146,6 @@ class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
             ->setParameter('{{ extensions }}', implode(', ', $allowedExtensions));
 
         $this->assertSame(3, $violationsCount = \count($this->context->getViolations()));
-
     }
 
     private function buildUploadedFile(string $name, string $type, int $size, int $error): UploadedFileInterface
@@ -176,6 +171,4 @@ class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
             unlink($file);
         }
     }
-
-
 }

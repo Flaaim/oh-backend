@@ -7,8 +7,8 @@ class TempDir
     private string $value;
     private function __construct()
     {
-        $this->value = sys_get_temp_dir(). DIRECTORY_SEPARATOR . 'phpunit_test_';
-        if(!file_exists($this->value)){
+        $this->value = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'phpunit_test_';
+        if (!file_exists($this->value)) {
             mkdir($this->value, 0777, true);
         }
     }
@@ -34,15 +34,15 @@ class TempDir
         foreach ($items as $item) {
             $path = $dir . DIRECTORY_SEPARATOR . $item;
 
-            if(is_dir($path)) {
+            if (is_dir($path)) {
                 $this->removeDirectory($path);
                 rmdir($path);
-            }else{
+            } else {
                 unlink($path);
             }
         }
 
-        if($dir === $this->value) {
+        if ($dir === $this->value) {
             rmdir($dir);
         }
     }

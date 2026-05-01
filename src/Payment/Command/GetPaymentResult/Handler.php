@@ -8,8 +8,8 @@ class Handler
 {
     public function __construct(
         private readonly PaymentRepository $payments
-    )
-    {}
+    ) {
+    }
 
     public function handle(Command $command): Response
     {

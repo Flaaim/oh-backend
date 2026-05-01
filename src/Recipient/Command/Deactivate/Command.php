@@ -13,6 +13,6 @@ class Command
             new Assert\NotBlank(),
         ])]
         public array $emails,
-    )
-    {}
+    ) {
+    }
 }

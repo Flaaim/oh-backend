@@ -9,13 +9,12 @@ use App\Flusher;
 
 class Handler
 {
-
     public function __construct(
         private readonly SessionRepository $sessions,
         private readonly UuidConverter $uuidConverter,
         private readonly Flusher $flusher
-    )
-    {}
+    ) {
+    }
 
     public function handle(Command $command): void
     {
@@ -36,18 +35,16 @@ class Handler
             return;
         }
 
-        if($session->getSessionId() !== $command->sessionId) {
+        if ($session->getSessionId() !== $command->sessionId) {
             $session->replace(
                 $command->sessionId,
                 $command->ip,
                 $command->userAgent,
             );
-        }else{
+        } else {
             $session->touch();
         }
 
         $this->flusher->flush();
-
     }
-
 }

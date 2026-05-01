@@ -11,7 +11,6 @@ use Doctrine\Persistence\ObjectManager;
 
 class AccessFixture extends AbstractFixture
 {
-
     public function load(ObjectManager $manager): void
     {
         $access = new Access(

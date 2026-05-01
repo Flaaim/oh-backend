@@ -12,7 +12,7 @@ return [
     FileHandler::class => function (ContainerInterface $container) {
         return new FileHandler($container->get(UploadDir::class));
     },
-    UploadDir::class => function(){
+    UploadDir::class => function () {
         return new UploadDir(
             new RootPath(sys_get_temp_dir()),
             new ValidatePath()

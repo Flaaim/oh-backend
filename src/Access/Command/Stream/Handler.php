@@ -15,7 +15,7 @@ class Handler
         private readonly UuidConverter $uuidConverter,
         private readonly ProductQueryInterface $productQuery,
         private readonly RootPath $rootPath,
-    ){
+    ) {
     }
     public function handle(Command $command): string
     {
@@ -24,18 +24,17 @@ class Handler
 
         $access = $this->accesses->getByToken($token);
         /** @var Access $access */
-        if($access->isExpired()){
+        if ($access->isExpired()) {
             throw new \DomainException('Срок действия доступа к файлу истек...');
         }
 
         $product = $this->productQuery->getProduct($productId);
 
         $pathToFile =  $this->rootPath->getValue() . DIRECTORY_SEPARATOR . $product->file;
-        if(!file_exists($pathToFile)){
+        if (!file_exists($pathToFile)) {
             throw new \DomainException('Файл не найден...');
         }
 
         return $pathToFile;
-
     }
 }

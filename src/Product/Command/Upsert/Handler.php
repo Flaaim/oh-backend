@@ -16,13 +16,13 @@ class Handler
     public function __construct(
         private readonly ProductRepository $products,
         private readonly Flusher $flusher,
-    )
-    {}
+    ) {
+    }
     public function handle(Command $command): Response
     {
         $product = $this->products->findByCourse($command->course);
 
-        if($product) {
+        if ($product) {
             /** @var Product $product */
             $product->update(
                 $command->name,
@@ -30,7 +30,7 @@ class Handler
                 new File($command->path),
                 $command->cipher,
             );
-        }else{
+        } else {
             $product = new Product(
                 new Id(Uuid::uuid4()->toString()),
                 $command->name,

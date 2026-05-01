@@ -10,5 +10,6 @@ class Command
     public function __construct(
         public readonly Payment $payment,
         public readonly PaymentWebhookDataInterface $paymentWebHookData
-    ){}
+    ) {
+    }
 }

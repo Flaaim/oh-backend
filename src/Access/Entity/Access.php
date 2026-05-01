@@ -22,7 +22,7 @@ class Access
         private string $productId,
         #[ORM\Embedded(class: Token::class)]
         private Token $token
-    ){
+    ) {
     }
     public function getId(): AccessId
     {

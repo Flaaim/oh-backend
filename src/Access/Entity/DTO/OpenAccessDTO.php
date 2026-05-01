@@ -8,6 +8,6 @@ class OpenAccessDTO
         public string $url,
         public string $name,
         public string $cipher
-    ){
+    ) {
     }
 }

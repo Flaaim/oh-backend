@@ -6,8 +6,6 @@ class SendEmailBatchMessage
 {
     public function __construct(
         public string $distributionId,
-    ){
+    ) {
     }
-
-
 }

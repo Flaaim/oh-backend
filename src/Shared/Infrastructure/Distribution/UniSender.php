@@ -13,7 +13,7 @@ class UniSender implements DistributionInterface
         private Client $client,
         private LoggerInterface $logger,
         private string $apiKey
-    ){
+    ) {
     }
     public function send(string $subject, array $recipients, string $templateId): void
     {
@@ -26,7 +26,7 @@ class UniSender implements DistributionInterface
             ],
         ];
 
-        try{
+        try {
             $this->client->request('POST', 'email/send.json', [
                 'headers' => [
                     'X-API-KEY' => $this->apiKey,
@@ -34,10 +34,9 @@ class UniSender implements DistributionInterface
                 ],
                 'json' => $requestBody,
             ]);
-        }catch (GuzzleException $e){
-            $this->logger->error('Error sending distribution'. $e->getMessage());
+        } catch (GuzzleException $e) {
+            $this->logger->error('Error sending distribution' . $e->getMessage());
             throw $e;
         }
-
     }
 }

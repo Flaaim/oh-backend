@@ -12,8 +12,8 @@ class RecipientTest extends TestCase
     public function testRecipient(): void
     {
         $recipient = new Recipient(
-          $id = RecipientId::generate(),
-          $email = new Email('test@app.ru')
+            $id = RecipientId::generate(),
+            $email = new Email('test@app.ru')
         );
 
         self::assertSame($id, $recipient->getId());

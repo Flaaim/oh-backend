@@ -14,7 +14,7 @@ class AccessDelivery implements ProductDeliveryInterface
     public function __construct(
         private readonly OpenAccessHandler $handler,
         private readonly AccessSender $accessSender
-    ){
+    ) {
     }
     public function deliver(string $email, Product $product): void
     {

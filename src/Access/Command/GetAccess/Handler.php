@@ -10,7 +10,6 @@ use App\Access\Service\UuidConverter;
 use App\Shared\Domain\ProductQuery\ProductQueryInterface;
 use App\Shared\Domain\ValueObject\RootPath;
 
-
 class Handler
 {
     public function __construct(
@@ -18,7 +17,7 @@ class Handler
         private readonly UuidConverter $uuidConverter,
         private readonly ProductQueryInterface $productQuery,
         private readonly RootPath $rootPath,
-    ){
+    ) {
     }
 
     public function handle(Command $command): GetAccessDTO
@@ -27,7 +26,7 @@ class Handler
 
         $access = $this->accesses->getByToken($token);
         /** @var Access $access */
-        if($access->isExpired()){
+        if ($access->isExpired()) {
             throw new AccessExpiredException($access->getProductId(), 'Срок действия доступа к файлу истек...');
         }
 
@@ -35,7 +34,7 @@ class Handler
 
         $pathToFile =  $this->rootPath->getValue() . DIRECTORY_SEPARATOR . $product->file;
 
-        if(!file_exists($pathToFile)){
+        if (!file_exists($pathToFile)) {
             throw new \DomainException('Файл не найден...');
         }
 
