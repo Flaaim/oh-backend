@@ -765,14 +765,6 @@
       <code><![CDATA[__construct]]></code>
     </PossiblyUnusedMethod>
   </file>
-  <file src="src/Product/Command/Upload/Response.php">
-    <PossiblyUnusedProperty>
-      <code><![CDATA[$mime_type]]></code>
-      <code><![CDATA[$name]]></code>
-      <code><![CDATA[$path]]></code>
-      <code><![CDATA[$size]]></code>
-    </PossiblyUnusedProperty>
-  </file>
   <file src="src/Product/Command/Upsert/Handler.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[__construct]]></code>
