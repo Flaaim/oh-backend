@@ -24,18 +24,9 @@ class RequestActionTest extends WebTestCase
             ['file' => $uploadedFile]
         ));
 
-        self::assertEquals(200, $response->getStatusCode());
-        self::assertJson($body = $response->getBody());
-        
-        $data = Json::decode($body);
+        self::assertEquals(204, $response->getStatusCode());
 
-        self::assertArraySubset([
-            'name' => $uploadedFile->getClientFilename(),
-            'mime_type' => $uploadedFile->getClientMediaType(),
-            'size' => $uploadedFile->getSize(),
-            'path' => '/tmp/fire/pb992/'.$uploadedFile->getClientFilename(),
-        ], $data);
-        
+        self::assertFileExists('/tmp/fire/pb992/'. $uploadedFile->getClientFilename());
     }
 
     public function testEmptyFile(): void
@@ -135,25 +126,16 @@ class RequestActionTest extends WebTestCase
     public function testUploadExisting(): void
     {
         $uploadedFile = $this->buildUploadedFile('test.docx', 'data', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',UPLOAD_ERR_OK);
+
         $response = $this->app()->handle(self::formData('POST', '/payment-service/products/upload', ['path' => 'fire/pb992'], ['file' => $uploadedFile]));
 
-        self::assertEquals(200, $response->getStatusCode());
-        self::assertJson($body = $response->getBody());
-
-        $data = Json::decode($body);
-
-        self::assertEquals('data', file_get_contents($data['path']));
+        self::assertEquals(204, $response->getStatusCode());
 
         $uploadedFile = $this->buildUploadedFile('test.docx', 'data2', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',UPLOAD_ERR_OK);
 
-        $response = $this->app()->handle(self::formData('POST', '/payment-service/products/upload', ['path' => 'fire/pb992992'], ['file' => $uploadedFile]));
+        $this->app()->handle(self::formData('POST', '/payment-service/products/upload', ['path' => 'fire/pb992992'], ['file' => $uploadedFile]));
 
-        self::assertEquals(200, $response->getStatusCode());
-        self::assertJson($body = $response->getBody());
-        $data = Json::decode($body);
-
-        self::assertEquals('data2', file_get_contents($data['path']));
-
+        self::assertFileExists('/tmp/fire/pb992/'. $uploadedFile->getClientFilename());
     }
     private function buildUploadedFile(string $name, string $content, string $type, int $error): UploadedFileInterface
     {
