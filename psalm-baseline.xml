@@ -111,14 +111,6 @@
       <code><![CDATA[expects]]></code>
       <code><![CDATA[expects]]></code>
     </UndefinedMethod>
-    <UnusedClass>
-      <code><![CDATA[HandlerTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Access/Test/Unit/Command/OpenAccess/HandlerTest.php">
-    <UnusedClass>
-      <code><![CDATA[HandlerTest]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Access/Test/Unit/Command/Stream/HandlerTest.php">
     <MissingOverrideAttribute>
@@ -133,24 +125,6 @@
       <code><![CDATA[expects]]></code>
       <code><![CDATA[expects]]></code>
     </UndefinedMethod>
-    <UnusedClass>
-      <code><![CDATA[HandlerTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Access/Test/Unit/Entity/AccessIdTest.php">
-    <UnusedClass>
-      <code><![CDATA[AccessIdTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Access/Test/Unit/Entity/AccessTest.php">
-    <UnusedClass>
-      <code><![CDATA[AccessTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Access/Test/Unit/Entity/EmailTest.php">
-    <UnusedClass>
-      <code><![CDATA[EmailTest]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Access/Test/Unit/Entity/TokenTest.php">
     <ImplicitToStringCast>
@@ -164,14 +138,6 @@
       <code><![CDATA[Id::generate()]]></code>
       <code><![CDATA[Id::generate()]]></code>
     </ImplicitToStringCast>
-    <UnusedClass>
-      <code><![CDATA[TokenTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Access/Test/Unit/Service/UuidConverterTest.php">
-    <UnusedClass>
-      <code><![CDATA[UuidConverterTest]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Command/AccessSendCommand.php">
     <MissingOverrideAttribute>
@@ -313,9 +279,6 @@
     <MissingOverrideAttribute>
       <code><![CDATA[public function setUp(): void]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[HandlerTest]]></code>
-    </UnusedClass>
   </file>
   <file src="src/ErrorHandler/LogErrorHandler.php">
     <MissingOverrideAttribute>
@@ -478,11 +441,6 @@
       <code><![CDATA[public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface]]></code>
     </MissingOverrideAttribute>
   </file>
-  <file src="src/Http/Test/Unit/EmptyResponseTest.php">
-    <UnusedClass>
-      <code><![CDATA[EmptyResponseTest]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/Http/Test/Unit/FileResponseTest.php">
     <FalsableReturnStatement>
       <code><![CDATA[$file]]></code>
@@ -491,29 +449,6 @@
       <code><![CDATA[protected function setUp(): void]]></code>
       <code><![CDATA[protected function tearDown(): void]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[FileResponseTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Http/Test/Unit/Middleware/AccessExpiredExceptionHandlerTest.php">
-    <UnusedClass>
-      <code><![CDATA[AccessExpiredExceptionHandlerTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Http/Test/Unit/Middleware/ClearInputHandlerTest.php">
-    <UnusedClass>
-      <code><![CDATA[ClearInputHandlerTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Http/Test/Unit/Middleware/DomainExceptionHandlerTest.php">
-    <UnusedClass>
-      <code><![CDATA[DomainExceptionHandlerTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Http/Test/Unit/Middleware/InitializeSessionMiddlewareTest.php">
-    <UnusedClass>
-      <code><![CDATA[InitializeSessionMiddlewareTest]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Test/Unit/Middleware/UnsubscribeMiddlewareTest.php">
     <MissingOverrideAttribute>
@@ -526,14 +461,6 @@
       <code><![CDATA[expects]]></code>
       <code><![CDATA[expects]]></code>
     </UndefinedInterfaceMethod>
-    <UnusedClass>
-      <code><![CDATA[UnsubscribeMiddlewareTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Http/Test/Unit/Middleware/ValidationExceptionHandlerTest.php">
-    <UnusedClass>
-      <code><![CDATA[ValidationExceptionHandlerTest]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Test/Unit/Validator/SlimUploadedFileValidatorTest.php">
     <InvalidScalarArgument>
@@ -549,9 +476,6 @@
     <MissingTemplateParam>
       <code><![CDATA[SlimUploadedFileValidatorTest]]></code>
     </MissingTemplateParam>
-    <UnusedClass>
-      <code><![CDATA[SlimUploadedFileValidatorTest]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Validator/SlimUploadedFile.php">
     <MissingOverrideAttribute>
@@ -593,11 +517,6 @@
       <code><![CDATA[generate]]></code>
       <code><![CDATA[getValue]]></code>
     </PossiblyUnusedMethod>
-  </file>
-  <file src="src/LeadManagement/Test/Unit/Entity/LeadIdTest.php">
-    <UnusedClass>
-      <code><![CDATA[LeadIdTest]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Payment/Command/CreatePayment/Handler.php">
     <ImplicitToStringCast>
@@ -687,15 +606,7 @@
       <code><![CDATA[public function supports(string $type): bool]]></code>
     </MissingOverrideAttribute>
   </file>
-  <file src="src/Payment/Test/Entity/EmailTest.php">
-    <UnusedClass>
-      <code><![CDATA[EmailTest]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/Payment/Test/Entity/StatusTest.php">
-    <UnusedClass>
-      <code><![CDATA[StatusTest]]></code>
-    </UnusedClass>
     <UnusedVariable>
       <code><![CDATA[$status]]></code>
     </UnusedVariable>
@@ -712,19 +623,8 @@
       <code><![CDATA[Id::generate()]]></code>
       <code><![CDATA[Id::generate()]]></code>
     </ImplicitToStringCast>
-    <UnusedClass>
-      <code><![CDATA[TokenTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Payment/Test/Service/Access/AccessDeliveryTest.php">
-    <UnusedClass>
-      <code><![CDATA[AccessDeliveryTest]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Payment/Test/Service/Access/AccessSenderTest.php">
-    <UnusedClass>
-      <code><![CDATA[AccessSenderTest]]></code>
-    </UnusedClass>
     <UnusedVariable>
       <code><![CDATA[$twig]]></code>
     </UnusedVariable>
@@ -733,19 +633,6 @@
     <InvalidArgument>
       <code><![CDATA[[new stdClass(), new stdClass()]]]></code>
     </InvalidArgument>
-    <UnusedClass>
-      <code><![CDATA[DeliveryFactoryTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Payment/Test/Service/Product/FileDeliveryTest.php">
-    <UnusedClass>
-      <code><![CDATA[FileDeliveryTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Payment/Test/Service/Product/FileSenderTest.php">
-    <UnusedClass>
-      <code><![CDATA[FileSenderTest]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Product/Command/Get/Handler.php">
     <ImplicitToStringCast>
@@ -837,49 +724,11 @@
       <code><![CDATA[ProductQuery]]></code>
     </UnusedClass>
   </file>
-  <file src="src/Product/Test/Command/RecountPrice/RecountPriceTest.php">
-    <UnusedClass>
-      <code><![CDATA[RecountPriceTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Product/Test/Entity/CurrencyTest.php">
-    <UnusedClass>
-      <code><![CDATA[CurrencyTest]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/Product/Test/Entity/FileTest.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function setUp(): void]]></code>
       <code><![CDATA[public function tearDown(): void]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[FileTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Product/Test/Entity/PriceTest.php">
-    <UnusedClass>
-      <code><![CDATA[PriceTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Product/Test/Entity/ProductTest.php">
-    <UnusedClass>
-      <code><![CDATA[ProductTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Product/Test/Entity/UploadDirTest.php">
-    <UnusedClass>
-      <code><![CDATA[UploadDirTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Product/Test/Service/ValidatePathTest.php">
-    <UnusedClass>
-      <code><![CDATA[ValidatePathTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Product/Test/TempDirTest.php">
-    <UnusedClass>
-      <code><![CDATA[TempDirTest]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Recipient/Entity/EmailType.php">
     <MissingOverrideAttribute>
@@ -932,32 +781,11 @@
       <code><![CDATA[expects]]></code>
       <code><![CDATA[expects]]></code>
     </UndefinedMethod>
-    <UnusedClass>
-      <code><![CDATA[HandlerTest]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Recipient/Test/Unit/Command/Deactivate/HandlerTest.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function setUp(): void]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[HandlerTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Recipient/Test/Unit/Entity/RecipientEmailTest.php">
-    <UnusedClass>
-      <code><![CDATA[RecipientEmailTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Recipient/Test/Unit/Entity/RecipientIdTest.php">
-    <UnusedClass>
-      <code><![CDATA[RecipientIdTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Recipient/Test/Unit/Entity/RecipientTest.php">
-    <UnusedClass>
-      <code><![CDATA[RecipientTest]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Shared/Domain/Event/Payment/PaymentSubscriber.php">
     <MissingOverrideAttribute>
@@ -1163,28 +991,5 @@
       <code><![CDATA[expects]]></code>
       <code><![CDATA[method]]></code>
     </UndefinedMethod>
-    <UnusedClass>
-      <code><![CDATA[SendEmailBatchHandlerTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Shared/Test/Unit/RootPathTest.php">
-    <UnusedClass>
-      <code><![CDATA[RootPathTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Shared/Test/Unit/ValueObject/BaseUrlTest.php">
-    <UnusedClass>
-      <code><![CDATA[BaseUrlTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Shared/Test/Unit/ValueObject/IdTest.php">
-    <UnusedClass>
-      <code><![CDATA[IdTest]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Shared/Test/Unit/ValueObject/UpdatedAtTest.php">
-    <UnusedClass>
-      <code><![CDATA[UpdatedAtTest]]></code>
-    </UnusedClass>
   </file>
 </files>
