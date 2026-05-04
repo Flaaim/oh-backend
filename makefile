@@ -8,12 +8,13 @@ test-unit: unit-test
 test-functional: functional-test app-fixtures
 
 app-init:app-permission composer-install app-wait-for-db app-migrations app-fixtures
+update-deps: composer-update restart
 
 docker-up:
 	docker compose up -d
 
 docker-down:
-	docker compose down --remove-orphan
+	docker compose down --remove-orphans
 
 docker-down-clear:
 	docker compose down -v --remove-orphans
@@ -26,6 +27,9 @@ docker-build:
 
 composer-install:
 	docker compose run --rm -u $$(id -u):$$(id -g) php-cli composer install
+
+composer-update:
+	docker compose run --rm -u $$(id -u):$$(id -g) php-cli composer update
 
 app-clear:
 	docker run --rm -v ${PWD}:/app -w /app  alpine sh -c 'rm -rf var/cache/* var/log/*'
