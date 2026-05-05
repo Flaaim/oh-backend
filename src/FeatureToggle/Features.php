@@ -2,13 +2,18 @@
 
 namespace App\FeatureToggle;
 
-use App\FeatureToggle\FeatureFlag;
-
 class Features implements FeatureFlag
 {
+    public function __construct(
+        private readonly array $features
+    ) {
+    }
     #[\Override]
     public function isEnabled(string $name): bool
     {
-        return false;
+        if (!array_key_exists($name, $this->features)) {
+            return false;
+        }
+        return $this->features[$name];
     }
 }

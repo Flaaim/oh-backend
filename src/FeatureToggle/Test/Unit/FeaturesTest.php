@@ -11,8 +11,12 @@ class FeaturesTest extends TestCase
 {
     public function testIsEnabled(): void
     {
-        $features = new Features();
+        $features = new Features([
+            'FIRST' => true,
+            'SECOND' => false,
+        ]);
 
-        $this->assertFalse($features->isEnabled('feature'));
+        $this->assertTrue($features->isEnabled('FIRST'));
+        $this->assertFalse($features->isEnabled('SECOND'));
     }
 }
