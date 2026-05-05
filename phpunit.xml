@@ -20,6 +20,7 @@
             <directory>src/Recipient/Test</directory>
             <directory>src/Distribution/Test</directory>
             <directory>src/Http/Test</directory>
+            <directory>src/FeatureToggle/Test</directory>
         </testsuite>
         <testsuite name="Functional">
             <directory suffix="Test.php">tests/Functional</directory>
