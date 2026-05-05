@@ -2,10 +2,10 @@
 
 namespace App\FeatureToggle;
 
-class Features implements FeatureFlag
+class Features implements FeatureFlag, FeatureSwitch
 {
     public function __construct(
-        private readonly array $features
+        private array $features
     ) {
     }
     #[\Override]
@@ -15,5 +15,10 @@ class Features implements FeatureFlag
             return false;
         }
         return $this->features[$name];
+    }
+    #[\Override]
+    public function enable(string $name): void
+    {
+        $this->features[$name] = true;
     }
 }
