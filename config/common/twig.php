@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\FeatureToggle\FeatureFlagTwigExtension;
 use Psr\Container\ContainerInterface;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
@@ -46,7 +47,9 @@ return [
                 FilesystemLoader::MAIN_NAMESPACE => __DIR__ . '/../../templates',
             ],
             'cache_dir' => __DIR__ . '/../../var/cache/twig',
-            'extensions' => [],
+            'extensions' => [
+                FeatureFlagTwigExtension::class,
+            ],
             'globals' => [
                 'site_url' => getenv('SITE_URL'),
                 'site_name' => getenv('SITE_NAME'),
