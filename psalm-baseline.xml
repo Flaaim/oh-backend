@@ -21,13 +21,8 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Access/Entity/AccessIdType.php">
-    <MethodSignatureMismatch>
-      <code><![CDATA[$column]]></code>
-    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
       <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
-      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?AccessId]]></code>
-      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
     </MissingOverrideAttribute>
     <UnusedClass>
       <code><![CDATA[AccessIdType]]></code>
@@ -45,14 +40,6 @@
     </PossiblyUnusedProperty>
   </file>
   <file src="src/Access/Entity/EmailType.php">
-    <MethodSignatureMismatch>
-      <code><![CDATA[$column]]></code>
-    </MethodSignatureMismatch>
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
-      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Email]]></code>
-      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
-    </MissingOverrideAttribute>
     <UnusedClass>
       <code><![CDATA[EmailType]]></code>
     </UnusedClass>
@@ -260,14 +247,6 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Distribution/Entity/DistributionIdType.php">
-    <MethodSignatureMismatch>
-      <code><![CDATA[$column]]></code>
-    </MethodSignatureMismatch>
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
-      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?DistributionId]]></code>
-      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
-    </MissingOverrideAttribute>
     <UnusedClass>
       <code><![CDATA[DistributionIdType]]></code>
     </UnusedClass>
@@ -376,9 +355,6 @@
     <MissingOverrideAttribute>
       <code><![CDATA[public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <PossiblyUnusedMethod>
-      <code><![CDATA[__construct]]></code>
-    </PossiblyUnusedMethod>
   </file>
   <file src="src/Http/Middleware/ClearInputHandler.php">
     <MissingOverrideAttribute>
@@ -527,14 +503,6 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Payment/Entity/EmailType.php">
-    <MethodSignatureMismatch>
-      <code><![CDATA[$column]]></code>
-    </MethodSignatureMismatch>
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
-      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Email]]></code>
-      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
-    </MissingOverrideAttribute>
     <UnusedClass>
       <code><![CDATA[EmailType]]></code>
     </UnusedClass>
@@ -558,13 +526,9 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Payment/Entity/StatusType.php">
-    <MethodSignatureMismatch>
-      <code><![CDATA[$column]]></code>
-    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
       <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
       <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Status]]></code>
-      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
     </MissingOverrideAttribute>
     <UnusedClass>
       <code><![CDATA[StatusType]]></code>
@@ -665,27 +629,11 @@
     </NullableReturnStatement>
   </file>
   <file src="src/Product/Entity/FileType.php">
-    <MethodSignatureMismatch>
-      <code><![CDATA[$column]]></code>
-    </MethodSignatureMismatch>
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
-      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?File]]></code>
-      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
-    </MissingOverrideAttribute>
     <UnusedClass>
       <code><![CDATA[FileType]]></code>
     </UnusedClass>
   </file>
   <file src="src/Product/Entity/PriceType.php">
-    <MethodSignatureMismatch>
-      <code><![CDATA[$column]]></code>
-    </MethodSignatureMismatch>
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
-      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Price]]></code>
-      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
-    </MissingOverrideAttribute>
     <UnusedClass>
       <code><![CDATA[PriceType]]></code>
     </UnusedClass>
@@ -718,12 +666,7 @@
     </MissingOverrideAttribute>
   </file>
   <file src="src/Recipient/Entity/EmailType.php">
-    <MethodSignatureMismatch>
-      <code><![CDATA[$column]]></code>
-    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
-      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
-      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Email]]></code>
       <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
     </MissingOverrideAttribute>
     <UnusedClass>
@@ -736,14 +679,6 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Recipient/Entity/RecipientIdType.php">
-    <MethodSignatureMismatch>
-      <code><![CDATA[$column]]></code>
-    </MethodSignatureMismatch>
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
-      <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?RecipientId]]></code>
-      <code><![CDATA[public function getSQLDeclaration(array $column, AbstractPlatform $platform): string]]></code>
-    </MissingOverrideAttribute>
     <UnusedClass>
       <code><![CDATA[RecipientIdType]]></code>
     </UnusedClass>
@@ -904,9 +839,6 @@
     </UnusedClass>
   </file>
   <file src="src/Shared/Domain/ValueObject/IdType.php">
-    <MethodSignatureMismatch>
-      <code><![CDATA[$column]]></code>
-    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
       <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
       <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Id]]></code>
