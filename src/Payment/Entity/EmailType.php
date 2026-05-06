@@ -7,12 +7,13 @@ use Doctrine\DBAL\Types\StringType;
 
 class EmailType extends StringType
 {
-    public const NAME = 'email';
-
+    public const string NAME = 'email';
+    #[\Override]
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
         return $value instanceof Email ? $value->getValue() : $value;
     }
+    #[\Override]
     public function convertToPHPValue($value, AbstractPlatform $platform): ?Email
     {
         return !empty($value) ? new Email((string)$value) : null;
@@ -22,15 +23,17 @@ class EmailType extends StringType
         return self::NAME;
     }
     /**
-     * @param array<string, mixed> $column
+     * @param array<array-key, mixed> $column
      * @param AbstractPlatform $platform
      * @return string
      */
+    #[\Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
-        $column['length'] = 36;
-        $column['fixed'] = true; // CHAR вместо VARCHAR
+        $columnData = $column;
+        $columnData['length'] = 36;
+        $columnData['fixed'] = true;
 
-        return $platform->getStringTypeDeclarationSQL($column);
+        return $platform->getStringTypeDeclarationSQL($columnData);
     }
 }

@@ -22,15 +22,17 @@ class StatusType extends StringType
         return self::NAME;
     }
     /**
-     * @param array<string, mixed> $column
+     * @param array<array-key, mixed> $column
      * @param AbstractPlatform $platform
      * @return string
      */
+    #[\Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
-        $column['length'] = 36;
-        $column['fixed'] = true; // CHAR вместо VARCHAR
+        $columnData = $column;
+        $columnData['length'] = 36;
+        $columnData['fixed'] = true;
 
-        return $platform->getStringTypeDeclarationSQL($column);
+        return $platform->getStringTypeDeclarationSQL($columnData);
     }
 }
