@@ -22,6 +22,11 @@ class AccessIdType extends StringType
     {
         return self::NAME;
     }
+    /**
+     * @param array<string, mixed> $column
+     * @param AbstractPlatform $platform
+     * @return string
+     */
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         $column['length'] = 36;

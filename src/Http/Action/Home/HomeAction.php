@@ -18,7 +18,7 @@ class HomeAction implements RequestHandlerInterface
         private readonly FeatureFlag $features
     ) {
     }
-    
+
     #[\Override]
     public function handle(ServerRequestInterface $request): ResponseInterface
     {

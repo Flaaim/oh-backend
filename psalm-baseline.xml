@@ -21,6 +21,9 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Access/Entity/AccessIdType.php">
+    <MethodSignatureMismatch>
+      <code><![CDATA[$column]]></code>
+    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
       <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
       <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?AccessId]]></code>
@@ -42,6 +45,9 @@
     </PossiblyUnusedProperty>
   </file>
   <file src="src/Access/Entity/EmailType.php">
+    <MethodSignatureMismatch>
+      <code><![CDATA[$column]]></code>
+    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
       <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
       <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Email]]></code>
@@ -254,6 +260,9 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Distribution/Entity/DistributionIdType.php">
+    <MethodSignatureMismatch>
+      <code><![CDATA[$column]]></code>
+    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
       <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
       <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?DistributionId]]></code>
@@ -297,105 +306,66 @@
     <MissingOverrideAttribute>
       <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[RequestAction]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Action/Access/Stream/RequestAction.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[RequestAction]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Action/Auth/GetToken/RequestAction.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[RequestAction]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Action/Distribution/Create/RequestAction.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[RequestAction]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Action/LeadManagment/CreateLead/RequestAction.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[RequestAction]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Action/Payment/CreatePayment/RequestAction.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[RequestAction]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Action/Payment/HookPayment/RequestAction.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[RequestAction]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Action/Payment/Result/RequestAction.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[RequestAction]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Action/Product/Get/RequestAction.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[RequestAction]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Action/Product/RecountPrice/RequestAction.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[RequestAction]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Action/Product/Upload/RequestAction.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[RequestAction]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Action/Product/Upsert/RequestAction.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[RequestAction]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Action/Recipient/Unsubscribe/RequestAction.php">
     <MissingOverrideAttribute>
       <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[RequestAction]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Http/Middleware/AccessExpiredExceptionHandler.php">
     <MissingOverrideAttribute>
@@ -406,9 +376,9 @@
     <MissingOverrideAttribute>
       <code><![CDATA[public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface]]></code>
     </MissingOverrideAttribute>
-    <UnusedClass>
-      <code><![CDATA[AuthMiddleware]]></code>
-    </UnusedClass>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
   </file>
   <file src="src/Http/Middleware/ClearInputHandler.php">
     <MissingOverrideAttribute>
@@ -449,6 +419,11 @@
       <code><![CDATA[protected function setUp(): void]]></code>
       <code><![CDATA[protected function tearDown(): void]]></code>
     </MissingOverrideAttribute>
+  </file>
+  <file src="src/Http/Test/Unit/Middleware/FeatureMiddlewareTest.php">
+    <UnhandledMatchCondition>
+      <code><![CDATA[$i]]></code>
+    </UnhandledMatchCondition>
   </file>
   <file src="src/Http/Test/Unit/Middleware/UnsubscribeMiddlewareTest.php">
     <MissingOverrideAttribute>
@@ -552,6 +527,9 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Payment/Entity/EmailType.php">
+    <MethodSignatureMismatch>
+      <code><![CDATA[$column]]></code>
+    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
       <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
       <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Email]]></code>
@@ -580,6 +558,9 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Payment/Entity/StatusType.php">
+    <MethodSignatureMismatch>
+      <code><![CDATA[$column]]></code>
+    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
       <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
       <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Status]]></code>
@@ -684,6 +665,9 @@
     </NullableReturnStatement>
   </file>
   <file src="src/Product/Entity/FileType.php">
+    <MethodSignatureMismatch>
+      <code><![CDATA[$column]]></code>
+    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
       <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
       <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?File]]></code>
@@ -694,6 +678,9 @@
     </UnusedClass>
   </file>
   <file src="src/Product/Entity/PriceType.php">
+    <MethodSignatureMismatch>
+      <code><![CDATA[$column]]></code>
+    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
       <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
       <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Price]]></code>
@@ -731,6 +718,9 @@
     </MissingOverrideAttribute>
   </file>
   <file src="src/Recipient/Entity/EmailType.php">
+    <MethodSignatureMismatch>
+      <code><![CDATA[$column]]></code>
+    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
       <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
       <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Email]]></code>
@@ -746,6 +736,9 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Recipient/Entity/RecipientIdType.php">
+    <MethodSignatureMismatch>
+      <code><![CDATA[$column]]></code>
+    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
       <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
       <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?RecipientId]]></code>
@@ -911,6 +904,9 @@
     </UnusedClass>
   </file>
   <file src="src/Shared/Domain/ValueObject/IdType.php">
+    <MethodSignatureMismatch>
+      <code><![CDATA[$column]]></code>
+    </MethodSignatureMismatch>
     <MissingOverrideAttribute>
       <code><![CDATA[public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed]]></code>
       <code><![CDATA[public function convertToPHPValue($value, AbstractPlatform $platform): ?Id]]></code>

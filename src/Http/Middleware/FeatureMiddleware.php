@@ -12,7 +12,7 @@ class FeatureMiddleware implements MiddlewareInterface
 {
     public function __construct(
         private readonly FeatureSwitch $features,
-        private readonly string        $header = 'X-Features'
+        private readonly string $header = 'X-Features'
     ) {
     }
     #[\Override]

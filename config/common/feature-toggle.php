@@ -8,7 +8,7 @@ use App\FeatureToggle\FeatureSwitch;
 use Psr\Container\ContainerInterface;
 
 return [
-    FeatureFlag::class => DI\get(FeatureFlag::class),
+    FeatureFlag::class => DI\get(Features::class),
     FeatureSwitch::class => DI\get(FeatureSwitch::class),
     Features::class => function (ContainerInterface $container): FeatureFlag {
 

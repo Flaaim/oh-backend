@@ -18,7 +18,11 @@ class FileType extends StringType
     {
         return !empty($value) ? new File((string)$value) : null;
     }
-
+    /**
+     * @param array<string, mixed> $column
+     * @param AbstractPlatform $platform
+     * @return string
+     */
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         $column['length'] = 36;
