@@ -37,6 +37,13 @@ try {
         ->set('deploy_path', '~/www/minstroy-help.ru/public')
         ->set('branch', 'main');
 
+    host('dopog-help')
+        ->set('hostname', '31.31.198.114')
+        ->set('port', 22)
+        ->set('remote_user', 'u1656040')
+        ->set('deploy_path', '~/www/dopog-help.ru/public')
+        ->set('branch', 'main');
+
 
     set('shared_dirs', [
         'config/env',
