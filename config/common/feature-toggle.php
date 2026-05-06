@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 use App\FeatureToggle\FeatureFlag;
 use App\FeatureToggle\Features;
+use App\FeatureToggle\FeatureSwitch;
 use Psr\Container\ContainerInterface;
 
 return [
-    FeatureFlag::class => function (ContainerInterface $container): FeatureFlag {
+    FeatureFlag::class => DI\get(FeatureFlag::class),
+    FeatureSwitch::class => DI\get(FeatureSwitch::class),
+    Features::class => function (ContainerInterface $container): FeatureFlag {
 
         $config = $container->get('config')['feature-toggle'];
         /**
