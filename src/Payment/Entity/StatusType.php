@@ -26,7 +26,6 @@ class StatusType extends StringType
      * @param AbstractPlatform $platform
      * @return string
      */
-    #[\Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         $columnData = $column;

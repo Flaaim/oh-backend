@@ -30,6 +30,12 @@
             </errorLevel>
         </UndefinedClass>
 
+        <MissingOverrideAttribute>
+            <errorLevel type="suppress">
+                <directory name="src" />
+            </errorLevel>
+        </MissingOverrideAttribute>
+
         <UnusedClass>
             <errorLevel type="suppress">
                 <directory name="src/Data/Migration" />

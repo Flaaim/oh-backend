@@ -4,17 +4,14 @@ namespace App\Product\Entity;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
-use Override;
 
 class PriceType extends StringType
 {
-    public const string NAME = 'price';
-    #[Override]
+    public const NAME = 'price';
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
         return $value instanceof Price ? $value->getValue() : $value;
     }
-    #[Override]
     public function convertToPHPValue($value, AbstractPlatform $platform): ?Price
     {
         return !empty($value) ? new Price((float)$value, new Currency('RUB')) : null;
@@ -28,7 +25,6 @@ class PriceType extends StringType
      * @param AbstractPlatform $platform
      * @return string
      */
-    #[Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         $columnData = $column;

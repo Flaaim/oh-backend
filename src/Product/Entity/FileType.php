@@ -4,17 +4,15 @@ namespace App\Product\Entity;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
-use Override;
 
 class FileType extends StringType
 {
-    public const string NAME = 'file';
-    #[Override]
+    public const NAME = 'file';
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
         return $value instanceof File ? $value->getValue() : $value;
     }
-    #[Override]
+
     public function convertToPHPValue($value, AbstractPlatform $platform): ?File
     {
         return !empty($value) ? new File((string)$value) : null;
@@ -24,7 +22,6 @@ class FileType extends StringType
      * @param AbstractPlatform $platform
      * @return string
      */
-    #[Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         $columnData = $column;

@@ -4,17 +4,14 @@ namespace App\Recipient\Entity;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
-use Override;
 
 class EmailType extends StringType
 {
-    public const string NAME = 'recipient_email';
-    #[Override]
+    public const NAME = 'recipient_email';
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
         return $value instanceof Email ? $value->getValue() : $value;
     }
-    #[Override]
     public function convertToPHPValue($value, AbstractPlatform $platform): ?Email
     {
         return !empty($value) ? new Email((string)$value) : null;
