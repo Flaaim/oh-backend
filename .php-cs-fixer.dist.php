@@ -12,9 +12,9 @@ return (new Config())
         '@PSR12' => true,
         '@PSR12:risky' => true,
         '@DoctrineAnnotation' => true,
-        '@PHP82Migration' => true,
-        '@PHP82Migration:risky' => true,
-        '@PHPUnit82Migration:risky' => true,
+        '@PHP8x2Migration' => true,
+        '@PHP8x2Migration:risky' => true,
+        '@PHPUnit10x0Migration:risky' => true,
     ])
     // 💡 by default, Fixer looks for `*.php` files excluding `./vendor/` - here, you can groom this config
     ->setFinder(
