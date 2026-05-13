@@ -36,9 +36,7 @@
     "app": "php bin/app.php --ansi",
     "test": "phpunit --display-warnings --display-deprecations",
     "lint": "phplint",
-    "psalm": "psalm --config=psalm.xml",
-    "phpcs": "phpcs --standard=phpcs.xml",
-    "phpcbf": "phpcbf"
+    "psalm": "psalm --config=psalm.xml"
   },
   "require-dev": {
     "phpunit/phpunit": "^10.5",
@@ -47,7 +45,6 @@
     "overtrue/phplint": "^9.6",
     "vimeo/psalm": "^6.16",
     "weirdan/doctrine-psalm-plugin": "^2.10",
-    "squizlabs/php_codesniffer": "^4.0",
     "psalm/plugin-phpunit": "^0.19.7",
     "lctrs/psalm-psr-container-plugin": "^1.11"
   }
