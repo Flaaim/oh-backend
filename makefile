@@ -48,6 +48,10 @@ app-wait-for-db:
 
 app-lint:
 	docker compose run --rm php-cli composer lint
+	docker compose run --rm php-cli composer php-cs-fixer fix -- --dry-run --diff
+
+app-cs-fix:
+	docker compose run --rm php-cli composer php-cs-fixer fix
 
 app-psalm:
 	docker compose run --rm php-cli composer psalm
