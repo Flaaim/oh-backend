@@ -36,7 +36,8 @@
     "app": "php bin/app.php --ansi",
     "test": "phpunit --display-warnings --display-deprecations",
     "lint": "phplint",
-    "psalm": "psalm --config=psalm.xml"
+    "psalm": "psalm --config=psalm.xml",
+    "php-cs-fixer": "php-cs-fixer --config=.php-cs-fixer.dist.php --allow-risky=yes"
   },
   "require-dev": {
     "phpunit/phpunit": "^10.5",
