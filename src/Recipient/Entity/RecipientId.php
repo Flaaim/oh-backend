@@ -7,7 +7,7 @@ namespace App\Recipient\Entity;
 use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;
 
-class RecipientId
+final class RecipientId
 {
     private string $value;
     public function __construct(string $value)

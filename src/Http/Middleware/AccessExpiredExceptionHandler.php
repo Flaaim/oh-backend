@@ -12,7 +12,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerInterface;
 
-class AccessExpiredExceptionHandler implements MiddlewareInterface
+final class AccessExpiredExceptionHandler implements MiddlewareInterface
 {
     public function __construct(
         private readonly LoggerInterface $logger,

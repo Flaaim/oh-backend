@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Webmozart\Assert\Assert;
 
 #[ORM\Embeddable]
-class Token
+final class Token
 {
     #[ORM\Column(type:'string', length: 255, nullable: true)]
     private string $value;

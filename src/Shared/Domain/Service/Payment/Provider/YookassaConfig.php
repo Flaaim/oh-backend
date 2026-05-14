@@ -6,7 +6,7 @@ namespace App\Shared\Domain\Service\Payment\Provider;
 
 use Webmozart\Assert\Assert;
 
-class YookassaConfig
+final class YookassaConfig
 {
     public function __construct(
         private string $name,

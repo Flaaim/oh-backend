@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\FeatureToggle;
 
-class Features implements FeatureFlag, FeatureSwitch
+final class Features implements FeatureFlag, FeatureSwitch
 {
     public function __construct(
         private array $features

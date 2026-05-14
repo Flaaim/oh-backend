@@ -9,7 +9,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Log\LoggerInterface;
 
-class UniSender implements DistributionInterface
+final class UniSender implements DistributionInterface
 {
     public function __construct(
         private Client $client,

@@ -10,7 +10,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class FeatureMiddleware implements MiddlewareInterface
+final class FeatureMiddleware implements MiddlewareInterface
 {
     public function __construct(
         private readonly FeatureSwitch $features,

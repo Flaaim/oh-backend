@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Access\Entity\DTO;
 
-class GetAccessDTO
+final class GetAccessDTO
 {
     public function __construct(
         public string $productId,

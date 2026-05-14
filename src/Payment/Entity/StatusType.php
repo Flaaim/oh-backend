@@ -7,7 +7,7 @@ namespace App\Payment\Entity;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class StatusType extends StringType
+final class StatusType extends StringType
 {
     public const NAME = 'status';
 

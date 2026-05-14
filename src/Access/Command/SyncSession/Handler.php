@@ -9,7 +9,7 @@ use App\Access\Entity\SessionRepository;
 use App\Access\Service\UuidConverter;
 use App\Flusher;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private readonly SessionRepository $sessions,

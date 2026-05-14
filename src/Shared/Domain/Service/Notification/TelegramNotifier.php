@@ -9,7 +9,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Log\LoggerInterface;
 
-class TelegramNotifier implements NotificationInterface
+final class TelegramNotifier implements NotificationInterface
 {
     public function __construct(
         private readonly Client $client,

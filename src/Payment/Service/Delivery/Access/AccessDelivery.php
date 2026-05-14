@@ -11,7 +11,7 @@ use App\Payment\Service\Delivery\ProductDeliveryInterface;
 use App\Product\Entity\Product;
 use App\Product\Entity\Type;
 
-class AccessDelivery implements ProductDeliveryInterface
+final class AccessDelivery implements ProductDeliveryInterface
 {
     public function __construct(
         private readonly OpenAccessHandler $handler,

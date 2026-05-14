@@ -6,7 +6,7 @@ namespace Test\Functional\Distribution;
 
 use App\Shared\Domain\Service\Distribution\DistributionInterface;
 
-class MemoryUniSender implements DistributionInterface
+final class MemoryUniSender implements DistributionInterface
 {
     private array $sentMessages = [];
     public bool $throwExceptions = false;

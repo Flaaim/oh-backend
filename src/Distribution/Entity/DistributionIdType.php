@@ -7,7 +7,7 @@ namespace App\Distribution\Entity;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class DistributionIdType extends StringType
+final class DistributionIdType extends StringType
 {
     public const NAME = 'distribution_id';
 

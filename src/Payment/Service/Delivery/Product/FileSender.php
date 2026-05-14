@@ -13,7 +13,7 @@ use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mime\Part\File;
 use Twig\Environment;
 
-class FileSender
+final class FileSender
 {
     private MailerInterface $mailer;
     private Environment $twig;

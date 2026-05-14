@@ -7,7 +7,7 @@ namespace App\Access\Entity;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 
-class AccessRepository
+final class AccessRepository
 {
     private EntityRepository $repo;
     private EntityManagerInterface $em;

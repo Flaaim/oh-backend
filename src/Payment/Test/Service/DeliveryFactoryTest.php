@@ -18,7 +18,7 @@ use Test\Functional\Payment\ProductBuilder;
 /**
  * @internal
  */
-class DeliveryFactoryTest extends TestCase
+final class DeliveryFactoryTest extends TestCase
 {
     public function testSuccess(): void
     {

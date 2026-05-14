@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class CurrencyTest extends TestCase
+final class CurrencyTest extends TestCase
 {
     public function testSuccess(): void
     {

@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class HandlerTest extends TestCase
+final class HandlerTest extends TestCase
 {
     private RecipientRepository $recipients;
     private Flusher $flusher;

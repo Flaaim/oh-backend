@@ -7,7 +7,7 @@ namespace App\Distribution\Entity;
 use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;
 
-class DistributionId
+final class DistributionId
 {
     private string $value;
     public function __construct(string $value)

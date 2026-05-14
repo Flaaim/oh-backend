@@ -6,7 +6,7 @@ namespace App\Shared\Domain\ValueObject;
 
 use Webmozart\Assert\Assert;
 
-class BaseUrl
+final class BaseUrl
 {
     public function __construct(
         private string $url,

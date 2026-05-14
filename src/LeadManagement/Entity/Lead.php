@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\LeadManagement\Entity;
 
-class Lead
+final class Lead
 {
     public function __construct(
         private LeadId $leadId,

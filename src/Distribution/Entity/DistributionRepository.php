@@ -7,7 +7,7 @@ namespace App\Distribution\Entity;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 
-class DistributionRepository
+final class DistributionRepository
 {
     private EntityRepository $repo;
     private EntityManagerInterface $em;

@@ -18,7 +18,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 /**
  * @internal
  */
-class HandlerTest extends TestCase
+final class HandlerTest extends TestCase
 {
     /** @var DistributionRepository&MockObject  */
     private readonly DistributionRepository $distributions;

@@ -7,7 +7,7 @@ namespace App\Http\Validator;
 use Symfony\Component\Validator\Constraint;
 
 #[\Attribute]
-class SlimUploadedFile extends Constraint
+final class SlimUploadedFile extends Constraint
 {
     public int|string|null $maxSize = null;
     public array $mimeTypes = [];

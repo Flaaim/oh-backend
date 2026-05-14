@@ -7,7 +7,7 @@ namespace App\Access\Command\CheckSession;
 use App\Access\Entity\SessionRepository;
 use App\Access\Service\UuidConverter;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private readonly SessionRepository $sessions,

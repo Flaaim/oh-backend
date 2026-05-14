@@ -12,7 +12,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class InitializeSessionMiddleware implements MiddlewareInterface
+final class InitializeSessionMiddleware implements MiddlewareInterface
 {
     public function __construct(
         private readonly Handler $checkSessionHandler,

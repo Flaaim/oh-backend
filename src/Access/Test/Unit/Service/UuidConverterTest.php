@@ -11,7 +11,7 @@ use Ramsey\Uuid\Uuid;
 /**
  * @internal
  */
-class UuidConverterTest extends TestCase
+final class UuidConverterTest extends TestCase
 {
     public function testConvert(): void
     {

@@ -11,7 +11,7 @@ use App\Flusher;
 use App\Shared\Domain\Queue\Distribution\SendEmailBatchMessage;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private readonly DistributionRepository $distributions,

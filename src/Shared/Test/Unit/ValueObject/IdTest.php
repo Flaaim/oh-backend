@@ -11,13 +11,12 @@ use Ramsey\Uuid\Uuid;
 /**
  * @internal
  */
-class IdTest extends TestCase
+final class IdTest extends TestCase
 {
     public function testSuccess(): void
     {
         $id = new Id($value = Uuid::uuid4()->toString());
 
-        self::assertNotNull($id->getValue());
         self::assertSame($value, $id->getValue());
     }
 

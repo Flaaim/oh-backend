@@ -11,7 +11,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class AuthMiddleware implements MiddlewareInterface
+final class AuthMiddleware implements MiddlewareInterface
 {
     public function __construct(private readonly ContainerInterface $container)
     {

@@ -15,7 +15,7 @@ use Test\Functional\WebTestCase;
 /**
  * @internal
  */
-class RequestActionTest extends WebTestCase
+final class RequestActionTest extends WebTestCase
 {
     private DistributionRepository $distributions;
     private MemoryUniSender $uniSenderSpy;

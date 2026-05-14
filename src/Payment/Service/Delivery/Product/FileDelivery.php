@@ -10,7 +10,7 @@ use App\Product\Entity\Product;
 use App\Product\Entity\Type;
 use App\Shared\Domain\ValueObject\RootPath;
 
-class FileDelivery implements ProductDeliveryInterface
+final class FileDelivery implements ProductDeliveryInterface
 {
     public function __construct(
         private readonly FileSender $fileSender,

@@ -6,7 +6,7 @@ namespace App\Product\Command\RecountPrice;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class Command
+final class Command
 {
     public function __construct(
         #[Assert\Choice(choices: ['file', 'access'])]

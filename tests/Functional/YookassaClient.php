@@ -7,7 +7,7 @@ namespace Test\Functional;
 use YooKassa\Client;
 use YooKassa\Request\Payments\PaymentsResponse;
 
-class YookassaClient
+final class YookassaClient
 {
     private Client $client;
 

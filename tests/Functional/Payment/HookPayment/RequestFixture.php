@@ -10,7 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 use Test\Functional\Payment\PaymentBuilder;
 use Test\Functional\Payment\ProductBuilder;
 
-class RequestFixture extends AbstractFixture
+final class RequestFixture extends AbstractFixture
 {
     public function load(ObjectManager $manager): void
     {

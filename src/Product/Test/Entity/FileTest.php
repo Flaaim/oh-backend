@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class FileTest extends TestCase
+final class FileTest extends TestCase
 {
     private TempDir $tempDir;
     protected function setUp(): void

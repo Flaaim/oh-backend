@@ -18,7 +18,7 @@ use Test\Functional\Json;
 /**
  * @internal
  */
-class UnsubscribeMiddlewareTest extends TestCase
+final class UnsubscribeMiddlewareTest extends TestCase
 {
     private ContainerInterface $container;
     private LoggerInterface $logger;

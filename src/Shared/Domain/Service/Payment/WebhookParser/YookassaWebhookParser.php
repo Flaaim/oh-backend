@@ -8,7 +8,7 @@ use App\Shared\Domain\Service\Payment\PaymentWebhookDataInterface;
 use App\Shared\Domain\Service\Payment\PaymentWebhookParserInterface;
 use InvalidArgumentException;
 
-class YookassaWebhookParser implements PaymentWebhookParserInterface
+final class YookassaWebhookParser implements PaymentWebhookParserInterface
 {
     private const PROVIDER_NAME = 'Yookassa';
     private const NOTIFICATION_TYPE = 'notification';

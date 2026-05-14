@@ -7,7 +7,7 @@ namespace App\LeadManagement\Entity;
 use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;
 
-class LeadId
+final class LeadId
 {
     private string $value;
     public function __construct(string $value)

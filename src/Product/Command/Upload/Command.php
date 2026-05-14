@@ -8,7 +8,7 @@ use App\Http\Validator\SlimUploadedFile as SlimUploadedFileAssert;
 use Psr\Http\Message\UploadedFileInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class Command
+final class Command
 {
     public function __construct(
         #[Assert\NotNull(message: 'Upload file required.')]

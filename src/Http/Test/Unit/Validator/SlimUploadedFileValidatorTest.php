@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 /**
  * @internal
  */
-class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
+final class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
 {
     private array $files = [];
     protected function createValidator(): ConstraintValidatorInterface

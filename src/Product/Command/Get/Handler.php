@@ -8,7 +8,7 @@ use App\Product\Entity\DTO\ProductDTO;
 use App\Product\Entity\ProductRepository;
 use App\Shared\Domain\ValueObject\Id;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private ProductRepository $products,

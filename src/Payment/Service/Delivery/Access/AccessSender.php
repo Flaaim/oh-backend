@@ -12,7 +12,7 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Twig\Environment;
 
-class AccessSender
+final class AccessSender
 {
     public function __construct(
         private MailerInterface $mailer,

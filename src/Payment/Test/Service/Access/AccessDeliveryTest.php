@@ -17,7 +17,7 @@ use Test\Functional\Payment\ProductBuilder;
 /**
  * @internal
  */
-class AccessDeliveryTest extends TestCase
+final class AccessDeliveryTest extends TestCase
 {
     public function testSupport(): void
     {

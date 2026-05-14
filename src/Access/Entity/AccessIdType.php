@@ -7,7 +7,7 @@ namespace App\Access\Entity;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class AccessIdType extends StringType
+final class AccessIdType extends StringType
 {
     public const NAME = 'access_id';
 

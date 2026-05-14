@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Validation;
 /**
  * @internal
  */
-class InitializeSessionMiddlewareTest extends TestCase
+final class InitializeSessionMiddlewareTest extends TestCase
 {
     public function testSuccess(): void
     {

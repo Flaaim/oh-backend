@@ -12,7 +12,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerInterface;
 
-class UnsubscribeMiddleware implements MiddlewareInterface
+final class UnsubscribeMiddleware implements MiddlewareInterface
 {
     public function __construct(
         private readonly ContainerInterface $container,

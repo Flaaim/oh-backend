@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class TempDirTest extends TestCase
+final class TempDirTest extends TestCase
 {
     public function testSuccess(): void
     {

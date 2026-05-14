@@ -7,7 +7,7 @@ namespace App\Product\Entity;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class PriceType extends StringType
+final class PriceType extends StringType
 {
     public const NAME = 'price';
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed

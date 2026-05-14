@@ -11,7 +11,7 @@ use Test\Functional\WebTestCase;
 /**
  * @internal
  */
-class RequestActionTest extends WebTestCase
+final class RequestActionTest extends WebTestCase
 {
     protected function setUp(): void
     {

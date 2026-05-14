@@ -11,7 +11,7 @@ use Psr\Http\Message\UploadedFileInterface;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
-class FileHandler
+final class FileHandler
 {
     private UploadDir $path;
     public function __construct(UploadDir $path)

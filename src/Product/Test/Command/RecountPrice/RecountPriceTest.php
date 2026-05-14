@@ -16,7 +16,7 @@ use Test\Functional\Payment\ProductBuilder;
 /**
  * @internal
  */
-class RecountPriceTest extends TestCase
+final class RecountPriceTest extends TestCase
 {
     public function testRecountAccess(): void
     {

@@ -7,7 +7,7 @@ namespace App\Shared\Domain\ValueObject;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class IdType extends StringType
+final class IdType extends StringType
 {
     public const NAME = 'id';
 

@@ -12,7 +12,7 @@ use App\Shared\Domain\ValueObject\Id;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
 
-class ProductFixture extends AbstractFixture
+final class ProductFixture extends AbstractFixture
 {
     public function load(ObjectManager $manager): void
     {

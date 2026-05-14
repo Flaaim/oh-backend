@@ -6,7 +6,7 @@ namespace App\Product\Entity;
 
 use Webmozart\Assert\Assert;
 
-class Currency
+final class Currency
 {
     private const ALLOWED_CURRENCIES = [
         'RUB',

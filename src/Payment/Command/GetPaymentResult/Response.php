@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Payment\Command\GetPaymentResult;
 
-class Response implements \JsonSerializable
+final class Response implements \JsonSerializable
 {
     public function __construct(
         public string $returnToken,

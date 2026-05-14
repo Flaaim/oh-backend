@@ -10,7 +10,7 @@ use App\Access\Service\UuidConverter;
 use App\Shared\Domain\ProductQuery\ProductQueryInterface;
 use App\Shared\Domain\ValueObject\RootPath;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private readonly AccessRepository $accesses,

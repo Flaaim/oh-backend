@@ -7,7 +7,7 @@ namespace App\Shared\Domain\ValueObject;
 use DateTimeImmutable;
 use DomainException;
 
-class UpdatedAt
+final class UpdatedAt
 {
     public const FORMAT_DOT = 'd.m.Y';
     public const FORMAT_DASH = 'd-m-Y';

@@ -8,7 +8,7 @@ use Slim\Psr7\Factory\StreamFactory;
 use Slim\Psr7\Headers;
 use Slim\Psr7\Response;
 
-class FileResponse extends Response
+final class FileResponse extends Response
 {
     public function __construct($path, $status = 200)
     {

@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  */
 #[CoversClass(Features::class)]
-class FeaturesTest extends TestCase
+final class FeaturesTest extends TestCase
 {
     public function testIsEnabled(): void
     {

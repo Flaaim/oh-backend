@@ -13,7 +13,7 @@ use YooKassa\Client;
 use YooKassa\Model\Notification\NotificationFactory;
 use YooKassa\Request\Payments\PaymentResponse;
 
-class YookassaProvider implements PaymentProviderInterface
+final class YookassaProvider implements PaymentProviderInterface
 {
     public function __construct(
         private readonly Client $client,

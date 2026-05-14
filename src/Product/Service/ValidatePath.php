@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Product\Service;
 
-class ValidatePath
+final class ValidatePath
 {
     public function validate(string $path): int
     {

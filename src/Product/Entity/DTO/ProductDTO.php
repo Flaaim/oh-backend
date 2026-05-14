@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Product\Entity\DTO;
 
-class ProductDTO
+final class ProductDTO
 {
     public function __construct(
         public string $id,

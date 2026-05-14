@@ -13,7 +13,7 @@ use App\Shared\Domain\Service\Payment\PaymentProviderInterface;
 use App\Shared\Domain\Service\Payment\PaymentWebhookParserInterface;
 use Psr\Log\LoggerInterface;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private readonly PaymentWebhookParserInterface $webhookParser,

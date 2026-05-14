@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class HandlerTest extends TestCase
+final class HandlerTest extends TestCase
 {
     /** @var MockObject&RecipientRepository  */
     private RecipientRepository $recipients;

@@ -12,7 +12,7 @@ use App\Shared\Domain\Service\Payment\PaymentStatus;
 use App\Shared\Domain\Service\Payment\PaymentWebhookDataInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private readonly DeliveryFactory $delivery,

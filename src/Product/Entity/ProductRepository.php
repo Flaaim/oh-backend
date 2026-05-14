@@ -8,7 +8,7 @@ use App\Shared\Domain\ValueObject\Id;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 
-class ProductRepository
+final class ProductRepository
 {
     private EntityRepository $repo;
     private EntityManagerInterface $em;

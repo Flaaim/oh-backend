@@ -18,7 +18,7 @@ use Slim\Psr7\Factory\ServerRequestFactory;
 /**
  * @internal
  */
-class WebTestCase extends TestCase
+abstract class WebTestCase extends TestCase
 {
     private ?MailerClient $mailer = null;
     protected ?ContainerInterface $container = null;

@@ -16,7 +16,7 @@ use Test\Functional\Json;
 /**
  * @internal
  */
-class AccessExpiredExceptionHandlerTest extends TestCase
+final class AccessExpiredExceptionHandlerTest extends TestCase
 {
     public function testSuccess(): void
     {

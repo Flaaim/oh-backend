@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class HandlerTest extends TestCase
+final class HandlerTest extends TestCase
 {
     public function testSuccess(): void
     {

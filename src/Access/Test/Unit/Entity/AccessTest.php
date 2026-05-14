@@ -14,7 +14,7 @@ use Ramsey\Uuid\Uuid;
 /**
  * @internal
  */
-class AccessTest extends TestCase
+final class AccessTest extends TestCase
 {
     public function testExpired(): void
     {

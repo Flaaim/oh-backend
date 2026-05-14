@@ -12,7 +12,7 @@ use Ramsey\Uuid\Uuid;
 /**
  * @internal
  */
-class TokenTest extends TestCase
+final class TokenTest extends TestCase
 {
     public function testSuccess(): void
     {

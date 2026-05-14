@@ -14,7 +14,7 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Twig\Environment;
 
-class FileSendCommand extends Command
+final class FileSendCommand extends Command
 {
     public function configure(): void
     {

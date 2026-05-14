@@ -16,7 +16,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
-class SendEmailBatchHandler
+final class SendEmailBatchHandler
 {
     private const BATCH_SIZE = 100;
     public function __construct(

@@ -6,7 +6,7 @@ namespace App\Shared\Domain\Service\Payment\WebhookParser;
 
 use App\Shared\Domain\Service\Payment\PaymentWebhookDataInterface;
 
-class YookassaWebhookData implements PaymentWebhookDataInterface
+final class YookassaWebhookData implements PaymentWebhookDataInterface
 {
     public function __construct(
         private readonly string $status,

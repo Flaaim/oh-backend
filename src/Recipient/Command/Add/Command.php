@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Recipient\Command\Add;
 
-class Command
+final class Command
 {
     public function __construct(
         public string $email

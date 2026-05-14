@@ -6,7 +6,7 @@ namespace App\Shared\Domain\ValueObject;
 
 use Webmozart\Assert\Assert;
 
-class RootPath
+final class RootPath
 {
     private readonly string $basePath;
     public function __construct(string $basePath)

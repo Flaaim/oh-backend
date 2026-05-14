@@ -20,7 +20,7 @@ use Ramsey\Uuid\Uuid;
 /**
  * @internal
  */
-class HandlerTest extends TestCase
+final class HandlerTest extends TestCase
 {
     private string $uuid;
     private Command $command;

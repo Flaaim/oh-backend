@@ -6,7 +6,7 @@ namespace App\Product\Entity;
 
 use Webmozart\Assert\Assert;
 
-class Price
+final class Price
 {
     private float $value;
     private Currency $currency;

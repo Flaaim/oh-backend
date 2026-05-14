@@ -7,7 +7,7 @@ namespace App\Shared\Domain\ValueObject;
 use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;
 
-class Id
+final class Id
 {
     private string $value;
     public function __construct(string $value)

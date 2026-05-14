@@ -7,7 +7,7 @@ namespace App\Recipient\Entity;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 
-class RecipientRepository
+final class RecipientRepository
 {
     private EntityRepository $repo;
     private EntityManagerInterface $em;

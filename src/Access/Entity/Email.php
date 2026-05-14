@@ -6,7 +6,7 @@ namespace App\Access\Entity;
 
 use Webmozart\Assert\Assert;
 
-class Email
+final class Email
 {
     private string $value;
     public function __construct(string $value)

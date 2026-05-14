@@ -6,7 +6,7 @@ namespace App\ErrorHandler;
 
 use Slim\Handlers\ErrorHandler;
 
-class LogErrorHandler extends ErrorHandler
+final class LogErrorHandler extends ErrorHandler
 {
     protected function writeToErrorLog(): void
     {

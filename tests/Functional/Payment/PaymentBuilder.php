@@ -14,7 +14,7 @@ use App\Shared\Domain\ValueObject\Id;
 use DateTimeImmutable;
 use Ramsey\Uuid\Uuid;
 
-class PaymentBuilder
+final class PaymentBuilder
 {
     private Id $id;
     private ?string $externalId = null;

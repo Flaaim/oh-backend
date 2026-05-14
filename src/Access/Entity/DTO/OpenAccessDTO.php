@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Access\Entity\DTO;
 
-class OpenAccessDTO
+final class OpenAccessDTO
 {
     public function __construct(
         public string $url,

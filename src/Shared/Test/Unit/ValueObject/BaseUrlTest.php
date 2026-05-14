@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class BaseUrlTest extends TestCase
+final class BaseUrlTest extends TestCase
 {
     public function testSuccess(): void
     {

@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class PriceTest extends TestCase
+final class PriceTest extends TestCase
 {
     public function testSuccess(): void
     {

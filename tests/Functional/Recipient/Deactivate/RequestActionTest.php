@@ -13,7 +13,7 @@ use Test\Functional\WebTestCase;
 /**
  * @internal
  */
-class RequestActionTest extends WebTestCase
+final class RequestActionTest extends WebTestCase
 {
     private RecipientRepository $recipients;
     protected function setUp(): void

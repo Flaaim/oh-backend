@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class RecipientTest extends TestCase
+final class RecipientTest extends TestCase
 {
     public function testRecipient(): void
     {

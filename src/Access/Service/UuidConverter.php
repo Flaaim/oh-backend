@@ -6,7 +6,7 @@ namespace App\Access\Service;
 
 use Webmozart\Assert\Assert;
 
-class UuidConverter
+final class UuidConverter
 {
     public function encode(string $uuid): string
     {

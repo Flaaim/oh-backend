@@ -21,7 +21,7 @@ use Twig\Environment;
 /**
  * @internal
  */
-class FileSenderTest extends TestCase
+final class FileSenderTest extends TestCase
 {
     public function testSuccess(): void
     {

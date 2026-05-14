@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class RootPathTest extends TestCase
+final class RootPathTest extends TestCase
 {
     public function testSuccess(): void
     {

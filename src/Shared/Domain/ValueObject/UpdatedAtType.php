@@ -8,7 +8,7 @@ use DateTimeImmutable;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\DateTimeImmutableType;
 
-class UpdatedAtType extends DateTimeImmutableType
+final class UpdatedAtType extends DateTimeImmutableType
 {
     public const NAME = 'updated_at';
 

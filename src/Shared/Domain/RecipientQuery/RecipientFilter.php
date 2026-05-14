@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\RecipientQuery;
 
-class RecipientFilter
+final class RecipientFilter
 {
     public function __construct(
         public ?bool $isActive = true,

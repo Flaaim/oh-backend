@@ -19,7 +19,7 @@ use Psr\Log\LoggerInterface;
 /**
  * @internal
  */
-class SendEmailBatchHandlerTest extends TestCase
+final class SendEmailBatchHandlerTest extends TestCase
 {
     private readonly DistributionRepository $distributions;
     private readonly RecipientQueryInterface $recipientQuery;

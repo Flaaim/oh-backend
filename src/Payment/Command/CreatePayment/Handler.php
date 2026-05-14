@@ -19,7 +19,7 @@ use DateTimeImmutable;
 use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private readonly Flusher $flusher,

@@ -7,7 +7,7 @@ namespace App\Product\Entity;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class FileType extends StringType
+final class FileType extends StringType
 {
     public const NAME = 'file';
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed

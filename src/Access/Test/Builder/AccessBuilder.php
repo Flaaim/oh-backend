@@ -9,7 +9,7 @@ use App\Access\Entity\AccessId;
 use App\Access\Entity\Email;
 use App\Access\Entity\Token;
 
-class AccessBuilder
+final class AccessBuilder
 {
     private AccessId $accessId;
     private string $name;

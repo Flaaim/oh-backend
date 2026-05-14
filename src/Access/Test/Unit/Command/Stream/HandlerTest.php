@@ -18,7 +18,7 @@ use Ramsey\Uuid\Uuid;
 /**
  * @internal
  */
-class HandlerTest extends TestCase
+final class HandlerTest extends TestCase
 {
     private string $token;
     private string $productId;

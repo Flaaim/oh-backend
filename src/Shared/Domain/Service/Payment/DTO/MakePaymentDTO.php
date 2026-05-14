@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\Service\Payment\DTO;
 
-class MakePaymentDTO
+final class MakePaymentDTO
 {
     public function __construct(
         public float $amount,

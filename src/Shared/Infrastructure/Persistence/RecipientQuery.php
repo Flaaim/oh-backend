@@ -9,7 +9,7 @@ use App\Shared\Domain\RecipientQuery\RecipientFilter;
 use App\Shared\Domain\RecipientQuery\RecipientQueryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
-class RecipientQuery implements RecipientQueryInterface
+final class RecipientQuery implements RecipientQueryInterface
 {
     private EntityManagerInterface $em;
 

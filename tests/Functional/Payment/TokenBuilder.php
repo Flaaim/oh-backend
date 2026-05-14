@@ -6,7 +6,7 @@ namespace Test\Functional\Payment;
 
 use App\Payment\Entity\Token;
 
-class TokenBuilder
+final class TokenBuilder
 {
     private string $value;
     private \DateTimeImmutable $expired;

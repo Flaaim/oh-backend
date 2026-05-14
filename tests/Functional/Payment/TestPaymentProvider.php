@@ -9,7 +9,7 @@ use App\Shared\Domain\Service\Payment\DTO\PaymentCallbackDTO;
 use App\Shared\Domain\Service\Payment\DTO\PaymentInfoDTO;
 use App\Shared\Domain\Service\Payment\PaymentProviderInterface;
 
-class TestPaymentProvider implements PaymentProviderInterface
+final class TestPaymentProvider implements PaymentProviderInterface
 {
     public function initiatePayment(MakePaymentDTO $paymentData): PaymentInfoDTO
     {

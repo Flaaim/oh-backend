@@ -7,7 +7,7 @@ namespace App\Recipient\Entity;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class RecipientIdType extends StringType
+final class RecipientIdType extends StringType
 {
     public const NAME = 'recipient_id';
 

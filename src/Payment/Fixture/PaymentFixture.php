@@ -15,7 +15,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 
-class PaymentFixture extends AbstractFixture
+final class PaymentFixture extends AbstractFixture
 {
     public function load(ObjectManager $manager): void
     {

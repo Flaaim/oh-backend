@@ -7,7 +7,7 @@ namespace App\Payment\Entity;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 
-class PaymentRepository
+final class PaymentRepository
 {
     private EntityRepository $repo;
     private EntityManagerInterface $em;

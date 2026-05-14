@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class FileResponseTest extends TestCase
+final class FileResponseTest extends TestCase
 {
     private TempDir $tempDir;
     protected function setUp(): void

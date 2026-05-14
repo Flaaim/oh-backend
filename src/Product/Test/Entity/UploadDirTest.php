@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class UploadDirTest extends TestCase
+final class UploadDirTest extends TestCase
 {
     public function testSuccess(): void
     {

@@ -7,7 +7,7 @@ namespace App\Http\Validator;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Throwable;
 
-class ValidationException extends \LogicException
+final class ValidationException extends \LogicException
 {
     private ConstraintViolationListInterface $violations;
 

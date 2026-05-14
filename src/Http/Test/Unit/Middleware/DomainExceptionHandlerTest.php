@@ -16,7 +16,7 @@ use Test\Functional\Json;
 /**
  * @internal
  */
-class DomainExceptionHandlerTest extends TestCase
+final class DomainExceptionHandlerTest extends TestCase
 {
     public function testNormal(): void
     {

@@ -13,7 +13,7 @@ use Test\Functional\Payment\ProductBuilder;
 /**
  * @internal
  */
-class ProductTest extends TestCase
+final class ProductTest extends TestCase
 {
     public function testSuccess(): void
     {

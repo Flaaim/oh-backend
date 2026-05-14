@@ -14,7 +14,7 @@ use Slim\Psr7\Factory\ServerRequestFactory;
 /**
  * @internal
  */
-class FeatureMiddlewareTest extends TestCase
+final class FeatureMiddlewareTest extends TestCase
 {
     public function testEmpty(): void
     {

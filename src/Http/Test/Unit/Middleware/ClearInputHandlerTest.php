@@ -17,7 +17,7 @@ use Slim\Psr7\Factory\UploadedFileFactory;
 /**
  * @internal
  */
-class ClearInputHandlerTest extends TestCase
+final class ClearInputHandlerTest extends TestCase
 {
     public function testParsedBody(): void
     {

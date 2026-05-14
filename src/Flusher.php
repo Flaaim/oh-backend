@@ -6,7 +6,7 @@ namespace App;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-class Flusher
+final class Flusher
 {
     private EntityManagerInterface $em;
     public function __construct(EntityManagerInterface $em)

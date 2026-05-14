@@ -6,7 +6,7 @@ namespace App\LeadManagement\Command\CreateLead;
 
 use App\Shared\Domain\Service\Notification\TelegramNotifier;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private readonly TelegramNotifier $notifier,

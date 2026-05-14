@@ -13,7 +13,7 @@ use App\Product\Entity\ProductRepository;
 use App\Shared\Domain\ValueObject\Id;
 use Ramsey\Uuid\Uuid;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private readonly ProductRepository $products,

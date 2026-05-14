@@ -18,7 +18,7 @@ use Twig\Loader\ArrayLoader;
 /**
  * @internal
  */
-class AccessSenderTest extends TestCase
+final class AccessSenderTest extends TestCase
 {
     public function testSuccess(): void
     {

@@ -13,7 +13,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 /**
  * @psalm-suppress UnusedClass
  */
-class HomeAction implements RequestHandlerInterface
+final class HomeAction implements RequestHandlerInterface
 {
     public function __construct(
         private readonly FeatureFlag $features

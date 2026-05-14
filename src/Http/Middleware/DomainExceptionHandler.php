@@ -11,7 +11,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerInterface;
 
-class DomainExceptionHandler implements MiddlewareInterface
+final class DomainExceptionHandler implements MiddlewareInterface
 {
     public function __construct(private readonly LoggerInterface $logger)
     {

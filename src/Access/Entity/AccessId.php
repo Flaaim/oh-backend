@@ -7,7 +7,7 @@ namespace App\Access\Entity;
 use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;
 
-class AccessId
+final class AccessId
 {
     private string $value;
     public function __construct(string $value)

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Product\Test;
 
-class TempDir
+final class TempDir
 {
     private string $value;
     private function __construct()

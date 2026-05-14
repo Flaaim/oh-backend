@@ -10,7 +10,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class PaymentSubscriber implements EventSubscriberInterface
+final class PaymentSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly TelegramNotifier $notifier,

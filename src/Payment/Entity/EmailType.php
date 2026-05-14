@@ -7,7 +7,7 @@ namespace App\Payment\Entity;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class EmailType extends StringType
+final class EmailType extends StringType
 {
     public const NAME = 'email';
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed

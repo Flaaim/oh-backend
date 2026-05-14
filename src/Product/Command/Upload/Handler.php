@@ -7,7 +7,7 @@ namespace App\Product\Command\Upload;
 use App\Product\Entity\UploadDir;
 use App\Product\Service\FileHandler;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private readonly UploadDir $uploadDir,

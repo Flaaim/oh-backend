@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\ProductQuery;
 
-class ProductQueryDTO
+final class ProductQueryDTO
 {
     public function __construct(
         public string $id,

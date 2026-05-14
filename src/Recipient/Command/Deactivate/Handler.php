@@ -8,7 +8,7 @@ use App\Flusher;
 use App\Recipient\Entity\Recipient;
 use App\Recipient\Entity\RecipientRepository;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private RecipientRepository $recipients,

@@ -8,7 +8,7 @@ use App\Recipient\Entity\Email;
 use App\Recipient\Entity\Recipient;
 use App\Recipient\Entity\RecipientId;
 
-class RecipientBuilder
+final class RecipientBuilder
 {
     private RecipientId $id;
     private Email $email;

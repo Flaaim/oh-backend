@@ -11,7 +11,7 @@ use App\Access\Entity\Token;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
 
-class AccessFixture extends AbstractFixture
+final class AccessFixture extends AbstractFixture
 {
     public function load(ObjectManager $manager): void
     {

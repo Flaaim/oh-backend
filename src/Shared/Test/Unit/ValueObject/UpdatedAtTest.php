@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class UpdatedAtTest extends TestCase
+final class UpdatedAtTest extends TestCase
 {
     #[dataProvider('validDotDataProvider')]
     public function testDot($actual, $expected): void

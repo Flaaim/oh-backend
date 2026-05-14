@@ -6,7 +6,7 @@ namespace App\Payment\Command\GetPaymentResult;
 
 use App\Payment\Entity\PaymentRepository;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private readonly PaymentRepository $payments

@@ -8,7 +8,7 @@ use App\Product\Entity\ProductRepository;
 use App\Shared\Domain\Service\Payment\PaymentWebhookDataInterface;
 use App\Shared\Domain\ValueObject\Id;
 
-class DeliveryFactory
+final class DeliveryFactory
 {
     public function __construct(
         private readonly ProductRepository $products,

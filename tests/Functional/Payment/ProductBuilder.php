@@ -10,7 +10,7 @@ use App\Product\Entity\Price;
 use App\Product\Entity\Product;
 use App\Shared\Domain\ValueObject\Id;
 
-class ProductBuilder
+final class ProductBuilder
 {
     private Id $id;
     private string $name;

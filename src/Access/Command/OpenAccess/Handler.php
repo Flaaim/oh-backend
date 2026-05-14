@@ -16,7 +16,7 @@ use App\Shared\Domain\ProductQuery\ProductQueryInterface;
 use App\Shared\Domain\ValueObject\BaseUrl;
 use Ramsey\Uuid\Uuid;
 
-class Handler
+final class Handler
 {
     public function __construct(
         private readonly ProductQueryInterface $productQuery,

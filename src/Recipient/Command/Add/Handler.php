@@ -12,7 +12,7 @@ use App\Recipient\Entity\RecipientRepository;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
-class Handler
+final class Handler
 {
     public function __construct(
         private readonly RecipientRepository $recipients,

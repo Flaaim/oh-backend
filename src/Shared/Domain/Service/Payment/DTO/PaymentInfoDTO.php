@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\Service\Payment\DTO;
 
-class PaymentInfoDTO
+final class PaymentInfoDTO
 {
     public function __construct(
         public string $paymentId,

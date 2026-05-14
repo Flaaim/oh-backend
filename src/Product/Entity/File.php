@@ -8,7 +8,7 @@ use App\Shared\Domain\File\AttachableFileInterface;
 use App\Shared\Domain\ValueObject\RootPath;
 use Webmozart\Assert\Assert;
 
-class File implements AttachableFileInterface
+final class File implements AttachableFileInterface
 {
     private string $value;
     private ?string $fullPath = null;

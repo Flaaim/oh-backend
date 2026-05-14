@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class ValidatePathTest extends TestCase
+final class ValidatePathTest extends TestCase
 {
     public static function allowedProvider(): array
     {
