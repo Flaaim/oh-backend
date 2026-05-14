@@ -24,8 +24,6 @@ class PriceType extends StringType
     }
     /**
      * @param array<array-key, mixed> $column
-     * @param AbstractPlatform $platform
-     * @return string
      */
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
