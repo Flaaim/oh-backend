@@ -1,5 +1,6 @@
 {
   "require": {
+    "php": "^8.2",
     "symfony/console": "^6.4",
     "php-di/php-di": "^7.1",
     "laminas/laminas-config-aggregator": "^1.18",
