@@ -19,10 +19,6 @@ class DistributionIdType extends StringType
     {
         return !empty($value) ? new DistributionId((string)$value) : null;
     }
-    public function getName(): string
-    {
-        return self::NAME;
-    }
     /**
      * @param array<array-key, mixed> $column
      */

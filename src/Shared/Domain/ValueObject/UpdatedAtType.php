@@ -19,10 +19,7 @@ class UpdatedAtType extends DateTimeImmutableType
 
     public function convertToPHPValue($value, AbstractPlatform $platform): ?DateTimeImmutable
     {
-        return !empty($value) ? new DateTimeImmutable((string)$value) : null;
+        return !empty($value) ? new \DateTimeImmutable((string)$value) : null;
     }
-    public function getName(): string
-    {
-        return self::NAME;
-    }
+
 }

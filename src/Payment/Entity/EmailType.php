@@ -18,10 +18,6 @@ class EmailType extends StringType
     {
         return !empty($value) ? new Email((string)$value) : null;
     }
-    public function getName(): string
-    {
-        return self::NAME;
-    }
     /**
      * @param array<array-key, mixed> $column
      */

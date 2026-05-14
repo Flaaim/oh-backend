@@ -20,10 +20,6 @@ class RecipientIdType extends StringType
     {
         return !empty($value) ? new RecipientId((string)$value) : null;
     }
-    public function getName(): string
-    {
-        return self::NAME;
-    }
     /**
      * @param array<array-key, mixed> $column
      */

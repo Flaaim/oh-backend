@@ -20,10 +20,7 @@ class IdType extends StringType
     {
         return !empty($value) ? new Id((string)$value) : null;
     }
-    public function getName(): string
-    {
-        return self::NAME;
-    }
+
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         $column['length'] = 36;

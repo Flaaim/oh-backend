@@ -30,9 +30,4 @@ class FileType extends StringType
 
         return $platform->getStringTypeDeclarationSQL($columnData);
     }
-
-    public function getName(): string
-    {
-        return self::NAME;
-    }
 }

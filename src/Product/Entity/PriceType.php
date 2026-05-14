@@ -18,10 +18,6 @@ class PriceType extends StringType
     {
         return !empty($value) ? new Price((float)$value, new Currency('RUB')) : null;
     }
-    public function getName(): string
-    {
-        return self::NAME;
-    }
     /**
      * @param array<array-key, mixed> $column
      */

@@ -20,11 +20,6 @@
       <code><![CDATA[getId]]></code>
     </PossiblyUnusedMethod>
   </file>
-  <file src="src/Access/Entity/AccessIdType.php">
-    <UnusedClass>
-      <code><![CDATA[AccessIdType]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/Access/Entity/AccessRepository.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[__construct]]></code>
@@ -35,11 +30,6 @@
     <PossiblyUnusedProperty>
       <code><![CDATA[$expiredAt]]></code>
     </PossiblyUnusedProperty>
-  </file>
-  <file src="src/Access/Entity/EmailType.php">
-    <UnusedClass>
-      <code><![CDATA[EmailType]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Access/Entity/Session.php">
     <UnusedProperty>
@@ -104,11 +94,6 @@
     <PossiblyUnusedMethod>
       <code><![CDATA[getCreatedAt]]></code>
     </PossiblyUnusedMethod>
-  </file>
-  <file src="src/Distribution/Entity/DistributionIdType.php">
-    <UnusedClass>
-      <code><![CDATA[DistributionIdType]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Distribution/Entity/DistributionRepository.php">
     <PossiblyUnusedMethod>
@@ -213,11 +198,6 @@
       <code><![CDATA[__construct]]></code>
     </PossiblyUnusedMethod>
   </file>
-  <file src="src/Payment/Entity/EmailType.php">
-    <UnusedClass>
-      <code><![CDATA[EmailType]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/Payment/Entity/Payment.php">
     <InvalidNullableReturnType>
       <code><![CDATA[string]]></code>
@@ -235,11 +215,6 @@
     <PossiblyUnusedMethod>
       <code><![CDATA[__construct]]></code>
     </PossiblyUnusedMethod>
-  </file>
-  <file src="src/Payment/Entity/StatusType.php">
-    <UnusedClass>
-      <code><![CDATA[StatusType]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Payment/Test/Entity/StatusTest.php">
     <UnusedVariable>
@@ -292,16 +267,6 @@
       <code><![CDATA[$this->fullPath]]></code>
     </NullableReturnStatement>
   </file>
-  <file src="src/Product/Entity/FileType.php">
-    <UnusedClass>
-      <code><![CDATA[FileType]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Product/Entity/PriceType.php">
-    <UnusedClass>
-      <code><![CDATA[PriceType]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/Product/Entity/ProductRepository.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[__construct]]></code>
@@ -312,20 +277,10 @@
       <code><![CDATA[ProductQuery]]></code>
     </UnusedClass>
   </file>
-  <file src="src/Recipient/Entity/EmailType.php">
-    <UnusedClass>
-      <code><![CDATA[EmailType]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/Recipient/Entity/Recipient.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[getCreatedAt]]></code>
     </PossiblyUnusedMethod>
-  </file>
-  <file src="src/Recipient/Entity/RecipientIdType.php">
-    <UnusedClass>
-      <code><![CDATA[RecipientIdType]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Recipient/Entity/RecipientRepository.php">
     <PossiblyUnusedMethod>
@@ -441,22 +396,12 @@
       <code><![CDATA[YookassaWebhookParser]]></code>
     </UnusedClass>
   </file>
-  <file src="src/Shared/Domain/ValueObject/IdType.php">
-    <UnusedClass>
-      <code><![CDATA[IdType]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/Shared/Domain/ValueObject/UpdatedAt.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[create]]></code>
       <code><![CDATA[getValue]]></code>
       <code><![CDATA[toString]]></code>
     </PossiblyUnusedMethod>
-  </file>
-  <file src="src/Shared/Domain/ValueObject/UpdatedAtType.php">
-    <UnusedClass>
-      <code><![CDATA[UpdatedAtType]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Shared/Infrastructure/Distribution/UniSender.php">
     <UnusedClass>

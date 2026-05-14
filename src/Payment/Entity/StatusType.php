@@ -19,10 +19,7 @@ class StatusType extends StringType
     {
         return !empty($value) ? new Status((string)$value) : null;
     }
-    public function getName(): string
-    {
-        return self::NAME;
-    }
+
     /**
      * @param array<array-key, mixed> $column
      */
