@@ -26,7 +26,7 @@ final class DistributionRepository
     {
         return $this->repo->findOneBy(['id' => $id]);
     }
-
+    /** @psalm-suppress PossiblyUnusedMethod */
     public function findAll(): array
     {
         return $this->repo->findAll();
