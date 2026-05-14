@@ -21,6 +21,8 @@ return (new Config())
         'ordered_imports' => ['imports_order' => ['class', 'function', 'const']],
 
         'no_superfluous_phpdoc_tags' => ['remove_inheritdoc' => true],
+
+        'phpdoc_types_order' => ['null_adjustment' => 'always_last'],
     ])
     // 💡 by default, Fixer looks for `*.php` files excluding `./vendor/` - here, you can groom this config
     ->setFinder(

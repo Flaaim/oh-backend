@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 class HandlerTest extends TestCase
 {
-    /** @var RecipientRepository&MockObject  */
+    /** @var MockObject&RecipientRepository  */
     private RecipientRepository $recipients;
     /** @var Flusher&MockObject  */
     private Flusher $flusher;
