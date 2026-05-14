@@ -15,6 +15,10 @@ return (new Config())
         '@PHP8x2Migration' => true,
         '@PHP8x2Migration:risky' => true,
         '@PHPUnit10x0Migration:risky' => true,
+
+
+        'no_unused_imports' => true,
+        'ordered_imports' => ['imports_order' => ['class', 'function', 'const']],
     ])
     // 💡 by default, Fixer looks for `*.php` files excluding `./vendor/` - here, you can groom this config
     ->setFinder(
