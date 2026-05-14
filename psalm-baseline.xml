@@ -67,12 +67,10 @@
   </file>
   <file src="src/Access/Test/Builder/AccessBuilder.php">
     <PossiblyUnusedMethod>
-      <code><![CDATA[withAccessId]]></code>
       <code><![CDATA[withCipher]]></code>
       <code><![CDATA[withEmail]]></code>
       <code><![CDATA[withName]]></code>
       <code><![CDATA[withProductId]]></code>
-      <code><![CDATA[withToken]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Access/Test/Unit/Command/GetAccess/HandlerTest.php">
@@ -115,7 +113,6 @@
   <file src="src/Distribution/Entity/DistributionRepository.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[__construct]]></code>
-      <code><![CDATA[findAll]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Distribution/Test/Unit/Command/HandlerTest.php">
@@ -125,11 +122,6 @@
       <code><![CDATA[$this->handler]]></code>
       <code><![CDATA[$this->messageBus]]></code>
     </InaccessibleProperty>
-  </file>
-  <file src="src/ErrorHandler/LogErrorHandler.php">
-    <UnusedClass>
-      <code><![CDATA[LogErrorHandler]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Flusher.php">
     <PossiblyUnusedMethod>
