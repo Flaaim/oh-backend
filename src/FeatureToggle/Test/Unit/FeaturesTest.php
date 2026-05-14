@@ -8,6 +8,9 @@ use App\FeatureToggle\Features;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 #[CoversClass(Features::class)]
 class FeaturesTest extends TestCase
 {
@@ -18,7 +21,7 @@ class FeaturesTest extends TestCase
             'SECOND' => false,
         ]);
 
-        $this->assertTrue($features->isEnabled('FIRST'));
-        $this->assertFalse($features->isEnabled('SECOND'));
+        self::assertTrue($features->isEnabled('FIRST'));
+        self::assertFalse($features->isEnabled('SECOND'));
     }
 }

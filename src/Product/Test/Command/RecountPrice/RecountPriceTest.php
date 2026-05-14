@@ -13,6 +13,9 @@ use App\Shared\Domain\ValueObject\Id;
 use PHPUnit\Framework\TestCase;
 use Test\Functional\Payment\ProductBuilder;
 
+/**
+ * @internal
+ */
 class RecountPriceTest extends TestCase
 {
     public function testRecountAccess(): void
@@ -26,7 +29,7 @@ class RecountPriceTest extends TestCase
 
         $productId = new Id('0a1e58cb-b7fd-4f46-aa62-911ad8257c84');
         $products->expects(self::once())->method('get')
-            ->with($this->equalTo($productId))
+            ->with(self::equalTo($productId))
             ->willReturn($product);
 
 
@@ -50,7 +53,7 @@ class RecountPriceTest extends TestCase
 
         $productId = new Id('0a1e58cb-b7fd-4f46-aa62-911ad8257c84');
         $products->expects(self::once())->method('get')
-            ->with($this->equalTo($productId))
+            ->with(self::equalTo($productId))
             ->willReturn($product);
 
 

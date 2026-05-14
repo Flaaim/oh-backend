@@ -10,6 +10,9 @@ use Test\Functional\Payment\PaymentBuilder;
 use Test\Functional\Payment\TokenBuilder;
 use Test\Functional\WebTestCase;
 
+/**
+ * @internal
+ */
 class RequestActionTest extends WebTestCase
 {
     use ArraySubsetAsserts;
@@ -29,7 +32,7 @@ class RequestActionTest extends WebTestCase
             'returnToken' => $returnToken->getValue(),
         ]));
 
-        $this->assertEquals(200, $response->getStatusCode());
+        self::assertEquals(200, $response->getStatusCode());
         self::assertJson($body = (string)$response->getBody());
 
         $data = Json::decode($body);

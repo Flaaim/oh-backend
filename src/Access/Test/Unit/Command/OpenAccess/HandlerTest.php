@@ -16,6 +16,9 @@ use App\Shared\Domain\ProductQuery\ProductQueryInterface;
 use App\Shared\Domain\ValueObject\BaseUrl;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class HandlerTest extends TestCase
 {
     public function testSuccess(): void
@@ -36,8 +39,8 @@ class HandlerTest extends TestCase
             $uuidConverter = $this->createMock(UuidConverter::class),
         );
 
-        $productQuery->expects($this->once())->method('getProduct')
-            ->with($this->equalTo($productId))
+        $productQuery->expects(self::once())->method('getProduct')
+            ->with(self::equalTo($productId))
             ->willReturn(new ProductQueryDTO(
                 $productId,
                 $name = 'Name',
@@ -45,13 +48,13 @@ class HandlerTest extends TestCase
                 'ppe/template.txt'
             ));
 
-        $uuidConverter->expects($this->once())->method('encode')->willReturn($encodedPart);
+        $uuidConverter->expects(self::once())->method('encode')->willReturn($encodedPart);
 
-        $accesses->expects($this->once())->method('create')->with(
-            $this->isInstanceOf(Access::class),
+        $accesses->expects(self::once())->method('create')->with(
+            self::isInstanceOf(Access::class),
         );
 
-        $flusher->expects($this->once())->method('flush');
+        $flusher->expects(self::once())->method('flush');
 
         $openAccessDTO = $handler->handle($command);
 
@@ -75,12 +78,12 @@ class HandlerTest extends TestCase
             $converter = $this->createMock(UuidConverter::class),
         );
 
-        $productQuery->expects($this->once())->method('getProduct')
-            ->with($this->equalTo($productId))
+        $productQuery->expects(self::once())->method('getProduct')
+            ->with(self::equalTo($productId))
             ->willThrowException(new \DomainException('Product not found.'));
 
-        $accesses->expects($this->never())->method('create');
-        $flusher->expects($this->never())->method('flush');
+        $accesses->expects(self::never())->method('create');
+        $flusher->expects(self::never())->method('flush');
 
         self::expectException(\DomainException::class);
         self::expectExceptionMessage('Product not found.');

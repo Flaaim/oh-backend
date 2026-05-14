@@ -7,6 +7,9 @@ namespace App\Shared\Test\Unit\ValueObject;
 use App\Shared\Domain\ValueObject\BaseUrl;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class BaseUrlTest extends TestCase
 {
     public function testSuccess(): void

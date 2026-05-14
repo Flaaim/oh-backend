@@ -10,10 +10,13 @@ use Psr\Http\Message\ServerRequestInterface;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use Test\Functional\WebTestCase;
 
+/**
+ * @internal
+ */
 class RequestActionTest extends WebTestCase
 {
     private RecipientRepository $recipients;
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->loadFixtures([RequestFixture::class]);
@@ -43,14 +46,14 @@ class RequestActionTest extends WebTestCase
         ];
         $response = $this->app()->handle($this->createValidWebhookRequest($events, getenv('UNI_SENDER_API')));
 
-        $this->assertEquals(200, $response->getStatusCode());
+        self::assertEquals(200, $response->getStatusCode());
     }
 
     public function testEmpty(): void
     {
         $response = $this->app()->handle($this->createValidWebhookRequest([]));
 
-        $this->assertEquals(403, $response->getStatusCode());
+        self::assertEquals(403, $response->getStatusCode());
     }
 
     public function testSuccess(): void
@@ -78,7 +81,7 @@ class RequestActionTest extends WebTestCase
         ];
         $response = $this->app()->handle($this->createValidWebhookRequest($events, getenv('UNI_SENDER_API')));
 
-        $this->assertEquals(200, $response->getStatusCode());
+        self::assertEquals(200, $response->getStatusCode());
 
         $recipient = $this->recipients->findByEmail(new Email('unsubscribed@app.ru'));
         self::assertFalse($recipient->isActive());

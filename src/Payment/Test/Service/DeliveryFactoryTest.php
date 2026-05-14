@@ -15,6 +15,9 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 use Test\Functional\Payment\ProductBuilder;
 
+/**
+ * @internal
+ */
 class DeliveryFactoryTest extends TestCase
 {
     public function testSuccess(): void
@@ -31,7 +34,7 @@ class DeliveryFactoryTest extends TestCase
         );
         $paymentWebhookData = $this->createMock(PaymentWebhookDataInterface::class);
 
-        $paymentWebhookData->expects($this->exactly(3))
+        $paymentWebhookData->expects(self::exactly(3))
             ->method('getMetadata')
             ->willReturnCallback(fn ($key) => match ($key) {
                 'productId' => $productId,
@@ -41,13 +44,13 @@ class DeliveryFactoryTest extends TestCase
             });
 
         $id = new Id($productId);
-        $products->expects($this->once())->method('get')->with($id)
+        $products->expects(self::once())->method('get')->with($id)
             ->willReturn($product = (new ProductBuilder())->withId($id)->build());
 
-        $fileDelivery->expects($this->once())->method('supports')->willReturn(true);
-        $fileDelivery->expects($this->once())->method('deliver')->with(
-            $this->equalTo($email),
-            $this->equalTo($product)
+        $fileDelivery->expects(self::once())->method('supports')->willReturn(true);
+        $fileDelivery->expects(self::once())->method('deliver')->with(
+            self::equalTo($email),
+            self::equalTo($product)
         );
 
         $delivery->createDelivery($paymentWebhookData);

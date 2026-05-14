@@ -10,6 +10,9 @@ use Slim\Psr7\UploadedFile;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
 
+/**
+ * @internal
+ */
 class RequestActionTest extends WebTestCase
 {
     use ArraySubsetAsserts;
@@ -165,7 +168,7 @@ class RequestActionTest extends WebTestCase
         );
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         foreach ($this->tempFiles as $tempFile) {
             if (file_exists($tempFile)) {

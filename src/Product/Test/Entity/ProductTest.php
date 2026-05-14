@@ -10,6 +10,9 @@ use App\Shared\Domain\ValueObject\Id;
 use PHPUnit\Framework\TestCase;
 use Test\Functional\Payment\ProductBuilder;
 
+/**
+ * @internal
+ */
 class ProductTest extends TestCase
 {
     public function testSuccess(): void

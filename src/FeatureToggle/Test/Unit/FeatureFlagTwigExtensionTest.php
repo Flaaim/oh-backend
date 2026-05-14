@@ -10,14 +10,17 @@ use PHPUnit\Framework\TestCase;
 use Twig\Environment;
 use Twig\Loader\ArrayLoader;
 
+/**
+ * @internal
+ */
 class FeatureFlagTwigExtensionTest extends TestCase
 {
     public function testActive(): void
     {
         $extension = new FeatureFlagTwigExtension($flag = $this->createMock(FeatureFlag::class));
 
-        $flag->expects($this->once())->method('isEnabled')
-            ->with($this->equalTo('NEW'))
+        $flag->expects(self::once())->method('isEnabled')
+            ->with(self::equalTo('NEW'))
             ->willReturn(true);
 
         $twig = new Environment(new ArrayLoader([
@@ -25,14 +28,14 @@ class FeatureFlagTwigExtensionTest extends TestCase
         ]));
         $twig->addExtension($extension);
 
-        $this->assertEquals('<p>true</p>', $twig->render('page.html.twig'));
+        self::assertEquals('<p>true</p>', $twig->render('page.html.twig'));
     }
 
     public function testInActive(): void
     {
         $extension = new FeatureFlagTwigExtension($flag = $this->createMock(FeatureFlag::class));
-        $flag->expects($this->once())->method('isEnabled')
-            ->with($this->equalTo('NEW'))
+        $flag->expects(self::once())->method('isEnabled')
+            ->with(self::equalTo('NEW'))
             ->willReturn(false);
 
         $twig = new Environment(new ArrayLoader([
@@ -40,6 +43,6 @@ class FeatureFlagTwigExtensionTest extends TestCase
         ]));
 
         $twig->addExtension($extension);
-        $this->assertEquals('<p>false</p>', $twig->render('page.html.twig'));
+        self::assertEquals('<p>false</p>', $twig->render('page.html.twig'));
     }
 }

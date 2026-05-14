@@ -15,6 +15,9 @@ use App\Shared\Domain\ValueObject\RootPath;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * @internal
+ */
 class HandlerTest extends TestCase
 {
     private string $token;
@@ -23,7 +26,7 @@ class HandlerTest extends TestCase
     private ProductQueryInterface $productQuery;
     private Command $command;
     private Handler $handler;
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->token = Uuid::uuid4()->toString();
         $this->productId = Uuid::uuid4()->toString();
@@ -47,11 +50,11 @@ class HandlerTest extends TestCase
         $tempFile = $this->tempFile();
         $this->accesses->expects(self::once())->method('getByToken')
             ->with(
-                $this->equalTo($this->token),
+                self::equalTo($this->token),
             )->willReturn($access = $this->createMock(Access::class));
 
         $this->productQuery->expects(self::once())->method('getProduct')->with(
-            $this->equalTo($this->productId)
+            self::equalTo($this->productId)
         )->willReturn(new ProductQueryDTO(
             $this->productId,
             $access->getName(),
@@ -70,7 +73,7 @@ class HandlerTest extends TestCase
 
         $this->accesses->expects(self::once())->method('getByToken')
             ->with(
-                $this->equalTo($this->token),
+                self::equalTo($this->token),
             )->willReturn($access = $this->createMock(Access::class));
 
         $access->expects(self::once())->method('isExpired')->willReturn(true);
@@ -85,14 +88,14 @@ class HandlerTest extends TestCase
     {
         $this->accesses->expects(self::once())->method('getByToken')
             ->with(
-                $this->equalTo($this->token),
+                self::equalTo($this->token),
             )->willReturn($access = $this->createMock(Access::class));
 
         $access->expects(self::once())->method('isExpired')->willReturn(false);
 
         $this->productQuery->expects(self::once())->method('getProduct')
             ->with(
-                $this->equalTo($this->productId),
+                self::equalTo($this->productId),
             )->willReturn(new ProductQueryDTO(
                 $this->productId,
                 $access->getName(),

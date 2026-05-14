@@ -10,10 +10,13 @@ use App\Shared\Domain\ValueObject\RootPath;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class FileTest extends TestCase
 {
     private TempDir $tempDir;
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->tempDir = TempDir::create();
     }
@@ -97,7 +100,7 @@ class FileTest extends TestCase
         return basename($file1);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->tempDir->clear();
     }

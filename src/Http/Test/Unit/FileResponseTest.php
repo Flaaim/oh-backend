@@ -8,6 +8,9 @@ use App\Http\FileResponse;
 use App\Product\Test\TempDir;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class FileResponseTest extends TestCase
 {
     private TempDir $tempDir;

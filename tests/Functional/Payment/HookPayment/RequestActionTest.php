@@ -7,6 +7,9 @@ namespace Test\Functional\Payment\HookPayment;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
 
+/**
+ * @internal
+ */
 class RequestActionTest extends WebTestCase
 {
     protected function setUp(): void

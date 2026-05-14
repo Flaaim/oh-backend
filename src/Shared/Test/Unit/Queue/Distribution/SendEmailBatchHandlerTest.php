@@ -16,6 +16,9 @@ use App\Shared\Domain\Service\Distribution\DistributionInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 
+/**
+ * @internal
+ */
 class SendEmailBatchHandlerTest extends TestCase
 {
     private readonly DistributionRepository $distributions;
@@ -24,7 +27,7 @@ class SendEmailBatchHandlerTest extends TestCase
     private readonly DistributionInterface $uniSender;
     private readonly Flusher $flusher;
     private SendEmailBatchHandler $handler;
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->distributions = $this->createMock(DistributionRepository::class);
         $this->recipientQuery = $this->createMock(RecipientQueryInterface::class);

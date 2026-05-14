@@ -16,6 +16,9 @@ use Slim\Psr7\Factory\ResponseFactory;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use Symfony\Component\Validator\Validation;
 
+/**
+ * @internal
+ */
 class InitializeSessionMiddlewareTest extends TestCase
 {
     public function testSuccess(): void
@@ -37,7 +40,7 @@ class InitializeSessionMiddlewareTest extends TestCase
 
         $handler = $this->createMock(RequestHandlerInterface::class);
 
-        $handler->expects($this->once())->method('handle')->willReturnCallback(
+        $handler->expects(self::once())->method('handle')->willReturnCallback(
             static function (ServerRequestInterface $request) use ($queryParams, $cookieParams): ResponseInterface {
                 self::assertEquals($queryParams, $request->getQueryParams());
                 self::assertEquals($cookieParams, $request->getCookieParams());

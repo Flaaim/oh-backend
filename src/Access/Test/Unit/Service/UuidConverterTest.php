@@ -8,6 +8,9 @@ use App\Access\Service\UuidConverter;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * @internal
+ */
 class UuidConverterTest extends TestCase
 {
     public function testConvert(): void
@@ -16,7 +19,7 @@ class UuidConverterTest extends TestCase
         $url = $converter->encode(Uuid::uuid4()->toString());
 
         self::assertEquals(22, strlen($url));
-        $this->assertMatchesRegularExpression(
+        self::assertMatchesRegularExpression(
             '/^[a-zA-Z0-9\-_]+$/',
             $url,
         );

@@ -8,14 +8,17 @@ use App\Shared\Domain\ValueObject\Id;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * @internal
+ */
 class RecipientIdTest extends TestCase
 {
     public function testSuccess(): void
     {
         $id = new Id($value = Uuid::uuid4()->toString());
 
-        $this->assertNotNull($id->getValue());
-        $this->assertSame($value, $id->getValue());
+        self::assertNotNull($id->getValue());
+        self::assertSame($value, $id->getValue());
     }
 
     public function testInvalid(): void
@@ -34,6 +37,6 @@ class RecipientIdTest extends TestCase
         $value = Uuid::uuid4()->toString();
         $id = new Id(mb_strtoupper($value));
 
-        $this->assertSame($value, $id->getValue());
+        self::assertSame($value, $id->getValue());
     }
 }

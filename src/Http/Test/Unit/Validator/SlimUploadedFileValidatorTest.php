@@ -13,6 +13,9 @@ use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
+/**
+ * @internal
+ */
 class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
 {
     private array $files = [];
@@ -147,7 +150,7 @@ class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
             ->setParameter('{{ extension }}', $extension)
             ->setParameter('{{ extensions }}', implode(', ', $allowedExtensions));
 
-        $this->assertSame(3, $violationsCount = \count($this->context->getViolations()));
+        self::assertSame(3, $violationsCount = \count($this->context->getViolations()));
     }
 
     private function buildUploadedFile(string $name, string $type, int $size, int $error): UploadedFileInterface
@@ -167,7 +170,7 @@ class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
     }
 
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         foreach ($this->files as $file) {
             unlink($file);

@@ -15,6 +15,9 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
 
+/**
+ * @internal
+ */
 class HandlerTest extends TestCase
 {
     /** @var DistributionRepository&MockObject  */
@@ -24,7 +27,7 @@ class HandlerTest extends TestCase
     /** @var MessageBusInterface&MockObject  */
     private readonly MessageBusInterface $messageBus;
     private readonly Handler $handler;
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->distributions = $this->createMock(DistributionRepository::class);
         $this->flusher = $this->createMock(Flusher::class);
@@ -38,7 +41,7 @@ class HandlerTest extends TestCase
         $command = new Command('subject', 'id');
 
         $this->distributions->expects(self::once())->method('add')->with(
-            $this->isInstanceOf(Distribution::class),
+            self::isInstanceOf(Distribution::class),
         );
 
         $this->flusher->expects(self::once())->method('flush');

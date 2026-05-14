@@ -15,6 +15,9 @@ use Symfony\Component\Mime\Address;
 use Twig\Environment;
 use Twig\Loader\ArrayLoader;
 
+/**
+ * @internal
+ */
 class AccessSenderTest extends TestCase
 {
     public function testSuccess(): void
@@ -40,8 +43,8 @@ class AccessSenderTest extends TestCase
             ->html($twig->render($template, ['link' => $accessDto->url]));
 
 
-        $mailer->expects($this->once())->method('send')->with(
-            $this->equalTo($message)
+        $mailer->expects(self::once())->method('send')->with(
+            self::equalTo($message)
         )->willReturnCallback(static function ($message) use ($accessDto, $email, $twig): void {
             self::assertEquals($accessDto->name, $message->getSubject());
             self::assertEquals([new Address($email->getValue())], $message->getTo());
@@ -67,7 +70,7 @@ class AccessSenderTest extends TestCase
         $twig = $this->createMock(Environment::class);
         $logger = $this->createMock(LoggerInterface::class);
 
-        $mailer->expects($this->once())->method('send')->willThrowException(new TransportException('Something went wrong.'));
+        $mailer->expects(self::once())->method('send')->willThrowException(new TransportException('Something went wrong.'));
 
         $sender = new AccessSender($mailer, $twig, $logger);
 

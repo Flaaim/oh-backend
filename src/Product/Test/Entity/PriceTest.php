@@ -8,12 +8,15 @@ use App\Product\Entity\Currency;
 use App\Product\Entity\Price;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class PriceTest extends TestCase
 {
     public function testSuccess(): void
     {
         $price = new Price(150.00, new Currency('RUB'));
-        $this->assertEquals(150.00, $price->getValue());
+        self::assertEquals(150.00, $price->getValue());
     }
     public function testInvalid(): void
     {
@@ -23,14 +26,14 @@ class PriceTest extends TestCase
     public function testRound(): void
     {
         $price = new Price(150.00000, new Currency('RUB'));
-        $this->assertEquals(150.00, $price->getValue());
+        self::assertEquals(150.00, $price->getValue());
     }
 
     public function testEquals(): void
     {
         $price = new Price(150.00, new Currency('RUB'));
         $newPrice = new Price(150.00, new Currency('RUB'));
-        $this->assertTrue($price->equals($newPrice));
+        self::assertTrue($price->equals($newPrice));
     }
 
     public function testRecountNoChanges(): void

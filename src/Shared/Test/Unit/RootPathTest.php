@@ -7,12 +7,15 @@ namespace App\Shared\Test\Unit;
 use App\Shared\Domain\ValueObject\RootPath;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class RootPathTest extends TestCase
 {
     public function testSuccess(): void
     {
         $file = new RootPath(sys_get_temp_dir());
-        $this->assertEquals(sys_get_temp_dir(), $file->getValue());
+        self::assertEquals(sys_get_temp_dir(), $file->getValue());
     }
     public function testEmpty(): void
     {

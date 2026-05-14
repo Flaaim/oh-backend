@@ -13,6 +13,9 @@ use Psr\Log\LoggerInterface;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use Test\Functional\Json;
 
+/**
+ * @internal
+ */
 class AccessExpiredExceptionHandlerTest extends TestCase
 {
     public function testSuccess(): void
@@ -22,8 +25,8 @@ class AccessExpiredExceptionHandlerTest extends TestCase
         $request = (new ServerRequestFactory())->createServerRequest('GET', '/test');
         $handler = $this->createMock(RequestHandlerInterface::class);
 
-        $handler->expects($this->once())->method('handle')->with(
-            $this->equalTo($request),
+        $handler->expects(self::once())->method('handle')->with(
+            self::equalTo($request),
         )->willReturn($response = $this->createMock(ResponseInterface::class));
 
         self::assertEquals($response, $middleware->process($request, $handler));
@@ -37,8 +40,8 @@ class AccessExpiredExceptionHandlerTest extends TestCase
         $request = (new ServerRequestFactory())->createServerRequest('GET', '/test');
 
         $handler = $this->createMock(RequestHandlerInterface::class);
-        $handler->expects($this->once())->method('handle')->with(
-            $this->equalTo($request),
+        $handler->expects(self::once())->method('handle')->with(
+            self::equalTo($request),
         )->willThrowException($e = new AccessExpiredException($productId, 'Доступ к файлу истек...'));
 
 

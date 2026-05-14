@@ -14,6 +14,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class HandlerTest extends TestCase
 {
     /** @var MockObject&RecipientRepository  */
@@ -21,7 +24,7 @@ class HandlerTest extends TestCase
     /** @var Flusher&MockObject  */
     private Flusher $flusher;
     private Handler $handler;
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->recipients = $this->createMock(RecipientRepository::class);
         $this->flusher = $this->createMock(Flusher::class);

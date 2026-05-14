@@ -10,10 +10,13 @@ use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
 
+/**
+ * @internal
+ */
 class RequestActionTest extends WebTestCase
 {
     use ArraySubsetAsserts;
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->loadFixtures([RequestFixture::class]);
@@ -123,7 +126,7 @@ class RequestActionTest extends WebTestCase
             'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f',
         ], $data);
     }
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->tempDir->clear();
     }

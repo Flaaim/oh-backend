@@ -15,12 +15,15 @@ use Slim\Psr7\Factory\ResponseFactory;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use Test\Functional\Json;
 
+/**
+ * @internal
+ */
 class UnsubscribeMiddlewareTest extends TestCase
 {
     private ContainerInterface $container;
     private LoggerInterface $logger;
     private UnsubscribeMiddleware $middleware;
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->container = $this->createMock(ContainerInterface::class);
@@ -32,14 +35,14 @@ class UnsubscribeMiddlewareTest extends TestCase
     {
         $request = $this->createValidWebhookRequest([], 'hacker-key');
 
-        $this->container->expects($this->once())
+        $this->container->expects(self::once())
             ->method('get')->willReturn(['uniSender' => ['apiKey' => 'test-auth']]);
 
-        $this->logger->expects($this->once())
-            ->method('error')->with($this->equalTo('Auth in unsubscribed request invalid.'));
+        $this->logger->expects(self::once())
+            ->method('error')->with(self::equalTo('Auth in unsubscribed request invalid.'));
 
         $handler = $this->createMock(RequestHandlerInterface::class);
-        $handler->expects($this->never())->method('handle');
+        $handler->expects(self::never())->method('handle');
 
         $response = $this->middleware->process($request, $handler);
 
@@ -69,12 +72,12 @@ class UnsubscribeMiddlewareTest extends TestCase
 
         $request = $this->createValidWebhookRequest($events, 'test-auth');
 
-        $this->container->expects($this->once())
+        $this->container->expects(self::once())
             ->method('get')->willReturn(['uniSender' => ['apiKey' => 'test-auth']]);
 
         $handler = $this->createMock(RequestHandlerInterface::class);
 
-        $handler->expects($this->once())->method('handle')->willReturnCallback(
+        $handler->expects(self::once())->method('handle')->willReturnCallback(
             static function (ServerRequestInterface $request): ResponseInterface {
                 self::assertEquals(['bad-recipient@example.com'], $request->getParsedBody());
                 return (new ResponseFactory())->createResponse();
@@ -109,14 +112,14 @@ class UnsubscribeMiddlewareTest extends TestCase
         ];
         $request = $this->createValidWebhookRequest($events);
 
-        $this->container->expects($this->once())
+        $this->container->expects(self::once())
             ->method('get')->willReturn(['uniSender' => ['apiKey' => 'test-auth']]);
 
 
-        $this->logger->expects($this->once())->method('critical')
+        $this->logger->expects(self::once())->method('critical')
             ->with(
-                $this->equalTo('ВНИМАНИЕ! UniSender заблокировал отправку (Spam Block)!'),
-                $this->equalTo(['event_data' => [
+                self::equalTo('ВНИМАНИЕ! UniSender заблокировал отправку (Spam Block)!'),
+                self::equalTo(['event_data' => [
                     'job_id' => '1a3Q2V-0000OZ-S0',
                     'metadata' => [
                         'block_time' => '2015-11-30 15:09:42',
@@ -129,7 +132,7 @@ class UnsubscribeMiddlewareTest extends TestCase
             );
         $handler = $this->createMock(RequestHandlerInterface::class);
 
-        $handler->expects($this->once())->method('handle')->willReturnCallback(
+        $handler->expects(self::once())->method('handle')->willReturnCallback(
             static function (ServerRequestInterface $request): ResponseInterface {
                 self::assertEquals([], $request->getParsedBody());
                 return (new ResponseFactory())->createResponse();

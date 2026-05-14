@@ -8,6 +8,9 @@ use App\Product\Service\ValidatePath;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class ValidatePathTest extends TestCase
 {
     public static function allowedProvider(): array

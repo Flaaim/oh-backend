@@ -9,6 +9,9 @@ use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * @internal
+ */
 class TokenTest extends TestCase
 {
     public function testSuccess(): void
@@ -19,8 +22,8 @@ class TokenTest extends TestCase
             $expired = new DateTimeImmutable('+ 1 hour'),
         );
 
-        $this->assertEquals($value, $token->getValue());
-        $this->assertEquals($expired, $token->getExpired());
+        self::assertEquals($value, $token->getValue());
+        self::assertEquals($expired, $token->getExpired());
     }
 
     public function testCase(): void
@@ -28,7 +31,7 @@ class TokenTest extends TestCase
         $value = Uuid::uuid4()->toString();
         $token = new Token(mb_strtoupper($value), new DateTimeImmutable('+ 1 hour'));
 
-        $this->assertEquals($value, $token->getValue());
+        self::assertEquals($value, $token->getValue());
     }
 
     public function testInvalid(): void
@@ -45,11 +48,11 @@ class TokenTest extends TestCase
         );
         $date = new DateTimeImmutable('now');
 
-        $this->assertFalse($token->isExpiredTo($date));
+        self::assertFalse($token->isExpiredTo($date));
 
         $date = new DateTimeImmutable('+ 2 hour');
 
-        $this->assertTrue($token->isExpiredTo($date));
+        self::assertTrue($token->isExpiredTo($date));
     }
 
     public function testEquals(): void
@@ -64,8 +67,8 @@ class TokenTest extends TestCase
             new DateTimeImmutable('+ 1 hour'),
         );
 
-        $this->assertFalse($token->isEqualTo($newToken->getValue()));
-        $this->assertTrue($token->isEqualTo($token->getValue()));
+        self::assertFalse($token->isEqualTo($newToken->getValue()));
+        self::assertTrue($token->isEqualTo($token->getValue()));
     }
 
     public function testValidateInvalid(): void

@@ -13,6 +13,9 @@ use Psr\Log\LoggerInterface;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use Test\Functional\Json;
 
+/**
+ * @internal
+ */
 class DomainExceptionHandlerTest extends TestCase
 {
     public function testNormal(): void
@@ -22,7 +25,7 @@ class DomainExceptionHandlerTest extends TestCase
         $request = (new ServerRequestFactory())->createServerRequest('POST', '/test');
         $handler = $this->createMock(RequestHandlerInterface::class);
 
-        $handler->expects($this->once())->method('handle')
+        $handler->expects(self::once())->method('handle')
             ->willReturn($response = $this->createMock(ResponseInterface::class));
 
 
@@ -35,7 +38,7 @@ class DomainExceptionHandlerTest extends TestCase
         $request = (new ServerRequestFactory())->createServerRequest('POST', '/test');
         $handler = $this->createMock(RequestHandlerInterface::class);
 
-        $handler->expects($this->once())->method('handle')->willThrowException(new DomainException('some error message'));
+        $handler->expects(self::once())->method('handle')->willThrowException(new DomainException('some error message'));
 
         $response = $middleware->process($request, $handler);
 

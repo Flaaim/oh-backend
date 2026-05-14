@@ -8,9 +8,12 @@ use App\Access\Service\UuidConverter;
 use App\Product\Test\TempDir;
 use Test\Functional\WebTestCase;
 
+/**
+ * @internal
+ */
 class RequestActionTest extends WebTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->loadFixtures([RequestFixture::class]);

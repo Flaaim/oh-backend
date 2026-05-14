@@ -18,6 +18,9 @@ use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mime\Part\File;
 use Twig\Environment;
 
+/**
+ * @internal
+ */
 class FileSenderTest extends TestCase
 {
     public function testSuccess(): void
@@ -38,8 +41,8 @@ class FileSenderTest extends TestCase
         );
 
         $mailer = $this->createMock(MailerInterface::class);
-        $mailer->expects($this->once())->method('send')->with(
-            $this->equalTo($message),
+        $mailer->expects(self::once())->method('send')->with(
+            self::equalTo($message),
         )->willReturnCallback(static function ($message) use ($twig, $email, $subject, $file): void {
             /** @var Email $message */
             self::assertEquals([new Address($email->getValue())], $message->getTo());
@@ -65,7 +68,7 @@ class FileSenderTest extends TestCase
         $twig = $this->createMock(Environment::class);
         $logger = $this->createMock(LoggerInterface::class);
 
-        $mailer->expects($this->once())->method('send')->willThrowException(new TransportException());
+        $mailer->expects(self::once())->method('send')->willThrowException(new TransportException());
 
         $productSender = new FileSender($mailer, $twig, $logger);
 

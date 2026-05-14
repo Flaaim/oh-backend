@@ -11,6 +11,9 @@ use App\Access\Entity\Token;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * @internal
+ */
 class AccessTest extends TestCase
 {
     public function testExpired(): void
@@ -24,7 +27,7 @@ class AccessTest extends TestCase
             new Token(Uuid::uuid4()->toString(), new \DateTimeImmutable('-2 days')),
         );
 
-        $this->assertTrue($access->isExpired());
+        self::assertTrue($access->isExpired());
     }
 
     public function testIsNotExpired(): void
@@ -38,6 +41,6 @@ class AccessTest extends TestCase
             new Token(Uuid::uuid4()->toString(), new \DateTimeImmutable('+3 days')),
         );
 
-        $this->assertFalse($access->isExpired());
+        self::assertFalse($access->isExpired());
     }
 }

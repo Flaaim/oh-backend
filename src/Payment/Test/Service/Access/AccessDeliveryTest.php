@@ -14,6 +14,9 @@ use App\Product\Entity\Type;
 use PHPUnit\Framework\TestCase;
 use Test\Functional\Payment\ProductBuilder;
 
+/**
+ * @internal
+ */
 class AccessDeliveryTest extends TestCase
 {
     public function testSupport(): void
@@ -39,18 +42,18 @@ class AccessDeliveryTest extends TestCase
             $sender = $this->createMock(AccessSender::class),
         );
 
-        $handler->expects($this->once())->method('handle')->with(
-            $this->equalTo($command),
+        $handler->expects(self::once())->method('handle')->with(
+            self::equalTo($command),
         )->willReturn($dto = new OpenAccessDTO(
             'some_url',
             $product->getName(),
             $product->getCipher(),
         ));
 
-        $sender->expects($this->once())->method('send')->with(
-            $this->equalTo($email),
-            $this->equalTo($dto),
-            $this->equalTo($template)
+        $sender->expects(self::once())->method('send')->with(
+            self::equalTo($email),
+            self::equalTo($dto),
+            self::equalTo($template)
         );
 
         $delivery->deliver($email->getValue(), $product);

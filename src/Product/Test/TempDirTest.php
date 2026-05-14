@@ -6,6 +6,9 @@ namespace App\Product\Test;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class TempDirTest extends TestCase
 {
     public function testSuccess(): void

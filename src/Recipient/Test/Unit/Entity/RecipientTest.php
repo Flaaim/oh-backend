@@ -9,6 +9,9 @@ use App\Recipient\Entity\Recipient;
 use App\Recipient\Entity\RecipientId;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class RecipientTest extends TestCase
 {
     public function testRecipient(): void

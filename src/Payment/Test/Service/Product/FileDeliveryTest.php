@@ -13,6 +13,9 @@ use App\Shared\Domain\ValueObject\RootPath;
 use PHPUnit\Framework\TestCase;
 use Test\Functional\Payment\ProductBuilder;
 
+/**
+ * @internal
+ */
 class FileDeliveryTest extends TestCase
 {
     public function testSupports(): void
@@ -38,11 +41,11 @@ class FileDeliveryTest extends TestCase
             new RootPath(sys_get_temp_dir()),
         );
 
-        $sender->expects($this->once())->method('send')->with(
-            $this->equalTo($email),
-            $this->equalTo($product->getName()),
-            $this->callback(fn ($path) => str_contains($path, $file->getValue())),
-            $this->equalTo($template)
+        $sender->expects(self::once())->method('send')->with(
+            self::equalTo($email),
+            self::equalTo($product->getName()),
+            self::callback(fn ($path) => str_contains($path, $file->getValue())),
+            self::equalTo($template)
         );
 
         $delivery->deliver($email->getValue(), $product);

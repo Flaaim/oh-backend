@@ -14,6 +14,9 @@ use Slim\Psr7\Factory\ServerRequestFactory;
 use Slim\Psr7\Factory\StreamFactory;
 use Slim\Psr7\Factory\UploadedFileFactory;
 
+/**
+ * @internal
+ */
 class ClearInputHandlerTest extends TestCase
 {
     public function testParsedBody(): void
@@ -33,7 +36,7 @@ class ClearInputHandlerTest extends TestCase
 
         $handler = $this->createMock(RequestHandlerInterface::class);
 
-        $handler->expects($this->once())->method('handle')
+        $handler->expects(self::once())->method('handle')
             ->willReturnCallback(static function (ServerRequestInterface $request): ResponseInterface {
                 self::assertEquals([
                     'null' => null,
@@ -70,7 +73,7 @@ class ClearInputHandlerTest extends TestCase
         ]);
 
         $handler = $this->createMock(RequestHandlerInterface::class);
-        $handler->expects($this->once())->method('handle')
+        $handler->expects(self::once())->method('handle')
             ->willReturnCallback(static function (ServerRequestInterface $request) use ($realFile): ResponseInterface {
                 self::assertEquals([
                     'realFile' => $realFile,

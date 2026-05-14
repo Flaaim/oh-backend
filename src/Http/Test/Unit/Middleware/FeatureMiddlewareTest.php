@@ -11,18 +11,21 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Psr7\Factory\ResponseFactory;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
+/**
+ * @internal
+ */
 class FeatureMiddlewareTest extends TestCase
 {
     public function testEmpty(): void
     {
         $switch = $this->createMock(FeatureSwitch::class);
-        $switch->expects($this->never())->method('enable');
+        $switch->expects(self::never())->method('enable');
 
         $middleware = new FeatureMiddleware($switch, 'X-Features');
 
         $request = (new ServerRequestFactory())->createServerRequest('GET', '/test');
 
-        $handler = $this->createStub(RequestHandlerInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
         $handler->method('handle')->willReturn($source = (new ResponseFactory())->createResponse());
 
         $response = $middleware->process($request, $handler);
@@ -33,7 +36,7 @@ class FeatureMiddlewareTest extends TestCase
     public function testWithFeatures(): void
     {
         $switch = $this->createMock(FeatureSwitch::class);
-        $switch->expects($this->exactly(2))->method('enable')
+        $switch->expects(self::exactly(2))->method('enable')
             ->willReturnCallback(function (string $feature): void {
                 static $i = 0;
                 $i++;
@@ -47,7 +50,7 @@ class FeatureMiddlewareTest extends TestCase
         $request = (new ServerRequestFactory())
             ->createServerRequest('GET', '/test')->withHeader('X-Features', 'ONE, TWO');
 
-        $handler = $this->createStub(RequestHandlerInterface::class);
+        $handler = self::createStub(RequestHandlerInterface::class);
         $handler->method('handle')->willReturn($source = (new ResponseFactory())->createResponse());
 
         $response = $middleware->process($request, $handler);

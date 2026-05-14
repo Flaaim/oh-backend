@@ -7,9 +7,12 @@ namespace Test\Functional\Product\Get;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
 
+/**
+ * @internal
+ */
 class RequestActionTest extends WebTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->loadFixtures([RequestFixture::class]);
@@ -19,7 +22,7 @@ class RequestActionTest extends WebTestCase
     {
         $response = $this->app()->handle(self::json('GET', '/payment-service/products/get?productId=b38e76c0-ac23-4c48-85fd-975f32c8801f'));
 
-        $this->assertEquals(200, $response->getStatusCode());
+        self::assertEquals(200, $response->getStatusCode());
 
         self::assertJson($body = (string)$response->getBody());
         $data = Json::decode($body);
@@ -36,7 +39,7 @@ class RequestActionTest extends WebTestCase
     {
         $response = $this->app()->handle(self::json('GET', '/payment-service/products/get?productId='));
 
-        $this->assertEquals(422, $response->getStatusCode());
+        self::assertEquals(422, $response->getStatusCode());
 
         $body = (string)$response->getBody();
         $data = Json::decode($body);
@@ -50,7 +53,7 @@ class RequestActionTest extends WebTestCase
     {
         $response = $this->app()->handle(self::json('GET', '/payment-service/products/get?productId=invalid'));
 
-        $this->assertEquals(422, $response->getStatusCode());
+        self::assertEquals(422, $response->getStatusCode());
         $body = (string)$response->getBody();
 
         $data = Json::decode($body);

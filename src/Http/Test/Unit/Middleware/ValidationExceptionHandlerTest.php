@@ -13,17 +13,20 @@ use Slim\Psr7\Response;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationList;
 
+/**
+ * @internal
+ */
 class ValidationExceptionHandlerTest extends TestCase
 {
     public function testValid(): void
     {
         $request = (new ServerRequestFactory())->createServerRequest('POST', '/test');
-        $source = $this->createStub(Response::class);
+        $source = self::createStub(Response::class);
 
         $middleware = new ValidationExceptionHandler();
         $handler = $this->createMock(RequestHandlerInterface::class);
 
-        $handler->expects($this->once())->method('handle')->willReturn($source);
+        $handler->expects(self::once())->method('handle')->willReturn($source);
 
         $response = $middleware->process($request, $handler);
 
@@ -41,7 +44,7 @@ class ValidationExceptionHandlerTest extends TestCase
 
         $handler = $this->createMock(RequestHandlerInterface::class);
 
-        $handler->expects($this->once())->method('handle')->willThrowException(new ValidationException(
+        $handler->expects(self::once())->method('handle')->willThrowException(new ValidationException(
             $violations
         ));
 

@@ -7,12 +7,15 @@ namespace App\Payment\Test\Entity;
 use App\Payment\Entity\Status;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class StatusTest extends TestCase
 {
     public function testSuccess(): void
     {
         $status = new Status('succeeded');
-        $this->assertEquals('succeeded', $status->getValue());
+        self::assertEquals('succeeded', $status->getValue());
     }
 
     public function testInvalid(): void
@@ -24,16 +27,16 @@ class StatusTest extends TestCase
     public function testPending(): void
     {
         $status = Status::pending();
-        $this->assertEquals('pending', $status->getValue());
+        self::assertEquals('pending', $status->getValue());
     }
     public function testCancelled(): void
     {
         $status = Status::cancelled();
-        $this->assertEquals('cancelled', $status->getValue());
+        self::assertEquals('cancelled', $status->getValue());
     }
     public function testSucceeded(): void
     {
         $status = Status::succeeded();
-        $this->assertEquals('succeeded', $status->getValue());
+        self::assertEquals('succeeded', $status->getValue());
     }
 }

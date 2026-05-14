@@ -9,6 +9,9 @@ use App\Product\Service\ValidatePath;
 use App\Shared\Domain\ValueObject\RootPath;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class UploadDirTest extends TestCase
 {
     public function testSuccess(): void
@@ -18,7 +21,7 @@ class UploadDirTest extends TestCase
             $this->getValidatePath()
         );
 
-        self::assertEquals(null, $uploadDir->getValue());
+        self::assertNull($uploadDir->getValue());
     }
     public function testInvalid(): void
     {

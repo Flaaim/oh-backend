@@ -8,6 +8,9 @@ use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
 
+/**
+ * @internal
+ */
 class RequestActionTest extends WebTestCase
 {
     use ArraySubsetAsserts;
@@ -27,7 +30,7 @@ class RequestActionTest extends WebTestCase
             'type' => 'file',
         ]));
 
-        $this->assertEquals(201, $response->getStatusCode());
+        self::assertEquals(201, $response->getStatusCode());
         self::assertJson($body = (string)$response->getBody());
 
         $data = Json::decode($body);
@@ -45,7 +48,7 @@ class RequestActionTest extends WebTestCase
             'type' => 'access',
         ]));
 
-        $this->assertEquals(201, $response->getStatusCode());
+        self::assertEquals(201, $response->getStatusCode());
         self::assertJson($body = (string)$response->getBody());
 
         $data = Json::decode($body);
@@ -59,7 +62,7 @@ class RequestActionTest extends WebTestCase
     {
         $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment'));
 
-        $this->assertEquals(422, $response->getStatusCode());
+        self::assertEquals(422, $response->getStatusCode());
 
         $body = (string)$response->getBody();
         $data = Json::decode($body);

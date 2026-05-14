@@ -7,19 +7,22 @@ namespace App\Access\Test\Unit\Entity;
 use App\Payment\Entity\Email;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class EmailTest extends TestCase
 {
     public function testSuccess(): void
     {
         $email = new Email($value = 'user@app.test');
-        $this->assertSame($value, $email->getValue());
+        self::assertSame($value, $email->getValue());
     }
 
     public function testCase(): void
     {
         $value = 'user@app.ru';
         $email = new Email(mb_strtoupper($value));
-        $this->assertSame($value, $email->getValue());
+        self::assertSame($value, $email->getValue());
     }
 
     public function testEmpty(): void

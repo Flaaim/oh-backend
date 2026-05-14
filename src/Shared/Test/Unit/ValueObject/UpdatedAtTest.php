@@ -8,6 +8,9 @@ use App\Shared\Domain\ValueObject\UpdatedAt;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class UpdatedAtTest extends TestCase
 {
     #[dataProvider('validDotDataProvider')]

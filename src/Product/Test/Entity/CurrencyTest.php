@@ -7,12 +7,15 @@ namespace App\Product\Test\Entity;
 use App\Product\Entity\Currency;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class CurrencyTest extends TestCase
 {
     public function testSuccess(): void
     {
         $currency = new Currency('RUB');
-        $this->assertEquals('RUB', $currency->getValue());
+        self::assertEquals('RUB', $currency->getValue());
     }
 
     public function testInvalid(): void
@@ -24,6 +27,6 @@ class CurrencyTest extends TestCase
     public function testEmpty(): void
     {
         $currency = new Currency();
-        $this->assertEquals('RUB', $currency->getValue());
+        self::assertEquals('RUB', $currency->getValue());
     }
 }

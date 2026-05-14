@@ -17,6 +17,9 @@ use App\Shared\Domain\ValueObject\RootPath;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * @internal
+ */
 class HandlerTest extends TestCase
 {
     private string $uuid;
@@ -24,7 +27,7 @@ class HandlerTest extends TestCase
     private Handler $handler;
     private ProductQueryInterface $productQuery;
     private AccessRepository $accesses;
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->uuid = Uuid::uuid4()->toString();
         $uuidConverter = new UuidConverter();
@@ -44,7 +47,7 @@ class HandlerTest extends TestCase
 
         $this->accesses->expects(self::once())->method('getByToken')
             ->with(
-                $this->equalTo($this->uuid),
+                self::equalTo($this->uuid),
             )->willReturn($access = (new AccessBuilder())->build());
 
         $this->productQuery->expects(self::once())->method('getProduct')->willReturn(
@@ -70,7 +73,7 @@ class HandlerTest extends TestCase
     {
         $this->accesses->expects(self::once())->method('getByToken')
             ->with(
-                $this->equalTo($this->uuid),
+                self::equalTo($this->uuid),
             )->willReturn($access = (new AccessBuilder())->expired()->build());
 
         self::expectException(AccessExpiredException::class);
@@ -88,7 +91,7 @@ class HandlerTest extends TestCase
     {
         $this->accesses->expects(self::once())->method('getByToken')
             ->with(
-                $this->equalTo($this->uuid),
+                self::equalTo($this->uuid),
             )->willReturn($access = $this->createMock(Access::class));
 
         $access->expects(self::once())->method('isExpired')->willReturn(false);

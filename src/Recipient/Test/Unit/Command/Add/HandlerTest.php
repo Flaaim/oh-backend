@@ -13,12 +13,15 @@ use App\Recipient\Entity\RecipientId;
 use App\Recipient\Entity\RecipientRepository;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class HandlerTest extends TestCase
 {
     private RecipientRepository $recipients;
     private Flusher $flusher;
     private Handler $handler;
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->recipients = $this->createMock(RecipientRepository::class);
         $this->flusher = $this->createMock(Flusher::class);
@@ -32,7 +35,7 @@ class HandlerTest extends TestCase
         $this->recipients->expects(self::once())->method('findByEmail')->willReturn(null);
 
         $this->recipients->expects(self::once())->method('add')
-        ->with($this->isInstanceOf(Recipient::class));
+        ->with(self::isInstanceOf(Recipient::class));
 
         $this->flusher->expects(self::once())->method('flush');
 
