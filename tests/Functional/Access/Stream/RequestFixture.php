@@ -8,7 +8,6 @@ use App\Access\Entity\AccessId;
 use App\Access\Entity\Token;
 use App\Access\Test\Builder\AccessBuilder;
 use App\Product\Entity\File;
-use App\Product\Test\TempDir;
 use App\Shared\Domain\ValueObject\Id;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;

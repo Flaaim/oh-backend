@@ -10,8 +10,6 @@ use App\Payment\Entity\Payment;
 use App\Payment\Entity\PaymentRepository;
 use App\Payment\Entity\Status;
 use App\Payment\Entity\Token;
-use App\Product\Entity\Currency;
-use App\Product\Entity\Price;
 use App\Product\Entity\ProductRepository;
 use App\Shared\Domain\Service\Payment\DTO\MakePaymentDTO;
 use App\Shared\Domain\Service\Payment\PaymentException;

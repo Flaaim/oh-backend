@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Functional\Payment;
 
 use App\Payment\Entity\Token;
-use App\Shared\Domain\ValueObject\Id;
 
 class TokenBuilder
 {

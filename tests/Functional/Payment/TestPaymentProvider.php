@@ -7,9 +7,7 @@ namespace Test\Functional\Payment;
 use App\Shared\Domain\Service\Payment\DTO\MakePaymentDTO;
 use App\Shared\Domain\Service\Payment\DTO\PaymentCallbackDTO;
 use App\Shared\Domain\Service\Payment\DTO\PaymentInfoDTO;
-use App\Shared\Domain\Service\Payment\PaymentException;
 use App\Shared\Domain\Service\Payment\PaymentProviderInterface;
-use App\Shared\Domain\Service\Payment\Provider\YookassaConfig;
 
 class TestPaymentProvider implements PaymentProviderInterface
 {

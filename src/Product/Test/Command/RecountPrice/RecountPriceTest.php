@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Product\Test\Command\RecountPrice;
 
-use App\Flusher;
 use App\Product\Command\RecountPrice\Command;
 use App\Product\Command\RecountPrice\Handler;
 use App\Product\Entity\Currency;

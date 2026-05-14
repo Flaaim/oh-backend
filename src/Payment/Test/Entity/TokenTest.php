@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Payment\Test\Entity;
 
 use App\Payment\Entity\Token;
-use App\Shared\Domain\ValueObject\Id;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;

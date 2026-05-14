@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use App\Command\AccessSendCommand;
 use App\Command\DistributionSendCommand;
-use App\Command\FixturesLoadCommand;
 use App\Command\FileSendCommand;
+use App\Command\FixturesLoadCommand;
 use Doctrine\Migrations\Tools\Console\Command\DiffCommand;
 use Doctrine\Migrations\Tools\Console\Command\ExecuteCommand;
 use Doctrine\Migrations\Tools\Console\Command\LatestCommand;

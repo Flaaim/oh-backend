@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Shared\Test\Unit\ValueObject;
 
-use App\Access\Service\UuidConverter;
 use App\Shared\Domain\ValueObject\BaseUrl;
 use PHPUnit\Framework\TestCase;
-use Ramsey\Uuid\Uuid;
 
 class BaseUrlTest extends TestCase
 {

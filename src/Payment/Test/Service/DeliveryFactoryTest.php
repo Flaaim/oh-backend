@@ -7,7 +7,6 @@ namespace App\Payment\Test\Service;
 use App\Payment\Service\Delivery\Access\AccessDelivery;
 use App\Payment\Service\Delivery\DeliveryFactory;
 use App\Payment\Service\Delivery\Product\FileDelivery;
-use App\Payment\Service\Delivery\ProductDeliveryInterface;
 use App\Product\Entity\ProductRepository;
 use App\Product\Entity\Type;
 use App\Shared\Domain\Service\Payment\PaymentWebhookDataInterface;

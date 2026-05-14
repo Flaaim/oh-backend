@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Product\Command\RecountPrice;
 
-use App\Flusher;
 use App\Product\Entity\DTO\ProductDTO;
 use App\Product\Entity\ProductRepository;
 use App\Shared\Domain\ValueObject\Id;

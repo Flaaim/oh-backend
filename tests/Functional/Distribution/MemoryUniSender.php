@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Functional\Distribution;
 
 use App\Shared\Domain\Service\Distribution\DistributionInterface;
-use GuzzleHttp\Client;
 
 class MemoryUniSender implements DistributionInterface
 {

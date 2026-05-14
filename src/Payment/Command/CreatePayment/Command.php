@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Payment\Command\CreatePayment;
 
-use App\Product\Entity\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Command

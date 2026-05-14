@@ -9,7 +9,6 @@ use App\Http\JsonResponse;
 use App\Http\Validator\Validator;
 use App\Product\Command\Upload\Command;
 use App\Product\Command\Upload\Handler;
-use App\Product\Command\Upload\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;

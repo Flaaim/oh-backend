@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use App\Access\Entity\AccessRepository;
 use App\Access\Exception\AccessExpiredException;
 use App\Http\JsonResponse;
 use Psr\Http\Message\ResponseInterface;

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Access\Entity;
 
 use DateTimeImmutable;
-use Webmozart\Assert\Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Webmozart\Assert\Assert;
 
 #[ORM\Embeddable]
 class Token

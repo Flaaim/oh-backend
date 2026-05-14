@@ -15,7 +15,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Psr7\Factory\ResponseFactory;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use Symfony\Component\Validator\Validation;
-use Test\Functional\Json;
 
 class InitializeSessionMiddlewareTest extends TestCase
 {

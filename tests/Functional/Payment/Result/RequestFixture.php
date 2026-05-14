@@ -7,7 +7,6 @@ namespace Test\Functional\Payment\Result;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
 use Test\Functional\Payment\PaymentBuilder;
-use Test\Functional\Payment\TokenBuilder;
 use Test\Functional\YookassaClient;
 
 class RequestFixture extends AbstractFixture

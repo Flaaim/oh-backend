@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Payment\Service\Delivery\Access;
 
+use App\Access\Command\OpenAccess\Command as OpenAccessCommand;
+use App\Access\Command\OpenAccess\Handler as OpenAccessHandler;
 use App\Payment\Entity\Email;
 use App\Payment\Service\Delivery\ProductDeliveryInterface;
 use App\Product\Entity\Product;
-use App\Access\Command\OpenAccess\Handler as OpenAccessHandler;
-use App\Access\Command\OpenAccess\Command as OpenAccessCommand;
 use App\Product\Entity\Type;
 
 class AccessDelivery implements ProductDeliveryInterface

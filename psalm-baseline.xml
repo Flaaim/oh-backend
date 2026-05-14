@@ -471,11 +471,6 @@
       <code><![CDATA[UniSender]]></code>
     </UnusedClass>
   </file>
-  <file src="src/Shared/Infrastructure/Persistence/RecipientQuery.php">
-    <UnusedClass>
-      <code><![CDATA[RecipientQuery]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/Shared/Test/Unit/Queue/Distribution/SendEmailBatchHandlerTest.php">
     <InaccessibleProperty>
       <code><![CDATA[$this->distributions]]></code>

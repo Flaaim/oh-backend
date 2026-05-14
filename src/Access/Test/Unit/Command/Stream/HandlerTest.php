@@ -9,7 +9,6 @@ use App\Access\Command\Stream\Handler;
 use App\Access\Entity\Access;
 use App\Access\Entity\AccessRepository;
 use App\Access\Service\UuidConverter;
-use App\Product\Query\ProductQuery;
 use App\Shared\Domain\ProductQuery\ProductQueryDTO;
 use App\Shared\Domain\ProductQuery\ProductQueryInterface;
 use App\Shared\Domain\ValueObject\RootPath;

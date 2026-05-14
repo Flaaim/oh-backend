@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace App\Recipient\Command\Deactivate;
 
 use App\Flusher;
-use App\Recipient\Entity\Email;
 use App\Recipient\Entity\Recipient;
-use App\Recipient\Entity\RecipientId;
 use App\Recipient\Entity\RecipientRepository;
 
 class Handler

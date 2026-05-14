@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Distribution\Entity;
 
-use Doctrine\DBAL\Types\StringType;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\StringType;
 
 class DistributionIdType extends StringType
 {

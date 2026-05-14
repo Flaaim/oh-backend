@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Test\Unit\Middleware;
 
-use App\FeatureToggle\Features;
 use App\FeatureToggle\FeatureSwitch;
 use App\Http\Middleware\FeatureMiddleware;
 use PHPUnit\Framework\TestCase;

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Recipient\Command\Add\Command as AddRecipientCommand;
+use App\Recipient\Command\Add\Handler as AddRecipientHandler;
 use App\Shared\Domain\Queue\Distribution\SendEmailBatchHandler;
 use App\Shared\Domain\Queue\Distribution\SendEmailBatchMessage;
 use App\Shared\Domain\RecipientQuery\RecipientQueryInterface;
@@ -12,8 +14,6 @@ use Symfony\Component\Messenger\Handler\HandlersLocator;
 use Symfony\Component\Messenger\MessageBus;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
-use App\Recipient\Command\Add\Command as AddRecipientCommand;
-use App\Recipient\Command\Add\Handler as AddRecipientHandler;
 
 return [
     MessageBusInterface::class => function (ContainerInterface $container) {

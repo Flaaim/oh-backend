@@ -8,7 +8,6 @@ use App\Distribution\Entity\Distribution;
 use App\Distribution\Entity\DistributionRepository;
 use App\Recipient\Entity\Email;
 use App\Shared\Domain\Service\Distribution\DistributionInterface;
-use App\Shared\Infrastructure\Distribution\UniSender;
 use Test\Functional\Distribution\MemoryUniSender;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;

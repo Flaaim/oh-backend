@@ -13,9 +13,6 @@ use Slim\Psr7\Factory\ResponseFactory;
 use Slim\Psr7\Factory\ServerRequestFactory;
 use Slim\Psr7\Factory\StreamFactory;
 use Slim\Psr7\Factory\UploadedFileFactory;
-use Slim\Psr7\Response;
-use Slim\Psr7\Stream;
-use Slim\Psr7\UploadedFile;
 
 class ClearInputHandlerTest extends TestCase
 {

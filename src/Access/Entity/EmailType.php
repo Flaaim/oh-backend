@@ -6,7 +6,6 @@ namespace App\Access\Entity;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
-use Override;
 
 class EmailType extends StringType
 {
