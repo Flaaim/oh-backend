@@ -50,14 +50,6 @@
       <code><![CDATA[validate]]></code>
     </PossiblyUnusedMethod>
   </file>
-  <file src="src/Access/Test/Builder/AccessBuilder.php">
-    <PossiblyUnusedMethod>
-      <code><![CDATA[withCipher]]></code>
-      <code><![CDATA[withEmail]]></code>
-      <code><![CDATA[withName]]></code>
-      <code><![CDATA[withProductId]]></code>
-    </PossiblyUnusedMethod>
-  </file>
   <file src="src/Access/Test/Unit/Command/GetAccess/HandlerTest.php">
     <UndefinedInterfaceMethod>
       <code><![CDATA[expects]]></code>
@@ -267,11 +259,6 @@
       <code><![CDATA[__construct]]></code>
     </PossiblyUnusedMethod>
   </file>
-  <file src="src/Product/Query/ProductQuery.php">
-    <UnusedClass>
-      <code><![CDATA[ProductQuery]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/Recipient/Entity/Recipient.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[getCreatedAt]]></code>
@@ -284,9 +271,6 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Recipient/Test/Builder/RecipientBuilder.php">
-    <PossiblyUnusedMethod>
-      <code><![CDATA[withId]]></code>
-    </PossiblyUnusedMethod>
     <UnusedProperty>
       <code><![CDATA[$createdAt]]></code>
     </UnusedProperty>
@@ -368,13 +352,6 @@
     <UnusedClass>
       <code><![CDATA[YookassaWebhookParser]]></code>
     </UnusedClass>
-  </file>
-  <file src="src/Shared/Domain/ValueObject/UpdatedAt.php">
-    <PossiblyUnusedMethod>
-      <code><![CDATA[create]]></code>
-      <code><![CDATA[getValue]]></code>
-      <code><![CDATA[toString]]></code>
-    </PossiblyUnusedMethod>
   </file>
   <file src="src/Shared/Infrastructure/Distribution/UniSender.php">
     <UnusedClass>

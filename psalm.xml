@@ -26,11 +26,15 @@
         <UnusedClass>
             <errorLevel type="suppress">
                 <directory name="src/Data/Migration" />
-                <directory name="src/*/Fixture" />
                 <directory name="src/Http/Action" />
-                <directory name="src/*/Test" />
+                <directory name="src/Http/Middleware" />
+                <directory name="src/ErrorHandler" />
                 <directory name="src/Command" />
+
+                <file name="src/**/*Fixture.php" />
+                <file name="src/**/*Test.php" />
                 <file name="src/**/*Type.php" />
+                <file name="src/**/*Query.php" />
             </errorLevel>
         </UnusedClass>
         <PossiblyUnusedMethod>
