@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Flusher;
 use App\Payment\Command\HookPayment\Handler as HookPaymentHandler;
 use App\Payment\Command\HookPayment\SendProduct\Handler as SendProductHandler;

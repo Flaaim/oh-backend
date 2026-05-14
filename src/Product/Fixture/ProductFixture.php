@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Product\Fixture;
 
 use App\Product\Entity\Currency;

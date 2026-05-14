@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Shared\Domain\Response;
 
 use App\Ticket\Entity\Ticket;
@@ -48,10 +50,10 @@ class TicketResponse implements \JsonSerializable
                             'image' => $answer->getImg(),
                         ],
                         $question->getAnswers()->toArray()
-                    )
+                    ),
                 ],
                 $this->questions
-            )
+            ),
         ];
     }
 
@@ -62,13 +64,13 @@ class TicketResponse implements \JsonSerializable
         foreach ($this->questions as $question) {
             $questionData = [
                 'name' => "{$question->getNumber()}. {$question->getText()}",
-                'answers' => []
+                'answers' => [],
             ];
 
             foreach ($question->getAnswers() as $answer) {
                 $questionData['answers'][] = [
                     'name' => $answer->getText(),
-                    'right' => $answer->isCorrect() ? 1 : 0
+                    'right' => $answer->isCorrect() ? 1 : 0,
                 ];
             }
 

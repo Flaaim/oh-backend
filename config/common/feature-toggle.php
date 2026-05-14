@@ -21,8 +21,8 @@ return [
     'config' => [
         'feature-toggle' => [
             'features' => [
-                'NEW_HOME' => false
-            ]
-        ]
-    ]
+                'NEW_HOME' => false,
+            ],
+        ],
+    ],
 ];

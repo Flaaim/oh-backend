@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware;
 
 use App\Http\JsonResponse;
@@ -34,7 +36,7 @@ class UnsubscribeMiddleware implements MiddlewareInterface
         if (!hash_equals($calculatedHash, $receivedHash)) {
             $this->logger->error('Auth in unsubscribed request invalid.', [
                 'received' => $receivedHash,
-                'calculated' => $calculatedHash
+                'calculated' => $calculatedHash,
             ]);
             return new JsonResponse(['error' => 'Forbidden'], 403);
         }
@@ -53,7 +55,7 @@ class UnsubscribeMiddleware implements MiddlewareInterface
                         }
                     } elseif ($event['event_name'] === 'transactional_spam_block') {
                         $this->logger->critical('ВНИМАНИЕ! UniSender заблокировал отправку (Spam Block)!', [
-                            'event_data' => $event['event_data']
+                            'event_data' => $event['event_data'],
                         ]);
                     }
                 }

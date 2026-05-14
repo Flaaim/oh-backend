@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Recipient\Test\Unit\Entity;
 
 use App\Shared\Domain\ValueObject\Id;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Distribution\Test\Unit\Command;
 
 use App\Distribution\Command\Create\Command;

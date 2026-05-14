@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Product\Entity;
 
 use App\Shared\Domain\ValueObject\Id;
@@ -34,12 +36,12 @@ class ProductRepository
         $qb = $this->em->createQueryBuilder();
 
         $sql = '
-        INSERT INTO products (id, name, price, file, cipher, course) 
+        INSERT INTO products (id, name, price, file, cipher, course)
         VALUES (:id, :name, :price, :file, :cipher, :course)
-        ON DUPLICATE KEY UPDATE 
+        ON DUPLICATE KEY UPDATE
             name = VALUES(name),
             price = VALUES(price),
-            file = VALUES(file), 
+            file = VALUES(file),
             cipher = VALUES(cipher)
          ';
 
@@ -51,7 +53,7 @@ class ProductRepository
                 'price' => $product->getPrice()->getValue(),
                 'file' => $product->getFile()->getValue(),
                 'cipher' => $product->getCipher(),
-                'course' => $product->getCourse()
+                'course' => $product->getCourse(),
             ]);
     }
 }

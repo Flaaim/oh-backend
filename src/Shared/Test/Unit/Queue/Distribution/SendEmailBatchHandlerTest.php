@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Shared\Test\Unit\Queue\Distribution;
 
 use App\Distribution\Entity\Distribution;
@@ -42,7 +44,7 @@ class SendEmailBatchHandlerTest extends TestCase
     public function testNotFound(): void
     {
         $distributionId = new DistributionId('d64e7923-23a2-4e4e-a1f3-f5411fd86bb1');
-        $command = new SendEmailBatchMessage($distributionId);
+        $command = new SendEmailBatchMessage($distributionId->getValue());
 
         $this->distributions->expects(self::once())->method('findById')
             ->with($distributionId)
@@ -60,7 +62,7 @@ class SendEmailBatchHandlerTest extends TestCase
     public function testSuccess(): void
     {
         $distributionId = new DistributionId('d64e7923-23a2-4e4e-a1f3-f5411fd86bb1');
-        $command = new SendEmailBatchMessage($distributionId);
+        $command = new SendEmailBatchMessage($distributionId->getValue());
         $distribution = new Distribution($distributionId, 'test-subject', 'template-id');
 
         $this->distributions->expects(self::once())->method('findById')->with($distributionId)->willReturn($distribution);
@@ -82,7 +84,7 @@ class SendEmailBatchHandlerTest extends TestCase
     public function testEmptyRecipients(): void
     {
         $distributionId = new DistributionId('d64e7923-23a2-4e4e-a1f3-f5411fd86bb1');
-        $command = new SendEmailBatchMessage($distributionId);
+        $command = new SendEmailBatchMessage($distributionId->getValue());
         $distribution = new Distribution($distributionId, 'test-subject', 'template-id');
 
         $this->distributions->expects(self::once())->method('findById')->with($distributionId)->willReturn($distribution);
@@ -101,7 +103,7 @@ class SendEmailBatchHandlerTest extends TestCase
     public function testBatch(): void
     {
         $distributionId = new DistributionId('d64e7923-23a2-4e4e-a1f3-f5411fd86bb1');
-        $command = new SendEmailBatchMessage($distributionId);
+        $command = new SendEmailBatchMessage($distributionId->getValue());
         $distribution = new Distribution($distributionId, 'test-subject', 'template-id');
 
 
@@ -117,7 +119,7 @@ class SendEmailBatchHandlerTest extends TestCase
 
         $callCount = 0;
         $this->uniSender->expects(self::exactly(2))->method('send')
-            ->willReturnCallback(function (string $subject, array $recipients, string $templateId) use (&$callCount) {
+            ->willReturnCallback(function (string $subject, array $recipients, string $templateId) use (&$callCount): void {
                 $callCount++;
 
                 if ($callCount === 1) {

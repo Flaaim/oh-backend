@@ -1,18 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Access\Test\Unit\Entity;
 
 use App\Payment\Entity\Token;
-use App\Shared\Domain\ValueObject\Id;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
 
 class TokenTest extends TestCase
 {
     public function testSuccess(): void
     {
+        $value = Uuid::uuid4()->toString();
         $token = new Token(
-            $value = Id::generate(),
+            $value,
             $expired = new DateTimeImmutable('+ 1 hour'),
         );
 
@@ -22,7 +25,7 @@ class TokenTest extends TestCase
 
     public function testCase(): void
     {
-        $value = Id::generate();
+        $value = Uuid::uuid4()->toString();
         $token = new Token(mb_strtoupper($value), new DateTimeImmutable('+ 1 hour'));
 
         $this->assertEquals($value, $token->getValue());
@@ -35,8 +38,9 @@ class TokenTest extends TestCase
     }
     public function testExpired(): void
     {
+        $value = Uuid::uuid4()->toString();
         $token = new Token(
-            Id::generate(),
+            $value,
             new DateTimeImmutable('+ 1 hour'),
         );
         $date = new DateTimeImmutable('now');
@@ -51,12 +55,12 @@ class TokenTest extends TestCase
     public function testEquals(): void
     {
         $token = new Token(
-            Id::generate(),
+            $value1 = Uuid::uuid4()->toString(),
             new DateTimeImmutable('+ 1 hour'),
         );
 
         $newToken = new Token(
-            Id::generate(),
+            $value2 = Uuid::uuid4()->toString(),
             new DateTimeImmutable('+ 1 hour'),
         );
 
@@ -67,20 +71,20 @@ class TokenTest extends TestCase
     public function testValidateInvalid(): void
     {
         $token = new Token(
-            Id::generate(),
+            $value = Uuid::uuid4()->toString(),
             new DateTimeImmutable('+ 1 hour'),
         );
 
         $this->expectException(\DomainException::class);
         $this->expectExceptionMessage('Token is invalid.');
 
-        $token->validate(Id::generate(), new DateTimeImmutable('now'));
+        $token->validate(Uuid::uuid4()->toString(), new DateTimeImmutable('now'));
     }
 
     public function testValidateExpired(): void
     {
         $token = new Token(
-            $value = Id::generate(),
+            $value = Uuid::uuid4()->toString(),
             new DateTimeImmutable('+ 1 hour'),
         );
         $this->expectException(\DomainException::class);

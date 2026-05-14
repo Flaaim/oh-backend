@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Product\Test\Service;
 
 use App\Product\Service\ValidatePath;
@@ -29,7 +31,7 @@ class ValidatePathTest extends TestCase
             ['test/abc/'],
             ['fire/1794abs'],
             ['fire/1971/'],
-            ['fire/ot201/']
+            ['fire/ot201/'],
         ];
     }
     #[DataProvider('notAllowedProvider')]

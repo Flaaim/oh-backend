@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Access\Fixture;
 
 use App\Access\Entity\Access;

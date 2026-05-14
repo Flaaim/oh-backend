@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Access\GetAccess;
 
 use App\Access\Entity\AccessId;
@@ -13,13 +15,12 @@ use Test\Functional\Payment\ProductBuilder;
 
 class RequestFixture extends AbstractFixture
 {
-
     public function load(ObjectManager $manager): void
     {
         $access = (new AccessBuilder())->withAccessId(AccessId::generate())
             ->withToken(
-            new Token('b035e3dc-cadc-45dd-85a1-817b6060d6fe', new \DateTimeImmutable('+3 days')),
-        )
+                new Token('b035e3dc-cadc-45dd-85a1-817b6060d6fe', new \DateTimeImmutable('+3 days')),
+            )
             ->build();
 
         $manager->persist($access);

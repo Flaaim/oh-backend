@@ -28,9 +28,7 @@ return [
 
         $config->setNamingStrategy(new UnderscoreNamingStrategy());
 
-        $config->setSchemaAssetsFilter(function ($assetName) {
-            return !str_starts_with($assetName, 'doctrine_migration_versions');
-        });
+        $config->setSchemaAssetsFilter(fn ($assetName) => !str_starts_with($assetName, 'doctrine_migration_versions'));
 
         foreach ($settings['types'] as $name => $class) {
             if (!Type::hasType($name)) {
@@ -74,7 +72,7 @@ return [
                 'charset' => 'utf8mb4',
                 'driverOptions' => [
                     1002 => "SET NAMES 'utf8mb4'",
-                ]
+                ],
             ],
             'metadata_dirs' => [
                 __DIR__ . '/../../src/Payment/Entity',
@@ -103,10 +101,8 @@ return [
 
                 \App\Distribution\Entity\DistributionIdType::NAME => \App\Distribution\Entity\DistributionIdType::class,
 
-            ]
-        ]
+            ],
+        ],
     ],
-    EntityManagerProvider::class => function (ContainerInterface $container) {
-        return new SingleManagerProvider($container->get(EntityManagerInterface::class));
-    }
+    EntityManagerProvider::class => fn (ContainerInterface $container) => new SingleManagerProvider($container->get(EntityManagerInterface::class)),
 ];

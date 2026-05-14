@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Product\Test;
 
 class TempDir
@@ -9,7 +11,7 @@ class TempDir
     {
         $this->value = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'phpunit_test_';
         if (!file_exists($this->value)) {
-            mkdir($this->value, 0777, true);
+            mkdir($this->value, 0o777, true);
         }
     }
     public static function create(): self

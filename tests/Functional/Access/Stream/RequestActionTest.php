@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Access\Stream;
 
 use App\Access\Service\UuidConverter;
@@ -8,7 +10,6 @@ use Test\Functional\WebTestCase;
 
 class RequestActionTest extends WebTestCase
 {
-
     public function setUp(): void
     {
         parent::setUp();

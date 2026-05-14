@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Payment;
 
 use App\Payment\Entity\Token;
@@ -11,7 +13,7 @@ class TokenBuilder
     private \DateTimeImmutable $expired;
     public function __construct()
     {
-        $this->value = new Id('392b1c38-f3e4-4533-a6cb-5b4e7c08d91f');
+        $this->value = '392b1c38-f3e4-4533-a6cb-5b4e7c08d91f';
         $this->expired = new \DateTimeImmutable('+ 1 hour');
     }
 

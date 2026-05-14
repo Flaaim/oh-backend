@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Product\Entity;
 
 use Webmozart\Assert\Assert;
@@ -7,7 +9,7 @@ use Webmozart\Assert\Assert;
 class Currency
 {
     private const ALLOWED_CURRENCIES = [
-        'RUB'
+        'RUB',
     ];
     private string $value;
     public function __construct(string $value = 'RUB')

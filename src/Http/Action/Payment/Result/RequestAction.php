@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Action\Payment\Result;
 
 use App\Http\JsonResponse;
@@ -19,14 +21,14 @@ class RequestAction implements RequestHandlerInterface
     }
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-            $returnToken = $request->getParsedBody()['returnToken'] ?? '';
+        $returnToken = $request->getParsedBody()['returnToken'] ?? '';
 
-            $command = new Command($returnToken);
+        $command = new Command($returnToken);
 
-            $this->validator->validate($command);
+        $this->validator->validate($command);
 
-            $response = $this->handler->handle($command);
+        $response = $this->handler->handle($command);
 
-            return new JsonResponse($response, 200);
+        return new JsonResponse($response, 200);
     }
 }

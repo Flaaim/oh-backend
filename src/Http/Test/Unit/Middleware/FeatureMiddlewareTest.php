@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Test\Unit\Middleware;
 
 use App\FeatureToggle\Features;
@@ -33,7 +35,7 @@ class FeatureMiddlewareTest extends TestCase
     {
         $switch = $this->createMock(FeatureSwitch::class);
         $switch->expects($this->exactly(2))->method('enable')
-            ->willReturnCallback(function (string $feature) {
+            ->willReturnCallback(function (string $feature): void {
                 static $i = 0;
                 $i++;
                 match ($i) {

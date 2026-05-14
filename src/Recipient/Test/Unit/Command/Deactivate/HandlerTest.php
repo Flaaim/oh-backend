@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Recipient\Test\Unit\Command\Deactivate;
 
 use App\Flusher;
@@ -55,7 +57,7 @@ class HandlerTest extends TestCase
         return [
             ['test@app.ru', (new RecipientBuilder())->withEmail(new Email('test@app.ru'))->build()],
             ['test1@app.ru', (new RecipientBuilder())->withEmail(new Email('test1@app.ru'))->build()],
-            ['test2@app.ru', (new RecipientBuilder())->withEmail(new Email('test3@app.ru'))->build()]
+            ['test2@app.ru', (new RecipientBuilder())->withEmail(new Email('test3@app.ru'))->build()],
         ];
     }
 }

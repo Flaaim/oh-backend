@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Payment;
 
 use App\Product\Entity\Currency;

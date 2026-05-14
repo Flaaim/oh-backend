@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Payment\CreatePayment;
 
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Test\Functional\Json;
 use Test\Functional\WebTestCase;
-
 
 class RequestActionTest extends WebTestCase
 {
@@ -23,7 +24,7 @@ class RequestActionTest extends WebTestCase
         $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@app.ru',
             'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f',
-            'type' => 'file'
+            'type' => 'file',
         ]));
 
         $this->assertEquals(201, $response->getStatusCode());
@@ -33,7 +34,7 @@ class RequestActionTest extends WebTestCase
         self::assertArraySubset([
             'amount' => 612.5,
             'currency' => 'RUB',
-        ],$data);
+        ], $data);
     }
 
     public function testSuccessAccess(): void
@@ -41,7 +42,7 @@ class RequestActionTest extends WebTestCase
         $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@app.ru',
             'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f',
-            'type' => 'access'
+            'type' => 'access',
         ]));
 
         $this->assertEquals(201, $response->getStatusCode());
@@ -51,7 +52,7 @@ class RequestActionTest extends WebTestCase
         self::assertArraySubset([
             'amount' => 350,
             'currency' => 'RUB',
-        ],$data);
+        ], $data);
     }
 
     public function testEmpty(): void
@@ -67,8 +68,8 @@ class RequestActionTest extends WebTestCase
             'errors' => [
                 'email' => 'This value should not be blank.',
                 'productId' => 'This value should not be blank.',
-                'type' => 'The value you selected is not a valid choice.'
-            ]
+                'type' => 'The value you selected is not a valid choice.',
+            ],
         ], $data);
     }
     public function testNotFound(): void
@@ -76,7 +77,7 @@ class RequestActionTest extends WebTestCase
         $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@app.ru',
             'productId' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
-            'type' => 'file'
+            'type' => 'file',
         ]));
 
         self::assertEquals(400, $response->getStatusCode());
@@ -95,7 +96,7 @@ class RequestActionTest extends WebTestCase
         $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'invalid',
             'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8809f',
-            'type' => 'file'
+            'type' => 'file',
         ]));
 
         self::assertEquals(422, $response->getStatusCode());
@@ -106,7 +107,7 @@ class RequestActionTest extends WebTestCase
 
         self::assertEquals([
             'errors' => [
-                'email' => 'This value is not a valid email address.'
+                'email' => 'This value is not a valid email address.',
             ],
         ], $data);
     }
@@ -116,7 +117,7 @@ class RequestActionTest extends WebTestCase
         $response = $this->app()->handle(self::json('POST', '/payment-service/process-payment', [
             'email' => 'test@user.ru',
             'productId' => 'someInvalidProductId',
-            'type' => 'file'
+            'type' => 'file',
         ]));
 
         self::assertEquals(422, $response->getStatusCode());
@@ -128,7 +129,7 @@ class RequestActionTest extends WebTestCase
         self::assertEquals([
             'errors' => [
                 'productId' => 'This is not a valid UUID.',
-            ]
+            ],
         ], $data);
     }
 

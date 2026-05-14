@@ -65,14 +65,6 @@
       <code><![CDATA[$previous]]></code>
     </PossiblyUnusedParam>
   </file>
-  <file src="src/Access/Service/UuidConverter.php">
-    <InvalidOperand>
-      <code><![CDATA[ceil(strlen($base64) / 4) * 4]]></code>
-    </InvalidOperand>
-    <InvalidScalarArgument>
-      <code><![CDATA[ceil(strlen($base64) / 4) * 4]]></code>
-    </InvalidScalarArgument>
-  </file>
   <file src="src/Access/Test/Builder/AccessBuilder.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[withAccessId]]></code>
@@ -105,41 +97,10 @@
       <code><![CDATA[expects]]></code>
     </UndefinedMethod>
   </file>
-  <file src="src/Access/Test/Unit/Entity/TokenTest.php">
-    <ImplicitToStringCast>
-      <code><![CDATA[$value]]></code>
-      <code><![CDATA[$value]]></code>
-      <code><![CDATA[$value = Id::generate()]]></code>
-      <code><![CDATA[$value = Id::generate()]]></code>
-      <code><![CDATA[Id::generate()]]></code>
-      <code><![CDATA[Id::generate()]]></code>
-      <code><![CDATA[Id::generate()]]></code>
-      <code><![CDATA[Id::generate()]]></code>
-      <code><![CDATA[Id::generate()]]></code>
-    </ImplicitToStringCast>
-  </file>
-  <file src="src/Command/AccessSendCommand.php">
-    <UnusedClass>
-      <code><![CDATA[AccessSendCommand]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/Command/DistributionSendCommand.php">
-    <UnusedClass>
-      <code><![CDATA[DistributionSendCommand]]></code>
-    </UnusedClass>
     <UnusedVariable>
       <code><![CDATA[$subject]]></code>
     </UnusedVariable>
-  </file>
-  <file src="src/Command/FileSendCommand.php">
-    <UnusedClass>
-      <code><![CDATA[FileSendCommand]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/Command/FixturesLoadCommand.php">
-    <UnusedClass>
-      <code><![CDATA[FixturesLoadCommand]]></code>
-    </UnusedClass>
   </file>
   <file src="src/Distribution/Entity/Distribution.php">
     <PossiblyUnusedMethod>
@@ -205,12 +166,6 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/Http/Test/Unit/Validator/SlimUploadedFileValidatorTest.php">
-    <InvalidScalarArgument>
-      <code><![CDATA[$maxFileSize]]></code>
-      <code><![CDATA[$maxFileSize]]></code>
-      <code><![CDATA[$uploadedFileSize]]></code>
-      <code><![CDATA[$uploadedFileSize]]></code>
-    </InvalidScalarArgument>
     <MissingTemplateParam>
       <code><![CDATA[SlimUploadedFileValidatorTest]]></code>
     </MissingTemplateParam>
@@ -226,10 +181,6 @@
     </TypeDoesNotContainNull>
   </file>
   <file src="src/Http/Validator/SlimUploadedFileValidator.php">
-    <InvalidScalarArgument>
-      <code><![CDATA[$constraint->maxSize]]></code>
-      <code><![CDATA[$value->getSize()]]></code>
-    </InvalidScalarArgument>
     <TypeDoesNotContainType>
       <code><![CDATA[is_string($size)]]></code>
     </TypeDoesNotContainType>
@@ -251,9 +202,6 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Payment/Command/CreatePayment/Handler.php">
-    <ImplicitToStringCast>
-      <code><![CDATA[Id::generate()]]></code>
-    </ImplicitToStringCast>
     <PossiblyUnusedMethod>
       <code><![CDATA[__construct]]></code>
     </PossiblyUnusedMethod>
@@ -306,19 +254,6 @@
       <code><![CDATA[$status]]></code>
     </UnusedVariable>
   </file>
-  <file src="src/Payment/Test/Entity/TokenTest.php">
-    <ImplicitToStringCast>
-      <code><![CDATA[$value]]></code>
-      <code><![CDATA[$value]]></code>
-      <code><![CDATA[$value = Id::generate()]]></code>
-      <code><![CDATA[$value = Id::generate()]]></code>
-      <code><![CDATA[Id::generate()]]></code>
-      <code><![CDATA[Id::generate()]]></code>
-      <code><![CDATA[Id::generate()]]></code>
-      <code><![CDATA[Id::generate()]]></code>
-      <code><![CDATA[Id::generate()]]></code>
-    </ImplicitToStringCast>
-  </file>
   <file src="src/Payment/Test/Service/Access/AccessSenderTest.php">
     <UnusedVariable>
       <code><![CDATA[$twig]]></code>
@@ -330,17 +265,9 @@
     </InvalidArgument>
   </file>
   <file src="src/Product/Command/Get/Handler.php">
-    <ImplicitToStringCast>
-      <code><![CDATA[$product->getId()]]></code>
-    </ImplicitToStringCast>
     <PossiblyUnusedMethod>
       <code><![CDATA[__construct]]></code>
     </PossiblyUnusedMethod>
-  </file>
-  <file src="src/Product/Command/RecountPrice/Handler.php">
-    <InvalidScalarArgument>
-      <code><![CDATA[$price->getValue()]]></code>
-    </InvalidScalarArgument>
   </file>
   <file src="src/Product/Command/Upload/Handler.php">
     <PossiblyUnusedMethod>
@@ -389,9 +316,6 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="src/Product/Query/ProductQuery.php">
-    <ImplicitToStringCast>
-      <code><![CDATA[$product->getId()]]></code>
-    </ImplicitToStringCast>
     <UnusedClass>
       <code><![CDATA[ProductQuery]]></code>
     </UnusedClass>
@@ -521,9 +445,6 @@
     </UndefinedMethod>
   </file>
   <file src="src/Shared/Domain/Service/Payment/WebhookParser/YookassaWebhookParser.php">
-    <InvalidScalarArgument>
-      <code><![CDATA[$amount]]></code>
-    </InvalidScalarArgument>
     <UnusedClass>
       <code><![CDATA[YookassaWebhookParser]]></code>
     </UnusedClass>
@@ -556,12 +477,6 @@
     </UnusedClass>
   </file>
   <file src="src/Shared/Test/Unit/Queue/Distribution/SendEmailBatchHandlerTest.php">
-    <ImplicitToStringCast>
-      <code><![CDATA[$distributionId]]></code>
-      <code><![CDATA[$distributionId]]></code>
-      <code><![CDATA[$distributionId]]></code>
-      <code><![CDATA[$distributionId]]></code>
-    </ImplicitToStringCast>
     <InaccessibleProperty>
       <code><![CDATA[$this->distributions]]></code>
       <code><![CDATA[$this->flusher]]></code>

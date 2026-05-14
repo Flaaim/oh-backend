@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Access\Command\CheckSession;
 
 use App\Access\Entity\SessionRepository;

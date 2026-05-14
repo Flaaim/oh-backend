@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional;
-
-
 
 use YooKassa\Client;
 use YooKassa\Request\Payments\PaymentsResponse;
@@ -22,7 +22,7 @@ class YookassaClient
     }
     public function getLastPayment(): ?string
     {
-        if(count($payments = $this->getPayments()->getItems()->toArray()) > 0) {
+        if (count($payments = $this->getPayments()->getItems()->toArray()) > 0) {
             return $payments[0]['id'];
         }
         return null;

@@ -37,25 +37,11 @@ return [
             new ExistingEntityManager($entityManager),
         );
     },
-    DiffCommand::class => function (ContainerInterface $container) {
-        return new DiffCommand($container->get(DependencyFactory::class));
-    },
-    MigrateCommand::class => function (ContainerInterface $container) {
-        return new MigrateCommand($container->get(DependencyFactory::class));
-    },
-    ExecuteCommand::class => function (ContainerInterface $container) {
-        return new ExecuteCommand($container->get(DependencyFactory::class));
-    },
-    GenerateCommand::class => function (ContainerInterface $container) {
-        return new GenerateCommand($container->get(DependencyFactory::class));
-    },
-    LatestCommand::class => function (ContainerInterface $container) {
-        return new LatestCommand($container->get(DependencyFactory::class));
-    },
-    StatusCommand::class => function (ContainerInterface $container) {
-        return new StatusCommand($container->get(DependencyFactory::class));
-    },
-    UpToDateCommand::class => function (ContainerInterface $container) {
-        return new UpToDateCommand($container->get(DependencyFactory::class));
-    }
+    DiffCommand::class => fn (ContainerInterface $container) => new DiffCommand($container->get(DependencyFactory::class)),
+    MigrateCommand::class => fn (ContainerInterface $container) => new MigrateCommand($container->get(DependencyFactory::class)),
+    ExecuteCommand::class => fn (ContainerInterface $container) => new ExecuteCommand($container->get(DependencyFactory::class)),
+    GenerateCommand::class => fn (ContainerInterface $container) => new GenerateCommand($container->get(DependencyFactory::class)),
+    LatestCommand::class => fn (ContainerInterface $container) => new LatestCommand($container->get(DependencyFactory::class)),
+    StatusCommand::class => fn (ContainerInterface $container) => new StatusCommand($container->get(DependencyFactory::class)),
+    UpToDateCommand::class => fn (ContainerInterface $container) => new UpToDateCommand($container->get(DependencyFactory::class)),
 ];

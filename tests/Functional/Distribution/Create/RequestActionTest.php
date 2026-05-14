@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Distribution\Create;
 
 use App\Distribution\Entity\Distribution;
@@ -28,7 +30,7 @@ class RequestActionTest extends WebTestCase
     {
         $response = $this->app()->handle(self::json('POST', '/payment-service/distribution', [
             'subject' => 'Тестовая отправка рассылки',
-            'templateId' => '30b1812e-3f6e-11f1-90b8-76fb82c9d6b5'
+            'templateId' => '30b1812e-3f6e-11f1-90b8-76fb82c9d6b5',
         ]));
 
         self::assertEquals(204, $response->getStatusCode());
@@ -64,7 +66,7 @@ class RequestActionTest extends WebTestCase
             'errors' => [
                 'subject' => 'This value should not be blank.',
                 'templateId' => 'This value should not be blank.',
-            ]
+            ],
         ], $data);
 
         $distributions = $this->distributions->findAll();
@@ -78,7 +80,7 @@ class RequestActionTest extends WebTestCase
 
         $response = $this->app()->handle(self::json('POST', '/payment-service/distribution', [
             'subject' => 'Тестовая отправка рассылки',
-            'templateId' => '30b1812e-3f6e-11f1-90b8-76fb82c9d6b5'
+            'templateId' => '30b1812e-3f6e-11f1-90b8-76fb82c9d6b5',
         ]));
 
         self::assertEquals(500, $response->getStatusCode());

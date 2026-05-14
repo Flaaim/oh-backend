@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Payment\Test\Service\Product;
 
 use App\Payment\Entity\Email;
@@ -39,9 +41,7 @@ class FileDeliveryTest extends TestCase
         $sender->expects($this->once())->method('send')->with(
             $this->equalTo($email),
             $this->equalTo($product->getName()),
-            $this->callback(function ($path) use ($file) {
-                return str_contains($path, $file->getValue());
-            }),
+            $this->callback(fn ($path) => str_contains($path, $file->getValue())),
             $this->equalTo($template)
         );
 

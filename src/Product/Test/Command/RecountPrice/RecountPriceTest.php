@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Product\Test\Command\RecountPrice;
 
 use App\Flusher;
@@ -44,7 +46,7 @@ class RecountPriceTest extends TestCase
             'file',
             '0a1e58cb-b7fd-4f46-aa62-911ad8257c84'
         );
-        $product = (new ProductBuilder())->withPrice(new Price(150, new Currency('RUB')))->build();
+        $product = (new ProductBuilder())->withPrice(new Price(150.00, new Currency('RUB')))->build();
         $products = $this->createMock(ProductRepository::class);
 
         $productId = new Id('0a1e58cb-b7fd-4f46-aa62-911ad8257c84');

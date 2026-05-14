@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Access\Test\Builder;
 
 use App\Access\Entity\Access;

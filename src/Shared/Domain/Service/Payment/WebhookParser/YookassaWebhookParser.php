@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Shared\Domain\Service\Payment\WebhookParser;
 
 use App\Shared\Domain\Service\Payment\PaymentWebhookDataInterface;
@@ -30,12 +32,12 @@ class YookassaWebhookParser implements PaymentWebhookParserInterface
 
         $object = $data['object'];
 
-        $amount = $object['amount']['value'] ?? '0';
+        $amount = $object['amount']['value'] ?? 0;
         $currency = $object['amount']['currency'] ?? 'RUB';
 
         return new YookassaWebhookData(
             $object['status'],
-            $amount,
+            (float)$amount,
             $object['metadata'] ?? [],
             $object['id'],
             $currency

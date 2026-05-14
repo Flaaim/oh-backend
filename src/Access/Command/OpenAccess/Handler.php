@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Access\Command\OpenAccess;
 
 use App\Access\Entity\Access;
@@ -44,7 +46,7 @@ class Handler
         $this->flusher->flush();
 
         $url = $this->baseUrl->getValue() . '?' . http_build_query([
-            'token' => $this->uuidConverter->encode($access->getToken()->getValue())
+            'token' => $this->uuidConverter->encode($access->getToken()->getValue()),
             ]);
 
         return new OpenAccessDTO(

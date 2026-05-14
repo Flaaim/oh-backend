@@ -1,7 +1,8 @@
 <?php
 
-namespace Test\Functional\Payment\Result;
+declare(strict_types=1);
 
+namespace Test\Functional\Payment\Result;
 
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Test\Functional\Json;
@@ -25,7 +26,7 @@ class RequestActionTest extends WebTestCase
         $returnToken = (new TokenBuilder())->build();
 
         $response = $this->app()->handle(self::json('POST', '/payment-service/result', [
-            'returnToken' => $returnToken->getValue()
+            'returnToken' => $returnToken->getValue(),
         ]));
 
         $this->assertEquals(200, $response->getStatusCode());
@@ -36,7 +37,7 @@ class RequestActionTest extends WebTestCase
         self::assertArraySubset([
             'returnToken' => $returnToken->getValue(),
             'status' => 'succeeded',
-            'email' => 'test@app.ru'
+            'email' => 'test@app.ru',
         ], $data);
     }
     public function testEmpty(): void
@@ -51,7 +52,7 @@ class RequestActionTest extends WebTestCase
         self::assertEquals([
             'errors' => [
                 'returnToken' => 'This value should not be blank.',
-            ]
+            ],
         ], $data);
 
     }
@@ -59,7 +60,7 @@ class RequestActionTest extends WebTestCase
     public function testInvalid(): void
     {
         $response = $this->app()->handle(self::json('POST', '/payment-service/result', [
-            'returnToken' => 'invalid'
+            'returnToken' => 'invalid',
         ]));
         self::assertEquals(422, $response->getStatusCode());
         self::assertJson($body = (string)$response->getBody());
@@ -68,7 +69,7 @@ class RequestActionTest extends WebTestCase
         self::assertEquals([
             'errors' => [
                 'returnToken' => 'Token is not correct.',
-            ]
+            ],
         ], $data);
     }
     public function testExpired(): void
@@ -78,7 +79,7 @@ class RequestActionTest extends WebTestCase
             ->build();
 
         $response = $this->app()->handle(self::json('POST', '/payment-service/result', [
-            'returnToken' => $expiredPayment->getReturnToken()->getValue()
+            'returnToken' => $expiredPayment->getReturnToken()->getValue(),
         ]));
 
         self::assertEquals(400, $response->getStatusCode());

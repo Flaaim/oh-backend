@@ -43,6 +43,6 @@ return [
             'password' => getenv('MAILER_PASSWORD'),
             'encryption' => getenv('MAILER_ENCRYPTION'),
             'from' => ['email' => getenv('MAILER_FROM_EMAIL'), 'name' => getenv('MAILER_FROM_NAME')],
-        ]
-    ]
+        ],
+    ],
 ];

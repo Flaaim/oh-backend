@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Action\Distribution\Create;
 
 use App\Distribution\Command\Create\Command;

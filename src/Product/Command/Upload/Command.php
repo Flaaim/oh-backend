@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Product\Command\Upload;
 
 use App\Http\Validator\SlimUploadedFile as SlimUploadedFileAssert;
@@ -15,12 +17,12 @@ class Command
             mimeTypes: [
                 'application/msword',
                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                'application/pdf'
+                'application/pdf',
             ],
             extensions: [
                 'docx',
                 'doc',
-                'pdf'
+                'pdf',
             ]
         )]
         public ?UploadedFileInterface $uploadFile,

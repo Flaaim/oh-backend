@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Action\Product\RecountPrice;
 
 use App\Http\JsonResponse;
@@ -22,7 +24,7 @@ class RequestAction implements RequestHandlerInterface
         $productId = $request->getParsedBody()['productId'] ?? '';
         $type = $request->getParsedBody()['type'] ?? '';
 
-        $command = new Command($type, $productId,);
+        $command = new Command($type, $productId, );
 
         $this->validator->validate($command);
 

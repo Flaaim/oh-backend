@@ -21,15 +21,15 @@ return [
     MessageBusInterface::class => function (ContainerInterface $container) {
         $handlers = [
             SendEmailBatchMessage::class => [
-                new HandlerDescriptor([$container->get(SendEmailBatchHandler::class), 'handle'])
+                new HandlerDescriptor([$container->get(SendEmailBatchHandler::class), 'handle']),
             ],
             AddRecipientCommand::class => [
-                new HandlerDescriptor([$container->get(AddRecipientHandler::class), 'handle'])
-            ]
+                new HandlerDescriptor([$container->get(AddRecipientHandler::class), 'handle']),
+            ],
         ];
 
         $sendersLocator = new SendersLocator([
-            '*' => getenv('MESSENGER_TRANSPORT_DSN') ? ['messenger.transport.async'] : []
+            '*' => getenv('MESSENGER_TRANSPORT_DSN') ? ['messenger.transport.async'] : [],
         ], $container);
 
         return new MessageBus([
@@ -38,15 +38,13 @@ return [
         ]);
     },
     RecipientQueryInterface::class => DI\get(RecipientQuery::class),
-    RecipientQuery::class => function (Psr\Container\ContainerInterface $container) {
-        return new RecipientQuery(
-            $container->get(Doctrine\ORM\EntityManagerInterface::class)
-        );
-    },
+    RecipientQuery::class => fn (Psr\Container\ContainerInterface $container) => new RecipientQuery(
+        $container->get(Doctrine\ORM\EntityManagerInterface::class)
+    ),
     'config' => [
         'messenger' => [
             'async' => getenv('MESSENGER_TRANSPORT_DSN'),
-        ]
+        ],
     ],
 
 ];

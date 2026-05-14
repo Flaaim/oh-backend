@@ -6,7 +6,5 @@ use App\Shared\Domain\Service\Distribution\DistributionInterface;
 use Test\Functional\Distribution\MemoryUniSender;
 
 return [
-    DistributionInterface::class => function () {
-        return new MemoryUniSender();
-    },
+    DistributionInterface::class => fn () => new MemoryUniSender(),
 ];

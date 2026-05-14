@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Product\Command\Get;
 
 use App\Product\Entity\DTO\ProductDTO;
@@ -17,7 +19,7 @@ class Handler
         $product = $this->products->get(new Id($command->productId));
 
         return new ProductDTO(
-            $product->getId(),
+            $product->getId()->getValue(),
             $product->getName(),
             $product->getCipher(),
             $product->getPrice()->formatted(),

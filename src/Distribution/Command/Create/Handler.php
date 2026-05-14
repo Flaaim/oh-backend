@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Distribution\Command\Create;
 
 use App\Distribution\Entity\Distribution;

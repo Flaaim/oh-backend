@@ -11,34 +11,34 @@ use Twig\Loader\FilesystemLoader;
 
 return [
   Environment::class => function (ContainerInterface $container) {
-    $config = $container->get('config')['twig'];
+      $config = $container->get('config')['twig'];
 
-    $loader = new FilesystemLoader();
-    foreach ($config['template_dirs'] as $alias => $dir) {
-        $loader->addPath($dir, $alias);
-    }
+      $loader = new FilesystemLoader();
+      foreach ($config['template_dirs'] as $alias => $dir) {
+          $loader->addPath($dir, $alias);
+      }
 
-    $environment = new Environment($loader, [
-        'cache' => $config['debug'] ? false : $config['cache_dir'],
-        'debug' => $config['debug'],
-        'strict_variables' => $config['debug'],
-        'auto_reload' => $config['debug'],
-    ]);
+      $environment = new Environment($loader, [
+          'cache' => $config['debug'] ? false : $config['cache_dir'],
+          'debug' => $config['debug'],
+          'strict_variables' => $config['debug'],
+          'auto_reload' => $config['debug'],
+      ]);
 
-    if ($config['debug']) {
-        $environment->addExtension(new DebugExtension());
-    }
+      if ($config['debug']) {
+          $environment->addExtension(new DebugExtension());
+      }
 
-    foreach ($config['globals'] as $name => $value) {
-        $environment->addGlobal($name, $value);
-    }
+      foreach ($config['globals'] as $name => $value) {
+          $environment->addGlobal($name, $value);
+      }
 
-    foreach ($config['extensions'] as $class) {
-        /** @var ExtensionInterface $extension */
-        $extension = $container->get($class);
-        $environment->addExtension($extension);
-    }
-    return $environment;
+      foreach ($config['extensions'] as $class) {
+          /** @var ExtensionInterface $extension */
+          $extension = $container->get($class);
+          $environment->addExtension($extension);
+      }
+      return $environment;
   },
     'config' => [
         'twig' => [
@@ -54,6 +54,6 @@ return [
                 'site_url' => getenv('SITE_URL'),
                 'site_name' => getenv('SITE_NAME'),
             ],
-        ]
-    ]
+        ],
+    ],
 ];

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Recipient\Add;
 
 use App\Product\Entity\File;
@@ -7,7 +9,6 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
 use Test\Functional\Payment\PaymentBuilder;
 use Test\Functional\Payment\ProductBuilder;
-
 
 class RequestFixture extends AbstractFixture
 {

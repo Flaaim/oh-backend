@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Access\Test\Unit\Entity;
 
 use App\Payment\Entity\Email;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Payment\HookPayment;
 
 use Test\Functional\Json;
@@ -18,7 +20,9 @@ class RequestActionTest extends WebTestCase
     {
         $this->mailer()->clear();
 
-        $response = $this->app()->handle(self::json('POST', '/payment-service/payment-webhook',
+        $response = $this->app()->handle(self::json(
+            'POST',
+            '/payment-service/payment-webhook',
             $this->getRequestBody('file')
         ));
 
@@ -35,7 +39,9 @@ class RequestActionTest extends WebTestCase
     {
         $this->mailer()->clear();
 
-        $response = $this->app()->handle(self::json('POST', '/payment-service/payment-webhook',
+        $response = $this->app()->handle(self::json(
+            'POST',
+            '/payment-service/payment-webhook',
             $this->getRequestBody('access')
         ));
 
@@ -59,15 +65,15 @@ class RequestActionTest extends WebTestCase
                 'paid' => true,
                 'amount' => [
                     'value' => '350.00',
-                    'currency' => 'RUB'
+                    'currency' => 'RUB',
                 ],
                 'income_amount' => [
                     'value' => '325.00',
-                    'currency' => 'RUB'
+                    'currency' => 'RUB',
                 ],
                 'recipient' => [
                     'account_id' => '221345',
-                    'gateway_id' => '2093840'
+                    'gateway_id' => '2093840',
                 ],
                 'created_at' => '2025-10-13T05:19:27.347Z',
                 'captured_at' => '2025-10-13T05:20:00.000Z',
@@ -75,9 +81,9 @@ class RequestActionTest extends WebTestCase
                     'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f',
                     'cms_name' => 'yookassa_sdk_php_3',
                     'email' => 'test@app.ru',
-                    'type' => $type
-                ]
-            ]
+                    'type' => $type,
+                ],
+            ],
         ];
     }
 }

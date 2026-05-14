@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Validator;
 
 use Psr\Http\Message\UploadedFileInterface;
@@ -35,8 +37,8 @@ class SlimUploadedFileValidator extends ConstraintValidator
             $limit = $this->parseSize($constraint->maxSize);
             if ($value->getSize() > $limit) {
                 $this->context->buildViolation($constraint->maxSizeMessage)
-                    ->setParameter('{{ limit }}', $constraint->maxSize)
-                    ->setParameter('{{ size }}', $value->getSize())
+                    ->setParameter('{{ limit }}', (string)$constraint->maxSize)
+                    ->setParameter('{{ size }}', (string)$value->getSize())
                     ->addViolation();
             }
         }

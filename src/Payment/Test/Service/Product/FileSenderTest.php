@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Payment\Test\Service\Product;
 
 use App\Payment\Entity\Email as UserEmail;
@@ -18,7 +20,7 @@ use Twig\Environment;
 
 class FileSenderTest extends TestCase
 {
-    public function testSuccess()
+    public function testSuccess(): void
     {
         $email = new UserEmail('test@app.ru');
         $subject = 'subject';
@@ -38,7 +40,7 @@ class FileSenderTest extends TestCase
         $mailer = $this->createMock(MailerInterface::class);
         $mailer->expects($this->once())->method('send')->with(
             $this->equalTo($message),
-        )->willReturnCallback(static function ($message) use ($twig, $email, $subject, $file) {
+        )->willReturnCallback(static function ($message) use ($twig, $email, $subject, $file): void {
             /** @var Email $message */
             self::assertEquals([new Address($email->getValue())], $message->getTo());
             self::assertEquals($subject, $message->getSubject());

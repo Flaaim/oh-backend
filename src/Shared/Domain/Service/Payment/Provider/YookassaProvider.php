@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Shared\Domain\Service\Payment\Provider;
 
 use App\Shared\Domain\Service\Payment\DTO\MakePaymentDTO;
@@ -40,8 +42,8 @@ class YookassaProvider implements PaymentProviderInterface
                 'receipt' => [
                     'customer' => [
                         'email' => $paymentData->customerEmail,
-                    ]
-                ]
+                    ],
+                ],
             ], $idempotenceKey);
 
             return new PaymentInfoDTO(

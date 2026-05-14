@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Distribution\Create;
 
 use App\Recipient\Entity\Email;
@@ -10,7 +12,6 @@ use Doctrine\Persistence\ObjectManager;
 
 class RequestFixture extends AbstractFixture
 {
-
     public function load(ObjectManager $manager): void
     {
         $recipient = new Recipient(

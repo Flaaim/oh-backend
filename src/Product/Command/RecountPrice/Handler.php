@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Product\Command\RecountPrice;
 
 use App\Flusher;
@@ -23,7 +25,7 @@ class Handler
             $product->getId()->getValue(),
             $product->getName(),
             $product->getCipher(),
-            $price->getValue(),
+            (string)$price->getValue(),
         );
     }
 }

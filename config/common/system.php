@@ -13,13 +13,11 @@ return [
         'password' => getenv('AUTH_PASSWORD'),
         'template_paths' => __DIR__ . '/../../public/templates',
     ],
-    RootPath::class => function (ContainerInterface $container) {
-        return new RootPath(
-            $container->get('config')['template_paths'],
-        );
-    },
+    RootPath::class => fn (ContainerInterface $container) => new RootPath(
+        $container->get('config')['template_paths'],
+    ),
     BaseUrl::class => function () {
         $baseUrl = getenv('LINK_ANSWERS');
         return new BaseUrl($baseUrl);
-    }
+    },
 ];

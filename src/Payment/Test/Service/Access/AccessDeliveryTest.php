@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Payment\Test\Service\Access;
 
 use App\Access\Command\OpenAccess\Command;

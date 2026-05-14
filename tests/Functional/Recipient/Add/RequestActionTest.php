@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Recipient\Add;
 
 use App\Recipient\Entity\RecipientRepository;
@@ -19,7 +21,9 @@ class RequestActionTest extends WebTestCase
     public function testSuccess(): void
     {
 
-        $response = $this->app()->handle(self::json('POST', '/payment-service/payment-webhook',
+        $response = $this->app()->handle(self::json(
+            'POST',
+            '/payment-service/payment-webhook',
             $this->getRequestBody('access')
         ));
 
@@ -32,11 +36,15 @@ class RequestActionTest extends WebTestCase
 
     public function testDuplicate(): void
     {
-        $response = $this->app()->handle(self::json('POST', '/payment-service/payment-webhook',
+        $response = $this->app()->handle(self::json(
+            'POST',
+            '/payment-service/payment-webhook',
             $this->getRequestBody('access')
         ));
 
-        $response = $this->app()->handle(self::json('POST', '/payment-service/payment-webhook',
+        $response = $this->app()->handle(self::json(
+            'POST',
+            '/payment-service/payment-webhook',
             $this->getRequestBody('access')
         ));
 
@@ -58,15 +66,15 @@ class RequestActionTest extends WebTestCase
                 'paid' => true,
                 'amount' => [
                     'value' => '350.00',
-                    'currency' => 'RUB'
+                    'currency' => 'RUB',
                 ],
                 'income_amount' => [
                     'value' => '325.00',
-                    'currency' => 'RUB'
+                    'currency' => 'RUB',
                 ],
                 'recipient' => [
                     'account_id' => '221345',
-                    'gateway_id' => '2093840'
+                    'gateway_id' => '2093840',
                 ],
                 'created_at' => '2025-10-13T05:19:27.347Z',
                 'captured_at' => '2025-10-13T05:20:00.000Z',
@@ -74,9 +82,9 @@ class RequestActionTest extends WebTestCase
                     'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f',
                     'cms_name' => 'yookassa_sdk_php_3',
                     'email' => 'recipient@app.ru',
-                    'type' => $type
-                ]
-            ]
+                    'type' => $type,
+                ],
+            ],
         ];
     }
 }

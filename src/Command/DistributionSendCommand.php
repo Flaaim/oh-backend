@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Command;
 
 use GuzzleHttp\Client;
@@ -23,7 +25,7 @@ class DistributionSendCommand extends Command
         $subject = 'test';
         $templateId = '30b1812e-3f6e-11f1-90b8-76fb82c9d6b5';
 
-        $recipients = array_map(fn($email) => ['email' => $email], $emails);
+        $recipients = array_map(fn ($email) => ['email' => $email], $emails);
 
         $requestBody =  [
             "message" => [

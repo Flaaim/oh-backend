@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Payment\Command\GetPaymentResult;
 
 use App\Payment\Entity\PaymentRepository;

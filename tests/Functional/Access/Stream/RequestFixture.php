@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Access\Stream;
 
 use App\Access\Entity\AccessId;
@@ -18,8 +20,8 @@ class RequestFixture extends AbstractFixture
     {
         $access = (new AccessBuilder())->withAccessId(AccessId::generate())
             ->withToken(
-            new Token('b035e3dc-cadc-45dd-85a1-817b6060d6fe', new \DateTimeImmutable('+3 days')),
-        )
+                new Token('b035e3dc-cadc-45dd-85a1-817b6060d6fe', new \DateTimeImmutable('+3 days')),
+            )
             ->build();
 
         $manager->persist($access);
@@ -42,7 +44,7 @@ class RequestFixture extends AbstractFixture
     public function tempFile(): string
     {
         $result = file_put_contents($file1 = sys_get_temp_dir(). '/test-file', '%PDF-1.4 test content');
-        if(!$result) {
+        if (!$result) {
             throw new \RuntimeException('Failed to write temp file');
         }
         return basename($file1);

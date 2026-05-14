@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Test\Unit\Middleware;
 
 use App\Http\Middleware\UnsubscribeMiddleware;
@@ -45,7 +47,7 @@ class UnsubscribeMiddlewareTest extends TestCase
         $data = Json::decode($body);
 
         self::assertEquals([
-            'error' => 'Forbidden'
+            'error' => 'Forbidden',
         ], $data);
     }
     public function testSuccess(): void
@@ -59,10 +61,10 @@ class UnsubscribeMiddlewareTest extends TestCase
                         'event_data' => [
                             'email' => 'bad-recipient@example.com',
                             'status' => 'unsubscribed',
-                        ]
-                    ]
-                ]
-            ]
+                        ],
+                    ],
+                ],
+            ],
         ];
 
         $request = $this->createValidWebhookRequest($events, 'test-auth');
@@ -99,11 +101,11 @@ class UnsubscribeMiddlewareTest extends TestCase
                                 'domain' => 'domain.com',
                                 "SMTP_blocks_count" => 8,
                                 "domain_status" => "blocked",
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ];
         $request = $this->createValidWebhookRequest($events);
 
@@ -122,7 +124,7 @@ class UnsubscribeMiddlewareTest extends TestCase
                         'domain' => 'domain.com',
                         "SMTP_blocks_count" => 8,
                         "domain_status" => "blocked",
-                    ]
+                    ],
                 ]])
             );
         $handler = $this->createMock(RequestHandlerInterface::class);
@@ -141,7 +143,7 @@ class UnsubscribeMiddlewareTest extends TestCase
     {
         $initialData = [
             'auth' => $apiKey,
-            'events_by_user' => $eventsByUser
+            'events_by_user' => $eventsByUser,
         ];
         $jsonStringWithKey = json_encode($initialData);
         $validHash = md5($jsonStringWithKey);

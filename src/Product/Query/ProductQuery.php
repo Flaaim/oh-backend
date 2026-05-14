@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Product\Query;
 
 use App\Product\Entity\ProductRepository;
@@ -18,7 +20,7 @@ class ProductQuery implements ProductQueryInterface
         $product = $this->products->get(new Id($productId));
 
         return new ProductQueryDTO(
-            $product->getId(),
+            $product->getId()->getValue(),
             $product->getName(),
             $product->getCipher(),
             $product->getFile()->getValue(),

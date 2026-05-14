@@ -18,11 +18,7 @@ return [
         $repo = $em->getRepository(Ticket::class);
         return new TicketRepository($em, $repo);
     },
-    PathManager::class => function (ContainerInterface $container) {
-        return new PathManager($container->get('config')['basePath']);
-    },
-    UrlBuilder::class => function (ContainerInterface $container) {
-        return new UrlBuilder($container->get('config')['urlPath']);
-    }
+    PathManager::class => fn (ContainerInterface $container) => new PathManager($container->get('config')['basePath']),
+    UrlBuilder::class => fn (ContainerInterface $container) => new UrlBuilder($container->get('config')['urlPath']),
 
 ];

@@ -13,30 +13,30 @@ use Slim\Middleware\ErrorMiddleware;
 return [
   ErrorMiddleware::class => function (ContainerInterface $container) {
 
-    $callableResolver = $container->get(CallableResolverInterface::class);
+      $callableResolver = $container->get(CallableResolverInterface::class);
 
-    $responseFactory = $container->get(ResponseFactoryInterface::class);
+      $responseFactory = $container->get(ResponseFactoryInterface::class);
 
-    $config = $container->get('config')['errors'];
+      $config = $container->get('config')['errors'];
 
-    $middleware =  new ErrorMiddleware(
-        $callableResolver,
-        $responseFactory,
-        $config['display_details'],
-        true,
-        true
-    );
+      $middleware =  new ErrorMiddleware(
+          $callableResolver,
+          $responseFactory,
+          $config['display_details'],
+          true,
+          true
+      );
 
-    $logger = $container->get(LoggerInterface::class);
+      $logger = $container->get(LoggerInterface::class);
 
-    $middleware->setDefaultErrorHandler(new LogErrorHandler($callableResolver, $responseFactory, $logger));
+      $middleware->setDefaultErrorHandler(new LogErrorHandler($callableResolver, $responseFactory, $logger));
 
-    return $middleware;
+      return $middleware;
   },
     'config' => [
         'errors' => [
             'display_details' => (bool)getenv('APP_DEBUG'),
-            'log' => true
-        ]
-    ]
+            'log' => true,
+        ],
+    ],
 ];

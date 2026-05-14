@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Product\Get;
 
 use Test\Functional\Json;
@@ -40,8 +42,8 @@ class RequestActionTest extends WebTestCase
         $data = Json::decode($body);
         self::assertEquals([
             'errors' => [
-                'productId' => 'This value should not be blank.'
-            ]
+                'productId' => 'This value should not be blank.',
+            ],
         ], $data);
     }
     public function testInvalid(): void
@@ -54,8 +56,8 @@ class RequestActionTest extends WebTestCase
         $data = Json::decode($body);
         self::assertEquals([
             'errors' => [
-                'productId' => 'This is not a valid UUID.'
-            ]
+                'productId' => 'This is not a valid UUID.',
+            ],
         ], $data);
     }
 }

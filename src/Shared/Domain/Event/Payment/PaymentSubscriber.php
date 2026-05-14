@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Shared\Domain\Event\Payment;
 
 use App\Recipient\Command\Add\Command as AddRecipientCommand;
@@ -40,7 +42,7 @@ class PaymentSubscriber implements EventSubscriberInterface
         $this->logger->info('Successful Payment', ['payment' => [
             'email' => $payment->getEmail()->getValue(),
             'price' => $payment->getPrice()->getValue(),
-            'productId' => $payment->getProductId()
+            'productId' => $payment->getProductId(),
         ]]);
     }
 }

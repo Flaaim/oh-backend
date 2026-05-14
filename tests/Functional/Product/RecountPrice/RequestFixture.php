@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Product\RecountPrice;
 
 use App\Product\Entity\Currency;
@@ -12,7 +14,6 @@ use Test\Functional\Payment\ProductBuilder;
 
 class RequestFixture extends AbstractFixture
 {
-
     public function load(ObjectManager $manager): void
     {
         $product = (new ProductBuilder())

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Payment;
 
 use App\Payment\Entity\Email;
@@ -86,11 +88,11 @@ class PaymentBuilder
             $this->returnToken,
         );
 
-        if($this->externalId !== null) {
+        if ($this->externalId !== null) {
             $payment->setExternalId($this->externalId);
         }
 
-        if($this->status !== null) {
+        if ($this->status !== null) {
             $payment->setStatus(Status::succeeded());
         }
         return $payment;

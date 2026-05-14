@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Shared\Domain\Service\Payment\Provider\YookassaConfig;
 use App\Shared\Domain\Service\Payment\Provider\YookassaProvider;
 use Psr\Container\ContainerInterface;
@@ -28,6 +30,6 @@ return [
           'shopId' => getenv('YOOKASSA_SHOP_ID'),
           'secretKey' => getenv('YOOKASSA_SECRET_KEY'),
           'returnUrl' => getenv('YOOKASSA_RETURN_URL'),
-      ]
-    ]
+      ],
+    ],
 ];

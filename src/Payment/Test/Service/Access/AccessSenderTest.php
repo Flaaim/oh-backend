@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Payment\Test\Service\Access;
 
 use App\Access\Entity\DTO\OpenAccessDTO;
@@ -40,7 +42,7 @@ class AccessSenderTest extends TestCase
 
         $mailer->expects($this->once())->method('send')->with(
             $this->equalTo($message)
-        )->willReturnCallback(static function ($message) use ($accessDto, $email, $twig) {
+        )->willReturnCallback(static function ($message) use ($accessDto, $email, $twig): void {
             self::assertEquals($accessDto->name, $message->getSubject());
             self::assertEquals([new Address($email->getValue())], $message->getTo());
             self::assertEquals("<a href='some_url'>Ссылка</a>", $message->getHtmlBody());

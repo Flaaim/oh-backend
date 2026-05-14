@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Test\Unit\Middleware;
 
 use App\Http\Middleware\ClearInputHandler;
@@ -29,7 +31,7 @@ class ClearInputHandlerTest extends TestCase
                 'null' => null,
                 'space' => ' ',
                 'name' => ' Name',
-            ]
+            ],
         ]);
 
         $handler = $this->createMock(RequestHandlerInterface::class);
@@ -44,7 +46,7 @@ class ClearInputHandlerTest extends TestCase
                         'null' => null,
                         'space' => '',
                         'name' => 'Name',
-                    ]
+                    ],
                 ], $request->getParsedBody());
                 return (new ResponseFactory())->createResponse();
             });
@@ -67,7 +69,7 @@ class ClearInputHandlerTest extends TestCase
         $request = (new ServerRequestFactory())->createServerRequest('GET', '/test')->withUploadedFiles([
             'realFile' => $realFile,
             'noFile' => $noFile,
-            'arrayFiles' => [$realFile, $noFile]
+            'arrayFiles' => [$realFile, $noFile],
         ]);
 
         $handler = $this->createMock(RequestHandlerInterface::class);
@@ -75,7 +77,7 @@ class ClearInputHandlerTest extends TestCase
             ->willReturnCallback(static function (ServerRequestInterface $request) use ($realFile): ResponseInterface {
                 self::assertEquals([
                     'realFile' => $realFile,
-                    'arrayFiles' => [$realFile]
+                    'arrayFiles' => [$realFile],
                 ], $request->getUploadedFiles());
 
                 return (new ResponseFactory())->createResponse();

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Product\Upsert;
 
 use App\Product\Entity\Currency;

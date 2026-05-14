@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Access\GetAccess;
 
 use App\Access\Service\UuidConverter;
@@ -32,7 +34,7 @@ class RequestActionTest extends WebTestCase
             'cipher' => 'ОТ 201.18',
             'expiredAt' => (new \DateTimeImmutable('+ 3 days'))->format('Y-m-d'),
             'email' => 'test@email.ru',
-            'productId' => $this->getEncodedString('b38e76c0-ac23-4c48-85fd-975f32c8801f')
+            'productId' => $this->getEncodedString('b38e76c0-ac23-4c48-85fd-975f32c8801f'),
         ], $data);
 
     }
@@ -85,8 +87,8 @@ class RequestActionTest extends WebTestCase
 
         self::assertEquals([
             'errors' => [
-                'encodedToken' => 'The format URL must be a valid.'
-            ]
+                'encodedToken' => 'The format URL must be a valid.',
+            ],
         ], $data);
     }
 
@@ -101,8 +103,8 @@ class RequestActionTest extends WebTestCase
 
         self::assertEquals([
             'errors' => [
-                'token' => 'This value should have exactly 22 characters.'
-            ]
+                'token' => 'This value should have exactly 22 characters.',
+            ],
         ], $data);
     }
     public function testExpired(): void
@@ -118,7 +120,7 @@ class RequestActionTest extends WebTestCase
 
         self::assertArraySubset([
             'message' => 'Срок действия доступа к файлу истек...',
-            'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f'
+            'productId' => 'b38e76c0-ac23-4c48-85fd-975f32c8801f',
         ], $data);
     }
     public function tearDown(): void

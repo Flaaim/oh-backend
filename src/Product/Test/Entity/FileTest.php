@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Product\Test\Entity;
 
 use App\Product\Entity\File;
@@ -53,7 +55,7 @@ class FileTest extends TestCase
         self::expectExceptionMessage('Root path already merged.');
         $file->mergeRoot($root);
     }
-    public function testFile()
+    public function testFile(): void
     {
         $file = new File($this->tempFile());
         $root = new RootPath($this->tempDir->getValue());

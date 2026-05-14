@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Action\Product\Get;
 
 use App\Http\JsonResponse;

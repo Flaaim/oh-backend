@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Distribution;
 
 use App\Shared\Domain\Service\Distribution\DistributionInterface;
@@ -11,13 +13,13 @@ class MemoryUniSender implements DistributionInterface
     public bool $throwExceptions = false;
     public function send(string $subject, array $recipients, string $templateId): void
     {
-        if($this->throwExceptions) {
+        if ($this->throwExceptions) {
             throw new \DomainException('Exception when sending message');
         }
         $this->sentMessages[] = [
             'subject' => $subject,
             'recipients' => $recipients,
-            'templateId' => $templateId
+            'templateId' => $templateId,
         ];
     }
     public function getSentMessages(): array
@@ -31,6 +33,6 @@ class MemoryUniSender implements DistributionInterface
 
     public function shouldFail(): void
     {
-       $this->throwExceptions = true;
+        $this->throwExceptions = true;
     }
 }

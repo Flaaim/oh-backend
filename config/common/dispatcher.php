@@ -24,6 +24,6 @@ return [
     'config' => [
         'event_subscribers' => [
             PaymentSubscriber::class,
-        ]
+        ],
     ],
 ];

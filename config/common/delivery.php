@@ -40,5 +40,5 @@ return [
         );
 
         return new DeliveryFactory($productRepository, [$fileDelivery, $accessDelivery]);
-    }
+    },
 ];

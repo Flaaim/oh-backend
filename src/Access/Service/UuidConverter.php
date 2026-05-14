@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Access\Service;
 
 use Webmozart\Assert\Assert;
@@ -21,7 +23,7 @@ class UuidConverter
     {
         $base64 = strtr($url, '-_', '+/');
 
-        $base64 = str_pad($base64, ceil(strlen($base64) / 4) * 4, '=');
+        $base64 = str_pad($base64, (int)ceil(strlen($base64) / 4) * 4, '=');
 
         $binary = base64_decode($base64, true);
 
@@ -36,7 +38,7 @@ class UuidConverter
             substr($hex, 8, 4),
             substr($hex, 12, 4),
             substr($hex, 16, 4),
-            substr($hex, 20, 12)
+            substr($hex, 20, 12),
         ]);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Payment\Command\CreatePayment;
 
 use App\Flusher;
@@ -33,7 +35,7 @@ class Handler
     {
         $email = new Email($command->email);
         $product = $this->products->get(new Id($command->productId));
-        $returnToken = new Token(Id::generate(), new DateTimeImmutable('+ 1 hour'));
+        $returnToken = new Token(Id::generate()->getValue(), new DateTimeImmutable('+ 1 hour'));
         $paymentPrice = $product->calculatePriceFor($command->type);
 
         $payment = new Payment(

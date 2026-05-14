@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Product\Upload;
 
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
@@ -15,7 +17,7 @@ class RequestActionTest extends WebTestCase
     private array $tempFiles = [];
     public function testSuccess(): void
     {
-        $uploadedFile = $this->buildUploadedFile('test.docx', 'data', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',UPLOAD_ERR_OK);
+        $uploadedFile = $this->buildUploadedFile('test.docx', 'data', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', UPLOAD_ERR_OK);
 
         $response = $this->app()->handle(self::formData(
             'POST',
@@ -33,17 +35,20 @@ class RequestActionTest extends WebTestCase
     {
 
         $response = $this->app()->handle(self::formData(
-            'POST', '/payment-service/products/upload', ['path' => 'fire/pb992']));
+            'POST',
+            '/payment-service/products/upload',
+            ['path' => 'fire/pb992']
+        ));
 
         self::assertEquals(422, $response->getStatusCode());
-        self::assertJson($body = $response->getBody());
+        self::assertJson($body = (string)$response->getBody());
 
         $data = Json::decode($body);
 
         self::assertEquals([
             'errors' => [
                 'uploadFile' => 'Upload file required.',
-            ]
+            ],
         ], $data);
     }
 
@@ -54,12 +59,15 @@ class RequestActionTest extends WebTestCase
         $tempFileTwo = $this->buildUploadedFile('test2.docx', 'some_content', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', UPLOAD_ERR_OK);
 
         $response = $this->app()->handle(self::formData(
-            'POST', '/payment-service/products/upload', ['path' => 'fire/pb992'], ['file' => [$tempFileOne, $tempFileTwo]
+            'POST',
+            '/payment-service/products/upload',
+            ['path' => 'fire/pb992'],
+            ['file' => [$tempFileOne, $tempFileTwo],
             ]
         ));
 
         self::assertEquals(422, $response->getStatusCode());
-        self::assertJson($body = $response->getBody());
+        self::assertJson($body = (string)$response->getBody());
 
         $data = Json::decode($body);
 
@@ -75,7 +83,7 @@ class RequestActionTest extends WebTestCase
         file_put_contents($tempFile, 'test content');
 
         $response = $this->app()->handle(self::formData('POST', '/payment-service/products/upload', [], [
-            'file' => $file
+            'file' => $file,
         ]));
         self::assertEquals(422, $response->getStatusCode());
         self::assertJson($body = (string)$response->getBody());
@@ -85,15 +93,20 @@ class RequestActionTest extends WebTestCase
         self::assertEquals([
             'errors' => [
                 'targetPath' => 'This value should not be blank.',
-            ]
+            ],
         ], $data);
     }
     public function testInvalidMimeType(): void
     {
 
         $uploadedFile = $this->buildUploadedFile('test.docx', 'data', $invalidFileType = 'text/plain', UPLOAD_ERR_OK);
-        $response = $this->app()->handle(self::formData(
-            'POST', '/payment-service/products/upload', ['path' => 'fire/pb992'], ['file' => $uploadedFile])
+        $response = $this->app()->handle(
+            self::formData(
+                'POST',
+                '/payment-service/products/upload',
+                ['path' => 'fire/pb992'],
+                ['file' => $uploadedFile]
+            )
         );
 
         self::assertEquals(422, $response->getStatusCode());
@@ -102,15 +115,15 @@ class RequestActionTest extends WebTestCase
 
         self::assertEquals([
             'errors' => [
-                'uploadFile' => 'The mime type of the file is invalid (text/plain). Allowed mime types are application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/pdf.'
-            ]
+                'uploadFile' => 'The mime type of the file is invalid (text/plain). Allowed mime types are application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/pdf.',
+            ],
         ], $data);
     }
 
     public function testUploadFailed(): void
     {
 
-        $uploadedFile = $this->buildUploadedFile('test', 'data',  'application/vnd.openxmlformats-officedocument.wordprocessingml.document', UPLOAD_ERR_NO_FILE);
+        $uploadedFile = $this->buildUploadedFile('test', 'data', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', UPLOAD_ERR_NO_FILE);
         $response = $this->app()->handle(self::formData('POST', '/payment-service/products/upload', ['path' => 'fire/pb992'], ['file' => $uploadedFile]));
 
         self::assertEquals(422, $response->getStatusCode());
@@ -125,13 +138,13 @@ class RequestActionTest extends WebTestCase
 
     public function testUploadExisting(): void
     {
-        $uploadedFile = $this->buildUploadedFile('test.docx', 'data', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',UPLOAD_ERR_OK);
+        $uploadedFile = $this->buildUploadedFile('test.docx', 'data', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', UPLOAD_ERR_OK);
 
         $response = $this->app()->handle(self::formData('POST', '/payment-service/products/upload', ['path' => 'fire/pb992'], ['file' => $uploadedFile]));
 
         self::assertEquals(204, $response->getStatusCode());
 
-        $uploadedFile = $this->buildUploadedFile('test.docx', 'data2', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',UPLOAD_ERR_OK);
+        $uploadedFile = $this->buildUploadedFile('test.docx', 'data2', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', UPLOAD_ERR_OK);
 
         $this->app()->handle(self::formData('POST', '/payment-service/products/upload', ['path' => 'fire/pb992992'], ['file' => $uploadedFile]));
 

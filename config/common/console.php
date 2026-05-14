@@ -53,7 +53,7 @@ return [
                 __DIR__ . '/../../src/Product/Fixture',
                 __DIR__ . '/../../src/Payment/Fixture',
                 __DIR__ . '/../../src/Access/Fixture',
-            ]
+            ],
         ],
-    ]
+    ],
 ];

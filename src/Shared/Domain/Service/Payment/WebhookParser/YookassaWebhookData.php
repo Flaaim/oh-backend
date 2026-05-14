@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Shared\Domain\Service\Payment\WebhookParser;
 
 use App\Shared\Domain\Service\Payment\PaymentWebhookDataInterface;

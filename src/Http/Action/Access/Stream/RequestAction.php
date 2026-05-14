@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Action\Access\Stream;
 
 use App\Access\Command\Stream\Command;

@@ -30,14 +30,14 @@ return (new Config())
         ->append([
             __FILE__,
         ])
-            // 💡 additional files, eg bin entry file
-            // ->append([__DIR__.'/bin-entry-file'])
-            // 💡 folders to exclude, if any
-            // ->exclude([/* ... */])
-            // 💡 path patterns to exclude, if any
-            // ->notPath([/* ... */])
-            // 💡 extra configs
-            // ->ignoreDotFiles(false) // true by default in v3, false in v4 or future mode
-            // ->ignoreVCS(true) // true by default
+        // 💡 additional files, eg bin entry file
+        // ->append([__DIR__.'/bin-entry-file'])
+        // 💡 folders to exclude, if any
+        // ->exclude([/* ... */])
+        // 💡 path patterns to exclude, if any
+        // ->notPath([/* ... */])
+        // 💡 extra configs
+        // ->ignoreDotFiles(false) // true by default in v3, false in v4 or future mode
+        // ->ignoreVCS(true) // true by default
     )
 ;

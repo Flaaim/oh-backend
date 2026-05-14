@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Test\Unit\Validator;
 
 use App\Http\Validator\SlimUploadedFile;
@@ -27,7 +29,7 @@ class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
     }
     public function testInvalidUploadFile(): void
     {
-        $file = new class (){
+        $file = new class () {
         };
         $this->validator->validate($file, new SlimUploadedFile());
 
@@ -67,7 +69,7 @@ class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
             [],
             []
         ));
-        $this->buildViolation('The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}.') ->setParameter('{{ limit }}', $maxFileSize)->setParameter('{{ size }}', $uploadedFileSize)
+        $this->buildViolation('The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}.') ->setParameter('{{ limit }}', strval($maxFileSize))->setParameter('{{ size }}', strval($uploadedFileSize))
             ->assertRaised();
     }
 
@@ -135,7 +137,7 @@ class SlimUploadedFileValidatorTest extends ConstraintValidatorTestCase
             ['docx', 'doc']
         ));
 
-        $this->buildViolation('The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}.') ->setParameter('{{ limit }}', $maxFileSize)->setParameter('{{ size }}', $uploadedFileSize);
+        $this->buildViolation('The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}.') ->setParameter('{{ limit }}', (string)$maxFileSize)->setParameter('{{ size }}', (string)$uploadedFileSize);
 
         $this->buildViolation('The mime type of the file is invalid ({{ type }}). Allowed mime types are {{ types }}.')
             ->setParameter('{{ type }}', $uploadedFile->getClientMediaType())

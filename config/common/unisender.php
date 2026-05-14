@@ -11,7 +11,7 @@ use Psr\Log\LoggerInterface;
 return [
     DistributionInterface::class => function (ContainerInterface $container) {
         $client = new Client([
-            'base_uri' => 'https://goapi.unisender.ru/ru/transactional/api/v1/'
+            'base_uri' => 'https://goapi.unisender.ru/ru/transactional/api/v1/',
         ]);
 
         $logger = $container->get(LoggerInterface::class);
@@ -22,6 +22,6 @@ return [
     'config' => [
         'uniSender' => [
             'apiKey' => getenv('UNI_SENDER_API'),
-        ]
-    ]
+        ],
+    ],
 ];

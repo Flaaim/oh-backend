@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Access\Command\GetAccess;
 
 use App\Access\Entity\Access;

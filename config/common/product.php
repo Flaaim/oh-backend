@@ -15,5 +15,5 @@ return [
         $products = new ProductRepository($em);
 
         return new ProductQuery($products);
-    }
+    },
 ];

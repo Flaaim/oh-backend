@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Product\Service;
 
 use App\Product\Entity\UploadDir;
@@ -26,7 +28,7 @@ class FileHandler
     private function createDir(): void
     {
         if (!is_dir($this->path->getValue())) {
-            $status = mkdir($this->path->getValue(), 0777, true);
+            $status = mkdir($this->path->getValue(), 0o777, true);
             if ($status === false) {
                 throw new \DomainException('Unable to create directory ' . $this->path->getValue());
             }

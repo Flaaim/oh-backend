@@ -7,7 +7,5 @@ use Slim\CallableResolver;
 use Slim\Interfaces\CallableResolverInterface;
 
 return [
-  CallableResolverInterface::class => function (ContainerInterface $container) {
-    return new CallableResolver($container);
-  }
+  CallableResolverInterface::class => fn (ContainerInterface $container) => new CallableResolver($container),
 ];

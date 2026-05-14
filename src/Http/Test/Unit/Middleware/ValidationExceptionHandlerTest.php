@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Test\Unit\Middleware;
 
 use App\Http\Middleware\ValidationExceptionHandler;
@@ -54,7 +56,7 @@ class ValidationExceptionHandlerTest extends TestCase
             'errors' => [
                 'email' => 'Invalid email',
                 'productId' => 'Invalid product Id',
-            ]
+            ],
         ], $data);
     }
 }

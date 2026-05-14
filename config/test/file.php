@@ -9,13 +9,9 @@ use App\Shared\Domain\ValueObject\RootPath;
 use Psr\Container\ContainerInterface;
 
 return [
-    FileHandler::class => function (ContainerInterface $container) {
-        return new FileHandler($container->get(UploadDir::class));
-    },
-    UploadDir::class => function () {
-        return new UploadDir(
-            new RootPath(sys_get_temp_dir()),
-            new ValidatePath()
-        );
-    }
+    FileHandler::class => fn (ContainerInterface $container) => new FileHandler($container->get(UploadDir::class)),
+    UploadDir::class => fn () => new UploadDir(
+        new RootPath(sys_get_temp_dir()),
+        new ValidatePath()
+    ),
 ];

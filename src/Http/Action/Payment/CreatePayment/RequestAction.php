@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Action\Payment\CreatePayment;
 
 use App\Http\JsonResponse;
@@ -20,20 +22,20 @@ class RequestAction implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-            $email = $request->getParsedBody()['email'] ?? '';
-            $productId = $request->getParsedBody()['productId'] ?? '';
-            $type = $request->getParsedBody()['type'] ?? '';
+        $email = $request->getParsedBody()['email'] ?? '';
+        $productId = $request->getParsedBody()['productId'] ?? '';
+        $type = $request->getParsedBody()['type'] ?? '';
 
-            $command = new Command(
-                $email,
-                $productId,
-                $type
-            );
+        $command = new Command(
+            $email,
+            $productId,
+            $type
+        );
 
-            $this->validator->validate($command);
+        $this->validator->validate($command);
 
-            $response = $this->handler->handle($command);
+        $response = $this->handler->handle($command);
 
-            return new JsonResponse($response, 201);
+        return new JsonResponse($response, 201);
     }
 }

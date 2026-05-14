@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Action\Auth\GetToken;
 
 use App\Http\EmptyResponse;
@@ -24,7 +26,7 @@ class RequestAction implements RequestHandlerInterface
                 if ($data['login'] === $config['login'] && $data['password'] === $config['password']) {
                     return new JsonResponse([
                         'token' => $config['api_token'],
-                        'type' => 'Bearer'
+                        'type' => 'Bearer',
                     ]);
                 }
             }

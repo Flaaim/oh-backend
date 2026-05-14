@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Payment\Test\Service;
 
 use App\Payment\Service\Delivery\Access\AccessDelivery;
@@ -32,7 +34,7 @@ class DeliveryFactoryTest extends TestCase
 
         $paymentWebhookData->expects($this->exactly(3))
             ->method('getMetadata')
-            ->willReturnCallback(fn($key) => match ($key) {
+            ->willReturnCallback(fn ($key) => match ($key) {
                 'productId' => $productId,
                 'email' => $email,
                 'type' => Type::File->value,
@@ -52,7 +54,7 @@ class DeliveryFactoryTest extends TestCase
         $delivery->createDelivery($paymentWebhookData);
     }
 
-    public function testInvalidDeliverElement()
+    public function testInvalidDeliverElement(): void
     {
         self::expectException(\DomainException::class);
         self::expectExceptionMessage('Delivery is not a valid array element.');

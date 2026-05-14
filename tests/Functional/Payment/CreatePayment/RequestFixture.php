@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Payment\CreatePayment;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -8,7 +10,6 @@ use Test\Functional\Payment\ProductBuilder;
 
 class RequestFixture extends AbstractFixture
 {
-
     public function load(ObjectManager $manager): void
     {
         $product = (new ProductBuilder())->build();

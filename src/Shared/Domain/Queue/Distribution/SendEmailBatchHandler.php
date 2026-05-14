@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Shared\Domain\Queue\Distribution;
 
 use App\Distribution\Entity\Distribution;

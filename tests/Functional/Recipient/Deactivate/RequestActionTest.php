@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional\Recipient\Deactivate;
 
 use App\Recipient\Entity\Email;
@@ -10,7 +12,6 @@ use Test\Functional\WebTestCase;
 
 class RequestActionTest extends WebTestCase
 {
-
     private RecipientRepository $recipients;
     public function setUp(): void
     {
@@ -34,11 +35,11 @@ class RequestActionTest extends WebTestCase
                                 'domain' => 'domain.com',
                                 "SMTP_blocks_count" => 8,
                                 "domain_status" => "blocked",
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ];
         $response = $this->app()->handle($this->createValidWebhookRequest($events, getenv('UNI_SENDER_API')));
 
@@ -63,17 +64,17 @@ class RequestActionTest extends WebTestCase
                         'event_data' => [
                             'email' => 'unsubscribed@app.ru',
                             'status' => 'unsubscribed',
-                        ]
+                        ],
                     ],
                     [
                         'event_name' => 'transactional_email_status',
                         'event_data' => [
                             'email' => 'sent@app.ru',
                             'status' => 'sent',
-                        ]
-                    ]
-                ]
-            ]
+                        ],
+                    ],
+                ],
+            ],
         ];
         $response = $this->app()->handle($this->createValidWebhookRequest($events, getenv('UNI_SENDER_API')));
 
@@ -103,12 +104,12 @@ class RequestActionTest extends WebTestCase
                                     'domain' => 'domain.com',
                                     "SMTP_blocks_count" => 8,
                                     "domain_status" => "blocked",
-                                ]
+                                ],
                             ],
-                        ]
-                    ]
-                ]
-            ]
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 
@@ -128,7 +129,7 @@ class RequestActionTest extends WebTestCase
                                 'job_id' => '1a3Q2V-0000OZ-S0',
                                 'metadata' => [
                                     'key1' => 'val1',
-                                    'key2' => 'val2'
+                                    'key2' => 'val2',
                                 ],
                                 'email' => 'unsubscribed@app.ru',
                                 'status' => 'unsubscribed',
@@ -138,9 +139,9 @@ class RequestActionTest extends WebTestCase
                                     'delivery_status' => 'err_delivery_failed',
                                     'destination_response' => '550 Spam rejected',
                                     'user_agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
-                                    'ip' => '111.111.111.111'
-                                ]
-                            ]
+                                    'ip' => '111.111.111.111',
+                                ],
+                            ],
                         ],
                         [
                             'event_name' => 'transactional_email_status',
@@ -148,7 +149,7 @@ class RequestActionTest extends WebTestCase
                                 'job_id' => '1a3Q2V-0000OZ-S0',
                                 'metadata' => [
                                     'key1' => 'val1',
-                                    'key2' => 'val2'
+                                    'key2' => 'val2',
                                 ],
                                 'email' => 'sent@app.ru',
                                 'status' => 'sent',
@@ -158,13 +159,13 @@ class RequestActionTest extends WebTestCase
                                     'delivery_status' => 'err_delivery_failed',
                                     'destination_response' => '550 Spam rejected',
                                     'user_agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
-                                    'ip' => '111.111.111.111'
-                                ]
-                            ]
+                                    'ip' => '111.111.111.111',
+                                ],
+                            ],
                         ],
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ];
     }
 
@@ -173,7 +174,7 @@ class RequestActionTest extends WebTestCase
     {
         $initialData = [
             'auth' => $apiKey,
-            'events_by_user' => $eventsByUser
+            'events_by_user' => $eventsByUser,
         ];
         $jsonStringWithKey = json_encode($initialData);
         $validHash = md5($jsonStringWithKey);

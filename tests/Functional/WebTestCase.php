@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Functional;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -33,7 +35,7 @@ class WebTestCase extends TestCase
         array $body = [],
         ?string $sessionId = null
     ): ServerRequestInterface {
-        $sessionId = $sessionId ?? bin2hex(random_bytes(32));
+        $sessionId ??= bin2hex(random_bytes(32));
 
         $request = (new ServerRequestFactory())->createServerRequest($method, $path, ['REMOTE_ADDR' => '127.0.0.1'])
             ->withHeader('Accept', 'application/json')
@@ -64,7 +66,7 @@ class WebTestCase extends TestCase
     private function container(): ContainerInterface
     {
         /** @var ContainerInterface */
-        if($this->container === null) {
+        if ($this->container === null) {
             $this->container = require __DIR__ . '/../../config/container.php';
         }
         return $this->container;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Shared\Domain\Service\Notification;
 
 use App\Shared\Domain\Event\Payment\SuccessfulPaymentEvent;
@@ -36,9 +38,9 @@ class TelegramNotifier implements NotificationInterface
                         'text' => 'Успешный платеж. ' . PHP_EOL
                             . 'Сумма: ' . $payment->getPrice()->formatted() . PHP_EOL
                             . 'Email: ' . $payment->getEmail()->getValue() . PHP_EOL
-                            . 'Продукт: ' . $payment->getProductId() . PHP_EOL
+                            . 'Продукт: ' . $payment->getProductId() . PHP_EOL,
 
-                    ]
+                    ],
                 ]
             );
         } catch (GuzzleException $e) {
@@ -59,9 +61,9 @@ class TelegramNotifier implements NotificationInterface
                         'text' => 'Новая заявка. ' . PHP_EOL
                             . 'Имя: ' . $name . PHP_EOL
                             . 'Контакт: ' . $contact . PHP_EOL
-                            . 'Сообщение: ' . $message . PHP_EOL
+                            . 'Сообщение: ' . $message . PHP_EOL,
 
-                    ]
+                    ],
                 ]
             );
         } catch (GuzzleException $e) {
