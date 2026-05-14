@@ -26,6 +26,8 @@ return (new Config())
 
         'strict_comparison' => true,
         'strict_param' => true,
+
+        'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
     ])
     // 💡 by default, Fixer looks for `*.php` files excluding `./vendor/` - here, you can groom this config
     ->setFinder(
@@ -50,5 +52,4 @@ return (new Config())
         // 💡 extra configs
         // ->ignoreDotFiles(false) // true by default in v3, false in v4 or future mode
         // ->ignoreVCS(true) // true by default
-    )
-;
+    );
