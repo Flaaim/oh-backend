@@ -49,6 +49,7 @@
     "weirdan/doctrine-psalm-plugin": "^2.10",
     "psalm/plugin-phpunit": "^0.19.7",
     "lctrs/psalm-psr-container-plugin": "^1.11",
-    "friendsofphp/php-cs-fixer": "^3.95"
+    "friendsofphp/php-cs-fixer": "^3.95",
+    "dg/bypass-finals": "^1.9"
   }
 }
