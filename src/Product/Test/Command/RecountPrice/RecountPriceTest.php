@@ -7,7 +7,7 @@ namespace App\Product\Test\Command\RecountPrice;
 use App\Product\Command\RecountPrice\Command;
 use App\Product\Command\RecountPrice\Handler;
 use App\Product\Entity\Currency;
-use App\Product\Entity\Price;
+use App\Product\Entity\Price\Price;
 use App\Product\Entity\ProductRepository;
 use App\Shared\Domain\ValueObject\Id;
 use PHPUnit\Framework\TestCase;

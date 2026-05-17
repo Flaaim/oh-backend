@@ -10,6 +10,7 @@ use App\Payment\Entity\Payment;
 use App\Payment\Entity\PaymentRepository;
 use App\Payment\Entity\Status;
 use App\Payment\Entity\Token;
+use App\Product\Entity\Decorator\DiscountPriceDecorator;
 use App\Product\Entity\ProductRepository;
 use App\Shared\Domain\Service\Payment\DTO\MakePaymentDTO;
 use App\Shared\Domain\Service\Payment\PaymentException;
@@ -34,7 +35,12 @@ final class Handler
         $email = new Email($command->email);
         $product = $this->products->get(new Id($command->productId));
         $returnToken = new Token(Id::generate()->getValue(), new DateTimeImmutable('+ 1 hour'));
+
         $paymentPrice = $product->calculatePriceFor($command->type);
+        $hasDiscount = $this->payments->hasDiscount($email);
+        if ($hasDiscount) {
+            $paymentPrice = new DiscountPriceDecorator($paymentPrice);
+        }
 
         $payment = new Payment(
             new Id(Uuid::uuid4()->toString()),

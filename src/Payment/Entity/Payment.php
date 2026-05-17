@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Payment\Entity;
 
-use App\Product\Entity\Price;
+use App\Product\Entity\Price\Price;
 use App\Shared\Domain\ValueObject\Id;
 use Doctrine\ORM\Mapping as ORM;
+use App\Product\Entity\Price\PriceInterface;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'payments')]
@@ -24,14 +25,14 @@ class Payment
     #[ORM\Column(type:'string', length: 255)]
     private string $productId;
     #[ORM\Column(type:'price')]
-    private Price $price;
+    private PriceInterface $price;
     #[ORM\Embedded(class: Token::class)]
     private Token $returnToken;
     #[ORM\Column(type:'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
     #[ORM\Column(type: 'boolean')]
     private bool $isSend = false;
-    public function __construct(Id $id, Email $email, string $productId, Price $price, \DateTimeImmutable $createdAt, Token $returnToken)
+    public function __construct(Id $id, Email $email, string $productId, PriceInterface $price, \DateTimeImmutable $createdAt, Token $returnToken)
     {
         $this->id = $id;
         $this->status = Status::pending();
@@ -57,7 +58,7 @@ class Payment
     {
         return $this->productId;
     }
-    public function getPrice(): Price
+    public function getPrice(): PriceInterface
     {
         return $this->price;
     }

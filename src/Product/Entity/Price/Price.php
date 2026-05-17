@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Product\Entity;
+namespace App\Product\Entity\Price;
 
+use App\Product\Entity\Currency;
+use App\Product\Entity\Type;
 use Webmozart\Assert\Assert;
 
-final class Price
+final class Price implements PriceInterface
 {
     private float $value;
     private Currency $currency;
@@ -16,10 +18,12 @@ final class Price
         $this->value = round($value, 2);
         $this->currency = $currency;
     }
+    #[\Override]
     public function getValue(): float
     {
         return $this->value;
     }
+    #[\Override]
     public function getCurrency(): Currency
     {
         return $this->currency;

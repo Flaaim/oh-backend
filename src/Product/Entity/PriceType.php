@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Product\Entity;
 
+use App\Product\Entity\Price\Price;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 

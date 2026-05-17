@@ -47,4 +47,16 @@ final class PaymentRepository
 
         return $payment;
     }
+
+    public function hasDiscount(Email $email): bool
+    {
+        $queryBuilder = $this->repo->createQueryBuilder('p')
+            ->select('COUNT(p.email)')
+            ->where('p.email = :email')
+            ->setParameter('email', $email->getValue())
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $queryBuilder > 0;
+    }
 }

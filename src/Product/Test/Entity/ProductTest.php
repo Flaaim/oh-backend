@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Product\Test\Entity;
 
 use App\Product\Entity\Currency;
-use App\Product\Entity\Price;
+use App\Product\Entity\Price\Price;
 use App\Shared\Domain\ValueObject\Id;
 use PHPUnit\Framework\TestCase;
 use Test\Functional\Payment\ProductBuilder;

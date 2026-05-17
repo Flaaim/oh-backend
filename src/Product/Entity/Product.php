@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Product\Entity;
 
+use App\Product\Entity\Price\Price;
+use App\Product\Entity\Price\PriceInterface;
 use App\Shared\Domain\ValueObject\Id;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -21,10 +23,10 @@ class Product
     #[ORM\Column(type: 'string', length: 25, unique: true)]
     private string $course;
     #[ORM\Column(type: 'price')]
-    private Price $price;
+    private PriceInterface $price;
     #[ORM\Column(type: 'file')]
     private File $file;
-    public function __construct(Id $id, string $name, Price $price, File $file, string $cipher, string $course)
+    public function __construct(Id $id, string $name, PriceInterface $price, File $file, string $cipher, string $course)
     {
         $this->id = $id;
         $this->name = $name;
@@ -41,7 +43,7 @@ class Product
     {
         return $this->name;
     }
-    public function getPrice(): Price
+    public function getPrice(): PriceInterface
     {
         return $this->price;
     }
@@ -57,7 +59,7 @@ class Product
     {
         return $this->course;
     }
-    public function update(string $name, Price $price, File $file, string $cipher): void
+    public function update(string $name, PriceInterface $price, File $file, string $cipher): void
     {
         $this->name = $name;
         $this->price = $price;
@@ -65,7 +67,7 @@ class Product
         $this->cipher = $cipher;
     }
 
-    public function calculatePriceFor(string $type): Price
+    public function calculatePriceFor(string $type): PriceInterface
     {
         return $this->price->withRecount($type);
     }
