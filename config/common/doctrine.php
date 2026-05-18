@@ -55,6 +55,7 @@ return [
 
         $messengerConnection = new MessengerDoctrineConnection([
             'table_name' => 'messenger_messages',
+            'auto_setup' => (bool)getenv('APP_DEBUG')
         ], $dbalConnection);
         return new DoctrineTransport($messengerConnection, new PhpSerializer());
     },
