@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Payment\Entity;
 
-use App\Product\Entity\Price\Price;
+use App\Product\Entity\Price\PriceInterface;
 use App\Shared\Domain\ValueObject\Id;
 use Doctrine\ORM\Mapping as ORM;
-use App\Product\Entity\Price\PriceInterface;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'payments')]

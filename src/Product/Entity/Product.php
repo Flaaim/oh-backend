@@ -69,6 +69,12 @@ class Product
 
     public function calculatePriceFor(string $type): PriceInterface
     {
-        return $this->price->withRecount($type);
+        $value = match ($type) {
+            Type::Access->value => $this->getPrice()->getValue(),
+            Type::File->value => round(($this->getPrice()->getValue() * 1.75), 2),
+            default =>  throw new \DomainException('Unsupported price type: ' . $type)
+        };
+
+        return new Price($value, new Currency('RUB'));
     }
 }

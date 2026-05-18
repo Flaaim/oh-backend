@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Product\Entity;
 
 use App\Product\Entity\Price\Price;
+use App\Product\Entity\Price\PriceInterface;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
@@ -13,7 +14,7 @@ final class PriceType extends StringType
     public const NAME = 'price';
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
-        return $value instanceof Price ? $value->getValue() : $value;
+        return $value instanceof PriceInterface ? $value->getValue() : $value;
     }
     public function convertToPHPValue($value, AbstractPlatform $platform): ?Price
     {

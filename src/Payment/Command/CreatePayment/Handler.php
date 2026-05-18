@@ -27,7 +27,7 @@ final class Handler
         private readonly ProductRepository $products,
         private readonly YookassaProvider $yookassaProvider,
         private readonly PaymentRepository $payments,
-        private readonly LoggerInterface $logger
+        private readonly LoggerInterface $logger,
     ) {
     }
     public function handle(Command $command): Response
@@ -37,6 +37,7 @@ final class Handler
         $returnToken = new Token(Id::generate()->getValue(), new DateTimeImmutable('+ 1 hour'));
 
         $paymentPrice = $product->calculatePriceFor($command->type);
+
         $hasDiscount = $this->payments->hasDiscount($email);
         if ($hasDiscount) {
             $paymentPrice = new DiscountPriceDecorator($paymentPrice);
