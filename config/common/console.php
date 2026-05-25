@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Command\AccessSendCommand;
+use App\Command\ConsumeCommand;
 use App\Command\DistributionSendCommand;
 use App\Command\FileSendCommand;
 use App\Command\FixturesLoadCommand;
@@ -48,6 +49,8 @@ return [
                 FileSendCommand::class,
                 AccessSendCommand::class,
                 DistributionSendCommand::class,
+
+                ConsumeCommand::class,
             ],
             'fixture_paths' => [
                 __DIR__ . '/../../src/Product/Fixture',

@@ -9,6 +9,7 @@ use App\Shared\Domain\Queue\Distribution\SendEmailBatchMessage;
 use App\Shared\Domain\RecipientQuery\RecipientQueryInterface;
 use App\Shared\Infrastructure\Persistence\RecipientQuery;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Messenger\Handler\HandlerDescriptor;
 use Symfony\Component\Messenger\Handler\HandlersLocator;
 use Symfony\Component\Messenger\MessageBus;
@@ -16,6 +17,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
 use Symfony\Component\Messenger\Middleware\SendMessageMiddleware;
 use Symfony\Component\Messenger\Transport\Sender\SendersLocator;
+use Symfony\Component\Messenger\Transport\TransportInterface;
 
 return [
     MessageBusInterface::class => function (ContainerInterface $container) {
@@ -41,6 +43,9 @@ return [
     RecipientQuery::class => fn (Psr\Container\ContainerInterface $container) => new RecipientQuery(
         $container->get(Doctrine\ORM\EntityManagerInterface::class)
     ),
+    TransportInterface::class => function(ContainerInterface $container) {
+        return $container->get('messenger.transport.async');
+    },
     'config' => [
         'messenger' => [
             'async' => getenv('MESSENGER_TRANSPORT_DSN'),
