@@ -29,14 +29,15 @@ final class FileResponse extends Response
                 sprintf('File is not readable: "%s"', $path)
             );
         }
+        $fileSize = filesize($path);
         parent::__construct(
             $status,
             new Headers([
                 'Content-Type' => 'application/pdf',
                 'Content-Disposition' => 'inline; filename="' . basename($path) . '"',
+                'Content-Length' => (string) $fileSize,
+                'Accept-Ranges' => 'bytes',
                 'Cache-Control' => 'private, max-age=600',
-                'Pragma' => 'no-cache',
-                'Expires' => '0',
                 'X-Content-Type-Options' => 'nosniff',
             ]),
             (new StreamFactory())->createStreamFromFile($path)
