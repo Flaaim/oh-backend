@@ -38,10 +38,6 @@ final class Handler
 
         $paymentPrice = $product->calculatePriceFor($command->type);
 
-/*        $hasDiscount = $this->payments->hasDiscount($email);
-        if ($hasDiscount) {
-            $paymentPrice = new DiscountPriceDecorator($paymentPrice);
-        }*/
 
         $payment = new Payment(
             new Id(Uuid::uuid4()->toString()),

@@ -15,7 +15,7 @@ final class Command
         #[Assert\NotBlank]
         #[Assert\Uuid]
         public string $productId,
-        #[Assert\Choice(choices: ['file', 'access'])]
+        #[Assert\Choice(choices: ['file', 'access', 'cheatsheet'])]
         public string $type,
     ) {
     }

@@ -30,6 +30,6 @@ final class FileDelivery implements ProductDeliveryInterface
 
     public function supports(string $type): bool
     {
-        return Type::File->value === $type;
+        return Type::File->value === $type || Type::Cheatsheet->value === $type;
     }
 }

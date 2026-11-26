@@ -8,4 +8,5 @@ enum Type: string
 {
     case File = 'file';
     case Access = 'access';
+    case Cheatsheet = 'cheatsheet';
 }
